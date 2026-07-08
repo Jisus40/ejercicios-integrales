@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrales — Nivel 0</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '$', right: '$', display: false}
+          ]
+        });"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nivel_0_styles.css">
+  <base target="_blank">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <div class="level-badge" id="levelBadge">NIVEL 0</div>
+        <div class="header-title">
+          <h1 id="levelTitle">Cargando...</h1>
+          <p id="levelDesc">Cargando...</p>
+        </div>
+      </div>
+      <div class="progress-ring">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="progress" cx="30" cy="30" r="26" id="progressCircle" stroke-dasharray="163.36" stroke-dashoffset="163.36"></circle>
+        </svg>
+        <div class="progress-text" id="progressText">0%</div>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN DE EJERCICIOS -->
+    <div class="exercise-nav" id="exerciseNav"></div>
+
+    <!-- TARJETA: DEFINICIÓN -->
+    <div class="card def-card" id="defCard">
+      <div class="card-header">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-title" id="defTitle">Definición</div>
+          <div class="card-subtitle" id="defSubtitle">Concepto fundamental</div>
+        </div>
+      </div>
+      <div class="def-content" id="defContent"></div>
+    </div>
+
+    <!-- TARJETA: EJERCICIO -->
+    <div class="card ex-card" id="exCard">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <div class="card-title" id="exTitle">Ejercicio</div>
+          <div class="card-subtitle" id="exSubtitle">Aplicación</div>
+        </div>
+      </div>
+
+      <div class="ex-statement" id="exStatement"></div>
+
+      <!-- BOTÓN PARA INICIAR -->
+      <div class="solution-section">
+        <button class="solution-btn" id="btnStart" onclick="startSolution()">
+          <span>🚀</span> Resolver Ejercicio
+        </button>
+      </div>
+
+      <!-- CAMPO PARA SOLUCIÓN DEL USUARIO -->
+      <div class="user-solution-section" id="userSolutionSection">
+        <div class="step" style="padding-left:16px;">
+          <div class="step-title">🧑‍💻 Escribe tu solución</div>
+          <div class="step-body" style="margin-bottom:10px;">Usa los botones de abajo para insertar símbolos matemáticos, o escribe directamente en LaTeX.</div>
+
+          <div class="math-toolbar" id="mathToolbar"></div>
+
+          <textarea class="user-sol-textarea" id="userSolutionInput" placeholder="Escribe tu respuesta aquí..."></textarea>
+
+          <button class="verify-btn" onclick="verifySolution()">
+            <span>🔍</span> Verificar mi Solución
+          </button>
+        </div>
+      </div>
+
+      <!-- COMPARACIÓN -->
+      <div class="comparison-section" id="comparisonSection">
+        <div class="compare-box">
+          <div class="compare-card" id="userCompareCard">
+            <div class="compare-label user">Tu respuesta</div>
+            <div class="compare-formula" id="userCompareText"></div>
+          </div>
+          <div class="compare-card" id="expectedCompareCard">
+            <div class="compare-label expected">Solución correcta</div>
+            <div class="compare-formula" id="expectedCompareText"></div>
+          </div>
+        </div>
+        <div class="compare-result" id="compareResult"></div>
+      </div>
+
+      <!-- SOLUCIÓN REAL PASO A PASO -->
+      <div class="solution-content" id="solutionSteps"></div>
+
+      <!-- FELICITACIONES -->
+      <div class="congrats-banner" id="congratsBanner">
+        <h2>🎉 ¡Felicitaciones!</h2>
+        <p>Has resuelto correctamente el ejercicio. El siguiente nivel ha sido desbloqueado.</p>
+      </div>
+
+      <!-- TIP DEL EJERCICIO -->
+      <div class="exercise-tip" id="exerciseTip"></div>
+    </div>
+
+    <!-- TARJETA: JUSTIFICACIÓN -->
+    <div class="card justification-card">
+      <div class="card-header">
+        <div class="card-icon">📝</div>
+        <div>
+          <div class="card-title">Tu Justificación</div>
+          <div class="card-subtitle">Escribe tu razonamiento paso a paso</div>
+        </div>
+      </div>
+      <textarea class="just-textarea" id="justification" placeholder="Escribe tu razonamiento aquí..."></textarea>
+      <div class="hint-box" id="hintBox"></div>
+      <div class="just-actions">
+        <button class="btn-save" onclick="saveJustification()">💾 Guardar Justificación</button>
+        <button class="btn-hint" onclick="toggleHint()">💡 Ver Pista</button>
+      </div>
+    </div>
+
+    <!-- CORRECCIÓN IA — SIEMPRE VISIBLE -->
+    <div class="card correction-card" id="correctionCard">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <div>
+          <div class="card-title">Solicitar Corrección con IA</div>
+          <div class="card-subtitle">Copia el ejercicio y pégalo en Kimi, ChatGPT o tu IA favorita</div>
+        </div>
+      </div>
+      <div class="correction-intro">
+        <strong>¡Listo!</strong> Tu justificación ha sido guardada. Ahora puedes copiar todo el contexto del ejercicio junto con tu respuesta y pedirle a una IA que te corrija.
+      </div>
+      <div class="correction-preview" id="correctionPreview"></div>
+      <div class="correction-actions">
+        <button class="btn-copy" id="btnCopy" onclick="copyToClipboard()">📋 Copiar Todo</button>
+        <a class="btn-open-ai" href="https://kimi.moonshot.cn" target="_blank" rel="noopener">🚀 Abrir Kimi</a>
+      </div>
+      <div class="correction-tips">
+        <strong>💡 Consejo:</strong> Al pegar en Kimi, puedes agregar al final algo como: <em>"Por favor, corrige mi justificación paso a paso, indica si hay errores conceptuales y sugiere cómo mejorar mi razonamiento."</em>
+      </div>
+    </div>
+
+    <!-- BARRA ESTADO -->
+    <div class="status-bar">
+      <div class="status-left">
+        <div class="status-dot"></div>
+        <span id="statusText">Cargando...</span>
+      </div>
+      <div class="nav-arrows">
+        <button class="nav-arrow" onclick="prevExercise()">←</button>
+        <button class="nav-arrow" onclick="nextExercise()">→</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="nivel_0_script.js"></script>
+</body>
+</html>

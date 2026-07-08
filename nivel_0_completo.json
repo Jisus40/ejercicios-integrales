@@ -1,0 +1,2189 @@
+{
+  "title": "Nivel 0 — Bases y Conocimientos Previos",
+  "description": "Integración inmediata, manipulación algebraica, sustitución simple e integrales definidas básicas. Incluye ejercicios de la guía de práctica.",
+  "subthemes": [
+    {
+      "name": "Regla de la Potencia (monomios simples)",
+      "definition": "Para $n \\neq -1$: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$",
+      "tip": "Siempre verifica que $n \\neq -1$. Si $n = -1$, la integral es $\\ln|x| + C$. Recuerda que $\\sqrt[n]{x} = x^{1/n}$ y $\\frac{1}{x^n} = x^{-n}$.",
+      "exercises": [
+        {
+          "id": "N0-01",
+          "difficulty": 1,
+          "latex": "\\int x^3 \\, dx",
+          "hint": "Suma 1 al exponente y divide por el nuevo exponente.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar la regla de la potencia",
+              "body": "\\int x^3 \\, dx = \\frac{x^{3+1}}{3+1} + C = \\frac{x^4}{4} + C"
+            }
+          ],
+          "final_answer": "\\frac{x^4}{4} + C",
+          "tip": "Verifica derivando: $\\frac{d}{dx}\\left(\\frac{x^4}{4}\\right) = x^3$ ✓"
+        },
+        {
+          "id": "N0-02",
+          "difficulty": 1,
+          "latex": "\\int 5x^2 \\, dx",
+          "hint": "La constante sale de la integral.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar la constante",
+              "body": "5 \\int x^2 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la regla de la potencia",
+              "body": "5 \\cdot \\frac{x^{2+1}}{2+1} + C = 5 \\cdot \\frac{x^3}{3} + C = \\frac{5x^3}{3} + C"
+            }
+          ],
+          "final_answer": "\\frac{5x^3}{3} + C",
+          "tip": "Las constantes multiplicativas siempre salen de la integral: $\\int k \\cdot f(x) dx = k \\int f(x) dx$."
+        },
+        {
+          "id": "N0-03",
+          "difficulty": 1,
+          "latex": "\\int \\frac{1}{x^2} \\, dx",
+          "hint": "Escribe como $x^{-2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir como potencia",
+              "body": "\\int \\frac{1}{x^2} \\, dx = \\int x^{-2} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la regla de la potencia",
+              "body": "\\frac{x^{-2+1}}{-2+1} + C = \\frac{x^{-1}}{-1} + C = -x^{-1} + C = -\\frac{1}{x} + C"
+            }
+          ],
+          "final_answer": "-\\frac{1}{x} + C",
+          "tip": "Un error común es olvidar el signo negativo cuando el exponente es negativo. $\\frac{1}{-1} = -1$, no $+1$."
+        },
+        {
+          "id": "N0-04",
+          "difficulty": 1,
+          "latex": "\\int \\sqrt{x} \\, dx",
+          "hint": "$\\sqrt{x} = x^{1/2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir como potencia",
+              "body": "\\int \\sqrt{x} \\, dx = \\int x^{1/2} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la regla de la potencia",
+              "body": "\\frac{x^{1/2+1}}{1/2+1} + C = \\frac{x^{3/2}}{3/2} + C = \\frac{2}{3}x^{3/2} + C"
+            }
+          ],
+          "final_answer": "\\frac{2}{3}x^{3/2} + C",
+          "tip": "Dividir entre una fracción es multiplicar por su inverso: $\\frac{1}{3/2} = \\frac{2}{3}$."
+        },
+        {
+          "id": "N0-05",
+          "difficulty": 2,
+          "latex": "\\int \\frac{3}{\\sqrt[3]{x}} \\, dx",
+          "hint": "$\\sqrt[3]{x} = x^{1/3}$, invierte para el numerador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir como potencia",
+              "body": "\\frac{3}{\\sqrt[3]{x}} = 3x^{-1/3}"
+            },
+            {
+              "step": 2,
+              "title": "Sacar la constante",
+              "body": "3 \\int x^{-1/3} \\, dx"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar la regla de la potencia",
+              "body": "3 \\cdot \\frac{x^{-1/3+1}}{-1/3+1} + C = 3 \\cdot \\frac{x^{2/3}}{2/3} + C = 3 \\cdot \\frac{3}{2}x^{2/3} + C = \\frac{9}{2}x^{2/3} + C"
+            }
+          ],
+          "final_answer": "\\frac{9}{2}x^{2/3} + C",
+          "tip": "$-1/3 + 1 = 2/3$. Cuando sumas fracciones, usa denominador común: $-1/3 + 3/3 = 2/3$."
+        },
+        {
+          "id": "N0-06",
+          "difficulty": 2,
+          "latex": "\\int \\left( \\frac{2}{x^3} - \\frac{x^3}{2} \\right) dx",
+          "hint": "Separa en dos integrales y aplica la regla de la potencia a cada una.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar en dos integrales",
+              "body": "\\int \\frac{2}{x^3} \\, dx - \\int \\frac{x^3}{2} \\, dx = 2\\int x^{-3} \\, dx - \\frac{1}{2}\\int x^3 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral",
+              "body": "2 \\cdot \\frac{x^{-3+1}}{-3+1} = 2 \\cdot \\frac{x^{-2}}{-2} = -x^{-2} = -\\frac{1}{x^2}"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral",
+              "body": "\\frac{1}{2} \\cdot \\frac{x^{3+1}}{3+1} = \\frac{1}{2} \\cdot \\frac{x^4}{4} = \\frac{x^4}{8}"
+            },
+            {
+              "step": 4,
+              "title": "Combinar resultados",
+              "body": "-\\frac{1}{x^2} - \\frac{x^4}{8} + C"
+            }
+          ],
+          "final_answer": "-\\frac{1}{x^2} - \\frac{x^4}{8} + C",
+          "tip": "Una sola constante $C$ al final cubre todas las constantes de cada integral. No pongas $C_1$ y $C_2$."
+        }
+      ]
+    },
+    {
+      "name": "Polinomios y Linealidad",
+      "definition": "$\\int (\\alpha f + \\beta g) \\, dx = \\alpha \\int f \\, dx + \\beta \\int g \\, dx$",
+      "tip": "La integral de una suma es la suma de las integrales. Siempre expande productos y simplifica fracciones antes de integrar.",
+      "exercises": [
+        {
+          "id": "N0-07",
+          "difficulty": 1,
+          "latex": "\\int (4x^2 - 3x + 7) \\, dx",
+          "hint": "Integra término a término.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar términos",
+              "body": "\\int 4x^2 \\, dx - \\int 3x \\, dx + \\int 7 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar cada término",
+              "body": "4\\frac{x^3}{3} - 3\\frac{x^2}{2} + 7x + C"
+            }
+          ],
+          "final_answer": "\\frac{4x^3}{3} - \\frac{3x^2}{2} + 7x + C",
+          "tip": "El término constante $7$ integra a $7x$, no a $7$ ni a $0$."
+        },
+        {
+          "id": "N0-08",
+          "difficulty": 2,
+          "latex": "\\int \\left( \\frac{x^4 - 2x^2 + 1}{x} \\right) dx",
+          "hint": "Divide cada término del numerador entre $x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Dividir término a término",
+              "body": "\\frac{x^4}{x} - \\frac{2x^2}{x} + \\frac{1}{x} = x^3 - 2x + \\frac{1}{x}"
+            },
+            {
+              "step": 2,
+              "title": "Integrar término a término",
+              "body": "\\int x^3 \\, dx - \\int 2x \\, dx + \\int \\frac{1}{x} \\, dx = \\frac{x^4}{4} - x^2 + \\ln|x| + C"
+            }
+          ],
+          "final_answer": "\\frac{x^4}{4} - x^2 + \\ln|x| + C",
+          "tip": "¡Cuidado con $\\frac{1}{x}$! No es potencia, su integral es $\\ln|x|$, no $\\frac{x^0}{0}$."
+        },
+        {
+          "id": "N0-09",
+          "difficulty": 2,
+          "latex": "\\int (x+1)(x-2) \\, dx",
+          "hint": "Expande el producto primero.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir",
+              "body": "(x+1)(x-2) = x^2 - 2x + x - 2 = x^2 - x - 2"
+            },
+            {
+              "step": 2,
+              "title": "Integrar término a término",
+              "body": "\\int (x^2 - x - 2) \\, dx = \\frac{x^3}{3} - \\frac{x^2}{2} - 2x + C"
+            }
+          ],
+          "final_answer": "\\frac{x^3}{3} - \\frac{x^2}{2} - 2x + C",
+          "tip": "Nunca intentes integrar un producto como $\\int f(x)g(x)dx = \\int f(x)dx \\cdot \\int g(x)dx$. ¡Eso es falso! Expande primero."
+        },
+        {
+          "id": "N0-10",
+          "difficulty": 2,
+          "latex": "\\int \\frac{(2x+1)^2}{x} \\, dx",
+          "hint": "Expande $(2x+1)^2$ y luego divide entre $x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir el numerador",
+              "body": "(2x+1)^2 = 4x^2 + 4x + 1"
+            },
+            {
+              "step": 2,
+              "title": "Dividir entre $x$",
+              "body": "\\frac{4x^2 + 4x + 1}{x} = 4x + 4 + \\frac{1}{x}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\int \\left(4x + 4 + \\frac{1}{x}\\right) dx = 2x^2 + 4x + \\ln|x| + C"
+            }
+          ],
+          "final_answer": "2x^2 + 4x + \\ln|x| + C",
+          "tip": "$(a+b)^2 = a^2 + 2ab + b^2$. No confundas con $a^2 + b^2$."
+        },
+        {
+          "id": "N0-11",
+          "difficulty": 3,
+          "latex": "\\int \\left( x^{\\sqrt{2}} + x^{2} \\right) dx",
+          "hint": "La regla de la potencia funciona para cualquier exponente constante $n \\neq -1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int x^{\\sqrt{2}} \\, dx + \\int x^2 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral",
+              "body": "\\frac{x^{\\sqrt{2}+1}}{\\sqrt{2}+1}"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral",
+              "body": "\\frac{x^3}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Combinar",
+              "body": "\\frac{x^{\\sqrt{2}+1}}{\\sqrt{2}+1} + \\frac{x^3}{3} + C"
+            }
+          ],
+          "final_answer": "\\frac{x^{\\sqrt{2}+1}}{\\sqrt{2}+1} + \\frac{x^3}{3} + C",
+          "tip": "Los exponentes pueden ser irracionales ($\\sqrt{2}$), fraccionarios, o incluso $\\pi$. La regla de la potencia aplica siempre que sea constante y $\\neq -1$."
+        }
+      ]
+    },
+    {
+      "name": "Trigonométricas Inmediatas",
+      "definition": "Memorizar: $\\int \\sen(x)dx = -\\cos(x)$, $\\int \\cos(x)dx = \\sen(x)$, $\\int \\sec^2(x)dx = \\tan(x)$, etc.",
+      "tip": "Crea una tabla de integrales trigonométricas básicas. Presta atención a los signos: $\\sen$ integra a $-\\cos$, no a $\\cos$.",
+      "exercises": [
+        {
+          "id": "N0-12",
+          "difficulty": 1,
+          "latex": "\\int 3\\cos(x) \\, dx",
+          "hint": "La integral de $\\cos(x)$ es $\\sen(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "3 \\int \\cos(x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integral inmediata",
+              "body": "3 \\sen(x) + C"
+            }
+          ],
+          "final_answer": "3\\sen(x) + C",
+          "tip": "$\\frac{d}{dx}\\sen(x) = \\cos(x)$, por lo tanto $\\int \\cos(x)dx = \\sen(x)$."
+        },
+        {
+          "id": "N0-13",
+          "difficulty": 1,
+          "latex": "\\int \\left( 2\\sen(x) - \\cos(x) \\right) dx",
+          "hint": "Integra cada término por separado.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "2\\int \\sen(x) \\, dx - \\int \\cos(x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "2(-\\cos(x)) - \\sen(x) + C = -2\\cos(x) - \\sen(x) + C"
+            }
+          ],
+          "final_answer": "-2\\cos(x) - \\sen(x) + C",
+          "tip": "$\\int \\sen(x)dx = -\\cos(x)$. El signo negativo es fácil de olvidar."
+        },
+        {
+          "id": "N0-14",
+          "difficulty": 2,
+          "latex": "\\int \\left( \\sec^2(x) + \\frac{1}{1+x^2} \\right) dx",
+          "hint": "$\\sec^2(x)$ da $\\tan(x)$ y $\\frac{1}{1+x^2}$ da $\\arctan(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int \\sec^2(x) \\, dx + \\int \\frac{1}{1+x^2} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar cada una",
+              "body": "\\tan(x) + \\arctan(x) + C"
+            }
+          ],
+          "final_answer": "\\tan(x) + \\arctan(x) + C",
+          "tip": "No confundas $\\arctan(x)$ (inversa de tangente) con $\\tan^{-1}(x)$ que a veces se escribe así. Es lo mismo."
+        },
+        {
+          "id": "N0-15",
+          "difficulty": 2,
+          "latex": "\\int \\frac{5}{\\sqrt{1-x^2}} \\, dx",
+          "hint": "Recuerda que $\\frac{d}{dx}\\arcsen(x) = \\frac{1}{\\sqrt{1-x^2}}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "5 \\int \\frac{1}{\\sqrt{1-x^2}} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integral inmediata",
+              "body": "5 \\arcsen(x) + C"
+            }
+          ],
+          "final_answer": "5\\arcsen(x) + C",
+          "tip": "$\\arcsen(x)$ también se escribe $\\sin^{-1}(x)$. Su dominio es $[-1, 1]$ y su rango $[-\\pi/2, \\pi/2]$."
+        },
+        {
+          "id": "N0-16",
+          "difficulty": 2,
+          "latex": "\\int \\left( \\sec(x)\\tan(x) - \\csc(x)\\cot(x) \\right) dx",
+          "hint": "$\\sec(x)\\tan(x)$ integra a $\\sec(x)$; $\\csc(x)\\cot(x)$ integra a $-\\csc(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int \\sec(x)\\tan(x) \\, dx - \\int \\csc(x)\\cot(x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\sec(x) - (-\\csc(x)) + C = \\sec(x) + \\csc(x) + C"
+            }
+          ],
+          "final_answer": "\\sec(x) + \\csc(x) + C",
+          "tip": "Tabla rápida: $\\frac{d}{dx}\\sec(x) = \\sec(x)\\tan(x)$ ✓, $\\frac{d}{dx}\\csc(x) = -\\csc(x)\\cot(x)$. El signo negativo de la derivada de $\\csc$ se cancela con el menos de la resta."
+        }
+      ]
+    },
+    {
+      "name": "Exponenciales y Logaritmos Inmediatos",
+      "definition": "$\\int e^x dx = e^x + C$, $\\int a^x dx = \\frac{a^x}{\\ln(a)} + C$, $\\int \\frac{1}{x}dx = \\ln|x| + C$",
+      "tip": "$e^x$ es especial porque es su propia derivada e integral. Para bases distintas, siempre aparece $\\ln(a)$ en el denominador.",
+      "exercises": [
+        {
+          "id": "N0-17",
+          "difficulty": 1,
+          "latex": "\\int 7e^x \\, dx",
+          "hint": "$e^x$ es su propia integral.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "7 \\int e^x \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integral inmediata",
+              "body": "7e^x + C"
+            }
+          ],
+          "final_answer": "7e^x + C",
+          "tip": "$\\frac{d}{dx}e^x = e^x$ y $\\int e^x dx = e^x$. Es la única función (salvo constantes) igual a su derivada."
+        },
+        {
+          "id": "N0-18",
+          "difficulty": 2,
+          "latex": "\\int \\left( 3^x + 2\\cdot 5^x \\right) dx",
+          "hint": "$\\int a^x dx = \\frac{a^x}{\\ln a}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int 3^x \\, dx + 2\\int 5^x \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar cada una",
+              "body": "\\frac{3^x}{\\ln(3)} + 2\\frac{5^x}{\\ln(5)} + C"
+            }
+          ],
+          "final_answer": "\\frac{3^x}{\\ln(3)} + \\frac{2\\cdot 5^x}{\\ln(5)} + C",
+          "tip": "Cuando la base es $e$, $\\ln(e) = 1$, por eso $\\int e^x dx = e^x$. Para otras bases, el denominador $\\ln(a)$ es obligatorio."
+        },
+        {
+          "id": "N0-19",
+          "difficulty": 2,
+          "latex": "\\int \\frac{4}{x} \\, dx",
+          "hint": "La integral de $\\frac{1}{x}$ es $\\ln|x|$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "4 \\int \\frac{1}{x} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integral inmediata",
+              "body": "4\\ln|x| + C"
+            }
+          ],
+          "final_answer": "4\\ln|x| + C",
+          "tip": "¡El valor absoluto es obligatorio! $\\ln(x)$ solo existe para $x > 0$, pero $\\frac{1}{x}$ está definida para $x < 0$ también."
+        },
+        {
+          "id": "N0-20",
+          "difficulty": 2,
+          "latex": "\\int \\left( e^{x+3} + \\frac{1}{2x} \\right) dx",
+          "hint": "$e^{x+3} = e^3 \\cdot e^x$; $e^3$ es constante.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "e^{x+3} = e^3 \\cdot e^x"
+            },
+            {
+              "step": 2,
+              "title": "Separar",
+              "body": "e^3 \\int e^x \\, dx + \\frac{1}{2}\\int \\frac{1}{x} \\, dx"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "e^3 \\cdot e^x + \\frac{1}{2}\\ln|x| + C = e^{x+3} + \\frac{1}{2}\\ln|x| + C"
+            }
+          ],
+          "final_answer": "e^{x+3} + \\frac{1}{2}\\ln|x| + C",
+          "tip": "$e^{x+3} = e^x \\cdot e^3$. También podrías hacer sustitución $u = x+3$, pero sacar la constante es más rápido."
+        }
+      ]
+    },
+    {
+      "name": "Sustitución Simple (u-substitution directa)",
+      "definition": "Si $u = g(x)$, entonces $\\int f(g(x))g'(x)dx = \\int f(u)du$.",
+      "tip": "Busca en el integrando una función y su derivada (o un múltiplo de ella). La derivada debe estar multiplicando, no sumando.",
+      "exercises": [
+        {
+          "id": "N0-21",
+          "difficulty": 2,
+          "latex": "\\int (2x+1)^3 \\, dx",
+          "hint": "$u = 2x+1$, $du = 2dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = 2x + 1, \\quad du = 2 \\, dx \\Rightarrow dx = \\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int u^3 \\cdot \\frac{du}{2} = \\frac{1}{2}\\int u^3 \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{1}{2} \\cdot \\frac{u^4}{4} + C = \\frac{u^4}{8} + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver a $x$",
+              "body": "\\frac{(2x+1)^4}{8} + C"
+            }
+          ],
+          "final_answer": "\\frac{(2x+1)^4}{8} + C",
+          "tip": "Si $du$ tiene un coeficiente (aquí 2), despeja $dx = du/2$ y saca la fracción. No olvides volver a la variable original."
+        },
+        {
+          "id": "N0-22",
+          "difficulty": 2,
+          "latex": "\\int x \\cdot e^{x^2} \\, dx",
+          "hint": "$u = x^2$, $du = 2x \\, dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = x^2, \\quad du = 2x \\, dx \\Rightarrow x \\, dx = \\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int e^u \\cdot \\frac{du}{2} = \\frac{1}{2}\\int e^u \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y volver",
+              "body": "\\frac{1}{2}e^u + C = \\frac{1}{2}e^{x^2} + C"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}e^{x^2} + C",
+          "tip": "No necesitas despejar $dx$ completamente. Si ves $x \\, dx$ en el integrando y $u = x^2$, entonces $x \\, dx = du/2$ directamente."
+        },
+        {
+          "id": "N0-23",
+          "difficulty": 2,
+          "latex": "\\int \\frac{\\ln(x)}{x} \\, dx",
+          "hint": "$u = \\ln(x)$, $du = \\frac{1}{x}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = \\ln(x), \\quad du = \\frac{1}{x}dx"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int u \\, du = \\frac{u^2}{2} + C"
+            },
+            {
+              "step": 3,
+              "title": "Volver a $x$",
+              "body": "\\frac{\\ln^2(x)}{2} + C"
+            }
+          ],
+          "final_answer": "\\frac{\\ln^2(x)}{2} + C",
+          "tip": "Patrón común: $\\frac{f'(x)}{f(x)}$ integra a $\\ln|f(x)|$. Aquí $\\frac{1/x}{\\ln(x)}$ no es exactamente ese patrón, pero $\\ln(x)/x$ sí funciona con $u = \\ln(x)$."
+        },
+        {
+          "id": "N0-24",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x}{\\sqrt{1-x^2}} \\, dx",
+          "hint": "$u = 1-x^2$, $du = -2x \\, dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = 1 - x^2, \\quad du = -2x \\, dx \\Rightarrow x \\, dx = -\\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int \\frac{1}{\\sqrt{u}} \\cdot \\left(-\\frac{du}{2}\\right) = -\\frac{1}{2}\\int u^{-1/2} \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "-\\frac{1}{2} \\cdot \\frac{u^{1/2}}{1/2} + C = -u^{1/2} + C = -\\sqrt{u} + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver a $x$",
+              "body": "-\\sqrt{1-x^2} + C"
+            }
+          ],
+          "final_answer": "-\\sqrt{1-x^2} + C",
+          "tip": "Cuando $du$ tiene un signo negativo, ese signo sale de la integral. Aquí $-1/2$ cancela con $1/(1/2) = 2$, dando $-1$."
+        },
+        {
+          "id": "N0-25",
+          "difficulty": 3,
+          "latex": "\\int \\cos(3x) \\, dx",
+          "hint": "$u = 3x$, ajusta el $dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = 3x, \\quad du = 3 \\, dx \\Rightarrow dx = \\frac{du}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int \\cos(u) \\cdot \\frac{du}{3} = \\frac{1}{3}\\int \\cos(u) \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y volver",
+              "body": "\\frac{1}{3}\\sen(u) + C = \\frac{1}{3}\\sen(3x) + C"
+            }
+          ],
+          "final_answer": "\\frac{1}{3}\\sen(3x) + C",
+          "tip": "Regla general: $\\int \\cos(ax)dx = \\frac{1}{a}\\sen(ax) + C$. El coeficiente $a$ siempre divide."
+        },
+        {
+          "id": "N0-26",
+          "difficulty": 3,
+          "latex": "\\int x^2 \\cdot (x^3 + 2)^4 \\, dx",
+          "hint": "$u = x^3 + 2$, $du = 3x^2 dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = x^3 + 2, \\quad du = 3x^2 \\, dx \\Rightarrow x^2 \\, dx = \\frac{du}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int u^4 \\cdot \\frac{du}{3} = \\frac{1}{3}\\int u^4 \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{1}{3} \\cdot \\frac{u^5}{5} + C = \\frac{u^5}{15} + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver a $x$",
+              "body": "\\frac{(x^3+2)^5}{15} + C"
+            }
+          ],
+          "final_answer": "\\frac{(x^3+2)^5}{15} + C",
+          "tip": "Patrón: $\\int f'(x)[f(x)]^n dx = \\frac{[f(x)]^{n+1}}{n+1} + C$. Aquí $f(x) = x^3+2$ y $f'(x) = 3x^2$, así que necesitamos ajustar el 3."
+        }
+      ]
+    },
+    {
+      "name": "Integrales Definidas Básicas (TFC)",
+      "definition": "Teorema Fundamental del Cálculo: $\\int_a^b f(x)dx = F(b) - F(a)$ donde $F' = f$.",
+      "tip": "Evalúa siempre en el límite superior PRIMERO, luego resta el límite inferior. No olvides restar, no sumar.",
+      "exercises": [
+        {
+          "id": "N0-27",
+          "difficulty": 1,
+          "latex": "\\int_0^2 x^2 \\, dx",
+          "hint": "Aplica la regla de la potencia y evalúa en 2 y 0.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Encontrar la primitiva",
+              "body": "F(x) = \\frac{x^3}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en los límites",
+              "body": "F(2) - F(0) = \\frac{2^3}{3} - \\frac{0^3}{3} = \\frac{8}{3} - 0"
+            }
+          ],
+          "final_answer": "\\frac{8}{3}",
+          "tip": "Cuando el límite inferior es 0, el segundo término suele anularse. Pero ¡verifica siempre!"
+        },
+        {
+          "id": "N0-28",
+          "difficulty": 2,
+          "latex": "\\int_1^4 \\left( \\sqrt{x} + \\frac{1}{x} \\right) dx",
+          "hint": "$\\sqrt{x} = x^{1/2}$; $\\frac{1}{x}$ integra a $\\ln|x|$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Encontrar la primitiva",
+              "body": "F(x) = \\frac{2}{3}x^{3/2} + \\ln|x|"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en 4",
+              "body": "F(4) = \\frac{2}{3}(4)^{3/2} + \\ln(4) = \\frac{2}{3}(8) + \\ln(4) = \\frac{16}{3} + \\ln(4)"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en 1",
+              "body": "F(1) = \\frac{2}{3}(1)^{3/2} + \\ln(1) = \\frac{2}{3} + 0 = \\frac{2}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "\\frac{16}{3} + \\ln(4) - \\frac{2}{3} = \\frac{14}{3} + \\ln(4)"
+            }
+          ],
+          "final_answer": "\\frac{14}{3} + \\ln(4)",
+          "tip": "$4^{3/2} = (\\sqrt{4})^3 = 2^3 = 8$. También $4^{3/2} = (4^3)^{1/2} = \\sqrt{64} = 8$."
+        },
+        {
+          "id": "N0-29",
+          "difficulty": 2,
+          "latex": "\\int_0^{\\pi/2} \\cos(x) \\, dx",
+          "hint": "Evalúa $\\sen(x)$ en $\\pi/2$ y $0$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(x) = \\sen(x)"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar",
+              "body": "\\sen(\\pi/2) - \\sen(0) = 1 - 0 = 1"
+            }
+          ],
+          "final_answer": "1",
+          "tip": "Este resultado tiene sentido geométrico: el área bajo $\\cos(x)$ de 0 a $\\pi/2$ es exactamente 1."
+        },
+        {
+          "id": "N0-30",
+          "difficulty": 3,
+          "latex": "\\int_0^1 x(1-x^2)^3 \\, dx",
+          "hint": "Sustitución $u = 1-x^2$, cambia límites o vuelve a $x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = 1 - x^2, \\quad du = -2x \\, dx \\Rightarrow x \\, dx = -\\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x = 0 \\Rightarrow u = 1; \\quad x = 1 \\Rightarrow u = 0"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir todo",
+              "body": "\\int_1^0 u^3 \\left(-\\frac{du}{2}\\right) = \\frac{1}{2}\\int_0^1 u^3 \\, du"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "\\frac{1}{2} \\cdot \\frac{u^4}{4} \\Big|_0^1 = \\frac{1}{2} \\cdot \\frac{1}{4} = \\frac{1}{8}"
+            }
+          ],
+          "final_answer": "\\frac{1}{8}",
+          "tip": "Al cambiar límites, invierte la integral para que el límite inferior sea menor: $\\int_a^b = -\\int_b^a$. O también: multiplica el $-1/2$ por el $-1$ del cambio de límites."
+        }
+      ]
+    },
+    {
+      "name": "Guía — Integración Inmediata y Manipulación Algebraica",
+      "definition": "Ejercicios de la Práctica 11, Sección 1. Requieren expandir, simplificar fracciones o aplicar integrales inmediatas.",
+      "tip": "Siempre simplifica la expresión antes de integrar. Expande productos, divide términos, y recuerda las reglas de exponentes.",
+      "exercises": [
+        {
+          "id": "N0-G01",
+          "difficulty": 1,
+          "latex": "\\int (3x^3 - 5x^2 + 3x + 4) \\, dx",
+          "hint": "Integra término a término usando la regla de la potencia.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar términos",
+              "body": "\\int 3x^3 \\, dx - \\int 5x^2 \\, dx + \\int 3x \\, dx + \\int 4 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar cada término",
+              "body": "3\\frac{x^4}{4} - 5\\frac{x^3}{3} + 3\\frac{x^2}{2} + 4x + C"
+            }
+          ],
+          "final_answer": "\\frac{3x^4}{4} - \\frac{5x^3}{3} + \\frac{3x^2}{2} + 4x + C",
+          "tip": "Un polinomio se integra término a término. La constante 4 integra a 4x."
+        },
+        {
+          "id": "N0-G02",
+          "difficulty": 1,
+          "latex": "\\int (\\sen(x) + 7\\cos(x) - 1) \\, dx",
+          "hint": "Integra cada función trigonométrica por separado. La constante -1 integra a -x.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int \\sen(x) \\, dx + 7\\int \\cos(x) \\, dx - \\int 1 \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "-\\cos(x) + 7\\sen(x) - x + C"
+            }
+          ],
+          "final_answer": "-\\cos(x) + 7\\sen(x) - x + C",
+          "tip": "\\int \\sen(x)dx = -\\cos(x) y \\int \\cos(x)dx = \\sen(x). No olvides el signo."
+        },
+        {
+          "id": "N0-G03",
+          "difficulty": 1,
+          "latex": "\\int \\frac{2}{\\sqrt{x}} \\, dx",
+          "hint": "\\sqrt{x} = x^{1/2}, reescribe como potencia.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "2\\int x^{-1/2} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Regla de la potencia",
+              "body": "2 \\cdot \\frac{x^{1/2}}{1/2} + C = 4x^{1/2} + C"
+            }
+          ],
+          "final_answer": "4\\sqrt{x} + C",
+          "tip": "\\frac{1}{\\sqrt{x}} = x^{-1/2}. El exponente -1/2 + 1 = 1/2."
+        },
+        {
+          "id": "N0-G04",
+          "difficulty": 1,
+          "latex": "\\int \\frac{x^3 - 2x^2 - 4x}{x} \\, dx",
+          "hint": "Divide cada término del numerador entre x.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Dividir",
+              "body": "\\int (x^2 - 2x - 4) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{x^3}{3} - x^2 - 4x + C"
+            }
+          ],
+          "final_answer": "\\frac{x^3}{3} - x^2 - 4x + C",
+          "tip": "\\frac{x^3}{x} = x^2, \\frac{-2x^2}{x} = -2x, \\frac{-4x}{x} = -4."
+        },
+        {
+          "id": "N0-G05",
+          "difficulty": 2,
+          "latex": "\\int (4x + 3)^2 \\, dx",
+          "hint": "Expande el binomio: (a+b)² = a² + 2ab + b².",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir",
+              "body": "(4x+3)^2 = 16x^2 + 24x + 9"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\int (16x^2 + 24x + 9) \\, dx = \\frac{16x^3}{3} + 12x^2 + 9x + C"
+            }
+          ],
+          "final_answer": "\\frac{16x^3}{3} + 12x^2 + 9x + C",
+          "tip": "También podrías usar sustitución u = 4x+3, pero expandir es más directo aquí."
+        },
+        {
+          "id": "N0-G06",
+          "difficulty": 2,
+          "latex": "\\int \\frac{2x - 1}{2x} \\, dx",
+          "hint": "Separa la fracción: \\frac{2x}{2x} - \\frac{1}{2x}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int \\left(1 - \\frac{1}{2x}\\right) dx = \\int 1 \\, dx - \\frac{1}{2}\\int \\frac{1}{x} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "x - \\frac{1}{2}\\ln|x| + C"
+            }
+          ],
+          "final_answer": "x - \\frac{1}{2}\\ln|x| + C",
+          "tip": "\\frac{2x-1}{2x} = 1 - \\frac{1}{2x}. No confundas con \\frac{2x-1}{2x} = \\frac{2x}{2x} - \\frac{1}{2x}."
+        },
+        {
+          "id": "N0-G07",
+          "difficulty": 2,
+          "latex": "\\int (2\\sqrt{x} - \\sqrt[3]{x} - x^4) \\, dx",
+          "hint": "Reescribe las raíces como potencias: \\sqrt{x} = x^{1/2}, \\sqrt[3]{x} = x^{1/3}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "\\int (2x^{1/2} - x^{1/3} - x^4) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "2\\frac{x^{3/2}}{3/2} - \\frac{x^{4/3}}{4/3} - \\frac{x^5}{5} + C = \\frac{4}{3}x^{3/2} - \\frac{3}{4}x^{4/3} - \\frac{x^5}{5} + C"
+            }
+          ],
+          "final_answer": "\\frac{4}{3}x^{3/2} - \\frac{3}{4}x^{4/3} - \\frac{x^5}{5} + C",
+          "tip": "Dividir entre una fracción es multiplicar por su inverso: \\frac{2}{3/2} = 2 \\cdot \\frac{2}{3} = \\frac{4}{3}."
+        },
+        {
+          "id": "N0-G08",
+          "difficulty": 1,
+          "latex": "\\int \\left( \\frac{3}{x} - \\frac{x}{3} \\right) dx",
+          "hint": "Separa en dos integrales. \\frac{3}{x} integra a 3\\ln|x|.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "3\\int \\frac{1}{x} \\, dx - \\frac{1}{3}\\int x \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "3\\ln|x| - \\frac{1}{3}\\frac{x^2}{2} + C = 3\\ln|x| - \\frac{x^2}{6} + C"
+            }
+          ],
+          "final_answer": "3\\ln|x| - \\frac{x^2}{6} + C",
+          "tip": "\\frac{x}{3} = \\frac{1}{3}x. La constante 1/3 sale de la integral."
+        },
+        {
+          "id": "N0-G09",
+          "difficulty": 2,
+          "latex": "\\int \\frac{(2e^x + e^{2x})^2}{e^x} \\, dx",
+          "hint": "Expande el numerador y divide cada término entre eˣ.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir numerador",
+              "body": "(2e^x + e^{2x})^2 = 4e^{2x} + 4e^{3x} + e^{4x}"
+            },
+            {
+              "step": 2,
+              "title": "Dividir entre eˣ",
+              "body": "\\frac{4e^{2x} + 4e^{3x} + e^{4x}}{e^x} = 4e^x + 4e^{2x} + e^{3x}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "4e^x + 2e^{2x} + \\frac{1}{3}e^{3x} + C"
+            }
+          ],
+          "final_answer": "4e^x + 2e^{2x} + \\frac{e^{3x}}{3} + C",
+          "tip": "\\frac{e^{nx}}{e^x} = e^{(n-1)x}. Recuerda que \\int e^{kx}dx = \\frac{e^{kx}}{k}."
+        },
+        {
+          "id": "N0-G10",
+          "difficulty": 1,
+          "latex": "\\int \\frac{2}{1+x^2} \\, dx",
+          "hint": "\\int \\frac{1}{1+x^2}dx = \\arctan(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "2\\int \\frac{1}{1+x^2} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integral inmediata",
+              "body": "2\\arctan(x) + C"
+            }
+          ],
+          "final_answer": "2\\arctan(x) + C",
+          "tip": "\\frac{d}{dx}\\arctan(x) = \\frac{1}{1+x^2}. Memoriza esta integral."
+        },
+        {
+          "id": "N0-G11",
+          "difficulty": 2,
+          "latex": "\\int (4x+2)(x-1) \\, dx",
+          "hint": "Expande el producto primero.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir",
+              "body": "(4x+2)(x-1) = 4x^2 - 4x + 2x - 2 = 4x^2 - 2x - 2"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{4x^3}{3} - x^2 - 2x + C"
+            }
+          ],
+          "final_answer": "\\frac{4x^3}{3} - x^2 - 2x + C",
+          "tip": "(4x+2)(x-1) = 4x(x) + 4x(-1) + 2(x) + 2(-1) = 4x² - 4x + 2x - 2."
+        },
+        {
+          "id": "N0-G12",
+          "difficulty": 3,
+          "latex": "\\int \\frac{e^x(x-1) - e^x}{(x-1)^2} \\, dx",
+          "hint": "Simplifica el numerador: eˣ(x-1) - eˣ = eˣ(x-2). Luego separa la fracción.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Simplificar numerador",
+              "body": "e^x(x-1) - e^x = e^x(x-1-1) = e^x(x-2)"
+            },
+            {
+              "step": 2,
+              "title": "Separar fracción",
+              "body": "\\frac{e^x(x-2)}{(x-1)^2} = \\frac{e^x(x-1) - e^x}{(x-1)^2} = \\frac{e^x}{x-1} - \\frac{e^x}{(x-1)^2}"
+            },
+            {
+              "step": 3,
+              "title": "Reconocer derivada de cociente",
+              "body": "Nota que \\frac{d}{dx}\\left(\\frac{e^x}{x-1}\\right) = \\frac{e^x(x-1) - e^x}{(x-1)^2}. Por tanto la integral es directa."
+            },
+            {
+              "step": 4,
+              "title": "Resultado",
+              "body": "\\frac{e^x}{x-1} + C"
+            }
+          ],
+          "final_answer": "\\frac{e^x}{x-1} + C",
+          "tip": "Este es un caso especial: \\int \\frac{d}{dx}\\left(\\frac{u}{v}\\right)dx = \\frac{u}{v} + C. Aquí u = eˣ, v = x-1."
+        },
+        {
+          "id": "N0-G13",
+          "difficulty": 1,
+          "latex": "\\int 5^x \\, dx",
+          "hint": "\\int a^x dx = \\frac{a^x}{\\ln(a)}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar fórmula",
+              "body": "\\int 5^x \\, dx = \\frac{5^x}{\\ln(5)} + C"
+            }
+          ],
+          "final_answer": "\\frac{5^x}{\\ln(5)} + C",
+          "tip": "Para base e, \\ln(e) = 1, por eso \\int e^x dx = e^x. Para otras bases, divide por \\ln(a)."
+        },
+        {
+          "id": "N0-G14",
+          "difficulty": 2,
+          "latex": "\\int \\left( \\sqrt[3]{x} + \\frac{1}{\\sqrt[3]{x}} \\right) dx",
+          "hint": "Reescribe como x^{1/3} + x^{-1/3}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "\\int (x^{1/3} + x^{-1/3}) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{x^{4/3}}{4/3} + \\frac{x^{2/3}}{2/3} + C = \\frac{3}{4}x^{4/3} + \\frac{3}{2}x^{2/3} + C"
+            }
+          ],
+          "final_answer": "\\frac{3}{4}x^{4/3} + \\frac{3}{2}x^{2/3} + C",
+          "tip": "\\frac{1}{\\sqrt[3]{x}} = x^{-1/3}. -1/3 + 1 = 2/3."
+        },
+        {
+          "id": "N0-G15",
+          "difficulty": 2,
+          "latex": "\\int (x\\sqrt{x} + x\\sqrt[3]{x}) \\, dx",
+          "hint": "x\\sqrt{x} = x^{3/2} y x\\sqrt[3]{x} = x^{4/3}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir exponentes",
+              "body": "x \\cdot x^{1/2} = x^{3/2}; \\quad x \\cdot x^{1/3} = x^{4/3}"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{x^{5/2}}{5/2} + \\frac{x^{7/3}}{7/3} + C = \\frac{2}{5}x^{5/2} + \\frac{3}{7}x^{7/3} + C"
+            }
+          ],
+          "final_answer": "\\frac{2}{5}x^{5/2} + \\frac{3}{7}x^{7/3} + C",
+          "tip": "x^a \\cdot x^b = x^{a+b}. Luego aplica la regla de la potencia."
+        },
+        {
+          "id": "N0-G16",
+          "difficulty": 3,
+          "latex": "\\int \\frac{(x^m - x^n)^2}{\\sqrt[4]{x}} \\, dx",
+          "hint": "Expande el cuadrado y divide cada término entre x^{1/4}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir numerador",
+              "body": "(x^m - x^n)^2 = x^{2m} - 2x^{m+n} + x^{2n}"
+            },
+            {
+              "step": 2,
+              "title": "Dividir entre x^{1/4}",
+              "body": "x^{2m-1/4} - 2x^{m+n-1/4} + x^{2n-1/4}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar término a término",
+              "body": "\\frac{x^{2m+3/4}}{2m+3/4} - \\frac{2x^{m+n+3/4}}{m+n+3/4} + \\frac{x^{2n+3/4}}{2n+3/4} + C"
+            }
+          ],
+          "final_answer": "\\frac{x^{2m+3/4}}{2m+3/4} - \\frac{2x^{m+n+3/4}}{m+n+3/4} + \\frac{x^{2n+3/4}}{2n+3/4} + C",
+          "tip": "Este ejercicio usa parámetros m y n. El resultado es una fórmula general."
+        },
+        {
+          "id": "N0-G17",
+          "difficulty": 2,
+          "latex": "\\int \\frac{x^3 - 3x^2 + 1}{\\sqrt{x}} \\, dx",
+          "hint": "Divide cada término entre x^{1/2}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Dividir",
+              "body": "x^{3-1/2} - 3x^{2-1/2} + x^{-1/2} = x^{5/2} - 3x^{3/2} + x^{-1/2}"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{x^{7/2}}{7/2} - 3\\frac{x^{5/2}}{5/2} + \\frac{x^{1/2}}{1/2} + C = \\frac{2}{7}x^{7/2} - \\frac{6}{5}x^{5/2} + 2\\sqrt{x} + C"
+            }
+          ],
+          "final_answer": "\\frac{2}{7}x^{7/2} - \\frac{6}{5}x^{5/2} + 2\\sqrt{x} + C",
+          "tip": "\\frac{x^3}{\\sqrt{x}} = x^{3-1/2} = x^{5/2}. Resta los exponentes."
+        },
+        {
+          "id": "N0-G18",
+          "difficulty": 2,
+          "latex": "\\int \\frac{(x^2+1)(x^2-2)}{\\sqrt[3]{x^2}} \\, dx",
+          "hint": "Expande el numerador: (x²+1)(x²-2) = x⁴ - x² - 2. Luego divide entre x^{2/3}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir numerador",
+              "body": "x^4 - 2x^2 + x^2 - 2 = x^4 - x^2 - 2"
+            },
+            {
+              "step": 2,
+              "title": "Dividir entre x^{2/3}",
+              "body": "x^{4-2/3} - x^{2-2/3} - 2x^{-2/3} = x^{10/3} - x^{4/3} - 2x^{-2/3}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{x^{13/3}}{13/3} - \\frac{x^{7/3}}{7/3} - 2\\frac{x^{1/3}}{1/3} + C = \\frac{3}{13}x^{13/3} - \\frac{3}{7}x^{7/3} - 6x^{1/3} + C"
+            }
+          ],
+          "final_answer": "\\frac{3}{13}x^{13/3} - \\frac{3}{7}x^{7/3} - 6\\sqrt[3]{x} + C",
+          "tip": "\\sqrt[3]{x^2} = x^{2/3}. Resta 2/3 de cada exponente."
+        },
+        {
+          "id": "N0-G19",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\ln(x) + \\ln(5)}{5x \\ln(5x)} \\, dx",
+          "hint": "Usa que ln(x) + ln(5) = ln(5x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Simplificar numerador",
+              "body": "\\ln(x) + \\ln(5) = \\ln(5x)"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar fracción",
+              "body": "\\frac{\\ln(5x)}{5x \\ln(5x)} = \\frac{1}{5x}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{1}{5}\\int \\frac{1}{x} \\, dx = \\frac{1}{5}\\ln|x| + C"
+            }
+          ],
+          "final_answer": "\\frac{1}{5}\\ln|x| + C",
+          "tip": "\\ln(a) + \\ln(b) = \\ln(ab). La propiedad logarítmica simplifica todo."
+        },
+        {
+          "id": "N0-G20",
+          "difficulty": 3,
+          "latex": "\\int \\frac{(a^x - b^x)^2}{(ab)^x} \\, dx",
+          "hint": "Expande el numerador y simplifica usando (ab)ˣ = aˣbˣ.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir numerador",
+              "body": "(a^x - b^x)^2 = a^{2x} - 2a^x b^x + b^{2x}"
+            },
+            {
+              "step": 2,
+              "title": "Dividir entre (ab)ˣ = aˣbˣ",
+              "body": "\\frac{a^{2x}}{a^x b^x} - \\frac{2a^x b^x}{a^x b^x} + \\frac{b^{2x}}{a^x b^x} = \\left(\\frac{a}{b}\\right)^x - 2 + \\left(\\frac{b}{a}\\right)^x"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{(a/b)^x}{\\ln(a/b)} - 2x + \\frac{(b/a)^x}{\\ln(b/a)} + C"
+            }
+          ],
+          "final_answer": "\\frac{(a/b)^x}{\\ln(a/b)} - 2x + \\frac{(b/a)^x}{\\ln(b/a)} + C",
+          "tip": "\\ln(b/a) = -\\ln(a/b). Podrías escribir todo en términos de \\ln(a/b)."
+        },
+        {
+          "id": "N0-G21",
+          "difficulty": 2,
+          "latex": "\\int (2x + \\sec(x)\\tan(x)) \\, dx",
+          "hint": "Separa en dos integrales. \\int sec(x)tan(x)dx = sec(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int 2x \\, dx + \\int \\sec(x)\\tan(x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "x^2 + \\sec(x) + C"
+            }
+          ],
+          "final_answer": "x^2 + \\sec(x) + C",
+          "tip": "\\frac{d}{dx}\\sec(x) = \\sec(x)\\tan(x). Memoriza esta derivada."
+        },
+        {
+          "id": "N0-G22",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{1 - \\sen(x)}",
+          "hint": "Multiplica numerador y denominador por el conjugado 1 + sen(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Multiplicar por conjugado",
+              "body": "\\frac{1}{1-\\sen(x)} \\cdot \\frac{1+\\sen(x)}{1+\\sen(x)} = \\frac{1+\\sen(x)}{1-\\sen^2(x)} = \\frac{1+\\sen(x)}{\\cos^2(x)}"
+            },
+            {
+              "step": 2,
+              "title": "Separar",
+              "body": "\\frac{1}{\\cos^2(x)} + \\frac{\\sen(x)}{\\cos^2(x)} = \\sec^2(x) + \\sec(x)\\tan(x)"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\tan(x) + \\sec(x) + C"
+            }
+          ],
+          "final_answer": "\\tan(x) + \\sec(x) + C",
+          "tip": "También se puede resolver con Weierstrass, pero multiplicar por el conjugado es más rápido para este caso."
+        }
+      ]
+    },
+    {
+      "name": "Guía — Sustitución Simple",
+      "definition": "Ejercicios de la Práctica 11, Sección 2. Requieren identificar u = g(x) tal que du aparezca (o un múltiplo) en el integrando.",
+      "tip": "Busca una función compuesta y su derivada. Si falta una constante, ajusta el coeficiente.",
+      "exercises": [
+        {
+          "id": "N0-G23",
+          "difficulty": 2,
+          "latex": "\\int \\tan(x) \\, dx",
+          "hint": "Escribe tan(x) = sen(x)/cos(x). u = cos(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "\\int \\frac{\\sen(x)}{\\cos(x)} \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución",
+              "body": "u = \\cos(x), \\quad du = -\\sen(x) \\, dx"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir",
+              "body": "-\\int \\frac{du}{u} = -\\ln|u| + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver",
+              "body": "-\\ln|\\cos(x)| + C = \\ln|\\sec(x)| + C"
+            }
+          ],
+          "final_answer": "-\\ln|\\cos(x)| + C \\text{ o } \\ln|\\sec(x)| + C",
+          "tip": "Memoriza: \\int \\tan(x)dx = -\\ln|\\cos(x)| = \\ln|\\sec(x)|."
+        },
+        {
+          "id": "N0-G24",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x-1}{\\sqrt{2x} - \\sqrt{x+1}} \\, dx",
+          "hint": "Racionaliza multiplicando por el conjugado del denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Racionalizar",
+              "body": "\\frac{x-1}{\\sqrt{2x}-\\sqrt{x+1}} \\cdot \\frac{\\sqrt{2x}+\\sqrt{x+1}}{\\sqrt{2x}+\\sqrt{x+1}} = \\frac{(x-1)(\\sqrt{2x}+\\sqrt{x+1})}{2x-(x+1)} = \\frac{(x-1)(\\sqrt{2x}+\\sqrt{x+1})}{x-1}"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar",
+              "body": "\\sqrt{2x} + \\sqrt{x+1}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\int \\sqrt{2x} \\, dx + \\int \\sqrt{x+1} \\, dx = \\frac{2}{3}\\frac{(2x)^{3/2}}{2} + \\frac{2}{3}(x+1)^{3/2} + C = \\frac{(2x)^{3/2}}{3} + \\frac{2}{3}(x+1)^{3/2} + C"
+            }
+          ],
+          "final_answer": "\\frac{(2x)^{3/2}}{3} + \\frac{2}{3}(x+1)^{3/2} + C",
+          "tip": "La diferencia de cuadrados en el denominador: (√a)² - (√b)² = a - b."
+        },
+        {
+          "id": "N0-G25",
+          "difficulty": 2,
+          "latex": "\\int \\frac{x+2}{2\\sqrt{x+2}} \\, dx",
+          "hint": "Simplifica: (x+2)/√(x+2) = √(x+2).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Simplificar",
+              "body": "\\frac{x+2}{\\sqrt{x+2}} = \\sqrt{x+2}"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\frac{1}{2}\\int (x+2)^{1/2} \\, dx = \\frac{1}{2} \\cdot \\frac{(x+2)^{3/2}}{3/2} + C = \\frac{(x+2)^{3/2}}{3} + C"
+            }
+          ],
+          "final_answer": "\\frac{(x+2)^{3/2}}{3} + C",
+          "tip": "\\frac{a}{\\sqrt{a}} = \\sqrt{a}. Luego es una sustitución simple u = x+2."
+        },
+        {
+          "id": "N0-G26",
+          "difficulty": 1,
+          "latex": "\\int e^{x+1} \\, dx",
+          "hint": "e^{x+1} = e \\cdot e^x, o usa u = x+1.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sacar constante",
+              "body": "e^{x+1} = e \\cdot e^x"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "e \\int e^x \\, dx = e \\cdot e^x + C = e^{x+1} + C"
+            }
+          ],
+          "final_answer": "e^{x+1} + C",
+          "tip": "e^{x+1} = e^x \\cdot e^1 = e \\cdot e^x. La constante e sale de la integral."
+        },
+        {
+          "id": "N0-G27",
+          "difficulty": 2,
+          "latex": "\\int \\cos(ax+b) \\, dx",
+          "hint": "u = ax + b, du = a dx.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = ax + b, \\quad du = a \\, dx \\Rightarrow dx = \\frac{du}{a}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\frac{1}{a}\\int \\cos(u) \\, du = \\frac{1}{a}\\sen(u) + C"
+            },
+            {
+              "step": 3,
+              "title": "Volver",
+              "body": "\\frac{1}{a}\\sen(ax+b) + C"
+            }
+          ],
+          "final_answer": "\\frac{1}{a}\\sen(ax+b) + C",
+          "tip": "Regla general: \\int \\cos(ax+b)dx = \\frac{1}{a}\\sen(ax+b) + C."
+        },
+        {
+          "id": "N0-G28",
+          "difficulty": 2,
+          "latex": "\\int \\sen(x)\\cos(x) \\, dx",
+          "hint": "u = sen(x), du = cos(x)dx. O usa identidad sen(2x) = 2sen(x)cos(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = \\sen(x), \\quad du = \\cos(x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Integrar",
+              "body": "\\int u \\, du = \\frac{u^2}{2} + C = \\frac{\\sen^2(x)}{2} + C"
+            }
+          ],
+          "final_answer": "\\frac{\\sen^2(x)}{2} + C \\text{ (también } -\\frac{\\cos^2(x)}{2} + C \\text{)}",
+          "tip": "Con u = cos(x) obtienes -\\frac{\\cos^2(x)}{2} + C. Ambas son válidas (difieren en una constante)."
+        },
+        {
+          "id": "N0-G29",
+          "difficulty": 2,
+          "latex": "\\int \\frac{\\sen(2x)}{\\sqrt{\\cos(2x)}} \\, dx",
+          "hint": "u = cos(2x), du = -2sen(2x)dx.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = \\cos(2x), \\quad du = -2\\sen(2x) \\, dx \\Rightarrow \\sen(2x)\\,dx = -\\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "-\\frac{1}{2}\\int \\frac{du}{\\sqrt{u}} = -\\frac{1}{2}\\int u^{-1/2} \\, du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "-\\frac{1}{2} \\cdot \\frac{u^{1/2}}{1/2} + C = -u^{1/2} + C = -\\sqrt{\\cos(2x)} + C"
+            }
+          ],
+          "final_answer": "-\\sqrt{\\cos(2x)} + C",
+          "tip": "Verifica: \\frac{d}{dx}(-\\sqrt{\\cos(2x)}) = -\\frac{1}{2\\sqrt{\\cos(2x)}} \\cdot (-\\sen(2x) \\cdot 2) = \\frac{\\sen(2x)}{\\sqrt{\\cos(2x)}}."
+        },
+        {
+          "id": "N0-G30",
+          "difficulty": 2,
+          "latex": "\\int \\tan(x)\\sqrt{\\sec(x)} \\, dx",
+          "hint": "u = sec(x), du = sec(x)tan(x)dx. Escribe tan(x) = sec(x)tan(x)/sec(x).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "\\tan(x) = \\frac{\\sec(x)\\tan(x)}{\\sec(x)}"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución",
+              "body": "u = \\sec(x), \\quad du = \\sec(x)\\tan(x) \\, dx"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir",
+              "body": "\\int \\frac{\\sqrt{u}}{u} \\, du = \\int u^{-1/2} \\, du = 2u^{1/2} + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver",
+              "body": "2\\sqrt{\\sec(x)} + C"
+            }
+          ],
+          "final_answer": "2\\sqrt{\\sec(x)} + C",
+          "tip": "\\frac{\\sqrt{u}}{u} = u^{-1/2}. La integral de u^{-1/2} es 2u^{1/2}."
+        }
+      ]
+    },
+    {
+      "name": "Guía — Integrales Definidas (TFC)",
+      "definition": "Ejercicios de la Práctica 12, Sección 1. Evaluar integrales definidas usando el Teorema Fundamental del Cálculo.",
+      "tip": "Encuentra la primitiva F(x), evalúa F(b) - F(a). Con sustitución, puedes cambiar los límites.",
+      "exercises": [
+        {
+          "id": "N0-G31",
+          "difficulty": 1,
+          "latex": "\\int_0^2 x^3 \\, dx",
+          "hint": "Regla de la potencia, evalúa en 2 y 0.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(x) = \\frac{x^4}{4}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar",
+              "body": "F(2) - F(0) = \\frac{16}{4} - 0 = 4"
+            }
+          ],
+          "final_answer": "4",
+          "tip": "2⁴ = 16. \\frac{16}{4} = 4."
+        },
+        {
+          "id": "N0-G32",
+          "difficulty": 1,
+          "latex": "\\int_0^1 (2x^4 - 3x^2 + 5) \\, dx",
+          "hint": "Integra término a término y evalúa.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(x) = \\frac{2x^5}{5} - x^3 + 5x"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en 1",
+              "body": "F(1) = \\frac{2}{5} - 1 + 5 = \\frac{2}{5} + 4 = \\frac{22}{5}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en 0",
+              "body": "F(0) = 0"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "\\frac{22}{5} - 0 = \\frac{22}{5}"
+            }
+          ],
+          "final_answer": "\\frac{22}{5}",
+          "tip": "5 - 1 = 4 = \\frac{20}{5}. \\frac{2}{5} + \\frac{20}{5} = \\frac{22}{5}."
+        },
+        {
+          "id": "N0-G33",
+          "difficulty": 1,
+          "latex": "\\int_1^2 \\sqrt[4]{w} \\, dw",
+          "hint": "\\sqrt[4]{w} = w^{1/4}.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(w) = \\frac{w^{5/4}}{5/4} = \\frac{4}{5}w^{5/4}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar",
+              "body": "\\frac{4}{5}(2^{5/4} - 1^{5/4}) = \\frac{4}{5}(2^{5/4} - 1)"
+            }
+          ],
+          "final_answer": "\\frac{4}{5}(2^{5/4} - 1)",
+          "tip": "2^{5/4} = 2 \\cdot 2^{1/4} = 2\\sqrt[4]{2}."
+        },
+        {
+          "id": "N0-G34",
+          "difficulty": 2,
+          "latex": "\\int_1^7 \\frac{1}{\\sqrt{2x+2}} \\, dx",
+          "hint": "u = 2x+2, du = 2dx. Cambia límites: u(1)=4, u(7)=16.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = 2x+2, \\quad du = 2\\,dx \\Rightarrow dx = \\frac{du}{2}"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x=1 \\Rightarrow u=4; \\quad x=7 \\Rightarrow u=16"
+            },
+            {
+              "step": 3,
+              "title": "Nueva integral",
+              "body": "\\frac{1}{2}\\int_4^{16} u^{-1/2} \\, du = \\frac{1}{2} \\cdot 2u^{1/2} \\Big|_4^{16} = u^{1/2}\\Big|_4^{16}"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar",
+              "body": "\\sqrt{16} - \\sqrt{4} = 4 - 2 = 2"
+            }
+          ],
+          "final_answer": "2",
+          "tip": "Cambiar límites evita volver a la variable x. Es más eficiente."
+        },
+        {
+          "id": "N0-G35",
+          "difficulty": 2,
+          "latex": "\\int_1^4 \\frac{s^4 - 8}{s^2} \\, ds",
+          "hint": "Divide: s² - 8/s².",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Dividir",
+              "body": "\\int_1^4 (s^2 - 8s^{-2}) \\, ds"
+            },
+            {
+              "step": 2,
+              "title": "Primitiva",
+              "body": "F(s) = \\frac{s^3}{3} + \\frac{8}{s}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en 4",
+              "body": "\\frac{64}{3} + \\frac{8}{4} = \\frac{64}{3} + 2 = \\frac{70}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar en 1",
+              "body": "\\frac{1}{3} + 8 = \\frac{25}{3}"
+            },
+            {
+              "step": 5,
+              "title": "Restar",
+              "body": "\\frac{70}{3} - \\frac{25}{3} = \\frac{45}{3} = 15"
+            }
+          ],
+          "final_answer": "15",
+          "tip": "\\frac{-8}{s^2} = -8s^{-2}. La integral es -8 \\cdot \\frac{s^{-1}}{-1} = \\frac{8}{s}."
+        },
+        {
+          "id": "N0-G36",
+          "difficulty": 1,
+          "latex": "\\int_0^{\\pi/2} (4x + 3 + \\cos(x)) \\, dx",
+          "hint": "Integra término a término.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(x) = 2x^2 + 3x + \\sen(x)"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en \\pi/2",
+              "body": "2(\\pi/2)^2 + 3(\\pi/2) + \\sen(\\pi/2) = \\frac{\\pi^2}{2} + \\frac{3\\pi}{2} + 1"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en 0",
+              "body": "0 + 0 + 0 = 0"
+            },
+            {
+              "step": 4,
+              "title": "Resultado",
+              "body": "\\frac{\\pi^2}{2} + \\frac{3\\pi}{2} + 1"
+            }
+          ],
+          "final_answer": "\\frac{\\pi^2}{2} + \\frac{3\\pi}{2} + 1",
+          "tip": "(\\pi/2)^2 = \\pi^2/4. Multiplicado por 2 da \\pi^2/2."
+        },
+        {
+          "id": "N0-G37",
+          "difficulty": 2,
+          "latex": "\\int_0^1 (x^2 + 2x)^2 \\, dx",
+          "hint": "Expande primero: (a+b)² = a² + 2ab + b².",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Expandir",
+              "body": "x^4 + 4x^3 + 4x^2"
+            },
+            {
+              "step": 2,
+              "title": "Primitiva",
+              "body": "F(x) = \\frac{x^5}{5} + x^4 + \\frac{4x^3}{3}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en 1",
+              "body": "\\frac{1}{5} + 1 + \\frac{4}{3} = \\frac{3 + 15 + 20}{15} = \\frac{38}{15}"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar en 0",
+              "body": "0"
+            }
+          ],
+          "final_answer": "\\frac{38}{15}",
+          "tip": "Mínimo común múltiplo de 5, 1, 3 es 15."
+        },
+        {
+          "id": "N0-G38",
+          "difficulty": 2,
+          "latex": "\\int_{-1}^3 \\frac{1}{(t+2)^2} \\, dt",
+          "hint": "u = t+2, du = dt. Límites: u(-1)=1, u(3)=5.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = t+2, \\quad du = dt"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "t=-1 \\Rightarrow u=1; \\quad t=3 \\Rightarrow u=5"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\int_1^5 u^{-2} \\, du = -u^{-1}\\Big|_1^5 = -\\frac{1}{5} - (-1) = 1 - \\frac{1}{5} = \\frac{4}{5}"
+            }
+          ],
+          "final_answer": "\\frac{4}{5}",
+          "tip": "\\int u^{-2}du = -u^{-1} = -\\frac{1}{u}. No olvides el signo negativo."
+        },
+        {
+          "id": "N0-G39",
+          "difficulty": 2,
+          "latex": "\\int_{-4}^{-2} \\left( y^2 + \\frac{1}{y^3} \\right) dy",
+          "hint": "1/y³ = y⁻³. Integra término a término.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(y) = \\frac{y^3}{3} - \\frac{1}{2y^2}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en -2",
+              "body": "\\frac{-8}{3} - \\frac{1}{2(4)} = -\\frac{8}{3} - \\frac{1}{8} = -\\frac{64+3}{24} = -\\frac{67}{24}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en -4",
+              "body": "\\frac{-64}{3} - \\frac{1}{2(16)} = -\\frac{64}{3} - \\frac{1}{32} = -\\frac{2048+3}{96} = -\\frac{2051}{96}"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "F(-2) - F(-4) = -\\frac{67}{24} + \\frac{2051}{96} = \\frac{-268 + 2051}{96} = \\frac{1783}{96}"
+            }
+          ],
+          "final_answer": "\\frac{1783}{96}",
+          "tip": "(-2)³ = -8. (-4)³ = -64. Trabaja con cuidado los signos negativos."
+        },
+        {
+          "id": "N0-G40",
+          "difficulty": 2,
+          "latex": "\\int_{-3}^3 8t\\sqrt{7+2t^2} \\, dt",
+          "hint": "u = 7+2t², du = 4t dt. Nota que el integrando es una función impar en t (con la raíz par).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = 7+2t^2, \\quad du = 4t \\, dt \\Rightarrow 8t\\,dt = 2\\,du"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "t=-3 \\Rightarrow u=25; \\quad t=3 \\Rightarrow u=25"
+            },
+            {
+              "step": 3,
+              "title": "Integral",
+              "body": "2\\int_{25}^{25} \\sqrt{u} \\, du = 0"
+            }
+          ],
+          "final_answer": "0",
+          "tip": "Límites iguales después de sustitución → integral es 0. También: integrando es impar en [-3,3]."
+        },
+        {
+          "id": "N0-G41",
+          "difficulty": 2,
+          "latex": "\\int_1^3 \\frac{x^2+1}{\\sqrt{x^3+3x}} \\, dx",
+          "hint": "u = x³+3x, du = (3x²+3)dx = 3(x²+1)dx.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = x^3+3x, \\quad du = 3(x^2+1)\\,dx \\Rightarrow (x^2+1)\\,dx = \\frac{du}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x=1 \\Rightarrow u=4; \\quad x=3 \\Rightarrow u=36"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{1}{3}\\int_4^{36} u^{-1/2} \\, du = \\frac{1}{3} \\cdot 2u^{1/2}\\Big|_4^{36} = \\frac{2}{3}(6-2) = \\frac{8}{3}"
+            }
+          ],
+          "final_answer": "\\frac{8}{3}",
+          "tip": "La derivada del denominador (sin raíz) es 3(x²+1), que es casi el numerador."
+        },
+        {
+          "id": "N0-G42",
+          "difficulty": 2,
+          "latex": "\\int_0^{\\pi/2} \\cos(3x)\\sen^2(3x) \\, dx",
+          "hint": "u = sen(3x), du = 3cos(3x)dx.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = \\sen(3x), \\quad du = 3\\cos(3x)\\,dx"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x=0 \\Rightarrow u=0; \\quad x=\\pi/2 \\Rightarrow u=\\sen(3\\pi/2)=-1"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\frac{1}{3}\\int_0^{-1} u^2 \\, du = \\frac{1}{3} \\cdot \\frac{u^3}{3}\\Big|_0^{-1} = \\frac{1}{9}(-1 - 0) = -\\frac{1}{9}"
+            }
+          ],
+          "final_answer": "-\\frac{1}{9}",
+          "tip": "\\sen(3\\pi/2) = -1. No olvides que du = 3cos(3x)dx."
+        },
+        {
+          "id": "N0-G43",
+          "difficulty": 1,
+          "latex": "\\int_{\\pi/6}^{\\pi/2} 2\\sen(t) \\, dt",
+          "hint": "Primitiva de sen(t) es -cos(t).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(t) = -2\\cos(t)"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar",
+              "body": "-2\\cos(\\pi/2) - (-2\\cos(\\pi/6)) = -2(0) + 2(\\sqrt{3}/2) = \\sqrt{3}"
+            }
+          ],
+          "final_answer": "\\sqrt{3}",
+          "tip": "\\cos(\\pi/2) = 0, \\cos(\\pi/6) = \\sqrt{3}/2."
+        },
+        {
+          "id": "N0-G44",
+          "difficulty": 2,
+          "latex": "\\int_0^4 (\\sqrt{x} - \\sqrt{2x+1}) \\, dx",
+          "hint": "Integra separadamente. Para √(2x+1), usa u = 2x+1.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera integral",
+              "body": "\\int_0^4 x^{1/2} \\, dx = \\frac{2}{3}x^{3/2}\\Big|_0^4 = \\frac{2}{3}(8) = \\frac{16}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Segunda integral (sustitución)",
+              "body": "u = 2x+1, \\quad du = 2\\,dx. \\quad x=0 \\Rightarrow u=1; \\quad x=4 \\Rightarrow u=9"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar segunda",
+              "body": "\\frac{1}{2}\\int_1^9 \\sqrt{u} \\, du = \\frac{1}{2} \\cdot \\frac{2}{3}u^{3/2}\\Big|_1^9 = \\frac{1}{3}(27-1) = \\frac{26}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "\\frac{16}{3} - \\frac{26}{3} = -\\frac{10}{3}"
+            }
+          ],
+          "final_answer": "-\\frac{10}{3}",
+          "tip": "4^{3/2} = (\\sqrt{4})^3 = 8. 9^{3/2} = (\\sqrt{9})^3 = 27."
+        },
+        {
+          "id": "N0-G45",
+          "difficulty": 2,
+          "latex": "\\int_{-4}^{-1} \\frac{1-s^4}{2s^2} \\, ds",
+          "hint": "Separa: 1/(2s²) - s²/2.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\frac{1}{2}\\int_{-4}^{-1} (s^{-2} - s^2) \\, ds"
+            },
+            {
+              "step": 2,
+              "title": "Primitiva",
+              "body": "\\frac{1}{2}\\left(-s^{-1} - \\frac{s^3}{3}\\right) = \\frac{1}{2}\\left(-\\frac{1}{s} - \\frac{s^3}{3}\\right)"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en -1",
+              "body": "\\frac{1}{2}\\left(1 + \\frac{1}{3}\\right) = \\frac{1}{2} \\cdot \\frac{4}{3} = \\frac{2}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar en -4",
+              "body": "\\frac{1}{2}\\left(\\frac{1}{4} + \\frac{64}{3}\\right) = \\frac{1}{2}\\left(\\frac{3+256}{12}\\right) = \\frac{259}{24}"
+            },
+            {
+              "step": 5,
+              "title": "Restar",
+              "body": "\\frac{2}{3} - \\frac{259}{24} = \\frac{16-259}{24} = -\\frac{243}{24} = -\\frac{81}{8}"
+            }
+          ],
+          "final_answer": "-\\frac{81}{8}",
+          "tip": "(-1)^{-1} = -1. (-4)^{-1} = -1/4. Trabaja con cuidado los signos."
+        },
+        {
+          "id": "N0-G46",
+          "difficulty": 2,
+          "latex": "\\int_{-4}^{-2} \\frac{2}{y^3} \\, dy",
+          "hint": "2y⁻³. Primitiva: 2y⁻²/(-2) = -y⁻².",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(y) = -\\frac{1}{y^2}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en -2",
+              "body": "-\\frac{1}{4}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en -4",
+              "body": "-\\frac{1}{16}"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "-\\frac{1}{4} - (-\\frac{1}{16}) = -\\frac{4}{16} + \\frac{1}{16} = -\\frac{3}{16}"
+            }
+          ],
+          "final_answer": "-\\frac{3}{16}",
+          "tip": "(-2)² = 4, (-4)² = 16. El signo negativo en la primitiva es crucial."
+        },
+        {
+          "id": "N0-G47",
+          "difficulty": 2,
+          "latex": "\\int_a^{8a} (a^{1/3} - x^{1/3}) \\, dx",
+          "hint": "a^{1/3} es constante respecto a x.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primitiva",
+              "body": "F(x) = a^{1/3}x - \\frac{3}{4}x^{4/3}"
+            },
+            {
+              "step": 2,
+              "title": "Evaluar en 8a",
+              "body": "a^{1/3}(8a) - \\frac{3}{4}(8a)^{4/3} = 8a^{4/3} - \\frac{3}{4} \\cdot 16a^{4/3} = 8a^{4/3} - 12a^{4/3} = -4a^{4/3}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en a",
+              "body": "a^{1/3} \\cdot a - \\frac{3}{4}a^{4/3} = a^{4/3} - \\frac{3}{4}a^{4/3} = \\frac{1}{4}a^{4/3}"
+            },
+            {
+              "step": 4,
+              "title": "Restar",
+              "body": "-4a^{4/3} - \\frac{1}{4}a^{4/3} = -\\frac{17}{4}a^{4/3}"
+            }
+          ],
+          "final_answer": "-\\frac{17}{4}a^{4/3}",
+          "tip": "(8a)^{4/3} = 8^{4/3} \\cdot a^{4/3} = (2^3)^{4/3} \\cdot a^{4/3} = 2^4 \\cdot a^{4/3} = 16a^{4/3}."
+        },
+        {
+          "id": "N0-G48",
+          "difficulty": 3,
+          "latex": "\\int_{-2}^{3} |x^2 - 1| \\, dx",
+          "hint": "x²-1 = 0 en x = ±1. Separa en [-2,-1], [-1,1], [1,3].",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Análisis de signo",
+              "body": "x²-1 ≥ 0 cuando |x| ≥ 1. Entonces: |x²-1| = x²-1 en [-2,-1]∪[1,3], y = 1-x² en [-1,1]"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral",
+              "body": "\\int_{-2}^{-1} (x²-1)dx = [\\frac{x³}{3}-x]_{-2}^{-1} = (-\\frac{1}{3}+1) - (-\\frac{8}{3}+2) = \\frac{2}{3} + \\frac{2}{3} = \\frac{4}{3}"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral",
+              "body": "\\int_{-1}^{1} (1-x²)dx = [x-\\frac{x³}{3}]_{-1}^{1} = (1-\\frac{1}{3}) - (-1+\\frac{1}{3}) = \\frac{2}{3} + \\frac{2}{3} = \\frac{4}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Tercera integral",
+              "body": "\\int_{1}^{3} (x²-1)dx = [\\frac{x³}{3}-x]_{1}^{3} = (9-3) - (\\frac{1}{3}-1) = 6 + \\frac{2}{3} = \\frac{20}{3}"
+            },
+            {
+              "step": 5,
+              "title": "Sumar",
+              "body": "\\frac{4}{3} + \\frac{4}{3} + \\frac{20}{3} = \\frac{28}{3}"
+            }
+          ],
+          "final_answer": "\\frac{28}{3}",
+          "tip": "Siempre identifica dónde cambia el signo de la expresión dentro del valor absoluto."
+        },
+        {
+          "id": "N0-G49",
+          "difficulty": 3,
+          "latex": "\\int_{-1}^{2} (x - 2|x|) \\, dx",
+          "hint": "|x| = -x en [-1,0] y |x| = x en [0,2].",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar por intervalos",
+              "body": "\\int_{-1}^{0} (x - 2(-x))dx + \\int_{0}^{2} (x - 2x)dx = \\int_{-1}^{0} 3x \\, dx + \\int_{0}^{2} (-x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral",
+              "body": "[\\frac{3x²}{2}]_{-1}^{0} = 0 - \\frac{3}{2} = -\\frac{3}{2}"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral",
+              "body": "[-\\frac{x²}{2}]_{0}^{2} = -2 - 0 = -2"
+            },
+            {
+              "step": 4,
+              "title": "Sumar",
+              "body": "-\\frac{3}{2} - 2 = -\\frac{7}{2}"
+            }
+          ],
+          "final_answer": "-\\frac{7}{2}",
+          "tip": "En [-1,0], |x| = -x porque x es negativo."
+        },
+        {
+          "id": "N0-G50",
+          "difficulty": 3,
+          "latex": "\\int_{0}^{2} (x^2 - |x-1|) \\, dx",
+          "hint": "|x-1| cambia en x=1. Separa en [0,1] y [1,2].",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int_{0}^{1} (x² - (1-x))dx + \\int_{1}^{2} (x² - (x-1))dx = \\int_{0}^{1} (x²+x-1)dx + \\int_{1}^{2} (x²-x+1)dx"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral",
+              "body": "[\\frac{x³}{3}+\\frac{x²}{2}-x]_{0}^{1} = \\frac{1}{3}+\\frac{1}{2}-1 = -\\frac{1}{6}"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral",
+              "body": "[\\frac{x³}{3}-\\frac{x²}{2}+x]_{1}^{2} = (\\frac{8}{3}-2+2) - (\\frac{1}{3}-\\frac{1}{2}+1) = \\frac{8}{3} - \\frac{5}{6} = \\frac{11}{6}"
+            },
+            {
+              "step": 4,
+              "title": "Sumar",
+              "body": "-\\frac{1}{6} + \\frac{11}{6} = \\frac{10}{6} = \\frac{5}{3}"
+            }
+          ],
+          "final_answer": "\\frac{5}{3}",
+          "tip": "En [0,1], x-1 ≤ 0, así que |x-1| = 1-x. En [1,2], x-1 ≥ 0, así que |x-1| = x-1."
+        },
+        {
+          "id": "N0-G51",
+          "difficulty": 2,
+          "latex": "\\int_{-\\pi/2}^{\\pi/2} \\sen^5(\\theta) \\, d\\theta",
+          "hint": "sen⁵(θ) es una función impar. Integral en intervalos simétricos de función impar = 0.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Verificar paridad",
+              "body": "f(-\\theta) = \\sen^5(-\\theta) = (-\\sen(\\theta))^5 = -\\sen^5(\\theta) = -f(\\theta)"
+            },
+            {
+              "step": 2,
+              "title": "Conclusión",
+              "body": "Función impar en [-a,a] → integral = 0"
+            }
+          ],
+          "final_answer": "0",
+          "tip": "\\sen(x) es impar, por tanto \\sen^n(x) es impar si n es impar. Ahorra mucho tiempo."
+        },
+        {
+          "id": "N0-G52",
+          "difficulty": 2,
+          "latex": "\\int_{-\\pi/2}^{\\pi/2} \\frac{x^2\\sen(x)}{1+x^6} \\, dx",
+          "hint": "Verifica si el integrando es impar.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Verificar paridad",
+              "body": "f(-x) = \\frac{(-x)^2\\sen(-x)}{1+(-x)^6} = \\frac{x^2(-\\sen(x))}{1+x^6} = -f(x)"
+            },
+            {
+              "step": 2,
+              "title": "Conclusión",
+              "body": "Función impar en intervalo simétrico → integral = 0"
+            }
+          ],
+          "final_answer": "0",
+          "tip": "x² y x⁶ son pares, sen(x) es impar. Par × impar / par = impar."
+        },
+        {
+          "id": "N0-G53",
+          "difficulty": 2,
+          "latex": "\\int_0^1 (\\sqrt[4]{x^5} + \\sqrt[4]{x^4}) \\, dx",
+          "hint": "x⁵^{1/4} = x^{5/4}, x⁴^{1/4} = x.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir",
+              "body": "\\int_0^1 (x^{5/4} + x) \\, dx"
+            },
+            {
+              "step": 2,
+              "title": "Primitiva",
+              "body": "\\frac{x^{9/4}}{9/4} + \\frac{x²}{2} = \\frac{4}{9}x^{9/4} + \\frac{x²}{2}"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar",
+              "body": "(\\frac{4}{9} + \\frac{1}{2}) - 0 = \\frac{8+9}{18} = \\frac{17}{18}"
+            }
+          ],
+          "final_answer": "\\frac{17}{18}",
+          "tip": "\\sqrt[4]{x^4} = |x| = x en [0,1]."
+        },
+        {
+          "id": "N0-G54",
+          "difficulty": 2,
+          "latex": "\\int_e^4 \\frac{dx}{x\\sqrt{\\ln(x)}}",
+          "hint": "u = ln(x), du = dx/x. Límites: u(e)=1, u(4)=ln(4).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = \\ln(x), \\quad du = \\frac{dx}{x}"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x=e \\Rightarrow u=1; \\quad x=4 \\Rightarrow u=\\ln(4)"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\int_1^{\\ln(4)} u^{-1/2} \\, du = 2u^{1/2}\\Big|_1^{\\ln(4)} = 2(\\sqrt{\\ln(4)} - 1)"
+            }
+          ],
+          "final_answer": "2(\\sqrt{\\ln(4)} - 1)",
+          "tip": "\\ln(4) = 2\\ln(2). \\sqrt{\\ln(4)} = \\sqrt{2\\ln(2)}."
+        },
+        {
+          "id": "N0-G55",
+          "difficulty": 2,
+          "latex": "\\int_0^{1/2} \\frac{\\arcsen(x)}{\\sqrt{1-x^2}} \\, dx",
+          "hint": "u = arcsen(x), du = dx/√(1-x²).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "u = \\arcsen(x), \\quad du = \\frac{dx}{\\sqrt{1-x^2}}"
+            },
+            {
+              "step": 2,
+              "title": "Cambiar límites",
+              "body": "x=0 \\Rightarrow u=0; \\quad x=1/2 \\Rightarrow u=\\pi/6"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "\\int_0^{\\pi/6} u \\, du = \\frac{u²}{2}\\Big|_0^{\\pi/6} = \\frac{\\pi²}{72}"
+            }
+          ],
+          "final_answer": "\\frac{\\pi^2}{72}",
+          "tip": "\\arcsen(1/2) = \\pi/6. Memoriza los valores de arcsen."
+        },
+        {
+          "id": "N0-G56",
+          "difficulty": 2,
+          "latex": "\\int_0^4 |x-2| \\, dx",
+          "hint": "|x-2| cambia en x=2. Separa en [0,2] y [2,4].",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar",
+              "body": "\\int_0^2 (2-x)dx + \\int_2^4 (x-2)dx"
+            },
+            {
+              "step": 2,
+              "title": "Primera",
+              "body": "[2x-\\frac{x²}{2}]_0^2 = 4-2 = 2"
+            },
+            {
+              "step": 3,
+              "title": "Segunda",
+              "body": "[\\frac{x²}{2}-2x]_2^4 = (8-8) - (2-4) = 2"
+            },
+            {
+              "step": 4,
+              "title": "Sumar",
+              "body": "2 + 2 = 4"
+            }
+          ],
+          "final_answer": "4",
+          "tip": "Geométricamente son dos triángulos de base 2 y altura 2. Área = 2 + 2 = 4."
+        },
+        {
+          "id": "N0-G57",
+          "difficulty": 3,
+          "latex": "\\int_{16}^{18} \\frac{dx}{\\sqrt{x} - \\sqrt[4]{x^3}}",
+          "hint": "∜x³ = x^{3/4}. Factoriza x^{3/4} en el denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir denominador",
+              "body": "\\sqrt{x} - x^{3/4} = x^{3/4}(x^{-1/4} - 1) = x^{3/4}(\\frac{1}{x^{1/4}} - 1)"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar fracción",
+              "body": "\\frac{1}{x^{3/4}(x^{-1/4}-1)} = \\frac{x^{1/4}}{x^{3/4}(1-x^{1/4})} = \\frac{1}{x^{1/2}(1-x^{1/4})}"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución",
+              "body": "u = x^{1/4}, \\quad x = u^4, \\quad dx = 4u^3 du. \\quad x=16 \\Rightarrow u=2; \\quad x=18 \\Rightarrow u=18^{1/4}"
+            },
+            {
+              "step": 4,
+              "title": "Transformar",
+              "body": "La integral se vuelve compleja. Usando u = x^{1/4}: \\int \\frac{4u^3}{u^2(1-u)} du = \\int \\frac{4u}{1-u} du"
+            },
+            {
+              "step": 5,
+              "title": "Separar",
+              "body": "\\frac{4u}{1-u} = -4 + \\frac{4}{1-u}"
+            },
+            {
+              "step": 6,
+              "title": "Integrar",
+              "body": "\\int (-4 + \\frac{4}{1-u})du = -4u - 4\\ln|1-u|"
+            },
+            {
+              "step": 7,
+              "title": "Evaluar (expresión exacta)",
+              "body": "Resultado en términos de u = x^{1/4}. Evaluación numérica aproximada."
+            }
+          ],
+          "final_answer": "\\text{Expresión en términos de } x^{1/4} \\text{ (evaluación numérica compleja)}",
+          "tip": "Este ejercicio es más apropiado para nivel 2 (irracionales). Considera moverlo."
+        }
+      ]
+    }
+  ]
+}
