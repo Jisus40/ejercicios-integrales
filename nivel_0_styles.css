@@ -66,40 +66,36 @@ body {
    ========================================================= */
 .exercise-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
 .ex-btn {
-  width: 44px; height: 44px; border-radius: 12px;
+  width: 40px; height: 40px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--bg-secondary);
-  color: var(--text-primary); font-weight: 700; font-size: 16px;
+  color: var(--text-secondary); font-weight: 600; font-size: 14px;
   cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; justify-content: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.ex-btn:hover { background: var(--bg-card); color: var(--text-primary); transform: translateY(-2px); }
+.ex-btn:hover { background: var(--bg-card); color: var(--text-primary); }
 .ex-btn.active {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white; border-color: transparent;
   box-shadow: 0 0 15px rgba(189, 147, 249, 0.4);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 .ex-btn.solved {
   border-color: var(--accent-success); color: var(--accent-success);
-  background: rgba(80, 250, 123, 0.12);
-  text-shadow: 0 0 8px rgba(80, 250, 123, 0.3);
+  background: rgba(80, 250, 123, 0.08);
 }
 .ex-btn.unlocked {
   border-color: var(--accent-cyan); color: var(--accent-cyan);
-  background: rgba(139, 233, 253, 0.12);
+  background: rgba(139, 233, 253, 0.08);
   border-style: dashed;
-  text-shadow: 0 0 8px rgba(139, 233, 253, 0.3);
 }
 
 /* BOTONES BLOQUEADOS - MUCHO MAS VISIBLES */
 .ex-btn.locked {
-  opacity: 0.85;
+  opacity: 0.7;
   cursor: not-allowed;
   pointer-events: none;
   border-color: #5a5d7a;
-  color: #a0a3c0;
-  background: rgba(68, 71, 90, 0.8);
+  color: #8a8da8;
+  background: rgba(68, 71, 90, 0.6);
 }
 
 /* =========================================================
@@ -126,14 +122,13 @@ body {
 .def-content strong { color: var(--accent-primary); }
 
 /* SIMBOLOS KaTeX MAS GRANDES EN DEFINICIONES Y TIPS */
-/* CORREGIDO: eliminado !important para no romper el posicionamiento interno de fracciones */
 .def-content .katex,
 .def-content .katex-display,
 .exercise-tip .katex,
 .exercise-tip .katex-display,
 .hint-box .katex,
 .hint-box .katex-display {
-  font-size: 1.15em;
+  font-size: 1.25em !important;
 }
 
 .formula-box {
@@ -231,10 +226,9 @@ body {
 .step-body { color: var(--text-secondary); font-size: 14px; }
 
 /* SIMBOLOS KaTeX MAS GRANDES EN PASOS DE SOLUCION */
-/* CORREGIDO: eliminado !important para no romper el posicionamiento interno de fracciones */
 .step-body .katex,
 .step-body .katex-display {
-  font-size: 1.1em;
+  font-size: 1.15em !important;
 }
 
 /* =========================================================
@@ -479,10 +473,8 @@ body {
   background: var(--bg-primary);
 }
 
-/* CORREGIDO: Renombrado de .frac-line a .visual-frac-line para evitar colision
-   con la clase .frac-line que KaTeX usa internamente para renderizar fracciones.
-   Esto evitaba que la linea de fraccion se posicionara correctamente. */
-.visual-frac-line {
+/* ESPACIO CORREGIDO: numerador arriba, linea, denominador abajo */
+.frac-line {
   width: 100%;
   min-width: 50px;
   height: 2px;
@@ -520,7 +512,7 @@ body {
 @media (max-width: 600px) {
   body { padding: 16px; }
   .header { flex-direction: column; gap: 16px; align-items: flex-start; }
-  .ex-btn { width: 40px; height: 40px; font-size: 14px; }
+  .ex-btn { width: 36px; height: 36px; font-size: 12px; }
   .correction-actions { flex-direction: column; }
   .btn-copy, .btn-open-ai { width: 100%; justify-content: center; }
   .compare-box { grid-template-columns: 1fr; }

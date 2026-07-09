@@ -185,6 +185,7 @@ function renderExerciseNav() {
     
     if (!isAccessible) {
       btn.classList.add('locked');
+      btn.style.opacity = '0.3';
       btn.style.cursor = 'not-allowed';
       btn.title = 'Completa los ejercicios anteriores para desbloquear';
     } else {
