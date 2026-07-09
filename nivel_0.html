@@ -7,20 +7,11 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '\\[', right: '\\]', display: true},
-            {left: '\\(', right: '\\)', display: false},
-            {left: '$', right: '$', display: false}
-          ]
-        });"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="nivel_0_styles.css">
   <base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
@@ -71,62 +62,47 @@
 
       <div class="ex-statement" id="exStatement"></div>
 
-      <!-- BOTÓN PARA INICIAR -->
+      <!-- BOTÓN PARA VER SOLUCIÓN -->
       <div class="solution-section">
         <button class="solution-btn" id="btnStart" onclick="startSolution()">
-          <span>🚀</span> Resolver Ejercicio
+          <span>🔓</span> Ver Solución
         </button>
-      </div>
-
-      <!-- CAMPO PARA SOLUCIÓN DEL USUARIO -->
-    <div class="user-solution-section" id="userSolutionSection">
-      <div class="step" style="padding-left:16px;">
-        <div class="step-title">🧑‍💻 Construye tu solución</div>
-        <div class="step-body" style="margin-bottom:10px;">Haz clic en los botones de símbolos matemáticos para armar tu respuesta.</div>
-
-        <div class="math-toolbar" id="mathToolbar"></div>
-
-        <!-- Editor visual: solo muestra símbolos renderizados, no código LaTeX -->
-        <div class="math-visual-editor" id="mathVisualEditor">
-          <span class="math-placeholder">Haz clic en los símbolos de arriba para construir tu respuesta...</span>
-        </div>
-
-        <!-- Input oculto que guarda el LaTeX crudo -->
-        <input type="hidden" id="mathInputHidden" value="">
-
-        <div class="math-editor-actions">
-          <button class="math-action-btn" onclick="clearMathEditor()">[x] Limpiar</button>
-          <button class="math-action-btn" onclick="backspaceMathEditor()">&larr; Borrar</button>
-        </div>
-
-        <button class="verify-btn" onclick="verifySolution()">
-          <span>🔍</span> Verificar mi Solución
-        </button>
-      </div>
-    </div>
-
-      <!-- COMPARACIÓN -->
-      <div class="comparison-section" id="comparisonSection">
-        <div class="compare-box">
-          <div class="compare-card" id="userCompareCard">
-            <div class="compare-label user">Tu respuesta</div>
-            <div class="compare-formula" id="userCompareText"></div>
-          </div>
-          <div class="compare-card" id="expectedCompareCard">
-            <div class="compare-label expected">Solución correcta</div>
-            <div class="compare-formula" id="expectedCompareText"></div>
-          </div>
-        </div>
-        <div class="compare-result" id="compareResult"></div>
       </div>
 
       <!-- SOLUCIÓN REAL PASO A PASO -->
       <div class="solution-content" id="solutionSteps"></div>
 
-      <!-- FELICITACIONES -->
-      <div class="congrats-banner" id="congratsBanner">
-        <h2>🎉 ¡Felicitaciones!</h2>
-        <p>Has resuelto correctamente el ejercicio. El siguiente nivel ha sido desbloqueado.</p>
+      <!-- AUTO-CHECK: ¿ACERTASTE? -->
+      <div class="self-check-section" id="selfCheckSection">
+        <div class="self-check-title">🎯 ¿Tu solución fue correcta?</div>
+        <div class="self-check-desc">Resuelve el ejercicio en tu cuaderno y luego verifica con los pasos de arriba.</div>
+        
+        <div class="self-check-buttons">
+          <button class="self-check-btn correct" onclick="markCorrect()">
+            ✅ Sí, acerté
+          </button>
+          <button class="self-check-btn incorrect" onclick="markIncorrect()">
+            ❌ No, me equivoqué
+          </button>
+        </div>
+
+        <!-- MENSAJE PARA CUANDO ACERTA -->
+        <div class="self-check-message" id="selfCheckMessageCorrect" style="display:none;">
+          <p>🎉 <strong>¡Excelente trabajo!</strong> Sigue practicando para dominar estas integrales.</p>
+          <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">
+            <!-- EDITAR AQUÍ: Mensaje cuando acierta -->
+            Tip: Escribe tu justificación en la tarjeta de abajo para recibir corrección con IA.
+          </p>
+        </div>
+
+        <!-- MENSAJE PARA CUANDO SE EQUIVOCA -->
+        <div class="self-check-message" id="selfCheckMessageIncorrect" style="display:none;">
+          <p>📝 <strong>¡No te preocupes!</strong> Revisa los pasos de la solución y vuelve a intentarlo.</p>
+          <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">
+            <!-- EDITAR AQUÍ: Mensaje cuando se equivoca -->
+            Tip: Anota en qué paso te confundiste para no repetir el error. La práctica hace al maestro.
+          </p>
+        </div>
       </div>
 
       <!-- TIP DEL EJERCICIO -->
@@ -178,13 +154,23 @@
         <div class="status-dot"></div>
         <span id="statusText">Cargando...</span>
       </div>
-      <div class="nav-arrows">
-        <button class="nav-arrow" onclick="prevExercise()">←</button>
-        <button class="nav-arrow" onclick="nextExercise()">→</button>
-      </div>
     </div>
 
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
 
   <script src="nivel_0_script.js"></script>
 </body>
