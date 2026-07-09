@@ -1,74 +1,112 @@
 // =========================================================
-// CONFIGURACIÓN DE SÍMBOLOS MATEMÁTICOS PARA LA BARRA DE HERRAMIENTAS
+// CONFIGURACIÓN DE SÍMBOLOS MATEMÁTICOS
 // =========================================================
 const MATH_SYMBOLS = [
-  { label: '∫', insert: '\\int', title: 'Integral' },
-  { label: 'dx', insert: '\\, dx', title: 'Diferencial' },
-  { label: '𝑥', insert: 'x', title: 'Variable x' },
-  { label: '^', insert: '^', title: 'Potencia' },
-  { label: '𝑎⁄𝑏', insert: '\\frac{}{}', title: 'Fracción' },
-  { label: '⋅', insert: '\\cdot', title: 'Multiplicación' },
-  { label: '+', insert: '+', title: 'Suma' },
-  { label: '−', insert: '-', title: 'Resta' },
-  { label: 'C', insert: 'C', title: 'Constante' },
-  { label: '(', insert: '(', title: 'Paréntesis izq' },
-  { label: ')', insert: ')', title: 'Paréntesis der' },
-  { label: 'sen', insert: '\\sen', title: 'Seno' },
-  { label: 'cos', insert: '\\cos', title: 'Coseno' },
-  { label: 'tan', insert: '\\tan', title: 'Tangente' },
-  { label: 'sec', insert: '\\sec', title: 'Secante' },
-  { label: 'csc', insert: '\\csc', title: 'Cosecante' },
-  { label: 'cot', insert: '\\cot', title: 'Cotangente' },
-  { label: 'ln', insert: '\\ln', title: 'Logaritmo natural' },
-  { label: 'eˣ', insert: 'e^{}', title: 'Exponencial' },
-  { label: '√', insert: '\\sqrt{}', title: 'Raíz cuadrada' },
-  { label: '∜', insert: '\\sqrt[4]{}', title: 'Raíz cuarta' },
-  { label: '|x|', insert: '\\left| \\right|', title: 'Valor absoluto' },
-  { label: 'π', insert: '\\pi', title: 'Pi' },
-  { label: 'arcsen', insert: '\\arcsen', title: 'Arcoseno' },
-  { label: 'arctan', insert: '\\arctan', title: 'Arcotangente' },
-  { label: '□', insert: '\\boxed{}', title: 'Caja respuesta' },
-  { label: '_', insert: '_', title: 'Subíndice' },
-  { label: '{', insert: '{', title: 'Llave izq' },
-  { label: '}', insert: '}', title: 'Llave der' },
-  { label: '∞', insert: '\\infty', title: 'Infinito' },
+  { label: '∫', latex: '\\int', display: '∫' },
+  { label: 'dx', latex: '\\,dx', display: 'dx' },
+  { label: '𝑥', latex: 'x', display: '𝑥' },
+  { label: '𝑦', latex: 'y', display: '𝑦' },
+  { label: '^', latex: '^', display: '^' },
+  { label: '𝑎⁄𝑏', latex: '\\frac{}{}', display: '𝑎⁄𝑏', cursorOffset: 6 },
+  { label: '⋅', latex: '\\cdot', display: '⋅' },
+  { label: '+', latex: '+', display: '+' },
+  { label: '−', latex: '-', display: '−' },
+  { label: 'C', latex: 'C', display: 'C' },
+  { label: '(', latex: '(', display: '(' },
+  { label: ')', latex: ')', display: ')' },
+  { label: 'sen', latex: '\\sin', display: 'sen' },
+  { label: 'cos', latex: '\\cos', display: 'cos' },
+  { label: 'tan', latex: '\\tan', display: 'tan' },
+  { label: 'sec', latex: '\\sec', display: 'sec' },
+  { label: 'csc', latex: '\\csc', display: 'csc' },
+  { label: 'cot', latex: '\\cot', display: 'cot' },
+  { label: 'ln', latex: '\\ln', display: 'ln' },
+  { label: 'eˣ', latex: 'e^{}', display: 'eˣ', cursorOffset: 3 },
+  { label: '√', latex: '\\sqrt{}', display: '√', cursorOffset: 6 },
+  { label: '∜', latex: '\\sqrt[4]{}', display: '∜', cursorOffset: 8 },
+  { label: '|x|', latex: '\\left| \\right|', display: '|x|', cursorOffset: 7 },
+  { label: 'π', latex: '\\pi', display: 'π' },
+  { label: 'arcsen', latex: '\\arcsin', display: 'arcsen' },
+  { label: 'arctan', latex: '\\arctan', display: 'arctan' },
+  { label: '□', latex: '\\boxed{}', display: '□', cursorOffset: 7 },
+  { label: 'arccos', latex: '\\arccos', display: 'arccos' },
+  { label: '∞', latex: '\\infty', display: '∞' },
+  { label: 'θ', latex: '\\theta', display: 'θ' },
+  { label: 'α', latex: '\\alpha', display: 'α' },
+  { label: 'β', latex: '\\beta', display: 'β' },
+  { label: '0', latex: '0', display: '0' },
+  { label: '1', latex: '1', display: '1' },
+  { label: '2', latex: '2', display: '2' },
+  { label: '3', latex: '3', display: '3' },
+  { label: '4', latex: '4', display: '4' },
+  { label: '5', latex: '5', display: '5' },
+  { label: '6', latex: '6', display: '6' },
+  { label: '7', latex: '7', display: '7' },
+  { label: '8', latex: '8', display: '8' },
+  { label: '9', latex: '9', display: '9' },
 ];
+
+// =========================================================
+// MAPEO DE CORRECCIÓN PARA KaTeX (JSON usa \sen, KaTeX usa \sin)
+// =========================================================
+const LATEX_FIXES = {
+  '\\sen': '\\sin',
+  '\\arcsen': '\\arcsin',
+  '\\senh': '\\sinh',
+  '\\tg': '\\tan',
+  '\\ctg': '\\cot',
+};
+
+function fixLatexForKatex(latex) {
+  let fixed = latex;
+  for (const [wrong, right] of Object.entries(LATEX_FIXES)) {
+    fixed = fixed.replace(new RegExp(wrong.replace(/\\/g, '\\\\'), 'g'), right);
+  }
+  return fixed;
+}
 
 // =========================================================
 // ESTADO GLOBAL
 // =========================================================
-let levelData = null;          // Datos del JSON cargado
-let allExercises = [];         // Array plano de todos los ejercicios
-let currentExIndex = 0;        // Índice del ejercicio actual
-let solvedExercises = new Set(); // IDs de ejercicios resueltos
-let unlockedExercises = new Set(); // IDs de ejercicios desbloqueados
+let levelData = null;
+let allExercises = [];
+let currentExIndex = 0;
+let solvedExercises = new Set();
+let unlockedExercises = new Set();
+let userLatexInput = ''; // Almacena el LaTeX crudo del usuario
 
 // =========================================================
-// CARGAR JSON DEL NIVEL
+// CARGAR JSON
 // =========================================================
 async function loadLevelData() {
   try {
     const response = await fetch('nivel_0_completo.json');
     levelData = await response.json();
 
-    // Aplanar todos los ejercicios en un solo array
     let index = 0;
     levelData.subthemes.forEach(subtheme => {
       subtheme.exercises.forEach(ex => {
+        // Corregir LaTeX en el JSON para que KaTeX lo renderice bien
+        ex.latex = fixLatexForKatex(ex.latex);
+        ex.hint = fixLatexForKatex(ex.hint);
+        ex.final_answer = fixLatexForKatex(ex.final_answer);
+        if (ex.tip) ex.tip = fixLatexForKatex(ex.tip);
+        ex.solution_steps = ex.solution_steps.map(step => ({
+          ...step,
+          body: fixLatexForKatex(step.body)
+        }));
+
         allExercises.push({
           ...ex,
           subthemeName: subtheme.name,
-          subthemeDefinition: subtheme.definition,
-          subthemeTip: subtheme.tip,
+          subthemeDefinition: fixLatexForKatex(subtheme.definition),
+          subthemeTip: subtheme.tip ? fixLatexForKatex(subtheme.tip) : '',
           globalIndex: index++
         });
       });
     });
 
-    // Cargar progreso guardado
     loadProgress();
-
-    // Inicializar UI
     initUI();
     renderExerciseNav();
     loadExercise(0);
@@ -81,7 +119,7 @@ async function loadLevelData() {
 }
 
 // =========================================================
-// CARGAR/Guardar PROGRESO EN LOCALSTORAGE
+// PROGRESO
 // =========================================================
 function loadProgress() {
   const saved = localStorage.getItem('nivel0_progress');
@@ -89,15 +127,9 @@ function loadProgress() {
     const data = JSON.parse(saved);
     solvedExercises = new Set(data.solved || []);
     unlockedExercises = new Set(data.unlocked || []);
-    // El primer ejercicio siempre está desbloqueado
-    if (allExercises.length > 0) {
-      unlockedExercises.add(allExercises[0].id);
-    }
+    if (allExercises.length > 0) unlockedExercises.add(allExercises[0].id);
   } else {
-    // Primer ejercicio desbloqueado por defecto
-    if (allExercises.length > 0) {
-      unlockedExercises.add(allExercises[0].id);
-    }
+    if (allExercises.length > 0) unlockedExercises.add(allExercises[0].id);
   }
 }
 
@@ -109,24 +141,23 @@ function saveProgress() {
 }
 
 // =========================================================
-// INICIALIZAR UI (header, barra de herramientas)
+// INICIALIZAR UI
 // =========================================================
 function initUI() {
   document.getElementById('levelTitle').textContent = levelData.title;
   document.getElementById('levelDesc').textContent = levelData.description;
   document.getElementById('levelBadge').textContent = 'NIVEL 0';
 
-  // Generar botones de símbolos matemáticos
   const toolbar = document.getElementById('mathToolbar');
-  toolbar.innerHTML = MATH_SYMBOLS.map(sym => `
-    <button class="math-btn" onclick="insertSymbol('${sym.insert.replace(/'/g, "\\'")}')" title="${sym.title}">
-      ${sym.label}
+  toolbar.innerHTML = MATH_SYMBOLS.map((sym, idx) => `
+    <button class="math-btn" onclick="insertMathSymbol(${idx})" title="${sym.display}">
+      ${sym.display}
     </button>
   `).join('');
 }
 
 // =========================================================
-// RENDERIZAR NAVEGACIÓN DE EJERCICIOS
+// NAVEGACIÓN
 // =========================================================
 function renderExerciseNav() {
   const nav = document.getElementById('exerciseNav');
@@ -138,7 +169,7 @@ function renderExerciseNav() {
     btn.textContent = idx + 1;
     btn.dataset.index = idx;
 
-    // Estados
+    // Estados visuales
     if (idx === currentExIndex) {
       btn.classList.add('active');
     } else if (solvedExercises.has(ex.id)) {
@@ -147,11 +178,22 @@ function renderExerciseNav() {
       btn.classList.add('unlocked');
     }
 
-    btn.onclick = () => loadExercise(idx);
+    // BLOQUEAR clic si no está desbloqueado ni resuelto
+    const isAccessible = (idx === currentExIndex) || 
+                         solvedExercises.has(ex.id) || 
+                         unlockedExercises.has(ex.id);
+    
+    if (!isAccessible) {
+      btn.classList.add('locked');
+      btn.style.cursor = 'not-allowed';
+      btn.title = 'Completa los ejercicios anteriores para desbloquear';
+    } else {
+      btn.onclick = () => loadExercise(idx);
+    }
+
     nav.appendChild(btn);
   });
 
-  // Actualizar progreso
   updateProgress();
 }
 
@@ -159,7 +201,6 @@ function updateProgress() {
   const total = allExercises.length;
   const solved = solvedExercises.size;
   const percent = Math.round((solved / total) * 100);
-
   const circle = document.getElementById('progressCircle');
   const circumference = 163.36;
   const offset = circumference - (percent / 100) * circumference;
@@ -168,16 +209,13 @@ function updateProgress() {
 }
 
 // =========================================================
-// CARGAR UN EJERCICIO ESPECÍFICO
+// CARGAR EJERCICIO
 // =========================================================
 function loadExercise(index) {
   currentExIndex = index;
   const ex = allExercises[index];
-
-  // Resetear estados de UI
   resetExerciseUI();
 
-  // Actualizar navegación visual
   document.querySelectorAll('.ex-btn').forEach((btn, idx) => {
     btn.classList.remove('active', 'solved', 'unlocked');
     if (idx === index) btn.classList.add('active');
@@ -185,10 +223,9 @@ function loadExercise(index) {
     else if (unlockedExercises.has(allExercises[idx].id)) btn.classList.add('unlocked');
   });
 
-  // Actualizar barra de estado
   document.getElementById('statusText').textContent = `Ejercicio ${index + 1} de ${allExercises.length}`;
 
-  // Cargar definición del subtema
+  // Definición
   document.getElementById('defTitle').textContent = ex.subthemeName;
   document.getElementById('defSubtitle').textContent = 'Concepto fundamental';
   document.getElementById('defContent').innerHTML = `
@@ -196,7 +233,7 @@ function loadExercise(index) {
     ${ex.subthemeTip ? `<div class="exercise-tip visible" style="margin-top:12px;"><strong>💡 Tip del subtema:</strong> ${renderLatexInText(ex.subthemeTip)}</div>` : ''}
   `;
 
-  // Cargar ejercicio
+  // Ejercicio
   document.getElementById('exTitle').textContent = `Ejercicio ${index + 1} (${ex.id})`;
   document.getElementById('exSubtitle').textContent = `Dificultad: ${'⭐'.repeat(ex.difficulty)}`;
   document.getElementById('exStatement').innerHTML = `
@@ -204,12 +241,12 @@ function loadExercise(index) {
     <span class="katex">\\(${ex.latex}\\)</span>
   `;
 
-  // Cargar pista
+  // Pista
   document.getElementById('hintBox').innerHTML = `💡 <strong>Pista:</strong> ${renderLatexInText(ex.hint)}`;
 
-  // Generar pasos de solución (ocultos inicialmente)
+  // Pasos de solución
   const solutionContainer = document.getElementById('solutionSteps');
-  solutionContainer.innerHTML = ex.solution_steps.map((step, i) => `
+  solutionContainer.innerHTML = ex.solution_steps.map(step => `
     <div class="step">
       <div class="step-num">${step.step}</div>
       <div class="step-title">${step.title}</div>
@@ -217,7 +254,7 @@ function loadExercise(index) {
     </div>
   `).join('');
 
-  // Cargar tip del ejercicio
+  // Tip del ejercicio
   const tipEl = document.getElementById('exerciseTip');
   if (ex.tip) {
     tipEl.innerHTML = `<strong>💡 Tip:</strong> ${renderLatexInText(ex.tip)}`;
@@ -225,28 +262,24 @@ function loadExercise(index) {
     tipEl.innerHTML = '';
   }
 
-  // Cargar justificación guardada
+  // Justificación guardada
   const savedJust = localStorage.getItem(`justification_${ex.id}`);
   document.getElementById('justification').value = savedJust || '';
   buildCorrectionPreview(savedJust || '(Aún no has escrito una justificación)');
 
-  // Re-renderizar KaTeX
+  // Renderizar KaTeX
   if (typeof renderMathInElement !== 'undefined') {
     setTimeout(() => renderMathInElement(document.body), 50);
   }
 }
 
-// =========================================================
-// AUXILIAR: Renderizar LaTeX dentro de texto plano
-// =========================================================
 function renderLatexInText(text) {
   if (!text) return '';
-  // Envolver $...$ en spans con clase katex para que auto-render los capture
   return text.replace(/\$(.*?)\$/g, '<span class="katex">\\($1\\)</span>');
 }
 
 // =========================================================
-// RESETAR UI DEL EJERCICIO
+// RESET UI
 // =========================================================
 function resetExerciseUI() {
   document.getElementById('btnStart').style.display = 'inline-flex';
@@ -255,7 +288,11 @@ function resetExerciseUI() {
   document.getElementById('solutionSteps').classList.remove('visible');
   document.getElementById('congratsBanner').classList.remove('visible');
   document.getElementById('exerciseTip').classList.remove('visible');
-  document.getElementById('userSolutionInput').value = '';
+
+  // Limpiar editor
+  userLatexInput = '';
+  document.getElementById('mathInputHidden').value = '';
+  document.getElementById('mathVisualEditor').innerHTML = '<span class="math-placeholder">Haz clic en los símbolos de arriba para construir tu respuesta...</span>';
 
   const userCard = document.getElementById('userCompareCard');
   const expectedCard = document.getElementById('expectedCompareCard');
@@ -264,55 +301,62 @@ function resetExerciseUI() {
 }
 
 // =========================================================
-// INSERTAR SÍMBOLO EN EL TEXTAREA
+// EDITOR MATEMÁTICO VISUAL (sin mostrar LaTeX al usuario)
 // =========================================================
-function insertSymbol(symbol) {
-  const textarea = document.getElementById('userSolutionInput');
-  const start = textarea.selectionStart;
-  const end = textarea.selectionEnd;
-  const text = textarea.value;
 
-  // Si es \frac{}{}, posicionar cursor entre las primeras llaves
-  if (symbol === '\\frac{}{}') {
-    textarea.value = text.substring(0, start) + '\\frac{}{}' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 6;
-    return;
-  }
-  if (symbol === '\\sqrt{}') {
-    textarea.value = text.substring(0, start) + '\\sqrt{}' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 6;
-    return;
-  }
-  if (symbol === '\\sqrt[4]{}') {
-    textarea.value = text.substring(0, start) + '\\sqrt[4]{}' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 8;
-    return;
-  }
-  if (symbol === '\\boxed{}') {
-    textarea.value = text.substring(0, start) + '\\boxed{}' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 7;
-    return;
-  }
-  if (symbol === 'e^{}') {
-    textarea.value = text.substring(0, start) + 'e^{}' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 3;
-    return;
-  }
-  if (symbol === '\\left| \\right|') {
-    textarea.value = text.substring(0, start) + '\\left| \\right|' + text.substring(end);
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = start + 7;
+function insertMathSymbol(symbolIndex) {
+  const symbol = MATH_SYMBOLS[symbolIndex];
+  const visualEditor = document.getElementById('mathVisualEditor');
+  const hiddenInput = document.getElementById('mathInputHidden');
+
+  // Ocultar placeholder
+  const placeholder = visualEditor.querySelector('.math-placeholder');
+  if (placeholder) placeholder.remove();
+
+  // Para fracción y otros con llaves, necesitamos manejar la posición del cursor
+  // Pero como no hay cursor real (es visual), simplificamos:
+  // Insertamos el LaTeX y dejamos que el usuario continúe construyendo
+  
+  userLatexInput += symbol.latex;
+  hiddenInput.value = userLatexInput;
+
+  renderMathVisualEditor();
+}
+
+function renderMathVisualEditor() {
+  const visualEditor = document.getElementById('mathVisualEditor');
+
+  if (!userLatexInput.trim()) {
+    visualEditor.innerHTML = '<span class="math-placeholder">Haz clic en los símbolos de arriba para construir tu respuesta...</span>';
     return;
   }
 
-  textarea.value = text.substring(0, start) + symbol + text.substring(end);
-  textarea.focus();
-  textarea.selectionStart = textarea.selectionEnd = start + symbol.length;
+  try {
+    if (typeof katex !== 'undefined') {
+      visualEditor.innerHTML = katex.renderToString(userLatexInput, {
+        throwOnError: false,
+        displayMode: true
+      });
+    } else {
+      visualEditor.textContent = userLatexInput;
+    }
+  } catch (e) {
+    visualEditor.innerHTML = '<span style="color:var(--accent-danger);font-size:14px;">⚠️ Error en la expresión</span>';
+  }
+}
+
+function clearMathEditor() {
+  userLatexInput = '';
+  document.getElementById('mathInputHidden').value = '';
+  renderMathVisualEditor();
+}
+
+function backspaceMathEditor() {
+  // Eliminar el último comando LaTeX o carácter
+  // Esto es complejo; simplificamos eliminando el último carácter por ahora
+  userLatexInput = userLatexInput.slice(0, -1);
+  document.getElementById('mathInputHidden').value = userLatexInput;
+  renderMathVisualEditor();
 }
 
 // =========================================================
@@ -323,16 +367,16 @@ function startSolution() {
   const userSection = document.getElementById('userSolutionSection');
   btn.style.display = 'none';
   userSection.classList.add('visible');
-  document.getElementById('userSolutionInput').focus();
+  clearMathEditor();
 }
 
 // =========================================================
 // VERIFICAR SOLUCIÓN
 // =========================================================
 function verifySolution() {
-  const userInput = document.getElementById('userSolutionInput').value.trim();
+  const userInput = userLatexInput.trim();
   if (!userInput) {
-    alert('Escribe tu solución antes de verificar.');
+    alert('Construye tu solución usando los botones de símbolos antes de verificar.');
     return;
   }
 
@@ -341,12 +385,10 @@ function verifySolution() {
   const normalizedExpected = normalizeAnswer(ex.final_answer);
   const isCorrect = normalizedUser === normalizedExpected;
 
-  // Mostrar comparación
   const compareSection = document.getElementById('comparisonSection');
   const userCard = document.getElementById('userCompareCard');
   const resultBox = document.getElementById('compareResult');
 
-  // Renderizar fórmulas con KaTeX
   renderKatexInElement(document.getElementById('userCompareText'), userInput);
   renderKatexInElement(document.getElementById('expectedCompareText'), ex.final_answer);
 
@@ -365,27 +407,18 @@ function verifySolution() {
   compareSection.classList.add('visible');
   document.getElementById('solutionSteps').classList.add('visible');
 
-  // Mostrar tip del ejercicio
   const tipEl = document.getElementById('exerciseTip');
   if (ex.tip) tipEl.classList.add('visible');
 
-  // Si es correcto y no estaba resuelto antes
   if (isCorrect && !solvedExercises.has(ex.id)) {
     solvedExercises.add(ex.id);
-
-    // Desbloquear siguiente ejercicio
     const nextIdx = currentExIndex + 1;
     if (nextIdx < allExercises.length) {
       unlockedExercises.add(allExercises[nextIdx].id);
     }
-
     saveProgress();
     renderExerciseNav();
-
-    // Mostrar felicitaciones
     document.getElementById('congratsBanner').classList.add('visible');
-
-    // Marcar botón actual como solved
     const activeBtn = document.querySelector('.ex-btn.active');
     if (activeBtn) {
       activeBtn.classList.remove('active');
@@ -393,42 +426,41 @@ function verifySolution() {
     }
   }
 
-  // Scroll a la comparación
   setTimeout(() => {
     compareSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
 
-  // Re-renderizar KaTeX en la solución
   if (typeof renderMathInElement !== 'undefined') {
     setTimeout(() => renderMathInElement(document.body), 100);
   }
 }
 
 // =========================================================
-// NORMALIZAR RESPUESTA PARA COMPARAR
+// NORMALIZAR RESPUESTA
 // =========================================================
 function normalizeAnswer(str) {
   return str
     .toLowerCase()
-    .replace(/\s+/g, '')           // quitar espacios
-    .replace(/\\/g, '')             // quitar backslashes
-    .replace(/\{|\}/g, '')          // quitar llaves
-    .replace(/cdot/g, '')           // quitar \cdot
-    .replace(/boxed/g, '')          // quitar \boxed
-    .replace(/int/g, '')            // quitar \int
-    .replace(/frac/g, '')           // quitar \frac
-    .replace(/displaystyle/g, '')   // quitar \displaystyle
-    .replace(/sen/g, 'sin')         // normalizar seno
-    .replace(/,/g, '')              // quitar comas
-    .replace(/\+/g, '')             // quitar signos +
-    .replace(/c$/g, '')             // quitar C al final (constante opcional)
-    .replace(/\+c$/g, '')           // quitar +C
-    .replace(/\|/g, '')             // quitar barras de valor absoluto
-    .replace(/left|right/g, '');    // quitar left/right
+    .replace(/\s+/g, '')
+    .replace(/\\/g, '')
+    .replace(/\{|\}/g, '')
+    .replace(/cdot/g, '')
+    .replace(/boxed/g, '')
+    .replace(/int/g, '')
+    .replace(/frac/g, '')
+    .replace(/displaystyle/g, '')
+    .replace(/sin/g, 'sen')
+    .replace(/arcsin/g, 'arcsen')
+    .replace(/,/g, '')
+    .replace(/\+/g, '')
+    .replace(/c$/g, '')
+    .replace(/\+c$/g, '')
+    .replace(/\|/g, '')
+    .replace(/left|right/g, '');
 }
 
 // =========================================================
-// RENDERIZAR KaTeX DINÁMICAMENTE
+// RENDERIZAR KaTeX
 // =========================================================
 function renderKatexInElement(element, latex) {
   try {
@@ -446,17 +478,14 @@ function renderKatexInElement(element, latex) {
 }
 
 // =========================================================
-// NAVEGACIÓN ENTRE EJERCICIOS
+// NAVEGACIÓN
 // =========================================================
 function prevExercise() {
-  if (currentExIndex > 0) {
-    loadExercise(currentExIndex - 1);
-  }
+  if (currentExIndex > 0) loadExercise(currentExIndex - 1);
 }
 
 function nextExercise() {
   if (currentExIndex < allExercises.length - 1) {
-    // Solo permitir avanzar si está desbloqueado
     const nextEx = allExercises[currentExIndex + 1];
     if (unlockedExercises.has(nextEx.id) || solvedExercises.has(allExercises[currentExIndex].id)) {
       loadExercise(currentExIndex + 1);
@@ -467,14 +496,14 @@ function nextExercise() {
 }
 
 // =========================================================
-// MOSTRAR / OCULTAR PISTA
+// PISTA
 // =========================================================
 function toggleHint() {
   document.getElementById('hintBox').classList.toggle('visible');
 }
 
 // =========================================================
-// GUARDAR JUSTIFICACIÓN
+// JUSTIFICACIÓN
 // =========================================================
 function saveJustification() {
   const textarea = document.getElementById('justification');
@@ -493,7 +522,6 @@ function saveJustification() {
   const originalText = btn.innerHTML;
   btn.innerHTML = '✅ Guardado';
   btn.style.background = '#50fa7b';
-
   buildCorrectionPreview(userText);
 
   setTimeout(() => {
@@ -503,7 +531,7 @@ function saveJustification() {
 }
 
 // =========================================================
-// CONSTRUIR PREVISUALIZACIÓN PARA CORRECCIÓN IA
+// CORRECCIÓN IA
 // =========================================================
 function buildCorrectionPreview(userJustification) {
   const ex = allExercises[currentExIndex];
@@ -529,6 +557,11 @@ ${ex.subthemeDefinition}
 ${ex.latex}
 
 ───────────────────────────────────────────────────────────────
+📝 MI RESPUESTA:
+───────────────────────────────────────────────────────────────
+${userLatexInput || '(No se ingresó respuesta)'}
+
+───────────────────────────────────────────────────────────────
 📝 MI JUSTIFICACIÓN:
 ───────────────────────────────────────────────────────────────
 ${userJustification}
@@ -549,7 +582,7 @@ mejorar mi razonamiento y dime si mi respuesta final es correcta.
 }
 
 // =========================================================
-// COPIAR AL PORTAPAPELES
+// COPIAR
 // =========================================================
 async function copyToClipboard() {
   const preview = document.getElementById('correctionPreview');

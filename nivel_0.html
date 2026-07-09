@@ -20,6 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="nivel_0_styles.css">
   <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -78,20 +79,31 @@
       </div>
 
       <!-- CAMPO PARA SOLUCIÓN DEL USUARIO -->
-      <div class="user-solution-section" id="userSolutionSection">
-        <div class="step" style="padding-left:16px;">
-          <div class="step-title">🧑‍💻 Escribe tu solución</div>
-          <div class="step-body" style="margin-bottom:10px;">Usa los botones de abajo para insertar símbolos matemáticos, o escribe directamente en LaTeX.</div>
+    <div class="user-solution-section" id="userSolutionSection">
+      <div class="step" style="padding-left:16px;">
+        <div class="step-title">🧑‍💻 Construye tu solución</div>
+        <div class="step-body" style="margin-bottom:10px;">Haz clic en los botones de símbolos matemáticos para armar tu respuesta.</div>
 
-          <div class="math-toolbar" id="mathToolbar"></div>
+        <div class="math-toolbar" id="mathToolbar"></div>
 
-          <textarea class="user-sol-textarea" id="userSolutionInput" placeholder="Escribe tu respuesta aquí..."></textarea>
-
-          <button class="verify-btn" onclick="verifySolution()">
-            <span>🔍</span> Verificar mi Solución
-          </button>
+        <!-- Editor visual: solo muestra símbolos renderizados, no código LaTeX -->
+        <div class="math-visual-editor" id="mathVisualEditor">
+          <span class="math-placeholder">Haz clic en los símbolos de arriba para construir tu respuesta...</span>
         </div>
+
+        <!-- Input oculto que guarda el LaTeX crudo -->
+        <input type="hidden" id="mathInputHidden" value="">
+
+        <div class="math-editor-actions">
+          <button class="math-action-btn" onclick="clearMathEditor()">[x] Limpiar</button>
+          <button class="math-action-btn" onclick="backspaceMathEditor()">&larr; Borrar</button>
+        </div>
+
+        <button class="verify-btn" onclick="verifySolution()">
+          <span>🔍</span> Verificar mi Solución
+        </button>
       </div>
+    </div>
 
       <!-- COMPARACIÓN -->
       <div class="comparison-section" id="comparisonSection">

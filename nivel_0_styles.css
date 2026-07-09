@@ -62,30 +62,44 @@ body {
 }
 
 /* =========================================================
-   NAVEGACIÓN DE EJERCICIOS
+   NAVEGACION DE EJERCICIOS
    ========================================================= */
 .exercise-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
 .ex-btn {
-  width: 40px; height: 40px; border-radius: 10px;
+  width: 44px; height: 44px; border-radius: 12px;
   border: 1px solid var(--border); background: var(--bg-secondary);
-  color: var(--text-secondary); font-weight: 600; font-size: 14px;
+  color: var(--text-primary); font-weight: 700; font-size: 16px;
   cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; justify-content: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.ex-btn:hover { background: var(--bg-card); color: var(--text-primary); }
+.ex-btn:hover { background: var(--bg-card); color: var(--text-primary); transform: translateY(-2px); }
 .ex-btn.active {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white; border-color: transparent;
   box-shadow: 0 0 15px rgba(189, 147, 249, 0.4);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 .ex-btn.solved {
   border-color: var(--accent-success); color: var(--accent-success);
-  background: rgba(80, 250, 123, 0.08);
+  background: rgba(80, 250, 123, 0.12);
+  text-shadow: 0 0 8px rgba(80, 250, 123, 0.3);
 }
 .ex-btn.unlocked {
   border-color: var(--accent-cyan); color: var(--accent-cyan);
-  background: rgba(139, 233, 253, 0.08);
+  background: rgba(139, 233, 253, 0.12);
   border-style: dashed;
+  text-shadow: 0 0 8px rgba(139, 233, 253, 0.3);
+}
+
+/* BOTONES BLOQUEADOS - MUCHO MAS VISIBLES */
+.ex-btn.locked {
+  opacity: 0.85;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: #5a5d7a;
+  color: #a0a3c0;
+  background: rgba(68, 71, 90, 0.8);
 }
 
 /* =========================================================
@@ -105,11 +119,23 @@ body {
 .card-subtitle { font-size: 12px; color: var(--text-muted); }
 
 /* =========================================================
-   TARJETA: DEFINICIÓN
+   TARJETA: DEFINICION
    ========================================================= */
 .def-card .card-icon { background: rgba(189, 147, 249, 0.15); color: var(--accent-primary); }
 .def-content { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
 .def-content strong { color: var(--accent-primary); }
+
+/* SIMBOLOS KaTeX MAS GRANDES EN DEFINICIONES Y TIPS */
+/* CORREGIDO: eliminado !important para no romper el posicionamiento interno de fracciones */
+.def-content .katex,
+.def-content .katex-display,
+.exercise-tip .katex,
+.exercise-tip .katex-display,
+.hint-box .katex,
+.hint-box .katex-display {
+  font-size: 1.15em;
+}
+
 .formula-box {
   background: var(--bg-primary); border: 1px solid var(--border);
   border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center; font-size: 18px;
@@ -125,7 +151,7 @@ body {
 }
 
 /* =========================================================
-   SECCIÓN SOLUCIÓN USUARIO
+   SECCION SOLUCION USUARIO
    ========================================================= */
 .user-solution-section {
   display: none; margin-top: 20px;
@@ -167,7 +193,7 @@ body {
 .verify-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(189, 147, 249, 0.4); }
 
 /* =========================================================
-   SOLUCIÓN REAL
+   SOLUCION REAL
    ========================================================= */
 .solution-content {
   display: none; margin-top: 20px;
@@ -204,8 +230,15 @@ body {
 .step-title { font-weight: 600; color: var(--text-primary); font-size: 14px; margin-bottom: 6px; }
 .step-body { color: var(--text-secondary); font-size: 14px; }
 
+/* SIMBOLOS KaTeX MAS GRANDES EN PASOS DE SOLUCION */
+/* CORREGIDO: eliminado !important para no romper el posicionamiento interno de fracciones */
+.step-body .katex,
+.step-body .katex-display {
+  font-size: 1.1em;
+}
+
 /* =========================================================
-   COMPARACIÓN
+   COMPARACION
    ========================================================= */
 .comparison-section {
   display: none; margin-top: 20px;
@@ -280,7 +313,7 @@ body {
 .exercise-tip strong { color: var(--accent-warning); }
 
 /* =========================================================
-   TARJETA: JUSTIFICACIÓN
+   TARJETA: JUSTIFICACION
    ========================================================= */
 .justification-card .card-icon { background: rgba(255, 184, 108, 0.15); color: var(--accent-warning); }
 .just-textarea {
@@ -312,7 +345,7 @@ body {
 .hint-box.visible { display: block; animation: fadeIn 0.3s ease; }
 
 /* =========================================================
-   TARJETA: CORRECCIÓN IA
+   TARJETA: CORRECCION IA
    ========================================================= */
 .correction-card {
   border: 1px solid var(--accent-success);
@@ -352,7 +385,7 @@ body {
 .correction-tips strong { color: var(--accent-danger); }
 
 /* =========================================================
-   BARRA DE ESTADO
+   BARRA DE ESTADO (SIN FLECHAS)
    ========================================================= */
 .status-bar {
   display: flex; align-items: center; justify-content: space-between;
@@ -360,15 +393,126 @@ body {
 }
 .status-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-success); box-shadow: 0 0 8px var(--accent-success); }
-.nav-arrows { display: flex; gap: 8px; }
-.nav-arrow {
-  background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary);
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.2s; font-size: 18px;
+
+/* =========================================================
+   EDITOR VISUAL DE MATEMATICAS - BLOQUES CON INPUTS
+   ========================================================= */
+.math-visual-editor {
+  background: var(--bg-primary);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 80px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-wrap: wrap;
+  gap: 4px;
+  cursor: text;
+  position: relative;
+  transition: border-color 0.2s;
 }
-.nav-arrow:hover { background: var(--bg-hover); color: var(--text-primary); }
-.nav-arrow.disabled { opacity: 0.3; cursor: not-allowed; }
+
+.math-visual-editor:hover {
+  border-color: var(--accent-primary);
+}
+
+.math-visual-editor .katex {
+  font-size: 1.4em;
+}
+
+.math-placeholder {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Bloque de texto renderizado */
+.math-block-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: default;
+  min-height: 28px;
+}
+
+/* Bloque de fraccion */
+.math-frac-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 4px;
+  min-width: 50px;
+}
+
+.frac-input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  text-align: center;
+  padding: 4px 8px;
+  min-width: 40px;
+  width: auto;
+  outline: none;
+  transition: all 0.2s;
+  caret-color: var(--accent-primary);
+}
+
+.frac-input::placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.frac-input:focus,
+.frac-input.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(189, 147, 249, 0.3);
+  background: var(--bg-primary);
+}
+
+/* CORREGIDO: Renombrado de .frac-line a .visual-frac-line para evitar colision
+   con la clase .frac-line que KaTeX usa internamente para renderizar fracciones.
+   Esto evitaba que la linea de fraccion se posicionara correctamente. */
+.visual-frac-line {
+  width: 100%;
+  min-width: 50px;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 4px 0;
+  border-radius: 1px;
+}
+
+/* Botones de accion del editor */
+.math-editor-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.math-action-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.math-action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
 
 /* =========================================================
    RESPONSIVE
@@ -376,9 +520,11 @@ body {
 @media (max-width: 600px) {
   body { padding: 16px; }
   .header { flex-direction: column; gap: 16px; align-items: flex-start; }
-  .ex-btn { width: 36px; height: 36px; font-size: 12px; }
+  .ex-btn { width: 40px; height: 40px; font-size: 14px; }
   .correction-actions { flex-direction: column; }
   .btn-copy, .btn-open-ai { width: 100%; justify-content: center; }
   .compare-box { grid-template-columns: 1fr; }
   .math-btn { font-size: 12px; padding: 5px 8px; min-width: 28px; }
+  .math-visual-editor { font-size: 16px; padding: 12px; }
+  .frac-input { font-size: 14px; min-width: 30px; }
 }
