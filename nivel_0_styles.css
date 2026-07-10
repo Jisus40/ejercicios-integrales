@@ -111,10 +111,14 @@ body {
    TARJETA: DEFINICION
    ========================================================= */
 .def-card .card-icon { background: rgba(189, 147, 249, 0.15); color: var(--accent-primary); }
-.def-content { color: var(--text-secondary); font-size: 15px; line-height: 2.2; }
+.def-content { 
+  color: var(--text-secondary); 
+  font-size: 17px;           /* AUMENTADO: texto normal más grande */
+  line-height: 2.4;          /* AUMENTADO: más espacio entre líneas */
+}
 .def-content strong { color: var(--accent-primary); }
 
-/* KaTeX en definiciones - tamaño perfecto y fracciones bien renderizadas */
+/* KaTeX en definiciones - tamaño proporcional al texto */
 .def-content .katex,
 .def-content .katex-display,
 .exercise-tip .katex,
@@ -123,14 +127,16 @@ body {
 .hint-box .katex-display,
 .step-body .katex,
 .step-body .katex-display {
-  font-size: 1.15em !important;
+  font-size: 1.25em !important;
 }
 
 .def-content .katex .mfrac .frac-line,
 .exercise-tip .katex .mfrac .frac-line,
 .hint-box .katex .mfrac .frac-line,
 .step-body .katex .mfrac .frac-line {
-  border-bottom-width: 0.06em !important;
+  border-bottom-width: 0.07em !important;
+  margin-top: 0.18em !important;
+  margin-bottom: 0.18em !important;
 }
 
 .def-content .katex .mfrac,
@@ -138,6 +144,14 @@ body {
 .hint-box .katex .mfrac,
 .step-body .katex .mfrac {
   vertical-align: middle !important;
+}
+
+.def-content .katex .mfrac .vlist-t,
+.exercise-tip .katex .mfrac .vlist-t,
+.hint-box .katex .mfrac .vlist-t,
+.step-body .katex .mfrac .vlist-t {
+  margin-top: 0.12em !important;
+  margin-bottom: 0.12em !important;
 }
 
 /* =========================================================
@@ -321,12 +335,6 @@ body {
   display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
 }
 .btn-open-ai:hover { background: rgba(189, 147, 249, 0.1); }
-.correction-tips {
-  margin-top: 16px; padding: 12px 16px;
-  background: rgba(255, 85, 85, 0.08); border: 1px solid rgba(255, 85, 85, 0.2);
-  border-radius: 8px; color: var(--accent-danger); font-size: 13px; line-height: 1.6;
-}
-.correction-tips strong { color: var(--accent-danger); }
 
 /* =========================================================
    BARRA DE ESTADO
