@@ -62,6 +62,36 @@ body {
 }
 
 /* =========================================================
+   BOTÓN VOLVER AL INICIO
+   ========================================================= */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: rgba(189, 147, 249, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateX(-2px);
+}
+
+.back-btn span {
+  font-size: 16px;
+}
+
+/* =========================================================
    NAVEGACION DE EJERCICIOS
    ========================================================= */
 .exercise-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
