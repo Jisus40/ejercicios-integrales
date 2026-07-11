@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrales — Nivel 1</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nivel_1_styles.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <a href="../index.html" class="back-btn" title="Volver al inicio">
+          <span>←</span> Inicio
+        </a>
+        <div class="level-badge" id="levelBadge">NIVEL 1</div>
+        <div class="header-title">
+          <h1 id="levelTitle">Cargando...</h1>
+          <p id="levelDesc">Cargando...</p>
+        </div>
+      </div>
+      <div class="progress-ring">
+        <svg width="60" height="60" viewBox="0 0 60 60">
+          <circle class="bg" cx="30" cy="30" r="26"></circle>
+          <circle class="progress" cx="30" cy="30" r="26" id="progressCircle" stroke-dasharray="163.36" stroke-dashoffset="163.36"></circle>
+        </svg>
+        <div class="progress-text" id="progressText">0%</div>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN DE EJERCICIOS -->
+    <div class="exercise-nav" id="exerciseNav"></div>
+
+    <!-- TARJETA: DEFINICIÓN -->
+    <div class="card def-card" id="defCard">
+      <div class="card-header">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-title" id="defTitle">Definición</div>
+          <div class="card-subtitle" id="defSubtitle">Concepto fundamental</div>
+        </div>
+      </div>
+      <div class="def-content" id="defContent"></div>
+    </div>
+
+    <!-- TARJETA: EJERCICIO -->
+    <div class="card ex-card" id="exCard">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <div class="card-title" id="exTitle">Ejercicio</div>
+          <div class="card-subtitle" id="exSubtitle">Aplicación</div>
+        </div>
+      </div>
+
+      <div class="ex-statement" id="exStatement"></div>
+
+      <!-- BOTÓN PARA VER SOLUCIÓN -->
+      <div class="solution-section">
+        <button class="solution-btn" id="btnStart" onclick="startSolution()">
+          <span>🔓</span> Ver Solución
+        </button>
+      </div>
+
+      <!-- SOLUCIÓN REAL PASO A PASO -->
+      <div class="solution-content" id="solutionSteps"></div>
+
+      <!-- AUTO-CHECK: ¿ACERTASTE? -->
+      <div class="self-check-section" id="selfCheckSection">
+        <div class="self-check-title">🎯 ¿Tu solución fue correcta?</div>
+        <div class="self-check-desc">Resuelve el ejercicio en tu cuaderno y luego verifica con los pasos de arriba.</div>
+
+        <div class="self-check-buttons">
+          <button class="self-check-btn correct" onclick="markCorrect()">
+            ✅ Sí, acerté
+          </button>
+          <button class="self-check-btn incorrect" onclick="markIncorrect()">
+            ❌ No, me equivoqué
+          </button>
+        </div>
+
+        <!-- MENSAJE PARA CUANDO ACERTA -->
+        <div class="self-check-message" id="selfCheckMessageCorrect" style="display:none;">
+          <p>🎉 <strong>¡EXCELENTE TRABAJO MI REINA!</strong> Sigue practicando para dominar estas integrales. Eres la más increible mi amor</p>
+          <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">
+            <!-- EDITAR AQUÍ: Mensaje cuando acierta -->
+            Eres el amor de mi vida, y quiero estar contigo siempre, eres la mujer más hermosa que he visto, sigue asi mi niña hermosa
+          </p>
+        </div>
+
+        <!-- MENSAJE PARA CUANDO SE EQUIVOCA -->
+        <div class="self-check-message" id="selfCheckMessageIncorrect" style="display:none;">
+          <p>📝 <strong>¡No te preocupes mi amor!</strong> Revisa los pasos de la solución y vuelve a intentarlo. Se que puedes hacerlo mi preciosa dama</p>
+          <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">
+            <!-- EDITAR AQUÍ: Mensaje cuando se equivoca -->
+            Es probable que lo tengas bien pero escrito de forma diferente, en ese caso, MUY BIEN HECHO MI AMOR TE MERECES MUCHOS BESOS.
+          </p>
+        </div>
+      </div>
+
+      <!-- TIP DEL EJERCICIO -->
+      <div class="exercise-tip" id="exerciseTip"></div>
+    </div>
+
+    <!-- TARJETA: JUSTIFICACIÓN -->
+    <div class="card justification-card">
+      <div class="card-header">
+        <div class="card-icon">📝</div>
+        <div>
+          <div class="card-title">Tu Justificación (solo si quieres mi amol)</div>
+          <div class="card-subtitle">Escribe tu razonamiento paso a paso</div>
+        </div>
+      </div>
+      <textarea class="just-textarea" id="justification" placeholder="Escribe tu razonamiento aquí..."></textarea>
+      <div class="hint-box" id="hintBox"></div>
+      <div class="just-actions">
+        <button class="btn-save" onclick="saveJustification()">💾 Guardar Justificación</button>
+        <button class="btn-hint" onclick="toggleHint()">💡 Ver Pista</button>
+      </div>
+    </div>
+
+    <!-- CORRECCIÓN IA — SIEMPRE VISIBLE -->
+    <div class="card correction-card" id="correctionCard">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <div>
+          <div class="card-title">Solicitar Corrección con IA</div>
+          <div class="card-subtitle">Copia el ejercicio y pégalo en Kimi o la IA que quieras</div>
+        </div>
+      </div>
+      <div class="correction-intro">
+        <strong>¡Mira amorcito!</strong> Este es un texto que tu puedes copiar y pegar directamente en una IA para que te corrija y de esa forma te ahorras mucho texto y tiempo mi vida (TE AMO MUCHISIMO NO PUEDO DEJAR DE DECIRTELO).
+      </div>
+      <div class="correction-preview" id="correctionPreview"></div>
+      <div class="correction-actions">
+        <button class="btn-copy" id="btnCopy" onclick="copyToClipboard()">📋 Copiar Todo</button>
+        <a class="btn-open-ai" href="https://kimi.moonshot.cn" target="_blank" rel="noopener">🚀 Abrir Kimi</a>
+      </div>
+    </div>
+
+    <!-- BARRA ESTADO -->
+    <div class="status-bar">
+      <div class="status-left">
+        <div class="status-dot"></div>
+        <span id="statusText">Cargando...</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+
+  <script src="nivel_1_script.js"></script>
+</body>
+</html>

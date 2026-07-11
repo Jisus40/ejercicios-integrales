@@ -1,0 +1,2650 @@
+{
+  "title": "Nivel 1 — Técnicas Fundamentales",
+  "description": "Sustitución trigonométrica, por partes, potencias trigonométricas, fracciones parciales simples, sustitución u en expresiones complejas, Teorema del Valor Medio para Integrales e Integrales Definidas con cambio de límites. Incluye ejercicios teóricos y de la guía de práctica.",
+  "subthemes": [
+    {
+      "name": "Sustitución Trigonométrica Básica",
+      "definition": "Tres casos: $\\sqrt{a^2-x^2} \\to x=a\\sen(\\theta)$; $\\sqrt{a^2+x^2} \\to x=a\\tan(\\theta)$; $\\sqrt{x^2-a^2} \\to x=a\\sec(\\theta)$.",
+      "tip": "Identifica primero cuál de los tres casos aplica. Dibuja el triángulo rectángulo para recordar las relaciones trigonométricas y deshacer la sustitución al final.",
+      "exercises": [
+        {
+          "id": "N1-01",
+          "difficulty": 2,
+          "latex": "\\int \\frac{dx}{\\sqrt{4-x^2}}",
+          "hint": "$x = 2\\sen(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el caso y hacer la sustitución",
+              "body": "Tenemos $\\sqrt{4-x^2} = \\sqrt{2^2 - x^2}$, que corresponde al caso $\\sqrt{a^2-x^2}$ con $a=2$. Sustituimos: $x = 2\\sen(\\theta)$, $dx = 2\\cos(\\theta)\\,d\\theta$."
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{4-x^2} = \\sqrt{4-4\\sen^2(\\theta)} = \\sqrt{4\\cos^2(\\theta)} = 2\\cos(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\cos(\\theta)\\,d\\theta}{2\\cos(\\theta)} = \\int d\\theta = \\theta + C$"
+            },
+            {
+              "step": 4,
+              "title": "Deshacer la sustitución",
+              "body": "De $x = 2\\sen(\\theta)$, tenemos $\\sen(\\theta) = \\frac{x}{2}$, por lo tanto $\\theta = \\arcsen\\left(\\frac{x}{2}\\right)$."
+            }
+          ],
+          "final_answer": "\\arcsen\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Este es un resultado estándar que debes memorizar: $\\int \\frac{dx}{\\sqrt{a^2-x^2}} = \\arcsen(\\frac{x}{a}) + C$."
+        },
+        {
+          "id": "N1-02",
+          "difficulty": 2,
+          "latex": "\\int \\sqrt{9-x^2} \\, dx",
+          "hint": "$x = 3\\sen(\\theta)$. Área geométrica conocida.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = 3\\sen(\\theta)$, $dx = 3\\cos(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{9-x^2} = \\sqrt{9-9\\sen^2(\\theta)} = 3\\cos(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int 3\\cos(\\theta) \\cdot 3\\cos(\\theta)\\,d\\theta = 9\\int \\cos^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\cos^2(\\theta) = \\frac{1+\\cos(2\\theta)}{2}$, entonces: $9\\int \\frac{1+\\cos(2\\theta)}{2}\\,d\\theta = \\frac{9}{2}\\left(\\theta + \\frac{\\sen(2\\theta)}{2}\\right) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Simplificar usando sen(2θ)",
+              "body": "$\\sen(2\\theta) = 2\\sen(\\theta)\\cos(\\theta) = 2 \\cdot \\frac{x}{3} \\cdot \\frac{\\sqrt{9-x^2}}{3} = \\frac{2x\\sqrt{9-x^2}}{9}$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer la sustitución",
+              "body": "$\\sen(\\theta) = \\frac{x}{3}$, $\\cos(\\theta) = \\frac{\\sqrt{9-x^2}}{3}$, $\\theta = \\arcsen(\\frac{x}{3})$"
+            },
+            {
+              "step": 7,
+              "title": "Sustituir y simplificar",
+              "body": "$\\frac{9}{2}\\arcsen\\left(\\frac{x}{3}\\right) + \\frac{9}{2} \\cdot \\frac{x}{3} \\cdot \\frac{\\sqrt{9-x^2}}{3} + C = \\frac{9}{2}\\arcsen\\left(\\frac{x}{3}\\right) + \\frac{x\\sqrt{9-x^2}}{2} + C$"
+            }
+          ],
+          "final_answer": "\\frac{9}{2}\\arcsen\\left(\\frac{x}{3}\\right) + \\frac{x\\sqrt{9-x^2}}{2} + C",
+          "tip": "Este resultado representa el área de un sector circular. La fórmula general es $\\int \\sqrt{a^2-x^2}\\,dx = \\frac{a^2}{2}\\arcsen(\\frac{x}{a}) + \\frac{x\\sqrt{a^2-x^2}}{2} + C$."
+        },
+        {
+          "id": "N1-03",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{\\sqrt{x^2+16}}",
+          "hint": "$x = 4\\tan(\\theta)$; usa $\\sec^2(\\theta) = 1 + \\tan^2(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el caso y sustituir",
+              "body": "$\\sqrt{x^2+16} = \\sqrt{x^2+4^2}$ corresponde al caso $\\sqrt{x^2+a^2}$. Sustituimos: $x = 4\\tan(\\theta)$, $dx = 4\\sec^2(\\theta)\\,d\\theta$."
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{x^2+16} = \\sqrt{16\\tan^2(\\theta)+16} = \\sqrt{16\\sec^2(\\theta)} = 4\\sec(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{4\\sec^2(\\theta)\\,d\\theta}{4\\sec(\\theta)} = \\int \\sec(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar sec(θ)",
+              "body": "$\\int \\sec(\\theta)\\,d\\theta = \\ln|\\sec(\\theta) + \\tan(\\theta)| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "Del triángulo: $\\tan(\\theta) = \\frac{x}{4}$, $\\sec(\\theta) = \\frac{\\sqrt{x^2+16}}{4}$"
+            },
+            {
+              "step": 6,
+              "title": "Sustituir y simplificar",
+              "body": "$\\ln\\left|\\frac{\\sqrt{x^2+16}}{4} + \\frac{x}{4}\\right| + C = \\ln|\\sqrt{x^2+16} + x| - \\ln(4) + C = \\ln|x + \\sqrt{x^2+16}| + C_1$"
+            }
+          ],
+          "final_answer": "\\ln|x + \\sqrt{x^2+16}| + C",
+          "tip": "Memoriza: $\\int \\frac{dx}{\\sqrt{x^2+a^2}} = \\ln|x + \\sqrt{x^2+a^2}| + C$. La constante $-\\ln(4)$ se absorbe en la constante de integración."
+        },
+        {
+          "id": "N1-04",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sqrt{x^2-1}}{x} \\, dx",
+          "hint": "$x = \\sec(\\theta)$; $\\sqrt{\\sec^2(\\theta)-1} = \\tan(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el caso y sustituir",
+              "body": "$\\sqrt{x^2-1} = \\sqrt{x^2-1^2}$ corresponde al caso $\\sqrt{x^2-a^2}$ con $a=1$. Sustituimos: $x = \\sec(\\theta)$, $dx = \\sec(\\theta)\\tan(\\theta)\\,d\\theta$."
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{x^2-1} = \\sqrt{\\sec^2(\\theta)-1} = \\sqrt{\\tan^2(\\theta)} = \\tan(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\tan(\\theta)}{\\sec(\\theta)} \\cdot \\sec(\\theta)\\tan(\\theta)\\,d\\theta = \\int \\tan^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Usar identidad tan² = sec² - 1",
+              "body": "$\\int (\\sec^2(\\theta) - 1)\\,d\\theta = \\tan(\\theta) - \\theta + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "$\\sec(\\theta) = x$, entonces $\\cos(\\theta) = \\frac{1}{x}$, $\\theta = \\arccos(\\frac{1}{x}) = \\text{arcsec}(x)$. $\\tan(\\theta) = \\sqrt{x^2-1}$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$\\sqrt{x^2-1} - \\text{arcsec}(x) + C$"
+            }
+          ],
+          "final_answer": "\\sqrt{x^2-1} - \\text{arcsec}(x) + C",
+          "tip": "También puedes escribir $\\text{arcsec}(x) = \\arccos(\\frac{1}{x}) = \\arctan(\\sqrt{x^2-1})$."
+        },
+        {
+          "id": "N1-05",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x^2}{\\sqrt{1-x^2}} \\, dx",
+          "hint": "$x = \\sen(\\theta)$; $x^2 = \\sen^2(\\theta)$; usa identidad del ángulo doble.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = \\sen(\\theta)$, $dx = \\cos(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{1-x^2} = \\sqrt{1-\\sen^2(\\theta)} = \\cos(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\sen^2(\\theta)}{\\cos(\\theta)} \\cdot \\cos(\\theta)\\,d\\theta = \\int \\sen^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\sen^2(\\theta) = \\frac{1-\\cos(2\\theta)}{2}$, entonces: $\\int \\frac{1-\\cos(2\\theta)}{2}\\,d\\theta = \\frac{1}{2}\\theta - \\frac{\\sen(2\\theta)}{4} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Simplificar sen(2θ)",
+              "body": "$\\sen(2\\theta) = 2\\sen(\\theta)\\cos(\\theta) = 2x\\sqrt{1-x^2}$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer la sustitución",
+              "body": "$\\sen(\\theta) = x$, $\\cos(\\theta) = \\sqrt{1-x^2}$, $\\theta = \\arcsen(x)$"
+            },
+            {
+              "step": 7,
+              "title": "Resultado final",
+              "body": "$\\frac{1}{2}\\arcsen(x) - \\frac{1}{2}x\\sqrt{1-x^2} + C = \\frac{1}{2}\\left(\\arcsen(x) - x\\sqrt{1-x^2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arcsen(x) - \\frac{x\\sqrt{1-x^2}}{2} + C",
+          "tip": "Cuando hay potencias de $x$ en el numerador, la sustitución trigonométrica las convierte en potencias trigonométricas que se manejan con identidades."
+        },
+        {
+          "id": "N1-06",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x^2\\sqrt{x^2+4}}",
+          "hint": "$x = 2\\tan(\\theta)$; convierte todo a trigonométricas.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = 2\\tan(\\theta)$, $dx = 2\\sec^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar componentes",
+              "body": "$x^2 = 4\\tan^2(\\theta)$, $\\sqrt{x^2+4} = \\sqrt{4\\tan^2(\\theta)+4} = 2\\sec(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\sec^2(\\theta)\\,d\\theta}{4\\tan^2(\\theta) \\cdot 2\\sec(\\theta)} = \\int \\frac{\\sec(\\theta)}{4\\tan^2(\\theta)}\\,d\\theta = \\frac{1}{4}\\int \\frac{\\cos(\\theta)}{\\sen^2(\\theta)}\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución u = sen(θ)",
+              "body": "$u = \\sen(\\theta)$, $du = \\cos(\\theta)\\,d\\theta$. $\\frac{1}{4}\\int \\frac{du}{u^2} = \\frac{1}{4}\\left(-\\frac{1}{u}\\right) + C = -\\frac{1}{4\\sen(\\theta)} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "Del triángulo: $\\tan(\\theta) = \\frac{x}{2}$, hipotenusa $= \\sqrt{x^2+4}$, entonces $\\sen(\\theta) = \\frac{x}{\\sqrt{x^2+4}}$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$-\\frac{1}{4} \\cdot \\frac{\\sqrt{x^2+4}}{x} + C = -\\frac{\\sqrt{x^2+4}}{4x} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\sqrt{x^2+4}}{4x} + C",
+          "tip": "Cuando hay $x^2$ en el denominador además de la raíz, la sustitución trigonométrica puede llevar a una integral que requiere otra sustitución (u-sub)."
+        },
+        {
+          "id": "N1-07",
+          "difficulty": 4,
+          "latex": "\\int_0^{3/2} \\frac{x^2}{\\sqrt{9-x^2}} \\, dx",
+          "hint": "Sustitución trigonométrica + cambio de límites.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución y nuevos límites",
+              "body": "$x = 3\\sen(\\theta)$, $dx = 3\\cos(\\theta)\\,d\\theta$. $x=0 \\Rightarrow \\theta=0$; $x=3/2 \\Rightarrow \\sen(\\theta)=1/2 \\Rightarrow \\theta=\\pi/6$."
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{9-x^2} = \\sqrt{9-9\\sen^2(\\theta)} = 3\\cos(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int_0^{\\pi/6} \\frac{9\\sen^2(\\theta)}{3\\cos(\\theta)} \\cdot 3\\cos(\\theta)\\,d\\theta = 9\\int_0^{\\pi/6} \\sen^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Identidad del ángulo doble",
+              "body": "$9\\int_0^{\\pi/6} \\frac{1-\\cos(2\\theta)}{2}\\,d\\theta = \\frac{9}{2}\\left[\\theta - \\frac{\\sen(2\\theta)}{2}\\right]_0^{\\pi/6}$"
+            },
+            {
+              "step": 5,
+              "title": "Evaluar en los límites",
+              "body": "En $\\theta = \\pi/6$: $\\frac{9}{2}\\left[\\frac{\\pi}{6} - \\frac{\\sen(\\pi/3)}{2}\\right] = \\frac{9}{2}\\left[\\frac{\\pi}{6} - \\frac{\\sqrt{3}/2}{2}\\right] = \\frac{9}{2}\\left[\\frac{\\pi}{6} - \\frac{\\sqrt{3}}{4}\\right]$"
+            },
+            {
+              "step": 6,
+              "title": "Evaluar en θ = 0",
+              "body": "$\\frac{9}{2}(0 - 0) = 0$"
+            },
+            {
+              "step": 7,
+              "title": "Resultado final",
+              "body": "$\\frac{9}{2} \\cdot \\frac{\\pi}{6} - \\frac{9}{2} \\cdot \\frac{\\sqrt{3}}{4} = \\frac{3\\pi}{4} - \\frac{9\\sqrt{3}}{8}$"
+            }
+          ],
+          "final_answer": "\\frac{3\\pi}{4} - \\frac{9\\sqrt{3}}{8}",
+          "tip": "En integrales definidas con sustitución trigonométrica, siempre cambia los límites a la nueva variable. Así evitas volver a $x$."
+        },
+        {
+          "id": "N1-G1",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{\\sqrt{3x^2 - 2}}",
+          "hint": "Factoriza: $\\sqrt{3x^2-2} = \\sqrt{3}\\sqrt{x^2 - \\frac{2}{3}}$. Sustituye $x = \\sqrt{\\frac{2}{3}}\\sec(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar la raíz",
+              "body": "$\\sqrt{3x^2-2} = \\sqrt{3}\\sqrt{x^2 - \\frac{2}{3}}$. Identificamos el caso $\\sqrt{x^2-a^2}$ con $a = \\sqrt{\\frac{2}{3}}$."
+            },
+            {
+              "step": 2,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = \\sqrt{\\frac{2}{3}}\\sec(\\theta)$, $dx = \\sqrt{\\frac{2}{3}}\\sec(\\theta)\\tan(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la raíz",
+              "body": "$\\sqrt{3x^2-2} = \\sqrt{3}\\sqrt{\\frac{2}{3}\\sec^2(\\theta)-\\frac{2}{3}} = \\sqrt{3}\\sqrt{\\frac{2}{3}}\\tan(\\theta) = \\sqrt{2}\\tan(\\theta)$"
+            },
+            {
+              "step": 4,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\sqrt{\\frac{2}{3}}\\sec(\\theta)\\tan(\\theta)}{\\sqrt{2}\\tan(\\theta)}\\,d\\theta = \\frac{1}{\\sqrt{3}}\\int \\sec(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar sec(θ)",
+              "body": "$\\frac{1}{\\sqrt{3}}\\ln|\\sec(\\theta)+\\tan(\\theta)| + C$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer la sustitución",
+              "body": "Del triángulo: $\\sec(\\theta) = \\frac{\\sqrt{3}x}{\\sqrt{2}}$, $\\tan(\\theta) = \\frac{\\sqrt{3x^2-2}}{\\sqrt{2}}$."
+            },
+            {
+              "step": 7,
+              "title": "Simplificar",
+              "body": "$\\frac{1}{\\sqrt{3}}\\ln\\left|\\frac{\\sqrt{3}x + \\sqrt{3x^2-2}}{\\sqrt{2}}\\right| + C = \\frac{1}{\\sqrt{3}}\\ln|\\sqrt{3}x + \\sqrt{3x^2-2}| + C_1$"
+            }
+          ],
+          "final_answer": "\\frac{1}{\\sqrt{3}}\\ln|\\sqrt{3}x + \\sqrt{3x^2-2}| + C",
+          "tip": "Memoriza: $\\int \\frac{dx}{\\sqrt{x^2-a^2}} = \\ln|x + \\sqrt{x^2-a^2}| + C$. Aquí hay un factor $\\sqrt{3}$ que sale como $1/\\sqrt{3}$."
+        },
+        {
+          "id": "N1-G2",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^2}{(a^2 - x^2)^{3/2}} \\, dx",
+          "hint": "$x = a\\sen(\\theta)$. $(a^2-x^2)^{3/2} = a^3\\cos^3(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = a\\sen(\\theta)$, $dx = a\\cos(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar denominador",
+              "body": "$(a^2-x^2)^{3/2} = (a^2\\cos^2(\\theta))^{3/2} = a^3\\cos^3(\\theta)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{a^2\\sen^2(\\theta) \\cdot a\\cos(\\theta)}{a^3\\cos^3(\\theta)}\\,d\\theta = \\int \\frac{\\sen^2(\\theta)}{\\cos^2(\\theta)}\\,d\\theta = \\int \\tan^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Usar identidad",
+              "body": "$\\tan^2(\\theta) = \\sec^2(\\theta) - 1$, entonces: $\\int (\\sec^2(\\theta)-1)\\,d\\theta = \\tan(\\theta) - \\theta + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "$\\sen(\\theta) = \\frac{x}{a}$, $\\cos(\\theta) = \\frac{\\sqrt{a^2-x^2}}{a}$, $\\tan(\\theta) = \\frac{x}{\\sqrt{a^2-x^2}}$, $\\theta = \\arcsen(\\frac{x}{a})$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$\\frac{x}{\\sqrt{a^2-x^2}} - \\arcsen\\left(\\frac{x}{a}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{x}{\\sqrt{a^2-x^2}} - \\arcsen\\left(\\frac{x}{a}\\right) + C",
+          "tip": "Cuando hay $x^2$ en el numerador y potencias de $\\sqrt{a^2-x^2}$ en el denominador, la sustitución $x = a\\sen(\\theta)$ convierte todo a tangentes y secantes."
+        },
+        {
+          "id": "N1-G3",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x^3}{\\sqrt{2 - x^2}} \\, dx",
+          "hint": "Sustitución algebraica: $u = 2-x^2$, $du = -2x\\,dx$. Escribe $x^3 = x^2 \\cdot x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar y sustituir",
+              "body": "$x^3 = x^2 \\cdot x$. Sea $u = 2-x^2$, entonces $du = -2x\\,dx$ y $x^2 = 2-u$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{(2-u)}{\\sqrt{u}} \\cdot \\left(-\\frac{du}{2}\\right) = -\\frac{1}{2}\\int \\frac{2-u}{\\sqrt{u}}\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Separar en dos integrales",
+              "body": "$-\\frac{1}{2}\\int \\left(\\frac{2}{\\sqrt{u}} - \\sqrt{u}\\right)du = -\\frac{1}{2}\\left(4\\sqrt{u} - \\frac{2u^{3/2}}{3}\\right) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$-2\\sqrt{u} + \\frac{u^{3/2}}{3} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-2\\sqrt{2-x^2} + \\frac{(2-x^2)^{3/2}}{3} + C = \\frac{\\sqrt{2-x^2}}{3}(2-x^2-6) + C = -\\frac{\\sqrt{2-x^2}}{3}(x^2+4) + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\sqrt{2-x^2}}{3}(x^2+4) + C",
+          "tip": "Cuando hay una potencia impar de $x$ fuera de la raíz, prueba sustitución algebraica $u = a^2-x^2$ antes de la trigonométrica. A menudo es más rápida."
+        },
+        {
+          "id": "N1-G4",
+          "difficulty": 2,
+          "latex": "\\int \\frac{4\\,dx}{\\sqrt{4 - (x-1)^2}}",
+          "hint": "$u = x-1$, $du = dx$. Es la forma estándar $\\int \\frac{du}{\\sqrt{a^2-u^2}}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución simple",
+              "body": "Sea $u = x-1$, $du = dx$. La integral queda: $4\\int \\frac{du}{\\sqrt{4-u^2}}$"
+            },
+            {
+              "step": 2,
+              "title": "Identificar la forma estándar",
+              "body": "$4\\int \\frac{du}{\\sqrt{2^2-u^2}} = 4\\arcsen\\left(\\frac{u}{2}\\right) + C$"
+            },
+            {
+              "step": 3,
+              "title": "Volver a x",
+              "body": "$4\\arcsen\\left(\\frac{x-1}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "4\\arcsen\\left(\\frac{x-1}{2}\\right) + C",
+          "tip": "Este es un caso directo de la fórmula $\\int \\frac{du}{\\sqrt{a^2-u^2}} = \\arcsen(\\frac{u}{a}) + C$. El completar cuadrados ya está hecho."
+        }
+      ]
+    },
+    {
+      "name": "Integración por Partes (1-2 pasos)",
+      "definition": "$\\int u \\, dv = uv - \\int v \\, du$. Usa LIATE para elegir $u$.",
+      "tip": "LIATE: Logarítmicas, Inversas trigonométricas, Algebraicas, Trigonométricas, Exponenciales. Elige $u$ según este orden de prioridad. Si necesitas aplicar por partes dos veces, mantén el mismo criterio.",
+      "exercises": [
+        {
+          "id": "N1-08",
+          "difficulty": 2,
+          "latex": "\\int x e^x \\, dx",
+          "hint": "$u = x$, $dv = e^x dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv usando LIATE",
+              "body": "$u = x$ (algebraica, prioridad sobre exponencial). $dv = e^x\\,dx$. Entonces: $du = dx$, $v = e^x$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula de por partes",
+              "body": "$\\int x e^x\\,dx = x e^x - \\int e^x\\,dx = x e^x - e^x + C$"
+            },
+            {
+              "step": 3,
+              "title": "Factorizar",
+              "body": "$e^x(x - 1) + C$"
+            }
+          ],
+          "final_answer": "e^x(x - 1) + C",
+          "tip": "Cuando integras $x^n e^x$, necesitarás aplicar por partes $n$ veces. Cada vez el grado del polinomio baja en 1."
+        },
+        {
+          "id": "N1-09",
+          "difficulty": 2,
+          "latex": "\\int x \\cos(x) \\, dx",
+          "hint": "$u = x$, $dv = \\cos(x) dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = x$ (algebraica). $dv = \\cos(x)\\,dx$. Entonces: $du = dx$, $v = \\sen(x)$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int x \\cos(x)\\,dx = x\\sen(x) - \\int \\sen(x)\\,dx = x\\sen(x) + \\cos(x) + C$"
+            }
+          ],
+          "final_answer": "x\\sen(x) + \\cos(x) + C",
+          "tip": "Verifica derivando: $\\frac{d}{dx}[x\\sen(x) + \\cos(x)] = \\sen(x) + x\\cos(x) - \\sen(x) = x\\cos(x)$ ✓"
+        },
+        {
+          "id": "N1-10",
+          "difficulty": 3,
+          "latex": "\\int x^2 e^x \\, dx",
+          "hint": "Aplica por partes dos veces.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación de por partes",
+              "body": "$u = x^2$, $dv = e^x\\,dx$. $du = 2x\\,dx$, $v = e^x$. $\\int x^2 e^x\\,dx = x^2 e^x - 2\\int x e^x\\,dx$."
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación de por partes",
+              "body": "Para $\\int x e^x\\,dx$: $u = x$, $dv = e^x\\,dx$. $du = dx$, $v = e^x$. $\\int x e^x\\,dx = x e^x - e^x$."
+            },
+            {
+              "step": 3,
+              "title": "Sustituir de vuelta",
+              "body": "$x^2 e^x - 2(x e^x - e^x) + C = x^2 e^x - 2x e^x + 2e^x + C$."
+            },
+            {
+              "step": 4,
+              "title": "Factorizar",
+              "body": "$e^x(x^2 - 2x + 2) + C$."
+            }
+          ],
+          "final_answer": "e^x(x^2 - 2x + 2) + C",
+          "tip": "Patrón: $\\int x^n e^x\\,dx = e^x(x^n - nx^{n-1} + n(n-1)x^{n-2} - \\cdots \\pm n!) + C$."
+        },
+        {
+          "id": "N1-11",
+          "difficulty": 3,
+          "latex": "\\int \\ln(x) \\, dx",
+          "hint": "$u = \\ln(x)$, $dv = dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\ln(x)$ (logarítmica, máxima prioridad en LIATE). $dv = dx$. Entonces: $du = \\frac{1}{x}\\,dx$, $v = x$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int \\ln(x)\\,dx = x\\ln(x) - \\int x \\cdot \\frac{1}{x}\\,dx = x\\ln(x) - \\int dx$."
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$x\\ln(x) - x + C = x(\\ln(x) - 1) + C$."
+            }
+          ],
+          "final_answer": "x\\ln(x) - x + C",
+          "tip": "Este es un resultado fundamental que debes memorizar: $\\int \\ln(x)\\,dx = x\\ln(x) - x + C$."
+        },
+        {
+          "id": "N1-12",
+          "difficulty": 3,
+          "latex": "\\int x \\ln(x) \\, dx",
+          "hint": "$u = \\ln(x)$, $dv = x \\, dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\ln(x)$ (logarítmica tiene prioridad sobre algebraica). $dv = x\\,dx$. Entonces: $du = \\frac{1}{x}\\,dx$, $v = \\frac{x^2}{2}$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int x\\ln(x)\\,dx = \\frac{x^2}{2}\\ln(x) - \\int \\frac{x^2}{2} \\cdot \\frac{1}{x}\\,dx = \\frac{x^2}{2}\\ln(x) - \\frac{1}{2}\\int x\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Integrar el término restante",
+              "body": "$\\frac{x^2}{2}\\ln(x) - \\frac{1}{2} \\cdot \\frac{x^2}{2} + C = \\frac{x^2}{2}\\ln(x) - \\frac{x^2}{4} + C$."
+            }
+          ],
+          "final_answer": "\\frac{x^2}{2}\\ln(x) - \\frac{x^2}{4} + C",
+          "tip": "Si eligieras $u = x$ y $dv = \\ln(x)dx$, necesitarías integrar $\\ln(x)$ primero, lo cual es más complicado. SIEMPRE sigue LIATE."
+        },
+        {
+          "id": "N1-13",
+          "difficulty": 3,
+          "latex": "\\int \\arctan(x) \\, dx",
+          "hint": "$u = \\arctan(x)$, $dv = dx$. Luego fracciones parciales en la integral resultante.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\arctan(x)$ (inversa trigonométrica, prioridad alta). $dv = dx$. Entonces: $du = \\frac{1}{1+x^2}\\,dx$, $v = x$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int \\arctan(x)\\,dx = x\\arctan(x) - \\int \\frac{x}{1+x^2}\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Resolver la integral restante por sustitución",
+              "body": "Para $\\int \\frac{x}{1+x^2}\\,dx$, sea $w = 1+x^2$, $dw = 2x\\,dx$. $\\frac{1}{2}\\int \\frac{dw}{w} = \\frac{1}{2}\\ln|1+x^2| = \\frac{1}{2}\\ln(1+x^2)$."
+            },
+            {
+              "step": 4,
+              "title": "Combinar resultados",
+              "body": "$x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C$."
+            }
+          ],
+          "final_answer": "x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C",
+          "tip": "Memoriza: $\\int \\arctan(x)\\,dx = x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C$. También aplica para $\\arcsen(x)$ y $\\arccos(x)$."
+        },
+        {
+          "id": "N1-14",
+          "difficulty": 4,
+          "latex": "\\int e^x \\cos(x) \\, dx",
+          "hint": "Aplica por partes dos veces y despeja la integral (ciclo).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación de por partes",
+              "body": "$u = \\cos(x)$, $dv = e^x\\,dx$. $du = -\\sen(x)\\,dx$, $v = e^x$. $I = e^x\\cos(x) + \\int e^x\\sen(x)\\,dx$."
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación de por partes",
+              "body": "Para $\\int e^x\\sen(x)\\,dx$: $u = \\sen(x)$, $dv = e^x\\,dx$. $du = \\cos(x)\\,dx$, $v = e^x$. $\\int e^x\\sen(x)\\,dx = e^x\\sen(x) - \\int e^x\\cos(x)\\,dx = e^x\\sen(x) - I$."
+            },
+            {
+              "step": 3,
+              "title": "Sustituir y despejar I",
+              "body": "$I = e^x\\cos(x) + e^x\\sen(x) - I$. $2I = e^x(\\cos(x) + \\sen(x))$."
+            },
+            {
+              "step": 4,
+              "title": "Resolver para I",
+              "body": "$I = \\frac{e^x}{2}(\\cos(x) + \\sen(x)) + C$."
+            }
+          ],
+          "final_answer": "\\frac{e^x}{2}(\\sen(x) + \\cos(x)) + C",
+          "tip": "Cuando aplicas por partes dos veces y recuperas la integral original, despeja algebraicamente. Este es un caso clásico de 'ciclo'. También funciona con $e^x\\sen(x)$."
+        },
+        {
+          "id": "N1-15",
+          "difficulty": 4,
+          "latex": "\\int x^2 \\sen(x) \\, dx",
+          "hint": "Dos aplicaciones de por partes, reduce el grado del polinomio.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación de por partes",
+              "body": "$u = x^2$, $dv = \\sen(x)\\,dx$. $du = 2x\\,dx$, $v = -\\cos(x)$. $\\int x^2\\sen(x)\\,dx = -x^2\\cos(x) + 2\\int x\\cos(x)\\,dx$."
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación de por partes",
+              "body": "Para $\\int x\\cos(x)\\,dx$: $u = x$, $dv = \\cos(x)\\,dx$. $du = dx$, $v = \\sen(x)$. $\\int x\\cos(x)\\,dx = x\\sen(x) + \\cos(x)$."
+            },
+            {
+              "step": 3,
+              "title": "Sustituir de vuelta",
+              "body": "$-x^2\\cos(x) + 2(x\\sen(x) + \\cos(x)) + C$."
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$-x^2\\cos(x) + 2x\\sen(x) + 2\\cos(x) + C = (2-x^2)\\cos(x) + 2x\\sen(x) + C$."
+            }
+          ],
+          "final_answer": "(2-x^2)\\cos(x) + 2x\\sen(x) + C",
+          "tip": "Para $\\int x^n \\sen(x)\\,dx$ o $\\int x^n \\cos(x)\\,dx$, necesitas $n$ aplicaciones de por partes. Cada vez baja el grado del polinomio."
+        },
+        {
+          "id": "N1-16",
+          "difficulty": 4,
+          "latex": "\\int \\sqrt{x} \\ln(x) \\, dx",
+          "hint": "$u = \\ln(x)$, $dv = \\sqrt{x} \\, dx = x^{1/2}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\ln(x)$ (logarítmica). $dv = x^{1/2}\\,dx$. Entonces: $du = \\frac{1}{x}\\,dx$, $v = \\frac{2}{3}x^{3/2}$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int \\sqrt{x}\\ln(x)\\,dx = \\frac{2}{3}x^{3/2}\\ln(x) - \\int \\frac{2}{3}x^{3/2} \\cdot \\frac{1}{x}\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral restante",
+              "body": "$\\frac{2}{3}x^{3/2}\\ln(x) - \\frac{2}{3}\\int x^{1/2}\\,dx = \\frac{2}{3}x^{3/2}\\ln(x) - \\frac{2}{3} \\cdot \\frac{2}{3}x^{3/2} + C$."
+            },
+            {
+              "step": 4,
+              "title": "Simplificar y factorizar",
+              "body": "$\\frac{2}{3}x^{3/2}\\ln(x) - \\frac{4}{9}x^{3/2} + C = \\frac{2}{3}x^{3/2}\\left(\\ln(x) - \\frac{2}{3}\\right) + C$."
+            }
+          ],
+          "final_answer": "\\frac{2}{3}x^{3/2}\\ln(x) - \\frac{4}{9}x^{3/2} + C",
+          "tip": "Cuando el integrando tiene $\\ln(x)$ y una potencia de $x$, siempre elige $u = \\ln(x)$. La derivada $\\frac{1}{x}$ cancela parcialmente con la potencia de $x$."
+        },
+        {
+          "id": "N1-G5",
+          "difficulty": 4,
+          "latex": "\\int e^{2t}\\sen(3t) \\, dt",
+          "hint": "Aplica por partes dos veces y despeja la integral (ciclo).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación de por partes",
+              "body": "$u = e^{2t}$, $dv = \\sen(3t)\\,dt$. Entonces $du = 2e^{2t}\\,dt$, $v = -\\frac{1}{3}\\cos(3t)$.\\n$I = -\\frac{1}{3}e^{2t}\\cos(3t) + \\frac{2}{3}\\int e^{2t}\\cos(3t)\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación de por partes",
+              "body": "Para $\\int e^{2t}\\cos(3t)\\,dt$: $u = e^{2t}$, $dv = \\cos(3t)\\,dt$. Entonces $du = 2e^{2t}\\,dt$, $v = \\frac{1}{3}\\sen(3t)$.\\n$\\int e^{2t}\\cos(3t)\\,dt = \\frac{1}{3}e^{2t}\\sen(3t) - \\frac{2}{3}\\int e^{2t}\\sen(3t)\\,dt = \\frac{1}{3}e^{2t}\\sen(3t) - \\frac{2}{3}I$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir y despejar I",
+              "body": "$I = -\\frac{1}{3}e^{2t}\\cos(3t) + \\frac{2}{3}\\left(\\frac{1}{3}e^{2t}\\sen(3t) - \\frac{2}{3}I\\right)$\\n$I = -\\frac{1}{3}e^{2t}\\cos(3t) + \\frac{2}{9}e^{2t}\\sen(3t) - \\frac{4}{9}I$"
+            },
+            {
+              "step": 4,
+              "title": "Despejar I",
+              "body": "$I + \\frac{4}{9}I = \\frac{13}{9}I = e^{2t}\\left(\\frac{2\\sen(3t)}{9} - \\frac{\\cos(3t)}{3}\\right)$\\n$I = \\frac{9}{13}e^{2t}\\left(\\frac{2\\sen(3t)-3\\cos(3t)}{9}\\right) = \\frac{e^{2t}}{13}(2\\sen(3t)-3\\cos(3t)) + C$"
+            }
+          ],
+          "final_answer": "\\frac{e^{2t}}{13}(2\\sen(3t) - 3\\cos(3t)) + C",
+          "tip": "Para $\\int e^{at}\\sen(bt)\\,dt$ o $\\int e^{at}\\cos(bt)\\,dt$, la fórmula general es $\\frac{e^{at}}{a^2+b^2}(a\\sen(bt) - b\\cos(bt)) + C$."
+        },
+        {
+          "id": "N1-G6",
+          "difficulty": 3,
+          "latex": "\\int x^2 \\cos(x) \\, dx",
+          "hint": "Aplica por partes dos veces. Primero $u = x^2$, luego $u = x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación",
+              "body": "$u = x^2$, $dv = \\cos(x)\\,dx$. $du = 2x\\,dx$, $v = \\sen(x)$.\\n$\\int x^2\\cos(x)\\,dx = x^2\\sen(x) - 2\\int x\\sen(x)\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación",
+              "body": "Para $\\int x\\sen(x)\\,dx$: $u = x$, $dv = \\sen(x)\\,dx$. $du = dx$, $v = -\\cos(x)$.\\n$\\int x\\sen(x)\\,dx = -x\\cos(x) + \\int \\cos(x)\\,dx = -x\\cos(x) + \\sen(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir de vuelta",
+              "body": "$x^2\\sen(x) - 2(-x\\cos(x) + \\sen(x)) + C = x^2\\sen(x) + 2x\\cos(x) - 2\\sen(x) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Factorizar",
+              "body": "$(x^2-2)\\sen(x) + 2x\\cos(x) + C$"
+            }
+          ],
+          "final_answer": "(x^2 - 2)\\sen(x) + 2x\\cos(x) + C",
+          "tip": "Patrón: $\\int x^n \\cos(x)\\,dx$ requiere $n$ aplicaciones de por partes. Cada vez baja el grado del polinomio."
+        },
+        {
+          "id": "N1-G7",
+          "difficulty": 3,
+          "latex": "\\int \\ln(x) \\, dx",
+          "hint": "$u = \\ln(x)$ (logarítmica, máxima prioridad en LIATE), $dv = dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\ln(x)$, $dv = dx$. Entonces $du = \\frac{1}{x}\\,dx$, $v = x$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int \\ln(x)\\,dx = x\\ln(x) - \\int x \\cdot \\frac{1}{x}\\,dx = x\\ln(x) - \\int dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$x\\ln(x) - x + C = x(\\ln(x) - 1) + C$"
+            }
+          ],
+          "final_answer": "x\\ln(x) - x + C",
+          "tip": "Este es un resultado fundamental que debes memorizar: $\\int \\ln(x)\\,dx = x\\ln(x) - x + C$."
+        },
+        {
+          "id": "N1-G8",
+          "difficulty": 4,
+          "latex": "\\int e^x \\cos(x) \\, dx",
+          "hint": "Aplica por partes dos veces y despeja la integral (ciclo).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación",
+              "body": "$u = \\cos(x)$, $dv = e^x\\,dx$. $du = -\\sen(x)\\,dx$, $v = e^x$.\\n$I = e^x\\cos(x) + \\int e^x\\sen(x)\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación",
+              "body": "Para $\\int e^x\\sen(x)\\,dx$: $u = \\sen(x)$, $dv = e^x\\,dx$. $du = \\cos(x)\\,dx$, $v = e^x$.\\n$\\int e^x\\sen(x)\\,dx = e^x\\sen(x) - \\int e^x\\cos(x)\\,dx = e^x\\sen(x) - I$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir y despejar",
+              "body": "$I = e^x\\cos(x) + e^x\\sen(x) - I$\\n$2I = e^x(\\cos(x) + \\sen(x))$"
+            },
+            {
+              "step": 4,
+              "title": "Resultado",
+              "body": "$I = \\frac{e^x}{2}(\\sen(x) + \\cos(x)) + C$"
+            }
+          ],
+          "final_answer": "\\frac{e^x}{2}(\\sen(x) + \\cos(x)) + C",
+          "tip": "Caso clásico de 'ciclo'. También funciona con $e^x\\sen(x)$. La fórmula general es $\\frac{e^x}{2}(\\sen(x) \\pm \\cos(x)) + C$."
+        },
+        {
+          "id": "N1-G9",
+          "difficulty": 3,
+          "latex": "\\int x \\ln(x) \\, dx",
+          "hint": "$u = \\ln(x)$ (logarítmica tiene prioridad sobre algebraica), $dv = x\\,dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\ln(x)$, $dv = x\\,dx$. Entonces $du = \\frac{1}{x}\\,dx$, $v = \\frac{x^2}{2}$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int x\\ln(x)\\,dx = \\frac{x^2}{2}\\ln(x) - \\int \\frac{x^2}{2} \\cdot \\frac{1}{x}\\,dx = \\frac{x^2}{2}\\ln(x) - \\frac{1}{2}\\int x\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{x^2}{2}\\ln(x) - \\frac{x^2}{4} + C = \\frac{x^2}{2}\\left(\\ln(x) - \\frac{1}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{x^2}{2}\\ln(x) - \\frac{x^2}{4} + C",
+          "tip": "SIEMPRE sigue LIATE. Si eligieras $u = x$ y $dv = \\ln(x)dx$, necesitarías integrar $\\ln(x)$ primero, lo cual es más complicado."
+        },
+        {
+          "id": "N1-G10",
+          "difficulty": 3,
+          "latex": "\\int \\arctan(x) \\, dx",
+          "hint": "$u = \\arctan(x)$ (inversa trigonométrica, prioridad alta), $dv = dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = \\arctan(x)$, $dv = dx$. Entonces $du = \\frac{1}{1+x^2}\\,dx$, $v = x$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int \\arctan(x)\\,dx = x\\arctan(x) - \\int \\frac{x}{1+x^2}\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Resolver la integral restante",
+              "body": "Para $\\int \\frac{x}{1+x^2}\\,dx$, sea $w = 1+x^2$, $dw = 2x\\,dx$. $\\frac{1}{2}\\int \\frac{dw}{w} = \\frac{1}{2}\\ln(1+x^2)$."
+            },
+            {
+              "step": 4,
+              "title": "Combinar",
+              "body": "$x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C$"
+            }
+          ],
+          "final_answer": "x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C",
+          "tip": "Memoriza: $\\int \\arctan(x)\\,dx = x\\arctan(x) - \\frac{1}{2}\\ln(1+x^2) + C$. También aplica para $\\arcsen(x)$ y $\\arccos(x)$ con ajustes."
+        },
+        {
+          "id": "N1-G11",
+          "difficulty": 2,
+          "latex": "\\int x \\sen(x) \\, dx",
+          "hint": "$u = x$, $dv = \\sen(x)\\,dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir u y dv",
+              "body": "$u = x$, $dv = \\sen(x)\\,dx$. Entonces $du = dx$, $v = -\\cos(x)$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar por partes",
+              "body": "$\\int x\\sen(x)\\,dx = -x\\cos(x) + \\int \\cos(x)\\,dx = -x\\cos(x) + \\sen(x) + C$"
+            }
+          ],
+          "final_answer": "-x\\cos(x) + \\sen(x) + C",
+          "tip": "Verifica derivando: $\\frac{d}{dx}[-x\\cos(x) + \\sen(x)] = -\\cos(x) + x\\sen(x) + \\cos(x) = x\\sen(x)$ ✓"
+        },
+        {
+          "id": "N1-G12",
+          "difficulty": 4,
+          "latex": "\\int x^2 e^{3x} \\, dx",
+          "hint": "Aplica por partes dos veces. Primero $u = x^2$, luego $u = x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación",
+              "body": "$u = x^2$, $dv = e^{3x}\\,dx$. $du = 2x\\,dx$, $v = \\frac{1}{3}e^{3x}$.\\n$\\int x^2 e^{3x}\\,dx = \\frac{x^2 e^{3x}}{3} - \\frac{2}{3}\\int x e^{3x}\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Segunda aplicación",
+              "body": "Para $\\int x e^{3x}\\,dx$: $u = x$, $dv = e^{3x}\\,dx$. $du = dx$, $v = \\frac{1}{3}e^{3x}$.\\n$\\int x e^{3x}\\,dx = \\frac{x e^{3x}}{3} - \\frac{1}{3}\\int e^{3x}\\,dx = \\frac{x e^{3x}}{3} - \\frac{e^{3x}}{9}$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir de vuelta",
+              "body": "$\\frac{x^2 e^{3x}}{3} - \\frac{2}{3}\\left(\\frac{x e^{3x}}{3} - \\frac{e^{3x}}{9}\\right) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$\\frac{x^2 e^{3x}}{3} - \\frac{2x e^{3x}}{9} + \\frac{2e^{3x}}{27} + C = \\frac{e^{3x}}{27}(9x^2 - 6x + 2) + C$"
+            }
+          ],
+          "final_answer": "\\frac{e^{3x}}{27}(9x^2 - 6x + 2) + C",
+          "tip": "Patrón: $\\int x^n e^{ax}\\,dx = \\frac{e^{ax}}{a}(x^n - \\frac{n}{a}x^{n-1} + \\frac{n(n-1)}{a^2}x^{n-2} - \\cdots) + C$."
+        }
+      ]
+    },
+    {
+      "name": "Potencias Trigonométricas",
+      "definition": "Impares: sacar un factor y convertir el resto con $\\sen^2 + \\cos^2 = 1$. Pares: usar identidades de ángulo doble.",
+      "tip": "Para potencias impares de seno o coseno: saca un factor, convierte el resto con identidad pitagórica, y usa u-substitution. Para potencias pares: usa identidades de ángulo doble para reducir el grado.",
+      "exercises": [
+        {
+          "id": "N1-17",
+          "difficulty": 2,
+          "latex": "\\int \\sen^3(x) \\, dx",
+          "hint": "$\\sen^3(x) = \\sen(x)(1-\\cos^2(x))$; $u = \\cos(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de seno",
+              "body": "$\\sen^3(x) = \\sen(x) \\cdot \\sen^2(x) = \\sen(x)(1-\\cos^2(x))$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\sen(x)\\,dx - \\int \\sen(x)\\cos^2(x)\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (inmediata)",
+              "body": "$\\int \\sen(x)\\,dx = -\\cos(x)$."
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral por sustitución",
+              "body": "$u = \\cos(x)$, $du = -\\sen(x)\\,dx$. $-\\int u^2\\,du = -\\frac{u^3}{3} = -\\frac{\\cos^3(x)}{3}$."
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$-\\cos(x) + \\frac{\\cos^3(x)}{3} + C$."
+            }
+          ],
+          "final_answer": "-\\cos(x) + \\frac{\\cos^3(x)}{3} + C",
+          "tip": "Regla general para potencias impares de seno: $\\int \\sen^{2n+1}(x)\\,dx = \\int \\sen(x)(1-\\cos^2(x))^n\\,dx$, luego expande el binomio."
+        },
+        {
+          "id": "N1-18",
+          "difficulty": 2,
+          "latex": "\\int \\cos^5(x) \\, dx",
+          "hint": "$\\cos^5(x) = \\cos(x)(1-\\sen^2(x))^2$; $u = \\sen(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de coseno",
+              "body": "$\\cos^5(x) = \\cos(x) \\cdot \\cos^4(x) = \\cos(x)(1-\\sen^2(x))^2$."
+            },
+            {
+              "step": 2,
+              "title": "Expandir el binomio",
+              "body": "$\\cos(x)(1 - 2\\sen^2(x) + \\sen^4(x))$."
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = sen(x)",
+              "body": "$u = \\sen(x)$, $du = \\cos(x)\\,dx$. $\\int (1 - 2u^2 + u^4)\\,du = u - \\frac{2u^3}{3} + \\frac{u^5}{5} + C$."
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$\\sen(x) - \\frac{2\\sen^3(x)}{3} + \\frac{\\sen^5(x)}{5} + C$."
+            }
+          ],
+          "final_answer": "\\sen(x) - \\frac{2\\sen^3(x)}{3} + \\frac{\\sen^5(x)}{5} + C",
+          "tip": "Para potencias impares de coseno, el procedimiento es análogo: saca un $\\cos(x)$, convierte el resto a senos, y usa $u = \\sen(x)$."
+        },
+        {
+          "id": "N1-19",
+          "difficulty": 3,
+          "latex": "\\int \\tan^2(x) \\, dx",
+          "hint": "$\\tan^2(x) = \\sec^2(x) - 1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad pitagórica",
+              "body": "$\\tan^2(x) = \\sec^2(x) - 1$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\sec^2(x)\\,dx - \\int dx = \\tan(x) - x + C$."
+            }
+          ],
+          "final_answer": "\\tan(x) - x + C",
+          "tip": "Memoriza: $\\tan^2(x) = \\sec^2(x) - 1$ y $\\cot^2(x) = \\csc^2(x) - 1$. Estas identidades son fundamentales para integrar potencias de tangente y cotangente."
+        },
+        {
+          "id": "N1-20",
+          "difficulty": 3,
+          "latex": "\\int \\tan^3(x) \\, dx",
+          "hint": "$\\tan^3(x) = \\tan(x)(\\sec^2(x)-1)$. Separa en dos integrales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de tangente",
+              "body": "$\\tan^3(x) = \\tan(x) \\cdot \\tan^2(x) = \\tan(x)(\\sec^2(x) - 1)$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\tan(x)\\sec^2(x)\\,dx - \\int \\tan(x)\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Primera integral por sustitución",
+              "body": "$u = \\tan(x)$, $du = \\sec^2(x)\\,dx$. $\\int u\\,du = \\frac{u^2}{2} = \\frac{\\tan^2(x)}{2}$."
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (inmediata)",
+              "body": "$\\int \\tan(x)\\,dx = -\\ln|\\cos(x)| = \\ln|\\sec(x)|$."
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\frac{\\tan^2(x)}{2} + \\ln|\\cos(x)| + C$."
+            }
+          ],
+          "final_answer": "\\frac{\\tan^2(x)}{2} + \\ln|\\cos(x)| + C",
+          "tip": "Para $\\tan^n(x)$ con $n$ impar: separa $\\tan^2(x) = \\sec^2(x)-1$, luego una integral se resuelve con $u=\\tan(x)$ y la otra es de menor grado."
+        },
+        {
+          "id": "N1-21",
+          "difficulty": 3,
+          "latex": "\\int \\sen^2(x) \\, dx",
+          "hint": "Identidad: $\\sen^2(x) = \\frac{1-\\cos(2x)}{2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\sen^2(x) = \\frac{1-\\cos(2x)}{2}$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\frac{1}{2}\\,dx - \\int \\frac{\\cos(2x)}{2}\\,dx = \\frac{x}{2} - \\frac{\\sen(2x)}{4} + C$."
+            }
+          ],
+          "final_answer": "\\frac{x}{2} - \\frac{\\sen(2x)}{4} + C",
+          "tip": "Las identidades de ángulo doble son esenciales para potencias pares: $\\sen^2(x) = \\frac{1-\\cos(2x)}{2}$ y $\\cos^2(x) = \\frac{1+\\cos(2x)}{2}$."
+        },
+        {
+          "id": "N1-22",
+          "difficulty": 3,
+          "latex": "\\int \\cos^2(x) \\, dx",
+          "hint": "Identidad: $\\cos^2(x) = \\frac{1+\\cos(2x)}{2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\cos^2(x) = \\frac{1+\\cos(2x)}{2}$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\frac{1}{2}\\,dx + \\int \\frac{\\cos(2x)}{2}\\,dx = \\frac{x}{2} + \\frac{\\sen(2x)}{4} + C$."
+            }
+          ],
+          "final_answer": "\\frac{x}{2} + \\frac{\\sen(2x)}{4} + C",
+          "tip": "Nota la simetría con la integral de $\\sen^2(x)$: solo cambia el signo del término trigonométrico."
+        },
+        {
+          "id": "N1-23",
+          "difficulty": 3,
+          "latex": "\\int \\sen^2(x) \\cos^3(x) \\, dx",
+          "hint": "$\\cos^3(x)$ es impar; saca $\\cos(x)$ y convierte $\\cos^2(x) = 1-\\sen^2(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de coseno",
+              "body": "$\\sen^2(x)\\cos^3(x) = \\sen^2(x)\\cos(x)\\cos^2(x) = \\sen^2(x)\\cos(x)(1-\\sen^2(x))$."
+            },
+            {
+              "step": 2,
+              "title": "Expandir",
+              "body": "$\\sen^2(x)\\cos(x) - \\sen^4(x)\\cos(x)$."
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = sen(x)",
+              "body": "$u = \\sen(x)$, $du = \\cos(x)\\,dx$. $\\int (u^2 - u^4)\\,du = \\frac{u^3}{3} - \\frac{u^5}{5} + C$."
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$\\frac{\\sen^3(x)}{3} - \\frac{\\sen^5(x)}{5} + C$."
+            }
+          ],
+          "final_answer": "\\frac{\\sen^3(x)}{3} - \\frac{\\sen^5(x)}{5} + C",
+          "tip": "Cuando una potencia es impar (sin importar cuál), saca un factor de esa función y convierte el resto a la otra función usando $\\sen^2 + \\cos^2 = 1$."
+        },
+        {
+          "id": "N1-24",
+          "difficulty": 4,
+          "latex": "\\int \\sen^4(x) \\, dx",
+          "hint": "Aplica identidad del ángulo doble dos veces.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera aplicación de identidad",
+              "body": "$\\sen^4(x) = (\\sen^2(x))^2 = \\left(\\frac{1-\\cos(2x)}{2}\\right)^2 = \\frac{1 - 2\\cos(2x) + \\cos^2(2x)}{4}$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en tres integrales",
+              "body": "$\\frac{1}{4}\\int dx - \\frac{1}{2}\\int \\cos(2x)\\,dx + \\frac{1}{4}\\int \\cos^2(2x)\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Integrar los dos primeros términos",
+              "body": "$\\frac{x}{4} - \\frac{\\sen(2x)}{4} + \\frac{1}{4}\\int \\cos^2(2x)\\,dx$."
+            },
+            {
+              "step": 4,
+              "title": "Segunda identidad en cos²(2x)",
+              "body": "$\\cos^2(2x) = \\frac{1+\\cos(4x)}{2}$. $\\frac{1}{4}\\int \\frac{1+\\cos(4x)}{2}\\,dx = \\frac{1}{8}\\left(x + \\frac{\\sen(4x)}{4}\\right)$."
+            },
+            {
+              "step": 5,
+              "title": "Combinar todos los términos",
+              "body": "$\\frac{x}{4} - \\frac{\\sen(2x)}{4} + \\frac{x}{8} + \\frac{\\sen(4x)}{32} + C = \\frac{3x}{8} - \\frac{\\sen(2x)}{4} + \\frac{\\sen(4x)}{32} + C$."
+            }
+          ],
+          "final_answer": "\\frac{3x}{8} - \\frac{\\sen(2x)}{4} + \\frac{\\sen(4x)}{32} + C",
+          "tip": "Para potencias pares altas de seno o coseno, aplica la identidad de ángulo doble repetidamente hasta que solo queden términos lineales en seno/coseno."
+        },
+        {
+          "id": "N1-25",
+          "difficulty": 4,
+          "latex": "\\int \\sec^4(x) \\, dx",
+          "hint": "$\\sec^4(x) = \\sec^2(x)(1+\\tan^2(x))$; $u = \\tan(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de sec²(x)",
+              "body": "$\\sec^4(x) = \\sec^2(x) \\cdot \\sec^2(x) = \\sec^2(x)(1 + \\tan^2(x))$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\sec^2(x)\\,dx + \\int \\sec^2(x)\\tan^2(x)\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (inmediata)",
+              "body": "$\\int \\sec^2(x)\\,dx = \\tan(x)$."
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral por sustitución",
+              "body": "$u = \\tan(x)$, $du = \\sec^2(x)\\,dx$. $\\int u^2\\,du = \\frac{u^3}{3} = \\frac{\\tan^3(x)}{3}$."
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\tan(x) + \\frac{\\tan^3(x)}{3} + C$."
+            }
+          ],
+          "final_answer": "\\tan(x) + \\frac{\\tan^3(x)}{3} + C",
+          "tip": "Para potencias pares de $\\sec(x)$: saca $\\sec^2(x)$, convierte el resto a tangentes con $\\sec^2(x) = 1 + \\tan^2(x)$, y usa $u = \\tan(x)$."
+        },
+        {
+          "id": "N1-26",
+          "difficulty": 4,
+          "latex": "\\int \\csc^4(x) \\, dx",
+          "hint": "$\\csc^4(x) = \\csc^2(x)(1+\\cot^2(x))$; $u = \\cot(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de csc²(x)",
+              "body": "$\\csc^4(x) = \\csc^2(x) \\cdot \\csc^2(x) = \\csc^2(x)(1 + \\cot^2(x))$."
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\csc^2(x)\\,dx + \\int \\csc^2(x)\\cot^2(x)\\,dx$."
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (inmediata)",
+              "body": "$\\int \\csc^2(x)\\,dx = -\\cot(x)$."
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral por sustitución",
+              "body": "$u = \\cot(x)$, $du = -\\csc^2(x)\\,dx$. $-\\int u^2\\,du = -\\frac{u^3}{3} = -\\frac{\\cot^3(x)}{3}$."
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$-\\cot(x) - \\frac{\\cot^3(x)}{3} + C$."
+            }
+          ],
+          "final_answer": "-\\cot(x) - \\frac{\\cot^3(x)}{3} + C",
+          "tip": "Para potencias pares de $\\csc(x)$: el procedimiento es análogo al de $\\sec(x)$, pero con signos negativos. Recuerda que $\\frac{d}{dx}\\cot(x) = -\\csc^2(x)$."
+        },
+        {
+          "id": "N1-G13",
+          "difficulty": 3,
+          "latex": "\\int \\tan^3(x) \\, dx",
+          "hint": "$\\tan^3(x) = \\tan(x)(\\sec^2(x)-1)$. Separa en dos integrales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor",
+              "body": "$\\tan^3(x) = \\tan(x) \\cdot \\tan^2(x) = \\tan(x)(\\sec^2(x) - 1)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\tan(x)\\sec^2(x)\\,dx - \\int \\tan(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral",
+              "body": "$u = \\tan(x)$, $du = \\sec^2(x)\\,dx$. $\\int u\\,du = \\frac{u^2}{2} = \\frac{\\tan^2(x)}{2}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral",
+              "body": "$\\int \\tan(x)\\,dx = -\\ln|\\cos(x)| = \\ln|\\sec(x)|$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar",
+              "body": "$\\frac{\\tan^2(x)}{2} + \\ln|\\cos(x)| + C$"
+            }
+          ],
+          "final_answer": "\\frac{\\tan^2(x)}{2} + \\ln|\\cos(x)| + C",
+          "tip": "Para $\\tan^n(x)$ con $n$ impar: separa $\\tan^2(x) = \\sec^2(x)-1$, una integral va con $u=\\tan(x)$ y la otra es de menor grado."
+        },
+        {
+          "id": "N1-G14",
+          "difficulty": 3,
+          "latex": "\\int \\sen^3(x) \\cos^4(x) \\, dx",
+          "hint": "$\\sen^3(x)$ es impar; saca $\\sen(x)$ y convierte $\\sen^2(x) = 1-\\cos^2(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de seno",
+              "body": "$\\sen^3(x)\\cos^4(x) = \\sen(x)\\sen^2(x)\\cos^4(x) = \\sen(x)(1-\\cos^2(x))\\cos^4(x)$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir",
+              "body": "$\\sen(x)\\cos^4(x) - \\sen(x)\\cos^6(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = cos(x)",
+              "body": "$u = \\cos(x)$, $du = -\\sen(x)\\,dx$. $-\\int u^4\\,du + \\int u^6\\,du = -\\frac{u^5}{5} + \\frac{u^7}{7} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$-\\frac{\\cos^5(x)}{5} + \\frac{\\cos^7(x)}{7} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\cos^5(x)}{5} + \\frac{\\cos^7(x)}{7} + C",
+          "tip": "Cuando la potencia de seno es impar, saca un $\\sen(x)$, convierte el resto a cosenos, y usa $u = \\cos(x)$."
+        },
+        {
+          "id": "N1-G15",
+          "difficulty": 3,
+          "latex": "\\int \\csc^4(2x) \\, dx",
+          "hint": "$\\csc^4(2x) = \\csc^2(2x)(1+\\cot^2(2x))$. $u = \\cot(2x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor",
+              "body": "$\\csc^4(2x) = \\csc^2(2x) \\cdot \\csc^2(2x) = \\csc^2(2x)(1 + \\cot^2(2x))$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\csc^2(2x)\\,dx + \\int \\csc^2(2x)\\cot^2(2x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral",
+              "body": "$\\int \\csc^2(2x)\\,dx = -\\frac{1}{2}\\cot(2x)$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral",
+              "body": "$u = \\cot(2x)$, $du = -2\\csc^2(2x)\\,dx$. $-\\frac{1}{2}\\int u^2\\,du = -\\frac{u^3}{6} = -\\frac{\\cot^3(2x)}{6}$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar",
+              "body": "$-\\frac{1}{2}\\cot(2x) - \\frac{\\cot^3(2x)}{6} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\cot(2x) - \\frac{\\cot^3(2x)}{6} + C",
+          "tip": "Para potencias pares de $\\csc(x)$: saca $\\csc^2(x)$, convierte el resto a cotangentes con $\\csc^2(x) = 1 + \\cot^2(x)$, y usa $u = \\cot(x)$."
+        },
+        {
+          "id": "N1-G16",
+          "difficulty": 2,
+          "latex": "\\int \\tan^2(5x) \\, dx",
+          "hint": "$\\tan^2(5x) = \\sec^2(5x) - 1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad",
+              "body": "$\\tan^2(5x) = \\sec^2(5x) - 1$"
+            },
+            {
+              "step": 2,
+              "title": "Separar",
+              "body": "$\\int \\sec^2(5x)\\,dx - \\int dx = \\frac{1}{5}\\tan(5x) - x + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{5}\\tan(5x) - x + C",
+          "tip": "Memoriza: $\\tan^2(u) = \\sec^2(u) - 1$ y $\\cot^2(u) = \\csc^2(u) - 1$. Estas identidades son fundamentales."
+        },
+        {
+          "id": "N1-G17",
+          "difficulty": 2,
+          "latex": "\\int \\cos^3(x) \\, dx",
+          "hint": "$\\cos^3(x) = \\cos(x)(1-\\sen^2(x))$. $u = \\sen(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor",
+              "body": "$\\cos^3(x) = \\cos(x) \\cdot \\cos^2(x) = \\cos(x)(1 - \\sen^2(x))$"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución u = sen(x)",
+              "body": "$u = \\sen(x)$, $du = \\cos(x)\\,dx$. $\\int (1-u^2)\\,du = u - \\frac{u^3}{3} + C$"
+            },
+            {
+              "step": 3,
+              "title": "Volver a x",
+              "body": "$\\sen(x) - \\frac{\\sen^3(x)}{3} + C$"
+            }
+          ],
+          "final_answer": "\\sen(x) - \\frac{\\sen^3(x)}{3} + C",
+          "tip": "Para potencias impares de coseno: saca un $\\cos(x)$, convierte el resto a senos, y usa $u = \\sen(x)$."
+        },
+        {
+          "id": "N1-G18",
+          "difficulty": 3,
+          "latex": "\\int \\sen^2(x) \\cos^3(x) \\, dx",
+          "hint": "$\\cos^3(x)$ es impar; saca $\\cos(x)$ y convierte $\\cos^2(x) = 1-\\sen^2(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de coseno",
+              "body": "$\\sen^2(x)\\cos^3(x) = \\sen^2(x)\\cos(x)\\cos^2(x) = \\sen^2(x)\\cos(x)(1-\\sen^2(x))$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir",
+              "body": "$\\sen^2(x)\\cos(x) - \\sen^4(x)\\cos(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = sen(x)",
+              "body": "$u = \\sen(x)$, $du = \\cos(x)\\,dx$. $\\int (u^2 - u^4)\\,du = \\frac{u^3}{3} - \\frac{u^5}{5} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$\\frac{\\sen^3(x)}{3} - \\frac{\\sen^5(x)}{5} + C$"
+            }
+          ],
+          "final_answer": "\\frac{\\sen^3(x)}{3} - \\frac{\\sen^5(x)}{5} + C",
+          "tip": "Cuando una potencia es impar (sin importar cuál), saca un factor de esa función y convierte el resto a la otra función usando $\\sen^2 + \\cos^2 = 1$."
+        },
+        {
+          "id": "N1-G19",
+          "difficulty": 4,
+          "latex": "\\int \\sen^4(x) \\, dx",
+          "hint": "Aplica identidad del ángulo doble dos veces.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera identidad",
+              "body": "$\\sen^4(x) = (\\sen^2(x))^2 = \\left(\\frac{1-\\cos(2x)}{2}\\right)^2 = \\frac{1 - 2\\cos(2x) + \\cos^2(2x)}{4}$"
+            },
+            {
+              "step": 2,
+              "title": "Separar",
+              "body": "$\\frac{1}{4}\\int dx - \\frac{1}{2}\\int \\cos(2x)\\,dx + \\frac{1}{4}\\int \\cos^2(2x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Segunda identidad",
+              "body": "$\\cos^2(2x) = \\frac{1+\\cos(4x)}{2}$. Entonces: $\\frac{1}{4}\\int \\frac{1+\\cos(4x)}{2}\\,dx = \\frac{1}{8}\\left(x + \\frac{\\sen(4x)}{4}\\right)$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar todos los términos",
+              "body": "$\\frac{x}{4} - \\frac{\\sen(2x)}{4} + \\frac{x}{8} + \\frac{\\sen(4x)}{32} + C = \\frac{3x}{8} - \\frac{\\sen(2x)}{4} + \\frac{\\sen(4x)}{32} + C$"
+            }
+          ],
+          "final_answer": "\\frac{3x}{8} - \\frac{\\sen(2x)}{4} + \\frac{\\sen(4x)}{32} + C",
+          "tip": "Para potencias pares altas de seno o coseno, aplica la identidad de ángulo doble repetidamente hasta que solo queden términos lineales."
+        }
+      ]
+    },
+    {
+      "name": "Fracciones Parciales (factores lineales)",
+      "definition": "Descomponer $\\frac{P(x)}{Q(x)}$ en suma de fracciones simples cuando $Q$ tiene factores lineales.",
+      "tip": "Para factores lineales distintos: $\\frac{A}{x-a} + \\frac{B}{x-b}$. Para factores repetidos: incluye potencias ascendentes. Siempre verifica que el grado del numerador sea menor que el del denominador; si no, divide primero.",
+      "exercises": [
+        {
+          "id": "N1-27",
+          "difficulty": 2,
+          "latex": "\\int \\frac{dx}{(x-1)(x+2)}",
+          "hint": "$\\frac{A}{x-1} + \\frac{B}{x+2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{1}{(x-1)(x+2)} = \\frac{A}{x-1} + \\frac{B}{x+2}$."
+            },
+            {
+              "step": 2,
+              "title": "Encontrar A y B",
+              "body": "$1 = A(x+2) + B(x-1)$. $x = 1$: $1 = 3A \\Rightarrow A = \\frac{1}{3}$. $x = -2$: $1 = -3B \\Rightarrow B = -\\frac{1}{3}$."
+            },
+            {
+              "step": 3,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{1}{3}\\left(\\frac{1}{x-1} - \\frac{1}{x+2}\\right)$."
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$\\frac{1}{3}(\\ln|x-1| - \\ln|x+2|) + C = \\frac{1}{3}\\ln\\left|\\frac{x-1}{x+2}\\right| + C$."
+            }
+          ],
+          "final_answer": "\\frac{1}{3}\\ln\\left|\\frac{x-1}{x+2}\\right| + C",
+          "tip": "El método de cubrir (Heaviside) es el más rápido: para encontrar A, multiplica por $(x-1)$ y evalúa en $x=1$."
+        },
+        {
+          "id": "N1-28",
+          "difficulty": 3,
+          "latex": "\\int \\frac{3x+1}{x^2-1} \\, dx",
+          "hint": "Factoriza $x^2-1 = (x-1)(x+1)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar el denominador",
+              "body": "$x^2 - 1 = (x-1)(x+1)$."
+            },
+            {
+              "step": 2,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{3x+1}{(x-1)(x+1)} = \\frac{A}{x-1} + \\frac{B}{x+1}$."
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A y B",
+              "body": "$3x+1 = A(x+1) + B(x-1)$. $x = 1$: $4 = 2A \\Rightarrow A = 2$. $x = -1$: $-2 = -2B \\Rightarrow B = 1$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{2}{x-1} + \\frac{1}{x+1}$."
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$2\\ln|x-1| + \\ln|x+1| + C = \\ln|(x-1)^2(x+1)| + C$."
+            }
+          ],
+          "final_answer": "2\\ln|x-1| + \\ln|x+1| + C",
+          "tip": "Cuando el numerador tiene grado igual o mayor que el denominador, debes hacer división polinomial primero. Aquí el numerador es grado 1 y el denominador grado 2, así que no es necesario."
+        },
+        {
+          "id": "N1-29",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x+3}{x^2+3x+2} \\, dx",
+          "hint": "Factoriza el denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar el denominador",
+              "body": "$x^2 + 3x + 2 = (x+1)(x+2)$."
+            },
+            {
+              "step": 2,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{x+3}{(x+1)(x+2)} = \\frac{A}{x+1} + \\frac{B}{x+2}$."
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A y B",
+              "body": "$x+3 = A(x+2) + B(x+1)$. $x = -1$: $2 = A \\Rightarrow A = 2$. $x = -2$: $1 = -B \\Rightarrow B = -1$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{2}{x+1} - \\frac{1}{x+2}$."
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$2\\ln|x+1| - \\ln|x+2| + C = \\ln\\left|\\frac{(x+1)^2}{x+2}\\right| + C$."
+            }
+          ],
+          "final_answer": "2\\ln|x+1| - \\ln|x+2| + C",
+          "tip": "Siempre verifica que la factorización sea correcta multiplicando: $(x+1)(x+2) = x^2 + 3x + 2$ ✓"
+        },
+        {
+          "id": "N1-30",
+          "difficulty": 3,
+          "latex": "\\int \\frac{2}{x(x+1)} \\, dx",
+          "hint": "$\\frac{A}{x} + \\frac{B}{x+1}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{2}{x(x+1)} = \\frac{A}{x} + \\frac{B}{x+1}$."
+            },
+            {
+              "step": 2,
+              "title": "Encontrar A y B",
+              "body": "$2 = A(x+1) + Bx$. $x = 0$: $2 = A \\Rightarrow A = 2$. $x = -1$: $2 = -B \\Rightarrow B = -2$."
+            },
+            {
+              "step": 3,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{2}{x} - \\frac{2}{x+1}$."
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$2\\ln|x| - 2\\ln|x+1| + C = 2\\ln\\left|\\frac{x}{x+1}\\right| + C$."
+            }
+          ],
+          "final_answer": "2\\ln\\left|\\frac{x}{x+1}\\right| + C",
+          "tip": "Cuando el numerador es una constante, las constantes A y B suelen ser opuestas o simples."
+        },
+        {
+          "id": "N1-31",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^2+1}{x^3-x} \\, dx",
+          "hint": "Factoriza $x(x-1)(x+1)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar el denominador",
+              "body": "$x^3 - x = x(x^2-1) = x(x-1)(x+1)$."
+            },
+            {
+              "step": 2,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{x^2+1}{x(x-1)(x+1)} = \\frac{A}{x} + \\frac{B}{x-1} + \\frac{C}{x+1}$."
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A, B y C",
+              "body": "$x^2+1 = A(x-1)(x+1) + Bx(x+1) + Cx(x-1)$. $x = 0$: $1 = -A \\Rightarrow A = -1$. $x = 1$: $2 = 2B \\Rightarrow B = 1$. $x = -1$: $2 = 2C \\Rightarrow C = 1$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir la descomposición",
+              "body": "$-\\frac{1}{x} + \\frac{1}{x-1} + \\frac{1}{x+1}$."
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$-\\ln|x| + \\ln|x-1| + \\ln|x+1| + C = \\ln\\left|\\frac{x^2-1}{x}\\right| + C$."
+            }
+          ],
+          "final_answer": "\\ln\\left|\\frac{x^2-1}{x}\\right| + C",
+          "tip": "Con tres factores lineales distintos, necesitas tres constantes. Usa tres valores estratégicos de x."
+        },
+        {
+          "id": "N1-32",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x(x-1)^2}",
+          "hint": "Factor repetido: $\\frac{A}{x} + \\frac{B}{x-1} + \\frac{C}{(x-1)^2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{1}{x(x-1)^2} = \\frac{A}{x} + \\frac{B}{x-1} + \\frac{C}{(x-1)^2}$."
+            },
+            {
+              "step": 2,
+              "title": "Igualar numeradores",
+              "body": "$1 = A(x-1)^2 + Bx(x-1) + Cx$."
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A, B y C",
+              "body": "$x = 0$: $1 = A \\Rightarrow A = 1$. $x = 1$: $1 = C \\Rightarrow C = 1$. $x = 2$: $1 = A + 2B + 2C = 1 + 2B + 2 \\Rightarrow B = -1$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{1}{x} - \\frac{1}{x-1} + \\frac{1}{(x-1)^2}$."
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$\\ln|x| - \\ln|x-1| - \\frac{1}{x-1} + C = \\ln\\left|\\frac{x}{x-1}\\right| - \\frac{1}{x-1} + C$."
+            }
+          ],
+          "final_answer": "\\ln\\left|\\frac{x}{x-1}\\right| - \\frac{1}{x-1} + C",
+          "tip": "Factores repetidos necesitan un término por cada potencia, desde 1 hasta la multiplicidad. El último integra a una potencia negativa, no a logaritmo."
+        },
+        {
+          "id": "N1-G20",
+          "difficulty": 2,
+          "latex": "\\int \\frac{dx}{(x+a)(x+b)}",
+          "hint": "$\\frac{1}{(x+a)(x+b)} = \\frac{A}{x+a} + \\frac{B}{x+b}$. Usa el método de cubrir (Heaviside).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{1}{(x+a)(x+b)} = \\frac{A}{x+a} + \\frac{B}{x+b}$"
+            },
+            {
+              "step": 2,
+              "title": "Encontrar A y B",
+              "body": "$1 = A(x+b) + B(x+a)$. $x = -a$: $1 = A(b-a) \\Rightarrow A = \\frac{1}{b-a}$. $x = -b$: $1 = B(a-b) \\Rightarrow B = \\frac{1}{a-b} = -\\frac{1}{b-a}$."
+            },
+            {
+              "step": 3,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{1}{b-a}\\left(\\frac{1}{x+a} - \\frac{1}{x+b}\\right)$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{1}{b-a}\\left(\\ln|x+a| - \\ln|x+b|\\right) + C = \\frac{1}{b-a}\\ln\\left|\\frac{x+a}{x+b}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{b-a}\\ln\\left|\\frac{x+a}{x+b}\\right| + C",
+          "tip": "Si $a = b$, el denominador tiene un factor repetido y necesitas $\\frac{A}{x+a} + \\frac{B}{(x+a)^2}$."
+        },
+        {
+          "id": "N1-G21",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{(x+1)(x+2)(x+3)}",
+          "hint": "$\\frac{A}{x+1} + \\frac{B}{x+2} + \\frac{C}{x+3}$. Usa Heaviside.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{1}{(x+1)(x+2)(x+3)} = \\frac{A}{x+1} + \\frac{B}{x+2} + \\frac{C}{x+3}$"
+            },
+            {
+              "step": 2,
+              "title": "Encontrar A, B, C",
+              "body": "$x = -1$: $1 = A(1)(2) \\Rightarrow A = \\frac{1}{2}$. $x = -2$: $1 = B(-1)(1) \\Rightarrow B = -1$. $x = -3$: $1 = C(-2)(-1) \\Rightarrow C = \\frac{1}{2}$."
+            },
+            {
+              "step": 3,
+              "title": "Escribir",
+              "body": "$\\frac{1/2}{x+1} - \\frac{1}{x+2} + \\frac{1/2}{x+3}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{1}{2}\\ln|x+1| - \\ln|x+2| + \\frac{1}{2}\\ln|x+3| + C = \\frac{1}{2}\\ln\\left|\\frac{(x+1)(x+3)}{(x+2)^2}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\ln|x+1| - \\ln|x+2| + \\frac{1}{2}\\ln|x+3| + C",
+          "tip": "Con tres factores lineales distintos, necesitas tres constantes. Usa tres valores estratégicos de x."
+        },
+        {
+          "id": "N1-G22",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{x(x+1)^2}",
+          "hint": "Factor repetido: $\\frac{A}{x} + \\frac{B}{x+1} + \\frac{C}{(x+1)^2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{1}{x(x+1)^2} = \\frac{A}{x} + \\frac{B}{x+1} + \\frac{C}{(x+1)^2}$"
+            },
+            {
+              "step": 2,
+              "title": "Igualar numeradores",
+              "body": "$1 = A(x+1)^2 + Bx(x+1) + Cx$"
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A, B, C",
+              "body": "$x = 0$: $1 = A \\Rightarrow A = 1$. $x = -1$: $1 = -C \\Rightarrow C = -1$. $x = 1$: $1 = 4A + 2B + C = 4 + 2B - 1 \\Rightarrow B = -1$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir",
+              "body": "$\\frac{1}{x} - \\frac{1}{x+1} - \\frac{1}{(x+1)^2}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$\\ln|x| - \\ln|x+1| + \\frac{1}{x+1} + C = \\ln\\left|\\frac{x}{x+1}\\right| + \\frac{1}{x+1} + C$"
+            }
+          ],
+          "final_answer": "\\ln\\left|\\frac{x}{x+1}\\right| + \\frac{1}{x+1} + C",
+          "tip": "Factores repetidos necesitan un término por cada potencia, desde 1 hasta la multiplicidad. El último integra a una potencia negativa, no a logaritmo."
+        },
+        {
+          "id": "N1-G23",
+          "difficulty": 2,
+          "latex": "\\int \\frac{5x-2}{x^2-x} \\, dx",
+          "hint": "Factoriza $x^2-x = x(x-1)$. $\\frac{A}{x} + \\frac{B}{x-1}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar",
+              "body": "$x^2 - x = x(x-1)$"
+            },
+            {
+              "step": 2,
+              "title": "Descomposición",
+              "body": "$\\frac{5x-2}{x(x-1)} = \\frac{A}{x} + \\frac{B}{x-1}$"
+            },
+            {
+              "step": 3,
+              "title": "Encontrar A y B",
+              "body": "$5x-2 = A(x-1) + Bx$. $x = 0$: $-2 = -A \\Rightarrow A = 2$. $x = 1$: $3 = B \\Rightarrow B = 3$."
+            },
+            {
+              "step": 4,
+              "title": "Escribir e integrar",
+              "body": "$\\frac{2}{x} + \\frac{3}{x-1}$. $2\\ln|x| + 3\\ln|x-1| + C = \\ln|x^2(x-1)^3| + C$"
+            }
+          ],
+          "final_answer": "2\\ln|x| + 3\\ln|x-1| + C",
+          "tip": "Cuando el numerador tiene grado menor que el denominador, descompón directamente. Si fuera mayor o igual, divide primero."
+        }
+      ]
+    },
+    {
+      "name": "Sustitución u en expresiones complejas",
+      "definition": "Identificar la función y su derivada dentro del integrando, incluso cuando la relación no es inmediata. A veces se requiere una sustitución intermedia o una manipulación algebraica previa.",
+      "tip": "Busca una función 'interior' cuya derivada (o un múltiplo de ella) aparezca multiplicando en el integrando. Si hay raíces, prueba $u = \text{raíz}$. Si hay logaritmos compuestos, prueba $u = \text{logaritmo interior}$.",
+      "exercises": [
+        {
+          "id": "N1-33",
+          "difficulty": 2,
+          "latex": "\\int \\frac{e^{\\sqrt{x}}}{\\sqrt{x}} \\, dx",
+          "hint": "$u = \\sqrt{x}$; entonces $du = \\frac{1}{2\\sqrt{x}}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir la sustitución",
+              "body": "u = \\sqrt{x}, \\quad du = \\frac{1}{2\\sqrt{x}}\\,dx \\Rightarrow \\frac{dx}{\\sqrt{x}} = 2\\,du"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "\\int e^{u} \\cdot 2\\,du = 2\\int e^{u}\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y volver a $x$",
+              "body": "2e^{u} + C = 2e^{\\sqrt{x}} + C"
+            }
+          ],
+          "final_answer": "2e^{\\sqrt{x}} + C",
+          "tip": "Patrón: cuando ves $\\frac{f'(x)}{\\sqrt{x}}$ junto a $e^{\\sqrt{x}}$, la sustitución $u = \\sqrt{x}$ suele funcionar. Recuerda que $\\frac{d}{dx}\\sqrt{x} = \\frac{1}{2\\sqrt{x}}$."
+        },
+        {
+          "id": "N1-34",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x}{\\sqrt{x+1}} \\, dx",
+          "hint": "$u = \\sqrt{x+1}$ o $u = x+1$. Con $u = \\sqrt{x+1}$ se simplifica más.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = \\sqrt{x+1} \\Rightarrow u^{2} = x+1 \\Rightarrow x = u^{2}-1, \\quad dx = 2u\\,du"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "\\int \\frac{u^{2}-1}{u} \\cdot 2u\\,du = 2\\int (u^{2}-1)\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "2\\left(\\frac{u^{3}}{3} - u\\right) + C = \\frac{2u^{3}}{3} - 2u + C"
+            },
+            {
+              "step": 4,
+              "title": "Volver a $x$",
+              "body": "\\frac{2(x+1)^{3/2}}{3} - 2\\sqrt{x+1} + C = \\frac{2\\sqrt{x+1}}{3}(x+1-3) + C = \\frac{2\\sqrt{x+1}}{3}(x-2) + C"
+            }
+          ],
+          "final_answer": "\\frac{2(x+1)^{3/2}}{3} - 2\\sqrt{x+1} + C",
+          "tip": "Cuando el numerador es de grado 1 y el denominador tiene $\\sqrt{x+1}$, la sustitución $u = \\sqrt{x+1}$ elimina la raíz y convierte la integral en un polinomio."
+        },
+        {
+          "id": "N1-35",
+          "difficulty": 3,
+          "latex": "\\int \\tan(x) \\ln(\\cos(x)) \\, dx",
+          "hint": "$u = \\ln(\\cos(x))$; $du = -\\tan(x)dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = \\ln(\\cos(x)), \\quad du = \\frac{1}{\\cos(x)} \\cdot (-\\sen(x))\\,dx = -\\tan(x)\\,dx"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int u \\cdot (-du) = -\\int u\\,du = -\\frac{u^{2}}{2} + C"
+            },
+            {
+              "step": 3,
+              "title": "Volver a $x$",
+              "body": "-\\frac{\\ln^{2}(\\cos(x))}{2} + C"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\ln^{2}(\\cos(x)) + C",
+          "tip": "La derivada de $\\ln(\\cos(x))$ es $-\\tan(x)$. Cuando veas $\\tan(x)$ multiplicando algo que depende de $\\cos(x)$, prueba $u = \\ln(\\cos(x))$."
+        },
+        {
+          "id": "N1-36",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\arcsen(x)}{\\sqrt{1-x^{2}}} \\, dx",
+          "hint": "$u = \\arcsen(x)$; $du = \\frac{1}{\\sqrt{1-x^{2}}}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = \\arcsen(x), \\quad du = \\frac{1}{\\sqrt{1-x^{2}}}\\,dx"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int u\\,du = \\frac{u^{2}}{2} + C"
+            },
+            {
+              "step": 3,
+              "title": "Volver a $x$",
+              "body": "\\frac{\\arcsen^{2}(x)}{2} + C"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arcsen^{2}(x) + C",
+          "tip": "Patrón clásico: $\\int f(x) \\cdot f'(x)\\,dx = \\frac{[f(x)]^{2}}{2} + C$. Aquí $f(x) = \\arcsen(x)$ y $f'(x) = \\frac{1}{\\sqrt{1-x^{2}}}$."
+        },
+        {
+          "id": "N1-37",
+          "difficulty": 4,
+          "latex": "\\int \\frac{\\cos(\\sqrt{x})}{\\sqrt{x}} \\, dx",
+          "hint": "$u = \\sqrt{x}$; $du = \\frac{1}{2\\sqrt{x}}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = \\sqrt{x}, \\quad du = \\frac{1}{2\\sqrt{x}}\\,dx \\Rightarrow \\frac{dx}{\\sqrt{x}} = 2\\,du"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int \\cos(u) \\cdot 2\\,du = 2\\int \\cos(u)\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y volver",
+              "body": "2\\sen(u) + C = 2\\sen(\\sqrt{x}) + C"
+            }
+          ],
+          "final_answer": "2\\sen(\\sqrt{x}) + C",
+          "tip": "Similar al ejercicio N1-33: la presencia de $\\frac{1}{\\sqrt{x}}$ junto a una función de $\\sqrt{x}$ indica la sustitución $u = \\sqrt{x}$."
+        },
+        {
+          "id": "N1-38",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x(1+\\ln(x))^{2}}",
+          "hint": "$u = 1 + \\ln(x)$; $du = \\frac{1}{x}dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución",
+              "body": "u = 1 + \\ln(x), \\quad du = \\frac{1}{x}\\,dx"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "\\int \\frac{du}{u^{2}} = \\int u^{-2}\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y volver",
+              "body": "-u^{-1} + C = -\\frac{1}{1+\\ln(x)} + C"
+            }
+          ],
+          "final_answer": "-\\frac{1}{1+\\ln(x)} + C",
+          "tip": "Patrón: $\\int \\frac{f'(x)}{[f(x)]^{n}}\\,dx = \\frac{[f(x)]^{-n+1}}{-n+1} + C$. Aquí $f(x) = 1+\\ln(x)$ y $f'(x) = \\frac{1}{x}$."
+        },
+        {
+          "id": "N1-G24",
+          "difficulty": 3,
+          "latex": "\\int x(2x+5)^{10} \\, dx",
+          "hint": "$u = 2x+5$, entonces $x = \\frac{u-5}{2}$ y $dx = \\frac{du}{2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$u = 2x+5$, $x = \\frac{u-5}{2}$, $dx = \\frac{du}{2}$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int \\frac{u-5}{2} \\cdot u^{10} \\cdot \\frac{du}{2} = \\frac{1}{4}\\int (u^{11} - 5u^{10})\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{1}{4}\\left(\\frac{u^{12}}{12} - \\frac{5u^{11}}{11}\\right) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$\\frac{(2x+5)^{12}}{48} - \\frac{5(2x+5)^{11}}{44} + C = \\frac{(2x+5)^{11}}{528}(11(2x+5) - 60) + C = \\frac{(2x+5)^{11}}{528}(22x - 5) + C$"
+            }
+          ],
+          "final_answer": "\\frac{(2x+5)^{11}}{528}(22x - 5) + C",
+          "tip": "Cuando hay $x$ multiplicando $(ax+b)^n$, sustituye $u = ax+b$ y expresa $x$ en términos de $u$."
+        },
+        {
+          "id": "N1-G25",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{\\sqrt{e^x - 1}}",
+          "hint": "$u = \\sqrt{e^x-1}$, entonces $u^2 = e^x-1$, $2u\\,du = e^x\\,dx = (u^2+1)\\,dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$u = \\sqrt{e^x-1}$, $u^2 = e^x-1$, $e^x = u^2+1$. Diferenciando: $2u\\,du = e^x\\,dx = (u^2+1)\\,dx$, entonces $dx = \\frac{2u}{u^2+1}\\,du$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int \\frac{1}{u} \\cdot \\frac{2u}{u^2+1}\\,du = 2\\int \\frac{du}{u^2+1}$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$2\\arctan(u) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$2\\arctan(\\sqrt{e^x-1}) + C$"
+            }
+          ],
+          "final_answer": "2\\arctan(\\sqrt{e^x-1}) + C",
+          "tip": "Para integrales con $\\sqrt{e^x - 1}$, la sustitución $u = \\sqrt{e^x-1}$ elimina la raíz y la exponencial simultáneamente."
+        },
+        {
+          "id": "N1-G26",
+          "difficulty": 3,
+          "latex": "\\int \\frac{e^{2x}}{\\sqrt{e^x+1}} \\, dx",
+          "hint": "$u = \\sqrt{e^x+1}$, entonces $u^2 = e^x+1$, $e^x = u^2-1$, $2u\\,du = e^x\\,dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$u = \\sqrt{e^x+1}$, $u^2 = e^x+1$, $e^x = u^2-1$. Diferenciando: $2u\\,du = e^x\\,dx$."
+            },
+            {
+              "step": 2,
+              "title": "Reescribir e^(2x)",
+              "body": "$e^{2x} = (e^x)^2 = (u^2-1)^2$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir",
+              "body": "$\\int \\frac{(u^2-1)^2}{u} \\cdot \\frac{2u}{u^2-1}\\,du = 2\\int (u^2-1)\\,du$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$2\\left(\\frac{u^3}{3} - u\\right) + C = \\frac{2u^3}{3} - 2u + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{2(e^x+1)^{3/2}}{3} - 2\\sqrt{e^x+1} + C = \\frac{2\\sqrt{e^x+1}}{3}(e^x+1-3) + C = \\frac{2\\sqrt{e^x+1}}{3}(e^x-2) + C$"
+            }
+          ],
+          "final_answer": "\\frac{2\\sqrt{e^x+1}}{3}(e^x - 2) + C",
+          "tip": "Para integrales con $\\sqrt{e^x+1}$, la sustitución $u = \\sqrt{e^x+1}$ simplifica tanto la raíz como la exponencial."
+        }
+      ]
+    },
+    {
+      "name": "Teorema del Valor Medio para Integrales",
+      "definition": "Si $f$ es continua en $[a,b]$, existe al menos un $c \\in [a,b]$ tal que $\\int_{a}^{b} f(x)\\,dx = f(c)(b-a)$. Equivalentemente: $f(c) = \\frac{1}{b-a}\\int_{a}^{b} f(x)\\,dx$.",
+      "tip": "El procedimiento es siempre el mismo: (1) Calcular $\\int_{a}^{b} f(x)dx$, (2) Dividir por $(b-a)$ para obtener el valor medio, (3) Igualar a $f(c)$ y despejar $c$, (4) Verificar que $c$ esté en el intervalo. Si $f$ no es inyectiva, puede haber más de una solución.",
+      "exercises": [
+        {
+          "id": "N1-39",
+          "difficulty": 2,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=x^{2} \\text{ en } [-1,1]",
+          "hint": "Calcula $\\int_{-1}^{1} x^{2} dx$, iguala a $f(c)\\cdot 2$ y despeja $c$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{-1}^{1} x^{2}\\,dx = \\left[\\frac{x^{3}}{3}\\right]_{-1}^{1} = \\frac{1}{3} - \\left(-\\frac{1}{3}\\right) = \\frac{2}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "f(c) = \\frac{1}{1-(-1)}\\int_{-1}^{1} x^{2}\\,dx = \\frac{1}{2} \\cdot \\frac{2}{3} = \\frac{1}{3}"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y despejar $c$",
+              "body": "f(c) = c^{2} = \\frac{1}{3} \\Rightarrow c = \\pm\\frac{1}{\\sqrt{3}} = \\pm\\frac{\\sqrt{3}}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Verificar que $c$ está en el intervalo",
+              "body": "$\\frac{\\sqrt{3}}{3} \\approx 0.577 \\in [-1,1]$ y $-\\frac{\\sqrt{3}}{3} \\in [-1,1]$. Ambos son válidos."
+            }
+          ],
+          "final_answer": "c = \\pm\\frac{\\sqrt{3}}{3}",
+          "tip": "Como $f(x)=x^{2}$ es par, el valor medio es positivo y hay dos valores de $c$ simétricos. Siempre verifica que $c$ pertenezca al intervalo cerrado."
+        },
+        {
+          "id": "N1-40",
+          "difficulty": 2,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=x(1-x) \\text{ en } [0,1]",
+          "hint": "$\\int_{0}^{1} (x-x^{2})dx = f(c)\\cdot 1$. Resuelve la cuadrática.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{0}^{1} (x-x^{2})\\,dx = \\left[\\frac{x^{2}}{2} - \\frac{x^{3}}{3}\\right]_{0}^{1} = \\frac{1}{2} - \\frac{1}{3} = \\frac{1}{6}"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "f(c) = \\frac{1}{1-0}\\int_{0}^{1} (x-x^{2})\\,dx = \\frac{1}{6}"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver la ecuación cuadrática",
+              "body": "c(1-c) = \\frac{1}{6} \\Rightarrow c - c^{2} = \\frac{1}{6} \\Rightarrow 6c^{2} - 6c + 1 = 0"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar la fórmula cuadrática",
+              "body": "c = \\frac{6 \\pm \\sqrt{36-24}}{12} = \\frac{6 \\pm \\sqrt{12}}{12} = \\frac{6 \\pm 2\\sqrt{3}}{12} = \\frac{3 \\pm \\sqrt{3}}{6}"
+            },
+            {
+              "step": 5,
+              "title": "Verificar que ambos están en $[0,1]$",
+              "body": "$\\frac{3-\\sqrt{3}}{6} \\approx 0.211 \\in [0,1]$ y $\\frac{3+\\sqrt{3}}{6} \\approx 0.789 \\in [0,1]$."
+            }
+          ],
+          "final_answer": "c = \\frac{3 \\pm \\sqrt{3}}{6}",
+          "tip": "Una función cuadrática en un intervalo puede tener hasta dos valores de $c$ que satisfacen el teorema, siempre que ambos caigan dentro del intervalo."
+        },
+        {
+          "id": "N1-41",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=|x| \\text{ en } [-2,2]",
+          "hint": "La integral es el área de dos triángulos. $f(c)=|c|$ da dos soluciones.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{-2}^{2} |x|\\,dx = 2\\int_{0}^{2} x\\,dx = 2\\left[\\frac{x^{2}}{2}\\right]_{0}^{2} = 2 \\cdot 2 = 4"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "f(c) = \\frac{1}{2-(-2)}\\int_{-2}^{2} |x|\\,dx = \\frac{4}{4} = 1"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "|c| = 1 \\Rightarrow c = 1 \\text{ o } c = -1"
+            },
+            {
+              "step": 4,
+              "title": "Verificar",
+              "body": "Ambos $c = 1$ y $c = -1$ pertenecen a $[-2,2]$."
+            }
+          ],
+          "final_answer": "c = \\pm 1",
+          "tip": "Para funciones con valor absoluto, usa la simetría si es par: $\\int_{-a}^{a} |x|dx = 2\\int_{0}^{a} x\\,dx$. Esto ahorra trabajo."
+        },
+        {
+          "id": "N1-42",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=\\cos(2x) \\text{ en } [0,\\pi]",
+          "hint": "$\\int_{0}^{\\pi} \\cos(2x)dx = 0$, entonces $\\cos(2c)=0$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{0}^{\\pi} \\cos(2x)\\,dx = \\left[\\frac{\\sen(2x)}{2}\\right]_{0}^{\\pi} = \\frac{\\sen(2\\pi)}{2} - \\frac{\\sen(0)}{2} = 0 - 0 = 0"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "f(c) = \\frac{1}{\\pi-0}\\int_{0}^{\\pi} \\cos(2x)\\,dx = \\frac{0}{\\pi} = 0"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "\\cos(2c) = 0 \\Rightarrow 2c = \\frac{\\pi}{2} + n\\pi \\Rightarrow c = \\frac{\\pi}{4} + \\frac{n\\pi}{2}"
+            },
+            {
+              "step": 4,
+              "title": "Encontrar valores en $[0,\\pi]$",
+              "body": "Para $n=0$: $c = \\frac{\\pi}{4} \\in [0,\\pi]$. Para $n=1$: $c = \\frac{3\\pi}{4} \\in [0,\\pi]$. Para $n=2$: $c = \\frac{5\\pi}{4} > \\pi$ (fuera)."
+            }
+          ],
+          "final_answer": "c = \\frac{\\pi}{4} \\text{ o } c = \\frac{3\\pi}{4}",
+          "tip": "Cuando el valor medio de la integral es cero, la ecuación $f(c)=0$ puede tener múltiples soluciones en el intervalo. Asegúrate de listar todas las que caigan dentro."
+        },
+        {
+          "id": "N1-43",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } h(y)=\\sqrt{y+1} \\text{ en } [0,3]",
+          "hint": "Variable $y$. Calcula $\\int_{0}^{3} \\sqrt{y+1}\\,dy$ y despeja $c$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{0}^{3} (y+1)^{1/2}\\,dy = \\left[\\frac{2}{3}(y+1)^{3/2}\\right]_{0}^{3} = \\frac{2}{3}(4^{3/2} - 1^{3/2}) = \\frac{2}{3}(8-1) = \\frac{14}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "h(c) = \\frac{1}{3-0}\\int_{0}^{3} \\sqrt{y+1}\\,dy = \\frac{1}{3} \\cdot \\frac{14}{3} = \\frac{14}{9}"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "\\sqrt{c+1} = \\frac{14}{9} \\Rightarrow c+1 = \\left(\\frac{14}{9}\\right)^{2} = \\frac{196}{81} \\Rightarrow c = \\frac{196}{81} - 1 = \\frac{115}{81}"
+            },
+            {
+              "step": 4,
+              "title": "Verificar",
+              "body": "$\\frac{115}{81} \\approx 1.42 \\in [0,3]$. Válido."
+            }
+          ],
+          "final_answer": "c = \\frac{115}{81}",
+          "tip": "No importa que la variable sea $y$ en lugar de $x$; el procedimiento es idéntico. Siempre verifica que $c$ esté dentro del intervalo dado."
+        },
+        {
+          "id": "N1-44",
+          "difficulty": 4,
+          "latex": "\\text{Encuentre } c \\text{ para } q(z)=az^{2} \\text{ en } [0,b]",
+          "hint": "Dejar $a$ y $b$ como parámetros. El resultado dependerá de ellos.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral definida",
+              "body": "\\int_{0}^{b} az^{2}\\,dz = a\\left[\\frac{z^{3}}{3}\\right]_{0}^{b} = \\frac{ab^{3}}{3}"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula del valor medio",
+              "body": "q(c) = \\frac{1}{b-0}\\int_{0}^{b} az^{2}\\,dz = \\frac{1}{b} \\cdot \\frac{ab^{3}}{3} = \\frac{ab^{2}}{3}"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "ac^{2} = \\frac{ab^{2}}{3} \\Rightarrow c^{2} = \\frac{b^{2}}{3} \\Rightarrow c = \\frac{b}{\\sqrt{3}} = \\frac{b\\sqrt{3}}{3}"
+            },
+            {
+              "step": 4,
+              "title": "Verificar y descartar",
+              "body": "Descartamos $c = -\\frac{b\\sqrt{3}}{3}$ porque no pertenece a $[0,b]$ (asumiendo $b>0$)."
+            }
+          ],
+          "final_answer": "c = \\frac{b\\sqrt{3}}{3}",
+          "tip": "Cuando los parámetros son positivos ($a>0$, $b>0$), la función $az^{2}$ es creciente en $[0,b]$ y hay una única solución positiva. Siempre justifica por qué descartas la raíz negativa."
+        },
+        {
+          "id": "N1-G27",
+          "difficulty": 2,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=x^2 \\text{ en } [-1,1]",
+          "hint": "Calcula $\\int_{-1}^{1} x^2 \\,dx$, iguala a $f(c)\\cdot 2$ y despeja $c$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{-1}^{1} x^2 \\,dx = \\left[\\frac{x^3}{3}\\right]_{-1}^{1} = \\frac{1}{3} - \\left(-\\frac{1}{3}\\right) = \\frac{2}{3}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$f(c) = \\frac{1}{1-(-1)}\\int_{-1}^{1} x^2 \\,dx = \\frac{1}{2} \\cdot \\frac{2}{3} = \\frac{1}{3}$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y despejar",
+              "body": "$c^2 = \\frac{1}{3} \\Rightarrow c = \\pm\\frac{1}{\\sqrt{3}} = \\pm\\frac{\\sqrt{3}}{3}$"
+            },
+            {
+              "step": 4,
+              "title": "Verificar",
+              "body": "$\\frac{\\sqrt{3}}{3} \\approx 0.577 \\in [-1,1]$ y $-\\frac{\\sqrt{3}}{3} \\in [-1,1]$. Ambos válidos."
+            }
+          ],
+          "final_answer": "c = \\pm\\frac{\\sqrt{3}}{3}",
+          "tip": "Como $f(x)=x^2$ es par, el valor medio es positivo y hay dos valores de $c$ simétricos."
+        },
+        {
+          "id": "N1-G28",
+          "difficulty": 2,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=x(1-x) \\text{ en } [0,1]",
+          "hint": "$\\int_{0}^{1} (x-x^2)\\,dx = f(c)\\cdot 1$. Resuelve la cuadrática.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{0}^{1} (x-x^2)\\,dx = \\left[\\frac{x^2}{2} - \\frac{x^3}{3}\\right]_{0}^{1} = \\frac{1}{2} - \\frac{1}{3} = \\frac{1}{6}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$f(c) = \\frac{1}{1-0}\\int_{0}^{1} (x-x^2)\\,dx = \\frac{1}{6}$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "$c(1-c) = \\frac{1}{6} \\Rightarrow c - c^2 = \\frac{1}{6} \\Rightarrow 6c^2 - 6c + 1 = 0$"
+            },
+            {
+              "step": 4,
+              "title": "Fórmula cuadrática",
+              "body": "$c = \\frac{6 \\pm \\sqrt{36-24}}{12} = \\frac{6 \\pm 2\\sqrt{3}}{12} = \\frac{3 \\pm \\sqrt{3}}{6}$"
+            },
+            {
+              "step": 5,
+              "title": "Verificar",
+              "body": "$\\frac{3-\\sqrt{3}}{6} \\approx 0.211 \\in [0,1]$ y $\\frac{3+\\sqrt{3}}{6} \\approx 0.789 \\in [0,1]$."
+            }
+          ],
+          "final_answer": "c = \\frac{3 \\pm \\sqrt{3}}{6}",
+          "tip": "Una función cuadrática en un intervalo puede tener hasta dos valores de $c$ que satisfacen el teorema."
+        },
+        {
+          "id": "N1-G29",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } f(x)=|x| \\text{ en } [-2,2]",
+          "hint": "La integral es el área de dos triángulos. $f(c)=|c|$ da dos soluciones.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{-2}^{2} |x| \\,dx = 2\\int_{0}^{2} x \\,dx = 2\\left[\\frac{x^2}{2}\\right]_{0}^{2} = 2 \\cdot 2 = 4$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$f(c) = \\frac{1}{2-(-2)}\\int_{-2}^{2} |x| \\,dx = \\frac{4}{4} = 1$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "$|c| = 1 \\Rightarrow c = 1 \\text{ o } c = -1$"
+            },
+            {
+              "step": 4,
+              "title": "Verificar",
+              "body": "Ambos $c = 1$ y $c = -1$ pertenecen a $[-2,2]$."
+            }
+          ],
+          "final_answer": "c = \\pm 1",
+          "tip": "Para funciones con valor absoluto pares, usa la simetría: $\\int_{-a}^{a} |x|\\,dx = 2\\int_{0}^{a} x\\,dx$."
+        },
+        {
+          "id": "N1-G30",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } g(z)=\\cos(2z) \\text{ en } [0,\\pi]",
+          "hint": "$\\int_{0}^{\\pi} \\cos(2z)\\,dz = 0$, entonces $\\cos(2c) = 0$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{0}^{\\pi} \\cos(2z)\\,dz = \\left[\\frac{\\sen(2z)}{2}\\right]_{0}^{\\pi} = \\frac{\\sen(2\\pi)}{2} - \\frac{\\sen(0)}{2} = 0$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$g(c) = \\frac{1}{\\pi-0}\\int_{0}^{\\pi} \\cos(2z)\\,dz = 0$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "$\\cos(2c) = 0 \\Rightarrow 2c = \\frac{\\pi}{2} + n\\pi \\Rightarrow c = \\frac{\\pi}{4} + \\frac{n\\pi}{2}$"
+            },
+            {
+              "step": 4,
+              "title": "Encontrar valores en $[0,\\pi]$",
+              "body": "$n=0$: $c = \\frac{\\pi}{4} \\in [0,\\pi]$. $n=1$: $c = \\frac{3\\pi}{4} \\in [0,\\pi]$. $n=2$: $c = \\frac{5\\pi}{4} > \\pi$ (fuera)."
+            }
+          ],
+          "final_answer": "c = \\frac{\\pi}{4} \\text{ o } c = \\frac{3\\pi}{4}",
+          "tip": "Cuando el valor medio es cero, la ecuación $f(c)=0$ puede tener múltiples soluciones en el intervalo."
+        },
+        {
+          "id": "N1-G31",
+          "difficulty": 3,
+          "latex": "\\text{Encuentre } c \\text{ para } h(y)=\\sqrt{y+1} \\text{ en } [0,3]",
+          "hint": "Calcula $\\int_{0}^{3} \\sqrt{y+1}\\,dy$ y despeja $c$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{0}^{3} (y+1)^{1/2}\\,dy = \\left[\\frac{2}{3}(y+1)^{3/2}\\right]_{0}^{3} = \\frac{2}{3}(4^{3/2} - 1^{3/2}) = \\frac{2}{3}(8-1) = \\frac{14}{3}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$h(c) = \\frac{1}{3-0}\\int_{0}^{3} \\sqrt{y+1}\\,dy = \\frac{1}{3} \\cdot \\frac{14}{3} = \\frac{14}{9}$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "$\\sqrt{c+1} = \\frac{14}{9} \\Rightarrow c+1 = \\left(\\frac{14}{9}\\right)^2 = \\frac{196}{81} \\Rightarrow c = \\frac{115}{81}$"
+            },
+            {
+              "step": 4,
+              "title": "Verificar",
+              "body": "$\\frac{115}{81} \\approx 1.42 \\in [0,3]$. Válido."
+            }
+          ],
+          "final_answer": "c = \\frac{115}{81}",
+          "tip": "No importa que la variable sea $y$ en lugar de $x$; el procedimiento es idéntico."
+        },
+        {
+          "id": "N1-G32",
+          "difficulty": 4,
+          "latex": "\\text{Encuentre } c \\text{ para } q(z)=az^2 \\text{ en } [0,b]",
+          "hint": "Deja $a$ y $b$ como parámetros. El resultado dependerá de ellos.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Calcular la integral",
+              "body": "$\\int_{0}^{b} az^2 \\,dz = a\\left[\\frac{z^3}{3}\\right]_{0}^{b} = \\frac{ab^3}{3}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TVM",
+              "body": "$q(c) = \\frac{1}{b-0}\\int_{0}^{b} az^2 \\,dz = \\frac{1}{b} \\cdot \\frac{ab^3}{3} = \\frac{ab^2}{3}$"
+            },
+            {
+              "step": 3,
+              "title": "Igualar y resolver",
+              "body": "$ac^2 = \\frac{ab^2}{3} \\Rightarrow c^2 = \\frac{b^2}{3} \\Rightarrow c = \\frac{b}{\\sqrt{3}} = \\frac{b\\sqrt{3}}{3}$"
+            },
+            {
+              "step": 4,
+              "title": "Descartar raíz negativa",
+              "body": "Descartamos $c = -\\frac{b\\sqrt{3}}{3}$ porque no pertenece a $[0,b]$ (asumiendo $b>0$)."
+            }
+          ],
+          "final_answer": "c = \\frac{b\\sqrt{3}}{3}",
+          "tip": "Cuando los parámetros son positivos, la función $az^2$ es creciente en $[0,b]$ y hay una única solución positiva."
+        }
+      ]
+    },
+    {
+      "name": "Integrales Definidas con cambio de límites",
+      "definition": "Al hacer $u = g(x)$ en una integral definida, los nuevos límites de integración son $u(a)$ y $u(b)$. Esto permite integrar directamente en $u$ sin necesidad de volver a la variable original.",
+      "tip": "Regla: $\\int_{a}^{b} f(g(x))g'(x)\\,dx = \\int_{u(a)}^{u(b)} f(u)\\,du$. Si $u(b) < u(a)$, la integral será negativa de la integral con límites invertidos. Siempre calcula los nuevos límites antes de integrar.",
+      "exercises": [
+        {
+          "id": "N1-45",
+          "difficulty": 2,
+          "latex": "\\int_{0}^{1} x(1+x^{2})^{3} \\, dx",
+          "hint": "$u = 1+x^{2}$; nuevos límites: $u(0)=1$, $u(1)=2$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución y calcular nuevos límites",
+              "body": "u = 1+x^{2}, \\quad du = 2x\\,dx \\Rightarrow x\\,dx = \\frac{du}{2}. \\newline x=0 \\Rightarrow u=1; \\quad x=1 \\Rightarrow u=2."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir con nuevos límites",
+              "body": "\\int_{1}^{2} u^{3} \\cdot \\frac{du}{2} = \\frac{1}{2}\\int_{1}^{2} u^{3}\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "\\frac{1}{2}\\left[\\frac{u^{4}}{4}\\right]_{1}^{2} = \\frac{1}{2}\\left(\\frac{16}{4} - \\frac{1}{4}\\right) = \\frac{1}{2} \\cdot \\frac{15}{4} = \\frac{15}{8}"
+            }
+          ],
+          "final_answer": "\\frac{15}{8}",
+          "tip": "Cambiar límites evita el paso de volver a $x$. Es más eficiente y reduce errores de sustitución."
+        },
+        {
+          "id": "N1-46",
+          "difficulty": 3,
+          "latex": "\\int_{0}^{\\pi/4} \\tan(x) \\, dx",
+          "hint": "$\\tan(x) = \\frac{\\sen(x)}{\\cos(x)}$; $u = \\cos(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir y elegir sustitución",
+              "body": "\\int_{0}^{\\pi/4} \\frac{\\sen(x)}{\\cos(x)}\\,dx. \\quad u = \\cos(x), \\quad du = -\\sen(x)\\,dx. \\newline x=0 \\Rightarrow u=1; \\quad x=\\pi/4 \\Rightarrow u=\\frac{\\sqrt{2}}{2}."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir con nuevos límites",
+              "body": "\\int_{1}^{\\sqrt{2}/2} \\frac{-du}{u} = -\\int_{1}^{\\sqrt{2}/2} \\frac{du}{u} = \\int_{\\sqrt{2}/2}^{1} \\frac{du}{u}"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "\\left[\\ln|u|\\right]_{\\sqrt{2}/2}^{1} = \\ln(1) - \\ln\\left(\\frac{\\sqrt{2}}{2}\\right) = 0 - \\ln(2^{-1/2}) = \\frac{1}{2}\\ln(2)"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\ln(2)",
+          "tip": "Recuerda que $\\int \\tan(x)\\,dx = -\\ln|\\cos(x)| = \\ln|\\sec(x)|$. Puedes verificar evaluando la primitiva directamente."
+        },
+        {
+          "id": "N1-47",
+          "difficulty": 3,
+          "latex": "\\int_{1}^{e} \\frac{\\ln(x)}{x} \\, dx",
+          "hint": "$u = \\ln(x)$; límites: $0$ y $1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución y calcular nuevos límites",
+              "body": "u = \\ln(x), \\quad du = \\frac{1}{x}\\,dx. \\newline x=1 \\Rightarrow u=0; \\quad x=e \\Rightarrow u=1."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir con nuevos límites",
+              "body": "\\int_{0}^{1} u\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "\\left[\\frac{u^{2}}{2}\\right]_{0}^{1} = \\frac{1}{2} - 0 = \\frac{1}{2}"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}",
+          "tip": "Este es un caso clásico donde cambiar límites simplifica enormemente el cálculo. La integral en $u$ es simplemente un área de triángulo."
+        },
+        {
+          "id": "N1-48",
+          "difficulty": 4,
+          "latex": "\\int_{0}^{\\pi/2} \\sen^{2}(x)\\cos(x) \\, dx",
+          "hint": "$u = \\sen(x)$; límites: $0$ y $1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Elegir sustitución y calcular nuevos límites",
+              "body": "u = \\sen(x), \\quad du = \\cos(x)\\,dx. \\newline x=0 \\Rightarrow u=0; \\quad x=\\pi/2 \\Rightarrow u=1."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir con nuevos límites",
+              "body": "\\int_{0}^{1} u^{2}\\,du"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "\\left[\\frac{u^{3}}{3}\\right]_{0}^{1} = \\frac{1}{3} - 0 = \\frac{1}{3}"
+            }
+          ],
+          "final_answer": "\\frac{1}{3}",
+          "tip": "Cuando tienes $\\sen^{n}(x)\\cos(x)$ o $\\cos^{n}(x)\\sen(x)$, la sustitución $u = \\sen(x)$ o $u = \\cos(x)$ convierte la integral en una potencia simple. Cambiar límites hace la evaluación trivial."
+        },
+        {
+          "id": "N1-G33",
+          "difficulty": 2,
+          "latex": "\\int_{-3}^{3} 8t\\sqrt{7+2t^2} \\, dt",
+          "hint": "$u = 7+2t^2$, $du = 4t\\,dt$. Nota: el integrando es una función impar en un intervalo simétrico.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar simetría",
+              "body": "Sea $f(t) = 8t\\sqrt{7+2t^2}$. Entonces $f(-t) = 8(-t)\\sqrt{7+2t^2} = -f(t)$. La función es impar."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar propiedad de funciones impares",
+              "body": "Para $f$ impar: $\\int_{-a}^{a} f(t)\\,dt = 0$."
+            },
+            {
+              "step": 3,
+              "title": "Resultado",
+              "body": "La integral vale $0$ por simetría."
+            }
+          ],
+          "final_answer": "0",
+          "tip": "Antes de integrar, verifica siempre la simetría. Si el integrando es impar en $[-a,a]$, la integral es cero inmediatamente."
+        },
+        {
+          "id": "N1-G34",
+          "difficulty": 2,
+          "latex": "\\int_{0}^{\\pi/2} \\cos(3x)\\sen^2(3x) \\, dx",
+          "hint": "$u = \\sen(3x)$, $du = 3\\cos(3x)\\,dx$. Cambia límites.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución y nuevos límites",
+              "body": "$u = \\sen(3x)$, $du = 3\\cos(3x)\\,dx$. $x=0 \\Rightarrow u=0$; $x=\\pi/2 \\Rightarrow u=\\sen(3\\pi/2) = -1$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int_{0}^{-1} u^2 \\cdot \\frac{du}{3} = \\frac{1}{3}\\int_{0}^{-1} u^2\\,du = -\\frac{1}{3}\\int_{-1}^{0} u^2\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "$-\\frac{1}{3}\\left[\\frac{u^3}{3}\\right]_{-1}^{0} = -\\frac{1}{3}\\left(0 - \\left(-\\frac{1}{3}\\right)\\right) = -\\frac{1}{3} \\cdot \\frac{1}{3} = -\\frac{1}{9}$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{9}",
+          "tip": "Cuando cambias límites y el límite superior es menor que el inferior, puedes invertirlos y cambiar el signo."
+        },
+        {
+          "id": "N1-G35",
+          "difficulty": 2,
+          "latex": "\\int_{e}^{e^4} \\frac{dx}{x\\sqrt{\\ln(x)}}",
+          "hint": "$u = \\ln(x)$, $du = \\frac{1}{x}\\,dx$. Límites: $1$ y $4$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución y nuevos límites",
+              "body": "$u = \\ln(x)$, $du = \\frac{1}{x}\\,dx$. $x=e \\Rightarrow u=1$; $x=e^4 \\Rightarrow u=4$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int_{1}^{4} \\frac{du}{\\sqrt{u}} = \\int_{1}^{4} u^{-1/2}\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "$\\left[2\\sqrt{u}\\right]_{1}^{4} = 2\\sqrt{4} - 2\\sqrt{1} = 4 - 2 = 2$"
+            }
+          ],
+          "final_answer": "2",
+          "tip": "Patrón clásico: $\\int \\frac{f'(x)}{\\sqrt{f(x)}}\\,dx = 2\\sqrt{f(x)} + C$. Aquí $f(x) = \\ln(x)$."
+        },
+        {
+          "id": "N1-G36",
+          "difficulty": 2,
+          "latex": "\\int_{0}^{1/2} \\frac{\\arcsen(x)}{\\sqrt{1-x^2}} \\, dx",
+          "hint": "$u = \\arcsen(x)$, $du = \\frac{1}{\\sqrt{1-x^2}}\\,dx$. Límites: $0$ y $\\pi/6$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución y nuevos límites",
+              "body": "$u = \\arcsen(x)$, $du = \\frac{1}{\\sqrt{1-x^2}}\\,dx$. $x=0 \\Rightarrow u=0$; $x=1/2 \\Rightarrow u=\\pi/6$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int_{0}^{\\pi/6} u\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "$\\left[\\frac{u^2}{2}\\right]_{0}^{\\pi/6} = \\frac{\\pi^2}{72} - 0 = \\frac{\\pi^2}{72}$"
+            }
+          ],
+          "final_answer": "\\frac{\\pi^2}{72}",
+          "tip": "Patrón: $\\int f(x) \\cdot f'(x)\\,dx = \\frac{[f(x)]^2}{2} + C$. Aquí $f(x) = \\arcsen(x)$."
+        },
+        {
+          "id": "N1-G37",
+          "difficulty": 3,
+          "latex": "\\int_{1}^{4} \\frac{dt}{\\sqrt{t}(\\sqrt{t}+1)^3}",
+          "hint": "$u = \\sqrt{t}+1$, $du = \\frac{1}{2\\sqrt{t}}\\,dt$. Límites: $2$ y $3$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución y nuevos límites",
+              "body": "$u = \\sqrt{t}+1$, $du = \\frac{1}{2\\sqrt{t}}\\,dt$. $t=1 \\Rightarrow u=2$; $t=4 \\Rightarrow u=3$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int_{2}^{3} \\frac{2\\,du}{u^3} = 2\\int_{2}^{3} u^{-3}\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar y evaluar",
+              "body": "$2\\left[\\frac{u^{-2}}{-2}\\right]_{2}^{3} = -\\left[\\frac{1}{u^2}\\right]_{2}^{3} = -\\left(\\frac{1}{9} - \\frac{1}{4}\\right) = -\\left(\\frac{4-9}{36}\\right) = \\frac{5}{36}$"
+            }
+          ],
+          "final_answer": "\\frac{5}{36}",
+          "tip": "Cuando hay $\\sqrt{t}$ en el denominador junto a una función de $\\sqrt{t}$, prueba $u = \\sqrt{t}$ o $u = \\sqrt{t}+1$."
+        },
+        {
+          "id": "N1-G38",
+          "difficulty": 3,
+          "latex": "\\int_{0}^{\\sqrt{2}} \\frac{x}{4+x^4} \\, dx",
+          "hint": "$u = x^2$, $du = 2x\\,dx$. Luego $u = 2\\tan(\\theta)$ o reconoce $\\int \\frac{du}{a^2+u^2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Primera sustitución",
+              "body": "$u = x^2$, $du = 2x\\,dx$. $x=0 \\Rightarrow u=0$; $x=\\sqrt{2} \\Rightarrow u=2$."
+            },
+            {
+              "step": 2,
+              "title": "Sustituir",
+              "body": "$\\int_{0}^{2} \\frac{du/2}{4+u^2} = \\frac{1}{2}\\int_{0}^{2} \\frac{du}{4+u^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Identificar forma estándar",
+              "body": "$\\frac{1}{2} \\cdot \\frac{1}{2}\\arctan\\left(\\frac{u}{2}\\right)\\Big|_{0}^{2} = \\frac{1}{4}\\arctan\\left(\\frac{u}{2}\\right)\\Big|_{0}^{2}$"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar",
+              "body": "$\\frac{1}{4}\\left(\\arctan(1) - \\arctan(0)\\right) = \\frac{1}{4}\\left(\\frac{\\pi}{4} - 0\\right) = \\frac{\\pi}{16}$"
+            }
+          ],
+          "final_answer": "\\frac{\\pi}{16}",
+          "tip": "Memoriza: $\\int \\frac{du}{a^2+u^2} = \\frac{1}{a}\\arctan(\\frac{u}{a}) + C$. Aquí $a=2$."
+        }
+      ]
+    }
+  ]
+}

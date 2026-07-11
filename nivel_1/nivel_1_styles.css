@@ -1,0 +1,390 @@
+/* =========================================================
+   VARIABLES Y RESET  —  PALETA DRACULA
+   ========================================================= */
+:root {
+  --bg-primary:   #282a36;
+  --bg-secondary: #44475a;
+  --bg-card:      #6272a4;
+  --bg-hover:     #bd93f9;
+  --accent-primary:   #bd93f9;
+  --accent-secondary: #ff79c6;
+  --accent-success:   #50fa7b;
+  --accent-warning:   #ffb86c;
+  --accent-danger:    #ff5555;
+  --accent-cyan:      #8be9fd;
+  --text-primary:   #f8f8f2;
+  --text-secondary: #bfbfbf;
+  --text-muted:     #6272a4;
+  --border:         #44475a;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.3);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 24px;
+  line-height: 1.6;
+}
+
+.container { max-width: 900px; margin: 0 auto; }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.level-badge {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; padding: 8px 20px; border-radius: 50px;
+  font-weight: 700; font-size: 14px; letter-spacing: 0.5px;
+  box-shadow: 0 0 20px rgba(189, 147, 249, 0.3);
+}
+.header-title h1 { font-size: 22px; font-weight: 700; color: var(--text-primary); }
+.header-title p { font-size: 13px; color: var(--text-secondary); }
+
+.progress-ring { position: relative; width: 60px; height: 60px; }
+.progress-ring svg { transform: rotate(-90deg); }
+.progress-ring circle { fill: none; stroke-width: 4; }
+.progress-ring .bg { stroke: var(--bg-card); }
+.progress-ring .progress { stroke: var(--accent-success); stroke-linecap: round; }
+.progress-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 14px; font-weight: 700; color: var(--accent-success);
+}
+
+/* =========================================================
+   BOTÓN VOLVER AL INICIO
+   ========================================================= */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: rgba(189, 147, 249, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateX(-2px);
+}
+
+.back-btn span {
+  font-size: 16px;
+}
+
+/* =========================================================
+   NAVEGACION DE EJERCICIOS
+   ========================================================= */
+.exercise-nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.ex-btn {
+  width: 48px; height: 48px; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--bg-secondary);
+  color: var(--text-secondary); font-weight: 800; font-size: 18px;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.ex-btn:hover {
+  background: var(--bg-card); color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(189, 147, 249, 0.2);
+}
+.ex-btn.active {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; border-color: transparent;
+  box-shadow: 0 0 20px rgba(189, 147, 249, 0.5);
+  font-size: 20px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.ex-btn.solved {
+  border-color: var(--accent-success); color: var(--accent-success);
+  background: rgba(80, 250, 123, 0.12);
+  font-size: 19px;
+}
+
+/* =========================================================
+   TARJETAS GENERALES
+   ========================================================= */
+.card {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.card-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.card-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+.card-subtitle { font-size: 12px; color: var(--text-muted); }
+
+/* =========================================================
+   TARJETA: DEFINICION
+   ========================================================= */
+.def-card .card-icon { background: rgba(189, 147, 249, 0.15); color: var(--accent-primary); }
+.def-content { 
+  color: var(--text-secondary); 
+  font-size: 17px;           /* AUMENTADO: texto normal más grande */
+  line-height: 2.4;          /* AUMENTADO: más espacio entre líneas */
+}
+.def-content strong { color: var(--accent-primary); }
+
+/* KaTeX en definiciones - tamaño proporcional al texto */
+.def-content .katex,
+.def-content .katex-display,
+.exercise-tip .katex,
+.exercise-tip .katex-display,
+.hint-box .katex,
+.hint-box .katex-display,
+.step-body .katex,
+.step-body .katex-display {
+  font-size: 1.25em !important;
+}
+
+.def-content .katex .mfrac .frac-line,
+.exercise-tip .katex .mfrac .frac-line,
+.hint-box .katex .mfrac .frac-line,
+.step-body .katex .mfrac .frac-line {
+  border-bottom-width: 0.07em !important;
+  margin-top: 0.18em !important;
+  margin-bottom: 0.18em !important;
+}
+
+.def-content .katex .mfrac,
+.exercise-tip .katex .mfrac,
+.hint-box .katex .mfrac,
+.step-body .katex .mfrac {
+  vertical-align: middle !important;
+}
+
+.def-content .katex .mfrac .vlist-t,
+.exercise-tip .katex .mfrac .vlist-t,
+.hint-box .katex .mfrac .vlist-t,
+.step-body .katex .mfrac .vlist-t {
+  margin-top: 0.12em !important;
+  margin-bottom: 0.12em !important;
+}
+
+/* =========================================================
+   TARJETA: EJERCICIO
+   ========================================================= */
+.ex-card .card-icon { background: rgba(255, 121, 198, 0.15); color: var(--accent-secondary); }
+.ex-statement {
+  background: var(--bg-primary); border-left: 3px solid var(--accent-secondary);
+  border-radius: 0 8px 8px 0; padding: 20px; margin: 16px 0; font-size: 16px;
+}
+
+/* =========================================================
+   SECCION SOLUCION
+   ========================================================= */
+.solution-section { margin-top: 16px; }
+.solution-btn {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white; border: none; padding: 12px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 15px rgba(189, 147, 249, 0.3);
+}
+.solution-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(189, 147, 249, 0.4); }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   SOLUCION REAL
+   ========================================================= */
+.solution-content {
+  display: none; margin-top: 20px;
+  animation: fadeIn 0.4s ease;
+}
+.solution-content.visible { display: block; }
+
+.step {
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 20px 20px 54px;
+  margin-bottom: 16px; position: relative;
+}
+.step-num {
+  position: absolute; left: 16px; top: 20px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent-primary); color: var(--bg-primary);
+  font-weight: 700; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-title { font-weight: 600; color: var(--text-primary); font-size: 14px; margin-bottom: 8px; }
+.step-body { color: var(--text-secondary); font-size: 15px; line-height: 2.4; }
+
+/* =========================================================
+   AUTO-CHECK SECTION
+   ========================================================= */
+.self-check-section {
+  display: none; margin-top: 24px;
+  background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px;
+  animation: fadeIn 0.4s ease;
+}
+.self-check-section.visible { display: block; }
+
+.self-check-title {
+  font-size: 16px; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.self-check-desc {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.self-check-buttons {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.self-check-btn {
+  padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: all 0.2s; border: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.self-check-btn.correct {
+  background: rgba(80, 250, 123, 0.15); color: var(--accent-success);
+  border: 1px solid var(--accent-success);
+}
+.self-check-btn.correct:hover {
+  background: var(--accent-success); color: var(--bg-primary);
+}
+.self-check-btn.incorrect {
+  background: rgba(255, 85, 85, 0.15); color: var(--accent-danger);
+  border: 1px solid var(--accent-danger);
+}
+.self-check-btn.incorrect:hover {
+  background: var(--accent-danger); color: white;
+}
+
+.self-check-message {
+  padding: 14px 16px; border-radius: 8px; font-size: 14px; line-height: 1.6;
+  animation: fadeIn 0.3s ease;
+}
+.self-check-message strong {
+  font-weight: 700;
+}
+
+/* =========================================================
+   TIP DEL EJERCICIO
+   ========================================================= */
+.exercise-tip {
+  display: none; margin-top: 16px;
+  background: rgba(255, 184, 108, 0.08); border: 1px solid rgba(255, 184, 108, 0.2);
+  border-radius: 8px; padding: 12px 16px;
+  color: var(--accent-warning); font-size: 14px; line-height: 1.6;
+}
+.exercise-tip.visible { display: block; animation: fadeIn 0.3s ease; }
+.exercise-tip strong { color: var(--accent-warning); }
+
+/* =========================================================
+   TARJETA: JUSTIFICACION
+   ========================================================= */
+.justification-card .card-icon { background: rgba(255, 184, 108, 0.15); color: var(--accent-warning); }
+.just-textarea {
+  width: 100%; background: var(--bg-primary); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px; color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace; font-size: 13px;
+  line-height: 1.6; resize: vertical; min-height: 120px; outline: none;
+}
+.just-textarea:focus { border-color: var(--accent-warning); box-shadow: 0 0 0 3px rgba(255, 184, 108, 0.1); }
+.just-textarea::placeholder { color: var(--text-muted); }
+.just-actions { display: flex; gap: 10px; margin-top: 12px; }
+.btn-save {
+  background: var(--accent-warning); color: var(--bg-primary); border: none;
+  padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-save:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-hint {
+  background: transparent; color: var(--text-muted); border: 1px solid var(--border);
+  padding: 10px 24px; border-radius: 8px; font-weight: 500; font-size: 13px;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-hint:hover { border-color: var(--accent-warning); color: var(--accent-warning); }
+.hint-box {
+  display: none; background: rgba(255, 184, 108, 0.08);
+  border: 1px solid rgba(255, 184, 108, 0.2); border-radius: 8px;
+  padding: 12px 16px; margin-top: 12px; color: var(--accent-warning); font-size: 14px;
+}
+.hint-box.visible { display: block; animation: fadeIn 0.3s ease; }
+
+/* =========================================================
+   TARJETA: CORRECCION IA
+   ========================================================= */
+.correction-card {
+  border: 1px solid var(--accent-success);
+  background: rgba(80, 250, 123, 0.05);
+}
+.correction-card .card-icon { background: rgba(80, 250, 123, 0.15); color: var(--accent-success); }
+.correction-intro { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; line-height: 1.7; }
+.correction-intro strong { color: var(--accent-success); }
+.correction-preview {
+  background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.8;
+  color: var(--text-secondary); white-space: pre-wrap;
+  max-height: 300px; overflow-y: auto;
+}
+.correction-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-copy {
+  background: var(--accent-success); color: var(--bg-primary); border: none;
+  padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-copy:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-copy.copied { background: var(--bg-card); color: var(--accent-success); border: 1px solid var(--accent-success); }
+.btn-open-ai {
+  background: transparent; color: var(--accent-primary); border: 1px solid var(--accent-primary);
+  padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 14px;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+}
+.btn-open-ai:hover { background: rgba(189, 147, 249, 0.1); }
+
+/* =========================================================
+   BARRA DE ESTADO
+   ========================================================= */
+.status-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);
+}
+.status-left { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-success); box-shadow: 0 0 8px var(--accent-success); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 600px) {
+  body { padding: 16px; }
+  .header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .ex-btn { width: 40px; height: 40px; font-size: 16px; }
+  .correction-actions { flex-direction: column; }
+  .btn-copy, .btn-open-ai { width: 100%; justify-content: center; }
+  .self-check-buttons { flex-direction: column; }
+  .self-check-btn { width: 100%; justify-content: center; }
+}
