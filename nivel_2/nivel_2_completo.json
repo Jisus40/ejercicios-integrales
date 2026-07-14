@@ -1,0 +1,3982 @@
+{
+  "title": "Nivel 2 — Técnicas Avanzadas (Teoría + Práctica Completa)",
+  "description": "110 ejercicios organizados por técnica: fracciones parciales, sustitución trigonométrica, funciones irracionales, Weierstrass, trigonométricas complejas, regla de Leibniz/Barrow, integrales definidas y variadas. Incluye ejercicios teóricos de aprendizaje (N2-##) y práctica avanzada (N2-G##).",
+  "subthemes": [
+    {
+      "name": "Fracciones Parciales",
+      "definition": "Descomposición de funciones racionales en factores lineales y cuadráticos, incluyendo factores repetidos, potencias cúbicas, división polinomial previa y combinaciones con sustituciones.",
+      "tip": "Verifica siempre el grado del numerador respecto al denominador. Si es mayor o igual, divide primero. Para factores repetidos, incluye un término por cada potencia. Usa el método de Heaviside (evaluación en raíces) para factores lineales simples. Para factores cuadráticos irreducibles, el numerador es lineal (Ax+B).",
+      "exercises": [
+        {
+          "id": "N2-01",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{(x^2+1)(x+1)}",
+          "hint": "$\\frac{Ax+B}{x^2+1} + \\frac{C}{x+1}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{1}{(x^2+1)(x+1)} = \\frac{Ax+B}{x^2+1} + \\frac{C}{x+1}$"
+            },
+            {
+              "step": 2,
+              "title": "Igualar numeradores",
+              "body": "$1 = (Ax+B)(x+1) + C(x^2+1)$"
+            },
+            {
+              "step": 3,
+              "title": "Expandir y agrupar por potencias",
+              "body": "$1 = Ax^2 + Ax + Bx + B + Cx^2 + C = (A+C)x^2 + (A+B)x + (B+C)$"
+            },
+            {
+              "step": 4,
+              "title": "Resolver el sistema de ecuaciones",
+              "body": "$x^2: A+C=0$; $x: A+B=0$; constante: $B+C=1$. De $A+B=0$: $B=-A$. De $A+C=0$: $C=-A$. Sustituyendo: $-A-A=1 \\Rightarrow A=-\\frac{1}{2}$, $B=\\frac{1}{2}$, $C=\\frac{1}{2}$"
+            },
+            {
+              "step": 5,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{1}{(x^2+1)(x+1)} = \\frac{-\\frac{1}{2}x + \\frac{1}{2}}{x^2+1} + \\frac{\\frac{1}{2}}{x+1} = \\frac{1}{2}\\left(\\frac{1-x}{x^2+1} + \\frac{1}{x+1}\\right)$"
+            },
+            {
+              "step": 6,
+              "title": "Separar la primera fracción",
+              "body": "$\\frac{1-x}{x^2+1} = \\frac{1}{x^2+1} - \\frac{x}{x^2+1}$"
+            },
+            {
+              "step": 7,
+              "title": "Integrar término a término",
+              "body": "$\\frac{1}{2}\\int \\frac{1}{x^2+1}\\,dx - \\frac{1}{2}\\int \\frac{x}{x^2+1}\\,dx + \\frac{1}{2}\\int \\frac{1}{x+1}\\,dx$"
+            },
+            {
+              "step": 8,
+              "title": "Resolver cada integral",
+              "body": "$\\frac{1}{2}\\arctan(x) - \\frac{1}{4}\\ln(x^2+1) + \\frac{1}{2}\\ln|x+1| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arctan(x) - \\frac{1}{4}\\ln(x^2+1) + \\frac{1}{2}\\ln|x+1| + C",
+          "tip": "Para factores cuadráticos irreducibles, el numerador siempre es de grado 1 (Ax+B). No olvides separar $\\frac{x}{x^2+1}$ como una sustitución $u=x^2+1$."
+        },
+        {
+          "id": "N2-02",
+          "difficulty": 3,
+          "latex": "\\int \\frac{2x+3}{x^2+4} \\, dx",
+          "hint": "Separa: $\\frac{2x}{x^2+4} + \\frac{3}{x^2+4}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar en dos fracciones",
+              "body": "$\\int \\frac{2x+3}{x^2+4}\\,dx = \\int \\frac{2x}{x^2+4}\\,dx + \\int \\frac{3}{x^2+4}\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral por sustitución",
+              "body": "$u = x^2+4$, $du = 2x\\,dx$. $\\int \\frac{du}{u} = \\ln|u| = \\ln(x^2+4)$"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral (forma arctan)",
+              "body": "$\\int \\frac{3}{x^2+4}\\,dx = 3\\int \\frac{dx}{x^2+2^2} = 3 \\cdot \\frac{1}{2}\\arctan\\left(\\frac{x}{2}\\right) = \\frac{3}{2}\\arctan\\left(\\frac{x}{2}\\right)$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar resultados",
+              "body": "$\\ln(x^2+4) + \\frac{3}{2}\\arctan\\left(\\frac{x}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\ln(x^2+4) + \\frac{3}{2}\\arctan\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Cuando el numerador contiene la derivada del denominador ($2x$ es la derivada de $x^2+4$), esa parte integra a logaritmo. La parte constante integra a arctan."
+        },
+        {
+          "id": "N2-03",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^2}{(x^2+1)^2} \\, dx",
+          "hint": "Sustitución trigonométrica $x = \\tan(\\theta)$ o $x = \\sen(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "$x = \\tan(\\theta)$, $dx = \\sec^2(\\theta)\\,d\\theta$. $x^2+1 = \\sec^2(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\tan^2(\\theta)}{\\sec^4(\\theta)} \\sec^2(\\theta)\\,d\\theta = \\int \\frac{\\tan^2(\\theta)}{\\sec^2(\\theta)}\\,d\\theta = \\int \\sen^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\sen^2(\\theta) = \\frac{1-\\cos(2\\theta)}{2}$. $\\int \\frac{1-\\cos(2\\theta)}{2}\\,d\\theta = \\frac{\\theta}{2} - \\frac{\\sen(2\\theta)}{4} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar sen(2θ)",
+              "body": "$\\sen(2\\theta) = 2\\sen(\\theta)\\cos(\\theta) = 2 \\cdot \\frac{x}{\\sqrt{x^2+1}} \\cdot \\frac{1}{\\sqrt{x^2+1}} = \\frac{2x}{x^2+1}$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "$\\theta = \\arctan(x)$. Resultado: $\\frac{1}{2}\\arctan(x) - \\frac{1}{4} \\cdot \\frac{2x}{x^2+1} + C$"
+            },
+            {
+              "step": 6,
+              "title": "Simplificar",
+              "body": "$\\frac{1}{2}\\arctan(x) - \\frac{x}{2(x^2+1)} + C = \\frac{1}{2}\\left(\\arctan(x) - \\frac{x}{x^2+1}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arctan(x) - \\frac{x}{2(x^2+1)} + C",
+          "tip": "Para $\\frac{x^2}{(x^2+1)^2}$, la sustitución $x = \\tan(\\theta)$ es ideal porque $x^2+1 = \\sec^2(\\theta)$. También puedes usar fracciones parciales con $\\frac{Ax+B}{x^2+1} + \\frac{Cx+D}{(x^2+1)^2}$."
+        },
+        {
+          "id": "N2-04",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^3+1}{x^2-x} \\, dx",
+          "hint": "Divide primero (numerador grado > denominador).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Dividir polinomios",
+              "body": "$\\frac{x^3+1}{x^2-x} = \\frac{x^3+1}{x(x-1)}$. Dividiendo: $x^3+1 = x(x^2-x) + x^2 + 1 = x(x^2-x) + 1(x^2-x) + x + 1 = (x+1)(x^2-x) + x + 1$. Entonces: $\\frac{x^3+1}{x^2-x} = x + 1 + \\frac{x+1}{x^2-x}$"
+            },
+            {
+              "step": 2,
+              "title": "Factorizar el denominador restante",
+              "body": "$x^2-x = x(x-1)$"
+            },
+            {
+              "step": 3,
+              "title": "Fracciones parciales para el residuo",
+              "body": "$\\frac{x+1}{x(x-1)} = \\frac{A}{x} + \\frac{B}{x-1}$. $x+1 = A(x-1) + Bx$. $x=0$: $1=-A \\Rightarrow A=-1$. $x=1$: $2=B \\Rightarrow B=2$"
+            },
+            {
+              "step": 4,
+              "title": "Escribir la descomposición completa",
+              "body": "$x + 1 - \\frac{1}{x} + \\frac{2}{x-1}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$\\int (x+1)\\,dx - \\int \\frac{1}{x}\\,dx + \\int \\frac{2}{x-1}\\,dx = \\frac{x^2}{2} + x - \\ln|x| + 2\\ln|x-1| + C$"
+            },
+            {
+              "step": 6,
+              "title": "Simplificar logaritmos",
+              "body": "$\\frac{x^2}{2} + x + \\ln\\left|\\frac{(x-1)^2}{x}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{x^2}{2} + x + \\ln\\left|\\frac{(x-1)^2}{x}\\right| + C",
+          "tip": "Siempre que el grado del numerador sea mayor o igual al del denominador, realiza la división polinomial primero. El cociente se integra directamente y el residuo se descompone en fracciones parciales."
+        },
+        {
+          "id": "N2-05",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x(x^2+1)^2}",
+          "hint": "$\\frac{A}{x} + \\frac{Bx+C}{x^2+1} + \\frac{Dx+E}{(x^2+1)^2}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{1}{x(x^2+1)^2} = \\frac{A}{x} + \\frac{Bx+C}{x^2+1} + \\frac{Dx+E}{(x^2+1)^2}$"
+            },
+            {
+              "step": 2,
+              "title": "Igualar numeradores",
+              "body": "$1 = A(x^2+1)^2 + (Bx+C)x(x^2+1) + (Dx+E)x$"
+            },
+            {
+              "step": 3,
+              "title": "Expandir y agrupar",
+              "body": "$1 = A(x^4+2x^2+1) + (Bx+C)(x^3+x) + Dx^2 + Ex = Ax^4 + 2Ax^2 + A + Bx^4 + Bx^2 + Cx^3 + Cx + Dx^2 + Ex$"
+            },
+            {
+              "step": 4,
+              "title": "Agrupar por potencias y resolver",
+              "body": "$x^4: A+B=0$; $x^3: C=0$; $x^2: 2A+B+D=0$; $x: C+E=0$; cte: $A=1$. Entonces: $A=1$, $B=-1$, $C=0$, $D=-1$, $E=0$"
+            },
+            {
+              "step": 5,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{1}{x} - \\frac{x}{x^2+1} - \\frac{x}{(x^2+1)^2}$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar término a término",
+              "body": "$\\int \\frac{1}{x}\\,dx - \\int \\frac{x}{x^2+1}\\,dx - \\int \\frac{x}{(x^2+1)^2}\\,dx$"
+            },
+            {
+              "step": 7,
+              "title": "Primera integral",
+              "body": "$\\ln|x|$"
+            },
+            {
+              "step": 8,
+              "title": "Segunda integral (sustitución u=x²+1)",
+              "body": "$-\\frac{1}{2}\\ln(x^2+1)$"
+            },
+            {
+              "step": 9,
+              "title": "Tercera integral (sustitución u=x²+1)",
+              "body": "$u=x^2+1$, $du=2x\\,dx$. $-\\frac{1}{2}\\int \\frac{du}{u^2} = \\frac{1}{2u} = \\frac{1}{2(x^2+1)}$"
+            },
+            {
+              "step": 10,
+              "title": "Combinar resultados",
+              "body": "$\\ln|x| - \\frac{1}{2}\\ln(x^2+1) + \\frac{1}{2(x^2+1)} + C = \\ln\\left|\\frac{x}{\\sqrt{x^2+1}}\\right| + \\frac{1}{2(x^2+1)} + C$"
+            }
+          ],
+          "final_answer": "\\ln|x| - \\frac{1}{2}\\ln(x^2+1) + \\frac{1}{2(x^2+1)} + C",
+          "tip": "Para factores cuadráticos repetidos $(x^2+1)^2$, necesitas un término para cada potencia: uno con denominador $x^2+1$ y otro con $(x^2+1)^2$, ambos con numeradores lineales."
+        },
+        {
+          "id": "N2-06",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^2+2x+3}{(x-1)^2(x^2+4)} \\, dx",
+          "hint": "Factor repetido lineal + factor simple.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición en fracciones parciales",
+              "body": "$\\frac{x^2+2x+3}{(x-1)^2(x^2+4)} = \\frac{A}{x-1} + \\frac{B}{(x-1)^2} + \\frac{Cx+D}{x^2+4}$"
+            },
+            {
+              "step": 2,
+              "title": "Igualar numeradores",
+              "body": "$x^2+2x+3 = A(x-1)(x^2+4) + B(x^2+4) + (Cx+D)(x-1)^2$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar en x=1 para encontrar B",
+              "body": "$x=1$: $1+2+3 = B(1+4) \\Rightarrow 6 = 5B \\Rightarrow B = \\frac{6}{5}$"
+            },
+            {
+              "step": 4,
+              "title": "Expandir y comparar coeficientes",
+              "body": "Expandiendo todo y agrupando: $x^3: A+C=0$; $x^2: -A+B-2C+D=1$; $x: 4A+C-2D=2$; cte: $-4A+4B+D=3$. Con $B=6/5$, resolvemos: $A=\\frac{8}{25}$, $C=-\\frac{8}{25}$, $D=\\frac{3}{25}$"
+            },
+            {
+              "step": 5,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{8/25}{x-1} + \\frac{6/5}{(x-1)^2} + \\frac{-8x/25 + 3/25}{x^2+4}$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar término a término",
+              "body": "$\\frac{8}{25}\\ln|x-1| - \\frac{6}{5}\\cdot\\frac{1}{x-1} - \\frac{8}{25}\\int\\frac{x}{x^2+4}\\,dx + \\frac{3}{25}\\int\\frac{1}{x^2+4}\\,dx$"
+            },
+            {
+              "step": 7,
+              "title": "Resolver las integrales restantes",
+              "body": "$-\\frac{8}{25}\\cdot\\frac{1}{2}\\ln(x^2+4) + \\frac{3}{25}\\cdot\\frac{1}{2}\\arctan\\left(\\frac{x}{2}\\right)$"
+            },
+            {
+              "step": 8,
+              "title": "Combinar todos los términos",
+              "body": "$\\frac{8}{25}\\ln|x-1| - \\frac{6}{5(x-1)} - \\frac{4}{25}\\ln(x^2+4) + \\frac{3}{50}\\arctan\\left(\\frac{x}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{8}{25}\\ln|x-1| - \\frac{6}{5(x-1)} - \\frac{4}{25}\\ln(x^2+4) + \\frac{3}{50}\\arctan\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Cuando hay un factor lineal repetido $(x-1)^2$ y un factor cuadrático irreducible $x^2+4$, la descomposición necesita tres términos. Este tipo de ejercicio es largo pero metódico."
+        },
+        {
+          "id": "N2-G1",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x^2-5x+9}{x^2-5x+6}\\,dx",
+          "hint": "El grado del numerador es igual al del denominador. Divide primero.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "División polinomial",
+              "body": "$\\frac{x^2-5x+9}{x^2-5x+6} = 1 + \\frac{3}{x^2-5x+6}$"
+            },
+            {
+              "step": 2,
+              "title": "Factorizar el denominador",
+              "body": "$x^2-5x+6 = (x-2)(x-3)$"
+            },
+            {
+              "step": 3,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{3}{(x-2)(x-3)} = \\frac{A}{x-2} + \\frac{B}{x-3}$. Resolviendo: $A=-3$, $B=3$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$\\int 1\\,dx - 3\\int\\frac{dx}{x-2} + 3\\int\\frac{dx}{x-3} = x - 3\\ln|x-2| + 3\\ln|x-3| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Simplificar logaritmos",
+              "body": "$x + 3\\ln\\left|\\frac{x-3}{x-2}\\right| + C$"
+            }
+          ],
+          "final_answer": "x + 3\\ln\\left|\\frac{x-3}{x-2}\\right| + C",
+          "tip": "Cuando los grados son iguales, la división siempre produce una constante (el cociente) más una fracción propia."
+        },
+        {
+          "id": "N2-G2",
+          "difficulty": 3,
+          "latex": "\\int \\frac{2x^2+41x-91}{(x+1)(x+4)(x-4)}\\,dx",
+          "hint": "Tres factores lineales distintos. Usa Heaviside.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{2x^2+41x-91}{(x+1)(x+4)(x-4)} = \\frac{A}{x+1} + \\frac{B}{x+4} + \\frac{C}{x-4}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar Heaviside",
+              "body": "$x=-1$: $2-41-91 = A(3)(-5) \\Rightarrow -130 = -15A \\Rightarrow A = \\frac{26}{3}$"
+            },
+            {
+              "step": 3,
+              "title": "Continuar con Heaviside",
+              "body": "$x=-4$: $32-164-91 = B(-3)(-8) \\Rightarrow -223 = 24B \\Rightarrow B = -\\frac{223}{24}$"
+            },
+            {
+              "step": 4,
+              "title": "Último coeficiente",
+              "body": "$x=4$: $32+164-91 = C(5)(8) \\Rightarrow 105 = 40C \\Rightarrow C = \\frac{21}{8}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$\\frac{26}{3}\\ln|x+1| - \\frac{223}{24}\\ln|x+4| + \\frac{21}{8}\\ln|x-4| + C$"
+            }
+          ],
+          "final_answer": "\\frac{26}{3}\\ln|x+1| - \\frac{223}{24}\\ln|x+4| + \\frac{21}{8}\\ln|x-4| + C",
+          "tip": "Heaviside es el método más rápido cuando todos los factores son lineales simples. Evalúa en cada raíz para despejar el coeficiente correspondiente."
+        },
+        {
+          "id": "N2-G3",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^2-8x+7}{(x^2-3x-10)^2}\\,dx",
+          "hint": "Factor cuadrático repetido. Descompón en cuatro términos.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar denominador",
+              "body": "$x^2-3x-10 = (x-5)(x+2)$, por tanto el denominador es $(x-5)^2(x+2)^2$"
+            },
+            {
+              "step": 2,
+              "title": "Descomposición completa",
+              "body": "$\\frac{x^2-8x+7}{(x-5)^2(x+2)^2} = \\frac{A}{x-5} + \\frac{B}{(x-5)^2} + \\frac{C}{x+2} + \\frac{D}{(x+2)^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Coeficientes por evaluación",
+              "body": "$x=5$: $-8 = 49B \\Rightarrow B = -\\frac{8}{49}$. $x=-2$: $27 = 49D \\Rightarrow D = \\frac{27}{49}$"
+            },
+            {
+              "step": 4,
+              "title": "Resolver A y C",
+              "body": "Expandiendo y comparando coeficientes: $A = \\frac{30}{343}$, $C = -\\frac{30}{343}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$\\frac{30}{343}\\ln|x-5| + \\frac{8}{49(x-5)} - \\frac{30}{343}\\ln|x+2| - \\frac{27}{49(x+2)} + C$"
+            },
+            {
+              "step": 6,
+              "title": "Agrupar logaritmos",
+              "body": "$\\frac{30}{343}\\ln\\left|\\frac{x-5}{x+2}\\right| + \\frac{8}{49(x-5)} - \\frac{27}{49(x+2)} + C$"
+            }
+          ],
+          "final_answer": "\\frac{30}{343}\\ln\\left|\\frac{x-5}{x+2}\\right| + \\frac{8}{49(x-5)} - \\frac{27}{49(x+2)} + C",
+          "tip": "Para factores lineales repetidos, necesitas un término por cada potencia. Los términos cuadráticos en el denominador integran a logaritmo, mientras que los de orden superior integran a potencias negativas."
+        },
+        {
+          "id": "N2-G4",
+          "difficulty": 4,
+          "latex": "\\int \\frac{2x-3}{(x^2-3x+2)^3}\\,dx",
+          "hint": "Observa que el numerador es la derivada del argumento del denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar la derivada",
+              "body": "$\\frac{d}{dx}(x^2-3x+2) = 2x-3$, que coincide exactamente con el numerador."
+            },
+            {
+              "step": 2,
+              "title": "Sustitución directa",
+              "body": "Sea $u = x^2-3x+2$, $du = (2x-3)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\int \\frac{du}{u^3} = \\int u^{-3}\\,du = \\frac{u^{-2}}{-2} + C = -\\frac{1}{2u^2} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$-\\frac{1}{2(x^2-3x+2)^2} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2(x^2-3x+2)^2} + C",
+          "tip": "Siempre verifica si el numerador es un múltiplo de la derivada del denominador antes de hacer fracciones parciales. Ahorrarás mucho trabajo."
+        },
+        {
+          "id": "N2-G5",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x^3+x+1}{x(x^2+1)}\\,dx",
+          "hint": "Divide primero (grado num = grado den).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "División polinomial",
+              "body": "$\\frac{x^3+x+1}{x^3+x} = 1 + \\frac{1}{x^3+x} = 1 + \\frac{1}{x(x^2+1)}$"
+            },
+            {
+              "step": 2,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{x(x^2+1)} = \\frac{A}{x} + \\frac{Bx+C}{x^2+1}$. Resolviendo: $A=1$, $B=-1$, $C=0$"
+            },
+            {
+              "step": 3,
+              "title": "Escribir la descomposición",
+              "body": "$1 + \\frac{1}{x} - \\frac{x}{x^2+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$\\int 1\\,dx + \\int\\frac{1}{x}\\,dx - \\int\\frac{x}{x^2+1}\\,dx = x + \\ln|x| - \\frac{1}{2}\\ln(x^2+1) + C$"
+            }
+          ],
+          "final_answer": "x + \\ln|x| - \\frac{1}{2}\\ln(x^2+1) + C",
+          "tip": "Cuando el denominador tiene un factor lineal simple y un cuadrático irreducible, el numerador del término cuadrático es lineal ($Bx+C$)."
+        },
+        {
+          "id": "N2-G6",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x}{(x-1)(x+2)^2}\\,dx",
+          "hint": "Factor simple + factor repetido.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{x}{(x-1)(x+2)^2} = \\frac{A}{x-1} + \\frac{B}{x+2} + \\frac{C}{(x+2)^2}$"
+            },
+            {
+              "step": 2,
+              "title": "Resolver coeficientes",
+              "body": "$x = A(x+2)^2 + B(x-1)(x+2) + C(x-1)$. $x=1$: $1=9A \\Rightarrow A=\\frac{1}{9}$. $x=-2$: $-2=-3C \\Rightarrow C=\\frac{2}{3}$. $x=0$: $0=4A-2B-C \\Rightarrow B=-\\frac{1}{9}$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{1}{9}\\ln|x-1| - \\frac{1}{9}\\ln|x+2| + \\frac{2}{3}\\cdot\\frac{-1}{x+2} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$\\frac{1}{9}\\ln\\left|\\frac{x-1}{x+2}\\right| - \\frac{2}{3(x+2)} + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{9}\\ln\\left|\\frac{x-1}{x+2}\\right| - \\frac{2}{3(x+2)} + C",
+          "tip": "Para un factor repetido $(x+2)^2$, necesitas dos términos: uno con $(x+2)$ y otro con $(x+2)^2$."
+        },
+        {
+          "id": "N2-G7",
+          "difficulty": 4,
+          "latex": "\\int \\frac{3x^2+1}{(x-1)(x^2+x+1)}\\,dx",
+          "hint": "Factor lineal + cuadrático irreducible (discriminante < 0).",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{3x^2+1}{(x-1)(x^2+x+1)} = \\frac{A}{x-1} + \\frac{Bx+C}{x^2+x+1}$"
+            },
+            {
+              "step": 2,
+              "title": "Resolver coeficientes",
+              "body": "$3x^2+1 = A(x^2+x+1) + (Bx+C)(x-1)$. $x=1$: $4=3A \\Rightarrow A=\\frac{4}{3}$. Comparando coeficientes: $B=\\frac{5}{3}$, $C=\\frac{1}{3}$"
+            },
+            {
+              "step": 3,
+              "title": "Separar la segunda fracción",
+              "body": "$\\frac{5x+1}{3(x^2+x+1)} = \\frac{5}{3}\\cdot\\frac{x+\\frac{1}{5}}{x^2+x+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Reescribir el numerador",
+              "body": "$5x+1 = \\frac{5}{2}(2x+1) - \\frac{3}{2}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar cada parte",
+              "body": "$\\frac{4}{3}\\ln|x-1| + \\frac{5}{6}\\ln(x^2+x+1) - \\frac{1}{2}\\int\\frac{dx}{(x+\\frac{1}{2})^2+\\frac{3}{4}}$"
+            },
+            {
+              "step": 6,
+              "title": "Resolver la integral arctan",
+              "body": "$-\\frac{1}{2}\\cdot\\frac{2}{\\sqrt{3}}\\arctan\\left(\\frac{2x+1}{\\sqrt{3}}\\right) = -\\frac{\\sqrt{3}}{3}\\arctan\\left(\\frac{2x+1}{\\sqrt{3}}\\right)$"
+            }
+          ],
+          "final_answer": "\\frac{4}{3}\\ln|x-1| + \\frac{5}{6}\\ln(x^2+x+1) - \\frac{\\sqrt{3}}{3}\\arctan\\left(\\frac{2x+1}{\\sqrt{3}}\\right) + C",
+          "tip": "Para el término cuadrático, separa el numerador en la derivada del denominador (que da logaritmo) más una constante (que da arctan)."
+        },
+        {
+          "id": "N2-G8",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^4}{(x^2-1)(x+2)}\\,dx",
+          "hint": "División primero (grado num > grado den) + parciales complejos.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "División polinomial",
+              "body": "$\\frac{x^4}{x^3+2x^2-x-2} = x - 2 + \\frac{5x^2-4}{(x-1)(x+1)(x+2)}$"
+            },
+            {
+              "step": 2,
+              "title": "Fracciones parciales del residuo",
+              "body": "$\\frac{5x^2-4}{(x-1)(x+1)(x+2)} = \\frac{A}{x-1} + \\frac{B}{x+1} + \\frac{C}{x+2}$"
+            },
+            {
+              "step": 3,
+              "title": "Resolver coeficientes",
+              "body": "$x=1$: $1=6A \\Rightarrow A=\\frac{1}{6}$. $x=-1$: $1=-2B \\Rightarrow B=-\\frac{1}{2}$. $x=-2$: $16=3C \\Rightarrow C=\\frac{16}{3}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar todo",
+              "body": "$\\frac{x^2}{2} - 2x + \\frac{1}{6}\\ln|x-1| - \\frac{1}{2}\\ln|x+1| + \\frac{16}{3}\\ln|x+2| + C$"
+            }
+          ],
+          "final_answer": "\\frac{x^2}{2} - 2x + \\frac{1}{6}\\ln|x-1| - \\frac{1}{2}\\ln|x+1| + \\frac{16}{3}\\ln|x+2| + C",
+          "tip": "Cuando el grado del numerador es mayor, el cociente de la división polinomial se integra directamente término a término."
+        },
+        {
+          "id": "N2-G9",
+          "difficulty": 3,
+          "latex": "\\int \\frac{e^t}{e^{2t}+3e^t+2}\\,dt",
+          "hint": "Sustitución $u=e^t$ + parciales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "Sea $u = e^t$, $du = e^t\\,dt$. La integral se convierte en $\\int \\frac{du}{u^2+3u+2}$"
+            },
+            {
+              "step": 2,
+              "title": "Factorizar",
+              "body": "$u^2+3u+2 = (u+1)(u+2)$"
+            },
+            {
+              "step": 3,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{(u+1)(u+2)} = \\frac{1}{u+1} - \\frac{1}{u+2}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar y volver a t",
+              "body": "$\\ln|u+1| - \\ln|u+2| + C = \\ln\\left(\\frac{e^t+1}{e^t+2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\ln\\left(\\frac{e^t+1}{e^t+2}\\right) + C",
+          "tip": "La sustitución $u=e^t$ es estándar cuando aparecen combinaciones de $e^t$ en numerador y denominador."
+        },
+        {
+          "id": "N2-G10",
+          "difficulty": 4,
+          "latex": "\\int \\frac{14x^3+24x}{(x^2+1)(x^2+2)}\\,dx",
+          "hint": "Dos cuadráticos irreducibles — descomposición con $Ax+B$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Descomposición",
+              "body": "$\\frac{14x^3+24x}{(x^2+1)(x^2+2)} = \\frac{Ax+B}{x^2+1} + \\frac{Cx+D}{x^2+2}$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir y comparar",
+              "body": "$14x^3+24x = (Ax+B)(x^2+2) + (Cx+D)(x^2+1)$. Comparando coeficientes: $A=10$, $B=0$, $C=4$, $D=0$"
+            },
+            {
+              "step": 3,
+              "title": "Escribir la descomposición",
+              "body": "$\\frac{10x}{x^2+1} + \\frac{4x}{x^2+2}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$10\\cdot\\frac{1}{2}\\ln(x^2+1) + 4\\cdot\\frac{1}{2}\\ln(x^2+2) + C = 5\\ln(x^2+1) + 2\\ln(x^2+2) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Simplificar",
+              "body": "$\\ln\\left[(x^2+1)^5(x^2+2)^2\\right] + C$"
+            }
+          ],
+          "final_answer": "\\ln\\left[(x^2+1)^5(x^2+2)^2\\right] + C",
+          "tip": "Cuando el numerador es impar y el denominador solo tiene potencias pares de $x$, los coeficientes constantes $B$ y $D$ suelen anularse, simplificando mucho el álgebra."
+        }
+      ]
+    },
+    {
+      "name": "Sustitución Trigonométrica y Completar Cuadrados",
+      "definition": "Para integrales con $\\sqrt{a^2-x^2}$ usar $x=a\\sen(\\theta)$; con $\\sqrt{x^2+a^2}$ usar $x=a\\tan(\\theta)$; con $\\sqrt{x^2-a^2}$ usar $x=a\\sec(\\theta)$. Cuando el trinomio no está completamente cuadrado, completar primero. También incluye separación de integrales cuando el numerador contiene la derivada del radicando.",
+      "tip": "Identifica la forma del radicando antes de sustituir. Si hay un término lineal en el numerador que es la derivada del radicando, separa la integral en dos partes: una logarítmica y otra trigonométrica. Para completar cuadrados con a≠1, factoriza a primero.",
+      "exercises": [
+        {
+          "id": "N2-07",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{x^2+2x+5}",
+          "hint": "$x^2+2x+5 = (x+1)^2+4$. $u = x+1 = 2\\tan(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Completar el cuadrado en el denominador",
+              "body": "$x^2 + 2x + 5 = (x^2 + 2x + 1) + 4 = (x+1)^2 + 4$"
+            },
+            {
+              "step": 2,
+              "title": "Hacer la sustitución $u = x+1$",
+              "body": "$u = x+1$, $du = dx$. La integral se convierte en: $\\int \\frac{du}{u^2 + 4} = \\int \\frac{du}{u^2 + 2^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Identificar la forma y aplicar sustitución trigonométrica",
+              "body": "Tenemos $\\sqrt{u^2 + 2^2}$, que corresponde al caso $\\sqrt{x^2+a^2}$. Sustituimos: $u = 2\\tan(\\theta)$, $du = 2\\sec^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\sec^2(\\theta)\\,d\\theta}{4\\tan^2(\\theta) + 4} = \\int \\frac{2\\sec^2(\\theta)\\,d\\theta}{4(\\tan^2(\\theta)+1)} = \\int \\frac{2\\sec^2(\\theta)\\,d\\theta}{4\\sec^2(\\theta)} = \\int \\frac{d\\theta}{2} = \\frac{\\theta}{2} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer las sustituciones",
+              "body": "De $u = 2\\tan(\\theta)$, tenemos $\\tan(\\theta) = \\frac{u}{2} = \\frac{x+1}{2}$, por lo tanto $\\theta = \\arctan\\left(\\frac{x+1}{2}\\right)$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$\\frac{1}{2}\\arctan\\left(\\frac{x+1}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arctan\\left(\\frac{x+1}{2}\\right) + C",
+          "tip": "Memoriza la fórmula directa: $\\int \\frac{dx}{(x-h)^2+a^2} = \\frac{1}{a}\\arctan\\left(\\frac{x-h}{a}\\right) + C$. Aquí $h=-1$ y $a=2$."
+        },
+        {
+          "id": "N2-08",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{\\sqrt{3-2x-x^2}}",
+          "hint": "$3-2x-x^2 = 4-(x+1)^2$. $u = x+1 = 2\\sen(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reordenar y completar el cuadrado",
+              "body": "$3 - 2x - x^2 = -(x^2 + 2x) + 3 = -(x^2 + 2x + 1) + 3 + 1 = -(x+1)^2 + 4 = 4 - (x+1)^2$"
+            },
+            {
+              "step": 2,
+              "title": "Hacer la sustitución $u = x+1$",
+              "body": "$u = x+1$, $du = dx$. La integral se convierte en: $\\int \\frac{du}{\\sqrt{4 - u^2}} = \\int \\frac{du}{\\sqrt{2^2 - u^2}}$"
+            },
+            {
+              "step": 3,
+              "title": "Identificar la forma y aplicar sustitución trigonométrica",
+              "body": "Tenemos $\\sqrt{2^2 - u^2}$, que corresponde al caso $\\sqrt{a^2-x^2}$. Sustituimos: $u = 2\\sen(\\theta)$, $du = 2\\cos(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\cos(\\theta)\\,d\\theta}{\\sqrt{4 - 4\\sen^2(\\theta)}} = \\int \\frac{2\\cos(\\theta)\\,d\\theta}{2\\cos(\\theta)} = \\int d\\theta = \\theta + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer las sustituciones",
+              "body": "De $u = 2\\sen(\\theta)$, tenemos $\\sen(\\theta) = \\frac{u}{2} = \\frac{x+1}{2}$, por lo tanto $\\theta = \\arcsen\\left(\\frac{x+1}{2}\\right)$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$\\arcsen\\left(\\frac{x+1}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\arcsen\\left(\\frac{x+1}{2}\\right) + C",
+          "tip": "Cuando completas cuadrados y el coeficiente de $x^2$ es negativo, factoriza el signo negativo PRIMERO: $-x^2 - 2x + 3 = -(x^2 + 2x) + 3$. Luego completa el cuadrado dentro del paréntesis."
+        },
+        {
+          "id": "N2-09",
+          "difficulty": 4,
+          "latex": "\\int \\frac{2x-3}{\\sqrt{x^2-4x+5}} \\, dx",
+          "hint": "Separa: derivada del argumento / raíz + constante / raíz.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Completar el cuadrado en el denominador",
+              "body": "$x^2 - 4x + 5 = (x^2 - 4x + 4) + 1 = (x-2)^2 + 1$"
+            },
+            {
+              "step": 2,
+              "title": "Separar el numerador en dos partes",
+              "body": "Notamos que la derivada de $x^2 - 4x + 5$ es $2x - 4$. Escribimos: $2x - 3 = (2x - 4) + 1$. Entonces: $\\int \\frac{2x-3}{\\sqrt{x^2-4x+5}}\\,dx = \\int \\frac{2x-4}{\\sqrt{x^2-4x+5}}\\,dx + \\int \\frac{1}{\\sqrt{x^2-4x+5}}\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución directa)",
+              "body": "Sea $u = x^2 - 4x + 5$, $du = (2x-4)\\,dx$. $\\int \\frac{du}{\\sqrt{u}} = \\int u^{-1/2}\\,du = 2u^{1/2} = 2\\sqrt{x^2-4x+5}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (completar cuadrados + sustitución trigonométrica)",
+              "body": "$\\int \\frac{dx}{\\sqrt{(x-2)^2+1}}$. Sea $u = x-2$, $du = dx$. $\\int \\frac{du}{\\sqrt{u^2+1}}$"
+            },
+            {
+              "step": 5,
+              "title": "Sustitución trigonométrica para la segunda integral",
+              "body": "$u = \\tan(\\theta)$, $du = \\sec^2(\\theta)\\,d\\theta$. $\\sqrt{u^2+1} = \\sec(\\theta)$. $\\int \\frac{\\sec^2(\\theta)\\,d\\theta}{\\sec(\\theta)} = \\int \\sec(\\theta)\\,d\\theta = \\ln|\\sec(\\theta)+\\tan(\\theta)|$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer la sustitución trigonométrica",
+              "body": "$\\tan(\\theta) = u = x-2$, $\\sec(\\theta) = \\sqrt{(x-2)^2+1} = \\sqrt{x^2-4x+5}$. Resultado: $\\ln|\\sqrt{x^2-4x+5} + x - 2|$"
+            },
+            {
+              "step": 7,
+              "title": "Combinar ambas integrales",
+              "body": "$2\\sqrt{x^2-4x+5} + \\ln|\\sqrt{x^2-4x+5} + x - 2| + C$"
+            }
+          ],
+          "final_answer": "2\\sqrt{x^2-4x+5} + \\ln|\\sqrt{x^2-4x+5} + x - 2| + C",
+          "tip": "Cuando el numerador contiene la derivada del argumento de la raíz (más una constante), siempre separa en dos integrales: una que resuelve por sustitución directa (la parte con la derivada) y otra que requiere completar cuadrados + sustitución trigonométrica (la parte constante)."
+        },
+        {
+          "id": "N2-G11",
+          "difficulty": 3,
+          "latex": "\\int \\frac{2x-1}{\\sqrt{1-4x^2}}\\,dx",
+          "hint": "Separa en dos integrales: la derivada del radicando sobre la raíz, y la constante sobre la raíz.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar la fracción",
+              "body": "$\\int \\frac{2x}{\\sqrt{1-4x^2}}\\,dx - \\int \\frac{1}{\\sqrt{1-4x^2}}\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Primera integral (sustitución directa)",
+              "body": "Sea $u = 1-4x^2$, $du = -8x\\,dx \\Rightarrow x\\,dx = -\\frac{du}{8}$. Entonces: $\\int \\frac{2x}{\\sqrt{1-4x^2}}\\,dx = 2\\cdot\\left(-\\frac{1}{8}\\right)\\int u^{-1/2}\\,du = -\\frac{1}{4}\\cdot 2u^{1/2} = -\\frac{1}{2}\\sqrt{1-4x^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Segunda integral (sustitución trigonométrica)",
+              "body": "Sea $2x = \\sen(\\theta)$, $2\\,dx = \\cos(\\theta)\\,d\\theta$, $\\sqrt{1-4x^2} = \\cos(\\theta)$. Entonces: $\\int \\frac{1}{\\sqrt{1-4x^2}}\\,dx = \\int \\frac{\\frac{1}{2}\\cos(\\theta)\\,d\\theta}{\\cos(\\theta)} = \\frac{\\theta}{2} = \\frac{1}{2}\\arcsen(2x)$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar resultados",
+              "body": "$-\\frac{1}{2}\\sqrt{1-4x^2} - \\frac{1}{2}\\arcsen(2x) + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\sqrt{1-4x^2} - \\frac{1}{2}\\arcsen(2x) + C",
+          "tip": "Cuando el numerador tiene la derivada del radicando (hasta constante), esa parte se resuelve por sustitución directa. La parte restante siempre es una forma arcsen o arctan."
+        },
+        {
+          "id": "N2-G12",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{x\\sqrt{x^2-1}}",
+          "hint": "Caso $\\sqrt{x^2-a^2}$ con $a=1$. Usa $x = \\sec(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $x = \\sec(\\theta)$, $dx = \\sec(\\theta)\\tan(\\theta)\\,d\\theta$. $\\sqrt{x^2-1} = \\sqrt{\\sec^2(\\theta)-1} = \\tan(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\sec(\\theta)\\tan(\\theta)\\,d\\theta}{\\sec(\\theta)\\tan(\\theta)} = \\int d\\theta = \\theta + C$"
+            },
+            {
+              "step": 3,
+              "title": "Deshacer la sustitución",
+              "body": "$\\theta = \\arcsec(x) = \\arccos\\left(\\frac{1}{x}\\right)$"
+            }
+          ],
+          "final_answer": "\\arcsec(x) + C",
+          "tip": "También puedes resolverlo con $x = \\frac{1}{t}$ (sustitución de Euler inversa), pero $x = \\sec(\\theta)$ es la más directa para este caso."
+        },
+        {
+          "id": "N2-G13",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x^2\\sqrt{4-x^2}}",
+          "hint": "Caso $\\sqrt{a^2-x^2}$ con $a=2$. Usa $x = 2\\sen(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $x = 2\\sen(\\theta)$, $dx = 2\\cos(\\theta)\\,d\\theta$. $\\sqrt{4-x^2} = 2\\cos(\\theta)$, $x^2 = 4\\sen^2(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\cos(\\theta)\\,d\\theta}{4\\sen^2(\\theta)\\cdot 2\\cos(\\theta)} = \\int \\frac{d\\theta}{4\\sen^2(\\theta)} = \\frac{1}{4}\\int \\csc^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{1}{4}(-\\cot(\\theta)) + C = -\\frac{1}{4}\\cot(\\theta) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Deshacer la sustitución",
+              "body": "$\\sen(\\theta) = \\frac{x}{2}$, $\\cos(\\theta) = \\frac{\\sqrt{4-x^2}}{2}$, $\\cot(\\theta) = \\frac{\\sqrt{4-x^2}}{x}$"
+            },
+            {
+              "step": 5,
+              "title": "Resultado final",
+              "body": "$-\\frac{\\sqrt{4-x^2}}{4x} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\sqrt{4-x^2}}{4x} + C",
+          "tip": "Cuando hay $x^2$ fuera de la raíz en el denominador, la sustitución trigonométrica produce una potencia de seno o coseno que suele simplificarse con identidades trigonométricas."
+        },
+        {
+          "id": "N2-G14",
+          "difficulty": 4,
+          "latex": "\\int \\frac{\\sqrt{x^2+1}}{x}\\,dx",
+          "hint": "Caso $\\sqrt{x^2+a^2}$ con $a=1$. Usa $x = \\tan(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $x = \\tan(\\theta)$, $dx = \\sec^2(\\theta)\\,d\\theta$. $\\sqrt{x^2+1} = \\sec(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar el integrando",
+              "body": "$\\frac{\\sec(\\theta)}{\\tan(\\theta)} = \\frac{1/\\cos(\\theta)}{\\sen(\\theta)/\\cos(\\theta)} = \\csc(\\theta)$. La integral se convierte en: $\\int \\csc(\\theta)\\sec^2(\\theta)\\,d\\theta = \\int \\csc(\\theta)(1+\\tan^2(\\theta))\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\csc(\\theta)\\,d\\theta + \\int \\csc(\\theta)\\tan^2(\\theta)\\,d\\theta = \\int \\csc(\\theta)\\,d\\theta + \\int \\frac{\\sen(\\theta)}{\\cos^2(\\theta)}\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar cada parte",
+              "body": "$\\ln|\\csc(\\theta)-\\cot(\\theta)| + \\sec(\\theta) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer sustitución",
+              "body": "$\\csc(\\theta) = \\frac{\\sqrt{x^2+1}}{x}$, $\\cot(\\theta) = \\frac{1}{x}$, $\\sec(\\theta) = \\sqrt{x^2+1}$"
+            },
+            {
+              "step": 6,
+              "title": "Resultado final",
+              "body": "$\\sqrt{x^2+1} + \\ln\\left|\\frac{\\sqrt{x^2+1}-1}{x}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\sqrt{x^2+1} + \\ln\\left|\\frac{\\sqrt{x^2+1}-1}{x}\\right| + C",
+          "tip": "También se puede resolver con la sustitución algebraica $u = \\sqrt{x^2+1}$, que transforma la integral en $\\int \\frac{u^2}{u^2-1}\\,du$ y luego en $u + \\frac{1}{2}\\ln\\left|\\frac{u-1}{u+1}\\right|$."
+        },
+        {
+          "id": "N2-G15",
+          "difficulty": 2,
+          "latex": "\\int \\sqrt{1-x^2}\\,dx",
+          "hint": "Caso clásico $\\sqrt{a^2-x^2}$ con $a=1$. Usa $x = \\sen(\\theta)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $x = \\sen(\\theta)$, $dx = \\cos(\\theta)\\,d\\theta$. $\\sqrt{1-x^2} = \\cos(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar la integral",
+              "body": "$\\int \\cos(\\theta)\\cdot\\cos(\\theta)\\,d\\theta = \\int \\cos^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar identidad del ángulo doble",
+              "body": "$\\cos^2(\\theta) = \\frac{1+\\cos(2\\theta)}{2}$. Entonces: $\\int \\frac{1+\\cos(2\\theta)}{2}\\,d\\theta = \\frac{\\theta}{2} + \\frac{\\sen(2\\theta)}{4} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar sen(2θ)",
+              "body": "$\\sen(2\\theta) = 2\\sen(\\theta)\\cos(\\theta) = 2x\\sqrt{1-x^2}$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer la sustitución",
+              "body": "$\\theta = \\arcsen(x)$. Resultado: $\\frac{1}{2}\\arcsen(x) + \\frac{x\\sqrt{1-x^2}}{2} + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arcsen(x) + \\frac{x\\sqrt{1-x^2}}{2} + C",
+          "tip": "Esta integral representa el área de un sector circular. Es uno de los casos clásicos que debes memorizar."
+        },
+        {
+          "id": "N2-G16",
+          "difficulty": 2,
+          "latex": "\\int \\frac{dx}{x^2+2x}",
+          "hint": "Completar cuadrados o fracciones parciales directas.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Completar el cuadrado",
+              "body": "$x^2+2x = (x+1)^2 - 1$"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución u = x+1",
+              "body": "Sea $u = x+1$, $du = dx$. La integral se convierte en: $\\int \\frac{du}{u^2-1}$"
+            },
+            {
+              "step": 3,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{u^2-1} = \\frac{1}{(u-1)(u+1)} = \\frac{1/2}{u-1} - \\frac{1/2}{u+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{1}{2}\\ln|u-1| - \\frac{1}{2}\\ln|u+1| + C = \\frac{1}{2}\\ln\\left|\\frac{u-1}{u+1}\\right| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{1}{2}\\ln\\left|\\frac{x}{x+2}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\ln\\left|\\frac{x}{x+2}\\right| + C",
+          "tip": "También puedes hacer fracciones parciales directamente sobre $x(x+2)$ sin completar cuadrados, pero completar cuadrados es útil cuando el denominador no factoriza tan obviamente."
+        },
+        {
+          "id": "N2-G17",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{3x^2-x+1}",
+          "hint": "Completar cuadrados + arctan.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar el coeficiente de x²",
+              "body": "$3x^2-x+1 = 3\\left(x^2 - \\frac{x}{3}\\right) + 1$"
+            },
+            {
+              "step": 2,
+              "title": "Completar el cuadrado dentro del paréntesis",
+              "body": "$x^2 - \\frac{x}{3} + \\frac{1}{36} - \\frac{1}{36} = \\left(x-\\frac{1}{6}\\right)^2 - \\frac{1}{36}$. Entonces: $3\\left(x-\\frac{1}{6}\\right)^2 - \\frac{1}{12} + 1 = 3\\left(x-\\frac{1}{6}\\right)^2 + \\frac{11}{12}$"
+            },
+            {
+              "step": 3,
+              "title": "Reescribir la integral",
+              "body": "$\\int \\frac{dx}{3\\left(x-\\frac{1}{6}\\right)^2 + \\frac{11}{12}} = \\frac{1}{3}\\int \\frac{dx}{\\left(x-\\frac{1}{6}\\right)^2 + \\frac{11}{36}}$"
+            },
+            {
+              "step": 4,
+              "title": "Identificar la forma arctan",
+              "body": "Sea $u = x-\\frac{1}{6}$, $a = \\frac{\\sqrt{11}}{6}$. $\\frac{1}{3}\\int \\frac{du}{u^2+a^2} = \\frac{1}{3}\\cdot\\frac{1}{a}\\arctan\\left(\\frac{u}{a}\\right)$"
+            },
+            {
+              "step": 5,
+              "title": "Sustituir valores",
+              "body": "$\\frac{1}{3}\\cdot\\frac{6}{\\sqrt{11}}\\arctan\\left(\\frac{x-\\frac{1}{6}}{\\frac{\\sqrt{11}}{6}}\\right) = \\frac{2}{\\sqrt{11}}\\arctan\\left(\\frac{6x-1}{\\sqrt{11}}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{2}{\\sqrt{11}}\\arctan\\left(\\frac{6x-1}{\\sqrt{11}}\\right) + C",
+          "tip": "Cuando completas cuadrados con $a \\neq 1$, factoriza $a$ primero y luego completa el cuadrado dentro del paréntesis. La fórmula final es $\\frac{1}{a}\\cdot\\frac{1}{\\sqrt{k}}\\arctan\\left(\\frac{x-h}{\\sqrt{k/a}}\\right)$."
+        },
+        {
+          "id": "N2-G18",
+          "difficulty": 3,
+          "latex": "\\int \\frac{y}{(y^2+4)^{3/2}}\\,dy",
+          "hint": "Sustitución trigonométrica $y = 2\\tan(\\theta)$ o sustitución directa $u = y^2+4$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $y = 2\\tan(\\theta)$, $dy = 2\\sec^2(\\theta)\\,d\\theta$. $y^2+4 = 4\\sec^2(\\theta)$, $(y^2+4)^{3/2} = 8\\sec^3(\\theta)$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2\\tan(\\theta)\\cdot 2\\sec^2(\\theta)\\,d\\theta}{8\\sec^3(\\theta)} = \\frac{4}{8}\\int \\frac{\\tan(\\theta)}{\\sec(\\theta)}\\,d\\theta = \\frac{1}{2}\\int \\sen(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$-\\frac{1}{2}\\cos(\\theta) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Deshacer la sustitución",
+              "body": "$\\tan(\\theta) = \\frac{y}{2}$, $\\sec(\\theta) = \\frac{\\sqrt{y^2+4}}{2}$, $\\cos(\\theta) = \\frac{2}{\\sqrt{y^2+4}}$"
+            },
+            {
+              "step": 5,
+              "title": "Resultado final",
+              "body": "$-\\frac{1}{2}\\cdot\\frac{2}{\\sqrt{y^2+4}} + C = -\\frac{1}{\\sqrt{y^2+4}} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{\\sqrt{y^2+4}} + C",
+          "tip": "Aunque la sustitución trigonométrica funciona, este ejercicio es mucho más rápido con $u = y^2+4$, $du = 2y\\,dy$, que da directamente $-\\frac{1}{\\sqrt{u}} + C$. Usa la sustitución directa cuando el numerador sea un múltiplo de la derivada del radicando."
+        }
+      ]
+    },
+    {
+      "name": "Sustitución en Funciones Irracionales",
+      "definition": "Para eliminar raíces con diferentes índices, usa $t = \\sqrt[n]{x}$ donde $n$ es el mcm de todos los índices. Para raíces anidadas, sustituye desde la raíz más externa hacia adentro. Incluye sustituciones de Euler para raíces cuadráticas.",
+      "tip": "Cuando hay múltiples raíces de $x$ con diferentes índices, el mcm de los índices determina la sustitución. Para raíces compuestas como $\\sqrt{x-2}$, desplaza primero con $u=x-2$ antes de aplicar el mcm. Para raíces anidadas, sustituye desde la más externa.",
+      "exercises": [
+        {
+          "id": "N2-10",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{1+\\sqrt{x}}",
+          "hint": "$t = \\sqrt{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = \\sqrt{x} \\Rightarrow x = t^2$, $dx = 2t\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{2t\\,dt}{1+t} = 2\\int \\frac{t}{1+t}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Manipular algebraicamente",
+              "body": "$\\frac{t}{1+t} = \\frac{t+1-1}{1+t} = 1 - \\frac{1}{1+t}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$2\\int \\left(1 - \\frac{1}{1+t}\\right)dt = 2(t - \\ln|1+t|) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$2\\sqrt{x} - 2\\ln|1+\\sqrt{x}| + C$"
+            }
+          ],
+          "final_answer": "2\\sqrt{x} - 2\\ln|1+\\sqrt{x}| + C",
+          "tip": "Para $\\int \\frac{dx}{1+\\sqrt{x}}$, la sustitución $t=\\sqrt{x}$ es directa. La clave está en escribir $\\frac{t}{1+t} = 1 - \\frac{1}{1+t}$."
+        },
+        {
+          "id": "N2-11",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sqrt{x}}{1+x} \\, dx",
+          "hint": "$t = \\sqrt{x}$; $x = t^2$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = \\sqrt{x} \\Rightarrow x = t^2$, $dx = 2t\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{t}{1+t^2} \\cdot 2t\\,dt = 2\\int \\frac{t^2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Manipular algebraicamente",
+              "body": "$\\frac{t^2}{1+t^2} = \\frac{t^2+1-1}{1+t^2} = 1 - \\frac{1}{1+t^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$2\\int \\left(1 - \\frac{1}{1+t^2}\\right)dt = 2(t - \\arctan(t)) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$2\\sqrt{x} - 2\\arctan(\\sqrt{x}) + C$"
+            }
+          ],
+          "final_answer": "2\\sqrt{x} - 2\\arctan(\\sqrt{x}) + C",
+          "tip": "La técnica de sumar y restar 1 en el numerador ($\\frac{t^2+1-1}{1+t^2}$) es muy útil cuando el grado del numerador es igual al del denominador."
+        },
+        {
+          "id": "N2-12",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{\\sqrt{x} + \\sqrt[3]{x}}",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el mcm de los índices",
+              "body": "Los índices son 2 y 3. $\\text{mcm}(2,3) = 6$. Sustituimos $t = \\sqrt[6]{x} = x^{1/6}$"
+            },
+            {
+              "step": 2,
+              "title": "Expresar todo en términos de t",
+              "body": "$x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt{x} = t^3$, $\\sqrt[3]{x} = t^2$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{6t^5\\,dt}{t^3 + t^2} = 6\\int \\frac{t^5}{t^2(t+1)}\\,dt = 6\\int \\frac{t^3}{t+1}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Dividir polinomios",
+              "body": "$\\frac{t^3}{t+1} = t^2 - t + 1 - \\frac{1}{t+1}$ (dividiendo $t^3$ entre $t+1$)"
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$6\\int \\left(t^2 - t + 1 - \\frac{1}{t+1}\\right)dt = 6\\left(\\frac{t^3}{3} - \\frac{t^2}{2} + t - \\ln|t+1|\\right) + C$"
+            },
+            {
+              "step": 6,
+              "title": "Simplificar",
+              "body": "$2t^3 - 3t^2 + 6t - 6\\ln|t+1| + C$"
+            },
+            {
+              "step": 7,
+              "title": "Volver a x",
+              "body": "$t = \\sqrt[6]{x} = x^{1/6}$. $2x^{1/2} - 3x^{1/3} + 6x^{1/6} - 6\\ln|x^{1/6}+1| + C$"
+            }
+          ],
+          "final_answer": "2\\sqrt{x} - 3\\sqrt[3]{x} + 6\\sqrt[6]{x} - 6\\ln|\\sqrt[6]{x}+1| + C",
+          "tip": "Cuando hay raíces con diferentes índices, el mcm de los índices determina la sustitución. Aquí $\\sqrt{x} = x^{1/2}$ y $\\sqrt[3]{x} = x^{1/3}$, así que $t = x^{1/6}$ elimina ambas raíces."
+        },
+        {
+          "id": "N2-13",
+          "difficulty": 4,
+          "latex": "\\int \\frac{\\sqrt[3]{x}}{\\sqrt{x} + \\sqrt[4]{x}} \\, dx",
+          "hint": "mcm de 2, 3, 4 es 12. $t = \\sqrt[12]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el mcm de los índices",
+              "body": "Los índices son 2, 3 y 4. $\\text{mcm}(2,3,4) = 12$. Sustituimos $t = \\sqrt[12]{x} = x^{1/12}$"
+            },
+            {
+              "step": 2,
+              "title": "Expresar todo en términos de t",
+              "body": "$x = t^{12}$, $dx = 12t^{11}\\,dt$. $\\sqrt[3]{x} = t^4$, $\\sqrt{x} = t^6$, $\\sqrt[4]{x} = t^3$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{t^4}{t^6 + t^3} \\cdot 12t^{11}\\,dt = 12\\int \\frac{t^{15}}{t^3(t^3+1)}\\,dt = 12\\int \\frac{t^{12}}{t^3+1}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Dividir polinomios",
+              "body": "$\\frac{t^{12}}{t^3+1} = t^9 - t^6 + t^3 - 1 + \\frac{1}{t^3+1}$ (usando la fórmula para $\\frac{t^{3n}}{t^3+1}$)"
+            },
+            {
+              "step": 5,
+              "title": "Integrar los términos polinomiales",
+              "body": "$12\\int (t^9 - t^6 + t^3 - 1)\\,dt = 12\\left(\\frac{t^{10}}{10} - \\frac{t^7}{7} + \\frac{t^4}{4} - t\\right)$"
+            },
+            {
+              "step": 6,
+              "title": "Integral de $\\frac{1}{t^3+1}$",
+              "body": "$\\frac{1}{t^3+1} = \\frac{1}{(t+1)(t^2-t+1)} = \\frac{1/3}{t+1} + \\frac{-t/3+2/3}{t^2-t+1}$. Integrando: $\\frac{1}{3}\\ln|t+1| - \\frac{1}{6}\\ln(t^2-t+1) + \\frac{1}{\\sqrt{3}}\\arctan\\left(\\frac{2t-1}{\\sqrt{3}}\\right)$"
+            },
+            {
+              "step": 7,
+              "title": "Combinar y volver a x",
+              "body": "Expresar todo en términos de $t = x^{1/12}$ y simplificar"
+            }
+          ],
+          "final_answer": "12\\left(\\frac{x^{5/6}}{10} - \\frac{x^{7/12}}{7} + \\frac{x^{1/3}}{4} - x^{1/12}\\right) + 4\\ln|x^{1/12}+1| - 2\\ln(x^{1/6}-x^{1/12}+1) + \\frac{4\\sqrt{3}}{3}\\arctan\\left(\\frac{2x^{1/12}-1}{\\sqrt{3}}\\right) + C",
+          "tip": "Este es uno de los ejercicios más largos de sustitución irracional. La división de $t^{12}$ entre $t^3+1$ se hace notando que $t^{12} = (t^3)^4$ y usando la identidad $\\frac{u^n}{u+1}$."
+        },
+        {
+          "id": "N2-14",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x^{1/2}}{x^{1/3}+1} \\, dx",
+          "hint": "$t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar el mcm de los índices",
+              "body": "Los índices son 2 y 3. $\\text{mcm}(2,3) = 6$. Sustituimos $t = \\sqrt[6]{x} = x^{1/6}$"
+            },
+            {
+              "step": 2,
+              "title": "Expresar todo en términos de t",
+              "body": "$x = t^6$, $dx = 6t^5\\,dt$. $x^{1/2} = t^3$, $x^{1/3} = t^2$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{t^3}{t^2+1} \\cdot 6t^5\\,dt = 6\\int \\frac{t^8}{t^2+1}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Dividir polinomios",
+              "body": "$\\frac{t^8}{t^2+1} = t^6 - t^4 + t^2 - 1 + \\frac{1}{t^2+1}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar término a término",
+              "body": "$6\\int \\left(t^6 - t^4 + t^2 - 1 + \\frac{1}{t^2+1}\\right)dt = 6\\left(\\frac{t^7}{7} - \\frac{t^5}{5} + \\frac{t^3}{3} - t + \\arctan(t)\\right) + C$"
+            },
+            {
+              "step": 6,
+              "title": "Volver a x",
+              "body": "$\\frac{6}{7}x^{7/6} - \\frac{6}{5}x^{5/6} + 2x^{1/2} - 6x^{1/6} + 6\\arctan(x^{1/6}) + C$"
+            }
+          ],
+          "final_answer": "\\frac{6}{7}x^{7/6} - \\frac{6}{5}x^{5/6} + 2\\sqrt{x} - 6\\sqrt[6]{x} + 6\\arctan(\\sqrt[6]{x}) + C",
+          "tip": "La división $\\frac{t^8}{t^2+1}$ se puede hacer por división larga o notando el patrón alternante de signos: $t^6 - t^4 + t^2 - 1 + \\frac{1}{t^2+1}$."
+        },
+        {
+          "id": "N2-15",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{x \\sqrt{x^2+x+1}}",
+          "hint": "Sustitución $x = \\frac{1}{t}$ o sustitución de Euler.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución $x = \\frac{1}{t}$",
+              "body": "$x = \\frac{1}{t}$, $dx = -\\frac{1}{t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{-\\frac{1}{t^2}\\,dt}{\\frac{1}{t}\\sqrt{\\frac{1}{t^2}+\\frac{1}{t}+1}} = -\\int \\frac{dt}{t\\sqrt{\\frac{1+t+t^2}{t^2}}} = -\\int \\frac{dt}{t \\cdot \\frac{\\sqrt{t^2+t+1}}{|t|}}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar (asumiendo t>0)",
+              "body": "$-\\int \\frac{dt}{\\sqrt{t^2+t+1}}$"
+            },
+            {
+              "step": 4,
+              "title": "Completar el cuadrado en el denominador",
+              "body": "$t^2+t+1 = \\left(t+\\frac{1}{2}\\right)^2 + \\frac{3}{4}$"
+            },
+            {
+              "step": 5,
+              "title": "Sustitución trigonométrica",
+              "body": "$t + \\frac{1}{2} = \\frac{\\sqrt{3}}{2}\\tan(\\theta)$, $dt = \\frac{\\sqrt{3}}{2}\\sec^2(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar",
+              "body": "$-\\int \\frac{\\frac{\\sqrt{3}}{2}\\sec^2(\\theta)\\,d\\theta}{\\frac{\\sqrt{3}}{2}\\sec(\\theta)} = -\\int \\sec(\\theta)\\,d\\theta = -\\ln|\\sec(\\theta) + \\tan(\\theta)| + C$"
+            },
+            {
+              "step": 7,
+              "title": "Deshacer sustituciones",
+              "body": "$\\sec(\\theta) = \\frac{\\sqrt{t^2+t+1}}{\\sqrt{3}/2}$, $\\tan(\\theta) = \\frac{t+1/2}{\\sqrt{3}/2}$. Luego sustituir $t = \\frac{1}{x}$"
+            },
+            {
+              "step": 8,
+              "title": "Resultado final simplificado",
+              "body": "$-\\ln\\left|\\frac{2\\sqrt{x^2+x+1} + 2x + 1}{x}\\right| + C = \\ln\\left|\\frac{x}{2\\sqrt{x^2+x+1} + 2x + 1}\\right| + C$"
+            }
+          ],
+          "final_answer": "-\\ln\\left|\\frac{2\\sqrt{x^2+x+1} + 2x + 1}{x}\\right| + C",
+          "tip": "La sustitución $x = \\frac{1}{t}$ es útil cuando hay $x$ multiplicando una raíz cuadrática. También se puede resolver con sustitución de Euler: $\\sqrt{x^2+x+1} = t - x$."
+        },
+        {
+          "id": "N2-G19",
+          "difficulty": 4,
+          "latex": "\\int \\sqrt{\\frac{x-1}{x+1}}\\,dx",
+          "hint": "Racionaliza multiplicando por $\\frac{\\sqrt{x-1}}{\\sqrt{x-1}}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Racionalizar el integrando",
+              "body": "$\\sqrt{\\frac{x-1}{x+1}} = \\frac{\\sqrt{x-1}}{\\sqrt{x+1}} \\cdot \\frac{\\sqrt{x-1}}{\\sqrt{x-1}} = \\frac{x-1}{\\sqrt{x^2-1}}$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\frac{x}{\\sqrt{x^2-1}}\\,dx - \\int \\frac{1}{\\sqrt{x^2-1}}\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución directa)",
+              "body": "Sea $u = x^2-1$, $du = 2x\\,dx$. $\\frac{1}{2}\\int u^{-1/2}\\,du = \\sqrt{u} = \\sqrt{x^2-1}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (forma estándar)",
+              "body": "$\\int \\frac{1}{\\sqrt{x^2-1}}\\,dx = \\ln\\left|x + \\sqrt{x^2-1}\\right|$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\sqrt{x^2-1} - \\ln\\left|x + \\sqrt{x^2-1}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\sqrt{x^2-1} - \\ln\\left|x + \\sqrt{x^2-1}\\right| + C",
+          "tip": "Multiplicar por el conjugado transforma la raíz de fracción en una diferencia de términos manejables: uno con sustitución directa y otro con forma logarítmica estándar."
+        },
+        {
+          "id": "N2-G20",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x+3}{x^2\\sqrt{2x+3}}\\,dx",
+          "hint": "Separa en $\\int\\frac{dx}{x\\sqrt{2x+3}} + 3\\int\\frac{dx}{x^2\\sqrt{2x+3}}$ y usa la fórmula de reducción para la segunda.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar la fracción",
+              "body": "$\\frac{x+3}{x^2\\sqrt{2x+3}} = \\frac{1}{x\\sqrt{2x+3}} + \\frac{3}{x^2\\sqrt{2x+3}}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar fórmula de reducción",
+              "body": "$\\int \\frac{dx}{x^2\\sqrt{ax+b}} = -\\frac{\\sqrt{ax+b}}{bx} - \\frac{a}{2b}\\int\\frac{dx}{x\\sqrt{ax+b}}$. Con $a=2$, $b=3$: $\\int\\frac{dx}{x^2\\sqrt{2x+3}} = -\\frac{\\sqrt{2x+3}}{3x} - \\frac{1}{3}\\int\\frac{dx}{x\\sqrt{2x+3}}$"
+            },
+            {
+              "step": 3,
+              "title": "Sustituir en la integral original",
+              "body": "$I = \\int\\frac{dx}{x\\sqrt{2x+3}} + 3\\left(-\\frac{\\sqrt{2x+3}}{3x} - \\frac{1}{3}\\int\\frac{dx}{x\\sqrt{2x+3}}\\right)$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$I = \\int\\frac{dx}{x\\sqrt{2x+3}} - \\frac{\\sqrt{2x+3}}{x} - \\int\\frac{dx}{x\\sqrt{2x+3}} = -\\frac{\\sqrt{2x+3}}{x} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\sqrt{2x+3}}{x} + C",
+          "tip": "Las integrales de la forma $\\int\\frac{dx}{x^n\\sqrt{ax+b}}$ satisfacen fórmulas de reducción. Al separar el numerador $x+3$, las dos integrales se cancelan mágicamente."
+        },
+        {
+          "id": "N2-G21",
+          "difficulty": 4,
+          "latex": "\\int \\frac{x-\\sqrt{x}}{x+\\sqrt[3]{x}}\\,dx",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/6}$, $x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt{x}=t^3$, $\\sqrt[3]{x}=t^2$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar la fracción",
+              "body": "$\\frac{x-\\sqrt{x}}{x+\\sqrt[3]{x}} = \\frac{t^6-t^3}{t^6+t^2} = \\frac{t^3(t^3-1)}{t^2(t^4+1)} = \\frac{t(t^3-1)}{t^4+1}$"
+            },
+            {
+              "step": 3,
+              "title": "Integral transformada",
+              "body": "$6\\int \\frac{t(t^3-1)}{t^4+1} \\cdot t^5\\,dt = 6\\int \\frac{t^8-t^5}{t^4+1}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "División polinomial",
+              "body": "$t^8-t^5 = (t^4-t-1)(t^4+1) + t + 1$. Entonces: $\\frac{t^8-t^5}{t^4+1} = t^4 - t - 1 + \\frac{t+1}{t^4+1}$"
+            },
+            {
+              "step": 5,
+              "title": "Separar la última fracción",
+              "body": "$\\frac{t+1}{t^4+1} = \\frac{t}{t^4+1} + \\frac{1}{t^4+1}$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar término a término",
+              "body": "$6\\int(t^4-t-1)\\,dt = 6\\left(\\frac{t^5}{5}-\\frac{t^2}{2}-t\\right)$"
+            },
+            {
+              "step": 7,
+              "title": "Integral de $\\frac{t}{t^4+1}$",
+              "body": "Sea $u=t^2$, $du=2t\\,dt$. $\\frac{1}{2}\\int\\frac{du}{u^2+1} = \\frac{1}{2}\\arctan(t^2)$"
+            },
+            {
+              "step": 8,
+              "title": "Integral de $\\frac{1}{t^4+1}$",
+              "body": "$\\int\\frac{dt}{t^4+1} = \\frac{1}{2\\sqrt{2}}\\arctan\\left(\\frac{t^2-1}{\\sqrt{2}t}\\right) + \\frac{1}{4\\sqrt{2}}\\ln\\left(\\frac{t^2+\\sqrt{2}t+1}{t^2-\\sqrt{2}t+1}\\right)$"
+            },
+            {
+              "step": 9,
+              "title": "Combinar y volver a x",
+              "body": "$\\frac{6}{5}t^5 - 3t^2 - 6t + 3\\arctan(t^2) + \\frac{3}{\\sqrt{2}}\\arctan\\left(\\frac{t^2-1}{\\sqrt{2}t}\\right) + \\frac{3}{2\\sqrt{2}}\\ln\\left(\\frac{t^2+\\sqrt{2}t+1}{t^2-\\sqrt{2}t+1}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{6}{5}x^{5/6} - 3x^{1/3} - 6x^{1/6} + 3\\arctan(\\sqrt[3]{x}) + \\frac{3\\sqrt{2}}{2}\\arctan\\left(\\frac{x^{1/3}-1}{\\sqrt{2}x^{1/6}}\\right) + \\frac{3\\sqrt{2}}{4}\\ln\\left(\\frac{x^{1/3}+\\sqrt{2}x^{1/6}+1}{x^{1/3}-\\sqrt{2}x^{1/6}+1}\\right) + C",
+          "tip": "Este ejercicio combina división polinomial, sustitución trigonométrica implícita y la integral estándar de $\\frac{1}{t^4+1}$. Es uno de los más largos del bloque."
+        },
+        {
+          "id": "N2-G22",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sqrt{x}}{\\sqrt[3]{x}+1}\\,dx",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/6}$, $x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt{x}=t^3$, $\\sqrt[3]{x}=t^2$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar la integral",
+              "body": "$\\int \\frac{t^3}{t^2+1} \\cdot 6t^5\\,dt = 6\\int \\frac{t^8}{t^2+1}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "División polinomial",
+              "body": "$\\frac{t^8}{t^2+1} = t^6 - t^4 + t^2 - 1 + \\frac{1}{t^2+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$6\\left(\\frac{t^7}{7} - \\frac{t^5}{5} + \\frac{t^3}{3} - t + \\arctan(t)\\right) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{6}{7}x^{7/6} - \\frac{6}{5}x^{5/6} + 2x^{1/2} - 6x^{1/6} + 6\\arctan(x^{1/6}) + C$"
+            }
+          ],
+          "final_answer": "\\frac{6}{7}x^{7/6} - \\frac{6}{5}x^{5/6} + 2\\sqrt{x} - 6\\sqrt[6]{x} + 6\\arctan(\\sqrt[6]{x}) + C",
+          "tip": "La división $\\frac{t^8}{t^2+1}$ produce un patrón alternante de signos: $t^6 - t^4 + t^2 - 1 + \\frac{1}{t^2+1}$."
+        },
+        {
+          "id": "N2-G23",
+          "difficulty": 5,
+          "latex": "\\int \\frac{1+3\\sqrt[3]{x-2}}{\\sqrt[3]{(x-2)^2}-\\sqrt{x-2}}\\,dx",
+          "hint": "Desplaza $u = x-2$, luego mcm de índices 2 y 3 es 6.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Desplazamiento",
+              "body": "Sea $u = x-2$, $dx = du$. La integral se convierte en $\\int \\frac{1+3\\sqrt[3]{u}}{\\sqrt[3]{u^2}-\\sqrt{u}}\\,du$"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución",
+              "body": "$t = u^{1/6}$, $u = t^6$, $du = 6t^5\\,dt$. $\\sqrt[3]{u}=t^2$, $\\sqrt{u}=t^3$, $\\sqrt[3]{u^2}=t^4$"
+            },
+            {
+              "step": 3,
+              "title": "Transformar",
+              "body": "$\\int \\frac{1+3t^2}{t^4-t^3} \\cdot 6t^5\\,dt = 6\\int \\frac{(1+3t^2)t^5}{t^3(t-1)}\\,dt = 6\\int \\frac{t^2(3t^2+1)}{t-1}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "División polinomial",
+              "body": "$\\frac{3t^4+t^2}{t-1} = 3t^3 + 3t^2 + 4t + 4 + \\frac{4}{t-1}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$6\\left(\\frac{3t^4}{4} + t^3 + 2t^2 + 4t + 4\\ln|t-1|\\right) + C = \\frac{9}{2}t^4 + 6t^3 + 12t^2 + 24t + 24\\ln|t-1| + C$"
+            },
+            {
+              "step": 6,
+              "title": "Volver a x",
+              "body": "$t = (x-2)^{1/6}$. Resultado: $\\frac{9}{2}(x-2)^{2/3} + 6\\sqrt{x-2} + 12\\sqrt[3]{x-2} + 24\\sqrt[6]{x-2} + 24\\ln|\\sqrt[6]{x-2}-1| + C$"
+            }
+          ],
+          "final_answer": "\\frac{9}{2}(x-2)^{2/3} + 6\\sqrt{x-2} + 12\\sqrt[3]{x-2} + 24\\sqrt[6]{x-2} + 24\\ln|\\sqrt[6]{x-2}-1| + C",
+          "tip": "Cuando hay un desplazamiento $(x-2)$ dentro de las raíces, haz $u=x-2$ primero para reducirlo a raíces puras de $u$. Luego aplica el mcm como siempre."
+        },
+        {
+          "id": "N2-G24",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{\\sqrt{x}\\sqrt[3]{x}(1+\\sqrt[3]{x})^2}",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/6}$, $x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt{x}=t^3$, $\\sqrt[3]{x}=t^2$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar",
+              "body": "$\\sqrt{x}\\sqrt[3]{x}(1+\\sqrt[3]{x})^2 = t^3 \\cdot t^2 \\cdot (1+t^2)^2 = t^5(1+t^2)^2$"
+            },
+            {
+              "step": 3,
+              "title": "Transformar la integral",
+              "body": "$\\int \\frac{6t^5}{t^5(1+t^2)^2}\\,dt = 6\\int \\frac{dt}{(1+t^2)^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución trigonométrica",
+              "body": "$t = \\tan(\\theta)$, $dt = \\sec^2(\\theta)\\,d\\theta$, $(1+t^2)^2 = \\sec^4(\\theta)$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$6\\int \\frac{\\sec^2(\\theta)}{\\sec^4(\\theta)}\\,d\\theta = 6\\int \\cos^2(\\theta)\\,d\\theta = 6\\int \\frac{1+\\cos(2\\theta)}{2}\\,d\\theta = 3\\theta + \\frac{3}{2}\\sen(2\\theta) + C$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer sustituciones",
+              "body": "$\\theta = \\arctan(t)$, $\\sen(2\\theta) = \\frac{2t}{1+t^2}$. Resultado: $3\\arctan(t) + \\frac{3t}{1+t^2} + C$"
+            },
+            {
+              "step": 7,
+              "title": "Volver a x",
+              "body": "$3\\arctan(\\sqrt[6]{x}) + \\frac{3\\sqrt[6]{x}}{1+\\sqrt[3]{x}} + C$"
+            }
+          ],
+          "final_answer": "3\\arctan(\\sqrt[6]{x}) + \\frac{3\\sqrt[6]{x}}{1+\\sqrt[3]{x}} + C",
+          "tip": "Después de la sustitución $t=x^{1/6}$, las potencias de $t$ se cancelan perfectamente dejando una integral trigonométrica clásica: $\\int \\frac{dt}{(1+t^2)^2}$."
+        },
+        {
+          "id": "N2-G25",
+          "difficulty": 5,
+          "latex": "\\int \\frac{\\sqrt[3]{x^2}+\\sqrt[5]{x}}{4x(1+\\sqrt[5]{x})}\\,dx",
+          "hint": "mcm de 3, 5 y 1 es 15. $t = \\sqrt[15]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/15}$, $x = t^{15}$, $dx = 15t^{14}\\,dt$. $x^{2/3}=t^{10}$, $x^{1/5}=t^3$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\frac{t^{10}+t^3}{4t^{15}(1+t^3)} \\cdot 15t^{14} = \\frac{15}{4} \\cdot \\frac{t^2(t^7+1)}{t^3+1}$"
+            },
+            {
+              "step": 3,
+              "title": "Factorizar",
+              "body": "$t^7+1 = (t+1)(t^6-t^5+t^4-t^3+t^2-t+1)$, $t^3+1 = (t+1)(t^2-t+1)$. Cancelando: $\\frac{15}{4} \\cdot \\frac{t^2(t^6-t^5+t^4-t^3+t^2-t+1)}{t^2-t+1}$"
+            },
+            {
+              "step": 4,
+              "title": "División polinomial",
+              "body": "$\\frac{t^8-t^7+t^6-t^5+t^4-t^3+t^2}{t^2-t+1} = t^6 - t^3 + 1 + \\frac{t-1}{t^2-t+1}$"
+            },
+            {
+              "step": 5,
+              "title": "Separar la última fracción",
+              "body": "$\\frac{t-1}{t^2-t+1} = \\frac{1}{2}\\frac{2t-1}{t^2-t+1} - \\frac{1}{2}\\frac{1}{t^2-t+1}$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar término a término",
+              "body": "$\\frac{15}{4}\\left(\\frac{t^7}{7} - \\frac{t^4}{4} + t + \\frac{1}{2}\\ln(t^2-t+1) - \\frac{1}{\\sqrt{3}}\\arctan\\left(\\frac{2t-1}{\\sqrt{3}}\\right)\\right) + C$"
+            },
+            {
+              "step": 7,
+              "title": "Volver a x",
+              "body": "$\\frac{15}{28}x^{7/15} - \\frac{15}{16}x^{4/15} + \\frac{15}{4}x^{1/15} + \\frac{15}{8}\\ln(x^{2/15}-x^{1/15}+1) - \\frac{5\\sqrt{3}}{4}\\arctan\\left(\\frac{2x^{1/15}-1}{\\sqrt{3}}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{15}{28}x^{7/15} - \\frac{15}{16}x^{4/15} + \\frac{15}{4}\\sqrt[15]{x} + \\frac{15}{8}\\ln\\left(x^{2/15}-x^{1/15}+1\\right) - \\frac{5\\sqrt{3}}{4}\\arctan\\left(\\frac{2\\sqrt[15]{x}-1}{\\sqrt{3}}\\right) + C",
+          "tip": "Con tres índices diferentes (2, 3, 5), el mcm es 15. La división polinomial revela un cociente simple más un residuo que se separa en logaritmo y arctan."
+        },
+        {
+          "id": "N2-G26",
+          "difficulty": 4,
+          "latex": "\\int \\frac{\\sqrt{x}}{\\sqrt[3]{x}+2}\\,dx",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/6}$, $x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt{x}=t^3$, $\\sqrt[3]{x}=t^2$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int \\frac{t^3}{t^2+2} \\cdot 6t^5\\,dt = 6\\int \\frac{t^8}{t^2+2}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "División polinomial",
+              "body": "$\\frac{t^8}{t^2+2} = t^6 - 2t^4 + 4t^2 - 8 + \\frac{16}{t^2+2}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$6\\left(\\frac{t^7}{7} - \\frac{2t^5}{5} + \\frac{4t^3}{3} - 8t + 8\\sqrt{2}\\arctan\\left(\\frac{t}{\\sqrt{2}}\\right)\\right) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{6}{7}x^{7/6} - \\frac{12}{5}x^{5/6} + 8\\sqrt{x} - 48x^{1/6} + 48\\sqrt{2}\\arctan\\left(\\frac{x^{1/6}}{\\sqrt{2}}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{6}{7}x^{7/6} - \\frac{12}{5}x^{5/6} + 8\\sqrt{x} - 48\\sqrt[6]{x} + 48\\sqrt{2}\\arctan\\left(\\frac{\\sqrt[6]{x}}{\\sqrt{2}}\\right) + C",
+          "tip": "Cuando el denominador es $t^2+a$ (en lugar de $t^2+1$), la integral del residuo produce $\\frac{1}{\\sqrt{a}}\\arctan\\left(\\frac{t}{\\sqrt{a}}\\right)$."
+        },
+        {
+          "id": "N2-G27",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{\\sqrt{\\sqrt{x}+1}}",
+          "hint": "Raíz anidada. Sustituye $t = \\sqrt{\\sqrt{x}+1}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "Sea $t = \\sqrt{\\sqrt{x}+1}$. Entonces $t^2 = \\sqrt{x}+1$, $\\sqrt{x} = t^2-1$, $x = (t^2-1)^2 = t^4-2t^2+1$"
+            },
+            {
+              "step": 2,
+              "title": "Diferencial",
+              "body": "$dx = (4t^3-4t)\\,dt = 4t(t^2-1)\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Transformar la integral",
+              "body": "$\\int \\frac{4t(t^2-1)}{t}\\,dt = 4\\int (t^2-1)\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$4\\left(\\frac{t^3}{3}-t\\right) + C = \\frac{4}{3}t^3 - 4t + C$"
+            },
+            {
+              "step": 5,
+              "title": "Factorizar y volver a x",
+              "body": "$\\frac{4}{3}t(t^2-3) + C = \\frac{4}{3}\\sqrt{\\sqrt{x}+1}(\\sqrt{x}+1-3) + C = \\frac{4}{3}\\sqrt{\\sqrt{x}+1}(\\sqrt{x}-2) + C$"
+            }
+          ],
+          "final_answer": "\\frac{4}{3}\\sqrt{\\sqrt{x}+1}\\,(\\sqrt{x}-2) + C",
+          "tip": "Para raíces anidadas, sustituye desde la más externa hacia adentro. La sustitución $t=\\sqrt{\\sqrt{x}+1}$ elimina ambas raíces de una sola vez."
+        },
+        {
+          "id": "N2-G28",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x\\,dx}{3+\\sqrt{x}}",
+          "hint": "$t = \\sqrt{x}$. Divide el polinomio resultante.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = \\sqrt{x}$, $x = t^2$, $dx = 2t\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int \\frac{t^2 \\cdot 2t}{3+t}\\,dt = 2\\int \\frac{t^3}{t+3}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "División polinomial",
+              "body": "$\\frac{t^3}{t+3} = t^2 - 3t + 9 - \\frac{27}{t+3}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$2\\left(\\frac{t^3}{3} - \\frac{3t^2}{2} + 9t - 27\\ln|t+3|\\right) + C = \\frac{2}{3}t^3 - 3t^2 + 18t - 54\\ln|t+3| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{2}{3}x^{3/2} - 3x + 18\\sqrt{x} - 54\\ln(\\sqrt{x}+3) + C$"
+            }
+          ],
+          "final_answer": "\\frac{2}{3}x\\sqrt{x} - 3x + 18\\sqrt{x} - 54\\ln(\\sqrt{x}+3) + C",
+          "tip": "Tras la sustitución $t=\\sqrt{x}$, casi siempre aparece una división polinomial porque el numerador tiene mayor grado que el denominador."
+        }
+      ]
+    },
+    {
+      "name": "Cambio Universal de Weierstrass",
+      "definition": "$t = \\tan(x/2)$. Entonces $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}dt$. Convierte cualquier función racional de seno y coseno en una función racional de $t$.",
+      "tip": "Aunque Weierstrass siempre funciona, busca primero simplificaciones directas: identidades trigonométricas, multiplicar por el conjugado, o sustituciones simples como $u=1\\pm\\cos(x)$ cuando el numerador contenga $\\sen(x)$. Para la forma $a+b\\cos(x)$ o $a+b\\sen(x)$, Weierstrass produce una racional cuadrática.",
+      "exercises": [
+        {
+          "id": "N2-16",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{1+\\cos(x)}",
+          "hint": "Weierstrass o fórmula de la media: $1+\\cos(x) = 2\\cos^2(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Método alternativo (más simple)",
+              "body": "Usar la identidad: $1 + \\cos(x) = 2\\cos^2(\\frac{x}{2})$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{dx}{2\\cos^2(\\frac{x}{2})} = \\frac{1}{2}\\int \\sec^2(\\frac{x}{2})\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{1}{2} \\cdot 2\\tan(\\frac{x}{2}) + C = \\tan(\\frac{x}{2}) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Verificación con Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$. $\\int \\frac{\\frac{2}{1+t^2}\\,dt}{1 + \\frac{1-t^2}{1+t^2}} = \\int \\frac{\\frac{2}{1+t^2}\\,dt}{\\frac{2}{1+t^2}} = \\int dt = t + C = \\tan(\\frac{x}{2}) + C$"
+            }
+          ],
+          "final_answer": "\\tan\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Aunque Weierstrass siempre funciona, a veces hay métodos más simples. Aquí la fórmula $1+\\cos(x) = 2\\cos^2(x/2)$ es mucho más directa."
+        },
+        {
+          "id": "N2-17",
+          "difficulty": 3,
+          "latex": "\\int \\frac{dx}{2+\\sen(x)}",
+          "hint": "$t = \\tan(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}\\,dt}{2 + \\frac{2t}{1+t^2}} = \\int \\frac{2\\,dt}{2(1+t^2) + 2t} = \\int \\frac{2\\,dt}{2t^2 + 2t + 2} = \\int \\frac{dt}{t^2 + t + 1}$"
+            },
+            {
+              "step": 3,
+              "title": "Completar el cuadrado",
+              "body": "$t^2 + t + 1 = \\left(t + \\frac{1}{2}\\right)^2 + \\frac{3}{4}$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución u = t + 1/2",
+              "body": "$u = t + \\frac{1}{2}$, $du = dt$. $\\int \\frac{du}{u^2 + (\\frac{\\sqrt{3}}{2})^2} = \\frac{2}{\\sqrt{3}}\\arctan\\left(\\frac{2u}{\\sqrt{3}}\\right)$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer sustituciones",
+              "body": "$\\frac{2}{\\sqrt{3}}\\arctan\\left(\\frac{2t+1}{\\sqrt{3}}\\right) + C = \\frac{2\\sqrt{3}}{3}\\arctan\\left(\\frac{2\\tan(\\frac{x}{2})+1}{\\sqrt{3}}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{2\\sqrt{3}}{3}\\arctan\\left(\\frac{2\\tan(\\frac{x}{2})+1}{\\sqrt{3}}\\right) + C",
+          "tip": "Después de Weierstrass, casi siempre necesitas completar cuadrados para integrar la función racional resultante."
+        },
+        {
+          "id": "N2-18",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{3+5\\cos(x)}",
+          "hint": "$t = \\tan(x/2)$; convierte a racional en $t$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}\\,dt}{3 + 5\\frac{1-t^2}{1+t^2}} = \\int \\frac{2\\,dt}{3(1+t^2) + 5(1-t^2)} = \\int \\frac{2\\,dt}{3+3t^2+5-5t^2} = \\int \\frac{2\\,dt}{8-2t^2} = \\int \\frac{dt}{4-t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{4-t^2} = \\frac{1}{(2-t)(2+t)} = \\frac{A}{2-t} + \\frac{B}{2+t}$. $1 = A(2+t) + B(2-t)$. $t=2$: $1=4A \\Rightarrow A=\\frac{1}{4}$. $t=-2$: $1=4B \\Rightarrow B=\\frac{1}{4}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{1}{4}\\int \\frac{dt}{2-t} + \\frac{1}{4}\\int \\frac{dt}{2+t} = -\\frac{1}{4}\\ln|2-t| + \\frac{1}{4}\\ln|2+t| + C = \\frac{1}{4}\\ln\\left|\\frac{2+t}{2-t}\\right| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{1}{4}\\ln\\left|\\frac{2+\\tan(\\frac{x}{2})}{2-\\tan(\\frac{x}{2})}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{4}\\ln\\left|\\frac{2+\\tan(\\frac{x}{2})}{2-\\tan(\\frac{x}{2})}\\right| + C",
+          "tip": "Cuando Weierstrass produce una función racional con denominador de la forma $a^2-t^2$, usa fracciones parciales o la fórmula $\\int \\frac{dt}{a^2-t^2} = \\frac{1}{2a}\\ln\\left|\\frac{a+t}{a-t}\\right|$."
+        },
+        {
+          "id": "N2-19",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{\\sen(x)+\\cos(x)}",
+          "hint": "$t = \\tan(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}\\,dt}{\\frac{2t}{1+t^2} + \\frac{1-t^2}{1+t^2}} = \\int \\frac{2\\,dt}{2t + 1 - t^2} = \\int \\frac{2\\,dt}{1 + 2t - t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Reordenar y completar el cuadrado",
+              "body": "$1 + 2t - t^2 = 2 - (t-1)^2$. Entonces: $\\int \\frac{2\\,dt}{2 - (t-1)^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución u = t - 1",
+              "body": "$u = t - 1$, $du = dt$. $2\\int \\frac{du}{2 - u^2} = 2 \\cdot \\frac{1}{2\\sqrt{2}}\\ln\\left|\\frac{\\sqrt{2}+u}{\\sqrt{2}-u}\\right| = \\frac{1}{\\sqrt{2}}\\ln\\left|\\frac{\\sqrt{2}+t-1}{\\sqrt{2}-t+1}\\right|$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{\\sqrt{2}}{2}\\ln\\left|\\frac{\\sqrt{2}-1+\\tan(\\frac{x}{2})}{\\sqrt{2}+1-\\tan(\\frac{x}{2})}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{\\sqrt{2}}{2}\\ln\\left|\\frac{\\sqrt{2}-1+\\tan(\\frac{x}{2})}{\\sqrt{2}+1-\\tan(\\frac{x}{2})}\\right| + C",
+          "tip": "También se puede resolver multiplicando numerador y denominador por $\\sen(x)-\\cos(x)$, o usando la identidad $\\sen(x)+\\cos(x) = \\sqrt{2}\\sen(x+\\frac{\\pi}{4})$."
+        },
+        {
+          "id": "N2-20",
+          "difficulty": 4,
+          "latex": "\\int \\frac{\\sen(x)}{1-\\sen(x)} \\, dx",
+          "hint": "$t = \\tan(x/2)$ o multiplica por conjugado.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Método alternativo (más simple)",
+              "body": "Multiplicar numerador y denominador por $1+\\sen(x)$: $\\frac{\\sen(x)(1+\\sen(x))}{1-\\sen^2(x)} = \\frac{\\sen(x)+\\sen^2(x)}{\\cos^2(x)} = \\frac{\\sen(x)}{\\cos^2(x)} + \\tan^2(x)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\frac{\\sen(x)}{\\cos^2(x)}\\,dx + \\int \\tan^2(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=cos(x))",
+              "body": "$u = \\cos(x)$, $du = -\\sen(x)\\,dx$. $-\\int \\frac{du}{u^2} = \\frac{1}{u} = \\sec(x)$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral",
+              "body": "$\\int (\\sec^2(x)-1)\\,dx = \\tan(x) - x$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\sec(x) + \\tan(x) - x + C$"
+            },
+            {
+              "step": 6,
+              "title": "Verificación con Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$. Sustituyendo y simplificando se llega al mismo resultado."
+            }
+          ],
+          "final_answer": "\\sec(x) + \\tan(x) - x + C",
+          "tip": "Multiplicar por el conjugado $1+\\sen(x)$ es a menudo más eficiente que Weierstrass para este tipo de integral. También puedes escribir $\\frac{\\sen(x)}{1-\\sen(x)} = -1 + \\frac{1}{1-\\sen(x)}$."
+        },
+        {
+          "id": "N2-21",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{2\\sen(x)+\\cos(x)+3}",
+          "hint": "Weierstrass convierte todo en polinomio en $t$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}\\,dt}{2\\cdot\\frac{2t}{1+t^2} + \\frac{1-t^2}{1+t^2} + 3} = \\int \\frac{2\\,dt}{4t + 1 - t^2 + 3(1+t^2)} = \\int \\frac{2\\,dt}{4t + 1 - t^2 + 3 + 3t^2} = \\int \\frac{2\\,dt}{2t^2 + 4t + 4} = \\int \\frac{dt}{t^2 + 2t + 2}$"
+            },
+            {
+              "step": 3,
+              "title": "Completar el cuadrado",
+              "body": "$t^2 + 2t + 2 = (t+1)^2 + 1$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\int \\frac{dt}{(t+1)^2 + 1} = \\arctan(t+1) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\arctan\\left(\\tan(\\frac{x}{2}) + 1\\right) + C$"
+            }
+          ],
+          "final_answer": "\\arctan\\left(\\tan\\left(\\frac{x}{2}\\right) + 1\\right) + C",
+          "tip": "Weierstrass es especialmente útil cuando hay una combinación lineal de $\\sen(x)$, $\\cos(x)$ y una constante en el denominador. La simplificación algebraica requiere cuidado."
+        },
+        {
+          "id": "N2-G29",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\cos(x)}{1+\\cos(x)}\\,dx",
+          "hint": "Escribe $\\frac{\\cos}{1+\\cos} = 1 - \\frac{1}{1+\\cos}$ y usa la fórmula del medio ángulo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar algebraicamente",
+              "body": "$\\frac{\\cos(x)}{1+\\cos(x)} = \\frac{1+\\cos(x)-1}{1+\\cos(x)} = 1 - \\frac{1}{1+\\cos(x)}$"
+            },
+            {
+              "step": 2,
+              "title": "Integrar la primera parte",
+              "body": "$\\int 1\\,dx = x$"
+            },
+            {
+              "step": 3,
+              "title": "Resolver la segunda parte",
+              "body": "Usando la identidad $1+\\cos(x) = 2\\cos^2(\\frac{x}{2})$: $\\int \\frac{dx}{1+\\cos(x)} = \\int \\frac{dx}{2\\cos^2(\\frac{x}{2})} = \\frac{1}{2}\\int \\sec^2(\\frac{x}{2})\\,dx = \\tan(\\frac{x}{2})$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar resultados",
+              "body": "$x - \\tan(\\frac{x}{2}) + C$"
+            }
+          ],
+          "final_answer": "x - \\tan\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Antes de aplicar Weierstrass, intenta escribir la fracción como $1 - \\frac{1}{1+\\cos(x)}$. La identidad $1+\\cos(x)=2\\cos^2(x/2)$ evita todo el álgebra de Weierstrass."
+        },
+        {
+          "id": "N2-G30",
+          "difficulty": 4,
+          "latex": "\\int \\frac{1+\\tan(x)}{1-\\tan(x)}\\,dx",
+          "hint": "Reconoce la fórmula de $\\tan(A+B)$ o multiplica por $\\cos(x)$ en numerador y denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Convertir a seno y coseno",
+              "body": "$\\frac{1+\\tan(x)}{1-\\tan(x)} = \\frac{1+\\frac{\\sen(x)}{\\cos(x)}}{1-\\frac{\\sen(x)}{\\cos(x)}} = \\frac{\\cos(x)+\\sen(x)}{\\cos(x)-\\sen(x)}$"
+            },
+            {
+              "step": 2,
+              "title": "Identificar la derivada del denominador",
+              "body": "$\\frac{d}{dx}(\\cos(x)-\\sen(x)) = -\\sen(x)-\\cos(x) = -(\\sen(x)+\\cos(x))$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución directa",
+              "body": "Sea $u = \\cos(x)-\\sen(x)$, $du = -(\\sen(x)+\\cos(x))\\,dx$. Entonces: $\\int \\frac{\\cos(x)+\\sen(x)}{\\cos(x)-\\sen(x)}\\,dx = -\\int \\frac{du}{u}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$-\\ln|u| + C = -\\ln|\\cos(x)-\\sen(x)| + C$"
+            }
+          ],
+          "final_answer": "-\\ln|\\cos(x)-\\sen(x)| + C",
+          "tip": "También puedes reconocer que $\\frac{1+\\tan(x)}{1-\\tan(x)} = \\tan(\\frac{\\pi}{4}+x)$, cuya integral es directamente $-\\ln|\\cos(\\frac{\\pi}{4}+x)|$ (que es equivalente al resultado obtenido)."
+        },
+        {
+          "id": "N2-G31",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sin(x)}{(1-\\cos(x))^3}\\,dx",
+          "hint": "Sustitución simple $u = 1-\\cos(x)$. No necesitas Weierstrass.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar la derivada",
+              "body": "$\\frac{d}{dx}(1-\\cos(x)) = \\sen(x)$, que coincide exactamente con el numerador."
+            },
+            {
+              "step": 2,
+              "title": "Sustitución directa",
+              "body": "Sea $u = 1-\\cos(x)$, $du = \\sen(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\int \\frac{du}{u^3} = \\int u^{-3}\\,du = \\frac{u^{-2}}{-2} + C = -\\frac{1}{2u^2} + C$"
+            },
+            {
+              "step": 4,
+              "title": "Volver a x",
+              "body": "$-\\frac{1}{2(1-\\cos(x))^2} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2(1-\\cos(x))^2} + C",
+          "tip": "Siempre que veas $\\sen(x)$ en el numerador y una función de $\\cos(x)$ en el denominador, prueba $u = 1\\pm\\cos(x)$ antes de cualquier otro método."
+        },
+        {
+          "id": "N2-G32",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{5-3\\cos(x)}",
+          "hint": "Forma clásica $a+b\\cos(x)$. Aplica Weierstrass.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar el denominador",
+              "body": "$5 - 3\\frac{1-t^2}{1+t^2} = \\frac{5(1+t^2)-3(1-t^2)}{1+t^2} = \\frac{5+5t^2-3+3t^2}{1+t^2} = \\frac{2+8t^2}{1+t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}}{\\frac{2+8t^2}{1+t^2}}\\,dt = \\int \\frac{2}{2+8t^2}\\,dt = \\int \\frac{dt}{1+4t^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar (forma arctan)",
+              "body": "$\\frac{1}{2}\\arctan(2t) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$\\frac{1}{2}\\arctan\\left(2\\tan\\left(\\frac{x}{2}\\right)\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\arctan\\left(2\\tan\\left(\\frac{x}{2}\\right)\\right) + C",
+          "tip": "Para la forma $\\int \\frac{dx}{a+b\\cos(x)}$, Weierstrass siempre produce una integral racional de la forma $\\int \\frac{dt}{\\alpha + \\beta t^2}$."
+        },
+        {
+          "id": "N2-G33",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{(2+\\cos(x))\\sin(x)}",
+          "hint": "Producto de seno y coseno en el denominador. Weierstrass lo convierte en racional simple.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar el denominador",
+              "body": "$(2+\\frac{1-t^2}{1+t^2})\\cdot\\frac{2t}{1+t^2} = \\frac{2(1+t^2)+1-t^2}{1+t^2}\\cdot\\frac{2t}{1+t^2} = \\frac{(3+t^2)\\cdot 2t}{(1+t^2)^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}}{\\frac{2t(3+t^2)}{(1+t^2)^2}}\\,dt = \\int \\frac{1+t^2}{t(3+t^2)}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1+t^2}{t(t^2+3)} = \\frac{A}{t} + \\frac{Bt+C}{t^2+3}$. Resolviendo: $A = \\frac{1}{3}$, $B = \\frac{2}{3}$, $C = 0$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$\\frac{1}{3}\\ln|t| + \\frac{1}{3}\\ln(t^2+3) + C = \\frac{1}{3}\\ln|t(t^2+3)| + C$"
+            },
+            {
+              "step": 6,
+              "title": "Volver a x",
+              "body": "$\\frac{1}{3}\\ln\\left|\\tan\\left(\\frac{x}{2}\\right)\\left(\\tan^2\\left(\\frac{x}{2}\\right)+3\\right)\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{3}\\ln\\left|\\tan\\left(\\frac{x}{2}\\right)\\left(3+\\tan^2\\left(\\frac{x}{2}\\right)\\right)\\right| + C",
+          "tip": "Cuando el denominador tiene producto de funciones trigonométricas, Weierstrass produce un denominador factorizado que se descompone fácilmente en parciales."
+        },
+        {
+          "id": "N2-G34",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{4-5\\sin(x)}",
+          "hint": "Forma $a+b\\sin(x)$. Weierstrass + fracciones parciales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar el denominador",
+              "body": "$4 - 5\\cdot\\frac{2t}{1+t^2} = \\frac{4(1+t^2)-10t}{1+t^2} = \\frac{4t^2-10t+4}{1+t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral",
+              "body": "$\\int \\frac{2}{4t^2-10t+4}\\,dt = \\int \\frac{dt}{2t^2-5t+2}$"
+            },
+            {
+              "step": 4,
+              "title": "Factorizar",
+              "body": "$2t^2-5t+2 = (2t-1)(t-2)$"
+            },
+            {
+              "step": 5,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{(2t-1)(t-2)} = \\frac{-2/3}{2t-1} + \\frac{1/3}{t-2}$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar",
+              "body": "$-\\frac{1}{3}\\ln|2t-1| + \\frac{1}{3}\\ln|t-2| + C = \\frac{1}{3}\\ln\\left|\\frac{t-2}{2t-1}\\right| + C$"
+            },
+            {
+              "step": 7,
+              "title": "Volver a x",
+              "body": "$\\frac{1}{3}\\ln\\left|\\frac{\\tan(\\frac{x}{2})-2}{2\\tan(\\frac{x}{2})-1}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{3}\\ln\\left|\\frac{\\tan(\\frac{x}{2})-2}{2\\tan(\\frac{x}{2})-1}\\right| + C",
+          "tip": "Para la forma $a+b\\sin(x)$, Weierstrass produce una función racional cuadrática en el denominador que casi siempre factoriza en lineales."
+        },
+        {
+          "id": "N2-G35",
+          "difficulty": 4,
+          "latex": "\\int \\frac{5}{6+4\\sec(x)}\\,dx",
+          "hint": "Convierte $\\sec(x)$ a $\\cos(x)$ primero, luego separa en parte constante + Weierstrass.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Convertir a coseno",
+              "body": "$\\frac{5}{6+4\\sec(x)} = \\frac{5\\cos(x)}{6\\cos(x)+4}$"
+            },
+            {
+              "step": 2,
+              "title": "Separar algebraicamente",
+              "body": "$\\frac{5\\cos(x)}{6\\cos(x)+4} = \\frac{5}{6}\\cdot\\frac{6\\cos(x)}{6\\cos(x)+4} = \\frac{5}{6}\\left(1 - \\frac{4}{6\\cos(x)+4}\\right) = \\frac{5}{6} - \\frac{10}{3(3\\cos(x)+2)}$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar la primera parte",
+              "body": "$\\int \\frac{5}{6}\\,dx = \\frac{5x}{6}$"
+            },
+            {
+              "step": 4,
+              "title": "Weierstrass para la segunda parte",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$. Entonces $3\\cos(x)+2 = \\frac{3(1-t^2)+2(1+t^2)}{1+t^2} = \\frac{5-t^2}{1+t^2}$"
+            },
+            {
+              "step": 5,
+              "title": "Transformar la integral restante",
+              "body": "$\\int \\frac{dx}{3\\cos(x)+2} = \\int \\frac{2}{(1+t^2)}\\cdot\\frac{1+t^2}{5-t^2}\\,dt = \\int \\frac{2}{5-t^2}\\,dt = \\frac{1}{\\sqrt{5}}\\ln\\left|\\frac{\\sqrt{5}+t}{\\sqrt{5}-t}\\right|$"
+            },
+            {
+              "step": 6,
+              "title": "Combinar todo",
+              "body": "$\\frac{5x}{6} - \\frac{10}{3}\\cdot\\frac{1}{\\sqrt{5}}\\ln\\left|\\frac{\\sqrt{5}+t}{\\sqrt{5}-t}\\right| + C = \\frac{5x}{6} - \\frac{2\\sqrt{5}}{3}\\ln\\left|\\frac{\\sqrt{5}+\\tan(\\frac{x}{2})}{\\sqrt{5}-\\tan(\\frac{x}{2})}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{5x}{6} - \\frac{2\\sqrt{5}}{3}\\ln\\left|\\frac{\\sqrt{5}+\\tan(\\frac{x}{2})}{\\sqrt{5}-\\tan(\\frac{x}{2})}\\right| + C",
+          "tip": "Cuando hay $\\sec(x)$ en el denominador, multiplica numerador y denominador por $\\cos(x)$ para obtener una forma racional en $\\cos(x)$. Luego separa la fracción para obtener una integral directa y otra de Weierstrass."
+        },
+        {
+          "id": "N2-G36",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{1-\\sin(x)+\\cos(x)}",
+          "hint": "Weierstrass convierte la suma trigonométrica + constante en un polinomio simple.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar el denominador",
+              "body": "$1 - \\frac{2t}{1+t^2} + \\frac{1-t^2}{1+t^2} = \\frac{1+t^2-2t+1-t^2}{1+t^2} = \\frac{2-2t}{1+t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}}{\\frac{2-2t}{1+t^2}}\\,dt = \\int \\frac{2}{2-2t}\\,dt = \\int \\frac{dt}{1-t}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$-\\ln|1-t| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-\\ln\\left|1-\\tan\\left(\\frac{x}{2}\\right)\\right| + C$"
+            }
+          ],
+          "final_answer": "-\\ln\\left|1-\\tan\\left(\\frac{x}{2}\\right)\\right| + C",
+          "tip": "Cuando el denominador es $1\\pm\\sin(x)\\pm\\cos(x)$, Weierstrass produce un denominador notablemente simple que a menudo factoriza o cancela directamente."
+        },
+        {
+          "id": "N2-G37",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{(1+\\cos(x))^2}",
+          "hint": "Usa la identidad del medio ángulo: $1+\\cos(x) = 2\\cos^2(\\frac{x}{2})$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad del medio ángulo",
+              "body": "$1+\\cos(x) = 2\\cos^2(\\frac{x}{2})$, por tanto $(1+\\cos(x))^2 = 4\\cos^4(\\frac{x}{2})$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar la integral",
+              "body": "$\\int \\frac{dx}{4\\cos^4(\\frac{x}{2})} = \\frac{1}{4}\\int \\sec^4\\left(\\frac{x}{2}\\right)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución $u = x/2$",
+              "body": "Sea $u = \\frac{x}{2}$, $du = \\frac{dx}{2}$. La integral se convierte en: $\\frac{1}{4}\\cdot 2\\int \\sec^4(u)\\,du = \\frac{1}{2}\\int \\sec^4(u)\\,du$"
+            },
+            {
+              "step": 4,
+              "title": "Separar $\\sec^4(u)$",
+              "body": "$\\sec^4(u) = \\sec^2(u)\\cdot\\sec^2(u) = \\sec^2(u)(1+\\tan^2(u))$"
+            },
+            {
+              "step": 5,
+              "title": "Sustitución $v = \\tan(u)$",
+              "body": "$dv = \\sec^2(u)\\,du$. Entonces: $\\frac{1}{2}\\int (1+v^2)\\,dv = \\frac{1}{2}\\left(v + \\frac{v^3}{3}\\right) + C$"
+            },
+            {
+              "step": 6,
+              "title": "Deshacer sustituciones",
+              "body": "$v = \\tan(u) = \\tan(\\frac{x}{2})$. Resultado: $\\frac{1}{2}\\tan\\left(\\frac{x}{2}\\right) + \\frac{1}{6}\\tan^3\\left(\\frac{x}{2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\tan\\left(\\frac{x}{2}\\right) + \\frac{1}{6}\\tan^3\\left(\\frac{x}{2}\\right) + C",
+          "tip": "Para potencias de $(1+\\cos(x))$, la identidad del medio ángulo es siempre más eficiente que Weierstrass. Convierte la integral en una potencia de $\\sec^2(u)$ que se resuelve con $v=\\tan(u)$."
+        },
+        {
+          "id": "N2-G38",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{(1-\\sin(x))^2}",
+          "hint": "Weierstrass: $1-\\sin(x) = \\frac{(1-t)^2}{1+t^2}$ donde $t = \\tan(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar el denominador",
+              "body": "$1-\\sen(x) = 1 - \\frac{2t}{1+t^2} = \\frac{1+t^2-2t}{1+t^2} = \\frac{(1-t)^2}{1+t^2}$. Entonces $(1-\\sen(x))^2 = \\frac{(1-t)^4}{(1+t^2)^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar la integral",
+              "body": "$\\int \\frac{\\frac{2}{1+t^2}}{\\frac{(1-t)^4}{(1+t^2)^2}}\\,dt = \\int \\frac{2(1+t^2)}{(1-t)^4}\\,dt$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución $u = 1-t$",
+              "body": "$t = 1-u$, $dt = -du$. $1+t^2 = 1+(1-u)^2 = u^2-2u+2$"
+            },
+            {
+              "step": 5,
+              "title": "Transformar y separar",
+              "body": "$-2\\int \\frac{u^2-2u+2}{u^4}\\,du = -2\\int (u^{-2}-2u^{-3}+2u^{-4})\\,du$"
+            },
+            {
+              "step": 6,
+              "title": "Integrar",
+              "body": "$-2\\left(-u^{-1}+u^{-2}-\\frac{2}{3}u^{-3}\\right) + C = \\frac{2}{u} - \\frac{2}{u^2} + \\frac{4}{3u^3} + C$"
+            },
+            {
+              "step": 7,
+              "title": "Volver a x",
+              "body": "$u = 1-\\tan(\\frac{x}{2})$. Resultado: $\\frac{2}{1-\\tan(\\frac{x}{2})} - \\frac{2}{(1-\\tan(\\frac{x}{2}))^2} + \\frac{4}{3(1-\\tan(\\frac{x}{2}))^3} + C$"
+            }
+          ],
+          "final_answer": "\\frac{2}{1-\\tan(\\frac{x}{2})} - \\frac{2}{(1-\\tan(\\frac{x}{2}))^2} + \\frac{4}{3(1-\\tan(\\frac{x}{2}))^3} + C",
+          "tip": "Para potencias de $(1-\\sin(x))$, Weierstrass produce una potencia cuarta en el denominador que se resuelve con la sustitución algebraica $u=1-t$."
+        }
+      ]
+    },
+    {
+      "name": "Integrales Trigonométricas Complejas",
+      "definition": "Integrales de potencias trigonométricas, productos con argumentos diferentes, y fracciones trigonométricas. Se usan identidades pitagóricas, fórmulas de medio ángulo, producto-a-suma y fórmulas de reducción.",
+      "tip": "Para potencias impares de seno o coseno, separa un factor y convierte el resto con $\\sen^2(x)=1-\\cos^2(x)$ o $\\cos^2(x)=1-\\sen^2(x)$. Para potencias pares, usa identidades de ángulo doble. Para productos con argumentos diferentes, usa producto-a-suma. Para fracciones trigonométricas, considera multiplicar por el conjugado.",
+      "exercises": [
+        {
+          "id": "N2-22",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\cos^3(x)}{\\sen^2(x)} \\, dx",
+          "hint": "$\\cos^3(x) = \\cos(x)(1-\\sen^2(x))$; $u = \\sen(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de coseno",
+              "body": "$\\cos^3(x) = \\cos(x) \\cdot \\cos^2(x) = \\cos(x)(1-\\sen^2(x))$"
+            },
+            {
+              "step": 2,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\cos(x)(1-\\sen^2(x))}{\\sen^2(x)}\\,dx = \\int \\frac{\\cos(x)}{\\sen^2(x)}\\,dx - \\int \\cos(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=sen(x))",
+              "body": "$u = \\sen(x)$, $du = \\cos(x)\\,dx$. $\\int \\frac{du}{u^2} = -\\frac{1}{u} = -\\csc(x)$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral",
+              "body": "$\\int \\cos(x)\\,dx = \\sen(x)$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$-\\csc(x) - \\sen(x) + C = -\\frac{1}{\\sen(x)} - \\sen(x) + C = -\\frac{1+\\sen^2(x)}{\\sen(x)} + C$"
+            }
+          ],
+          "final_answer": "-\\csc(x) - \\sen(x) + C",
+          "tip": "Cuando hay potencias de coseno en el numerador y seno en el denominador, separa el coseno y convierte el resto a seno usando $\\cos^2(x) = 1 - \\sen^2(x)$."
+        },
+        {
+          "id": "N2-23",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sen(x)}{1+\\sen(x)} \\, dx",
+          "hint": "Multiplica numerador y denominador por $1-\\sen(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Multiplicar por el conjugado",
+              "body": "$\\frac{\\sen(x)}{1+\\sen(x)} \\cdot \\frac{1-\\sen(x)}{1-\\sen(x)} = \\frac{\\sen(x)(1-\\sen(x))}{1-\\sen^2(x)} = \\frac{\\sen(x)-\\sen^2(x)}{\\cos^2(x)}$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en fracciones",
+              "body": "$\\frac{\\sen(x)}{\\cos^2(x)} - \\frac{\\sen^2(x)}{\\cos^2(x)} = \\sec(x)\\tan(x) - \\tan^2(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar término a término",
+              "body": "$\\int \\sec(x)\\tan(x)\\,dx - \\int \\tan^2(x)\\,dx = \\sec(x) - \\int (\\sec^2(x)-1)\\,dx = \\sec(x) - \\tan(x) + x + C$"
+            }
+          ],
+          "final_answer": "\\sec(x) - \\tan(x) + x + C",
+          "tip": "También puedes escribir $\\frac{\\sen(x)}{1+\\sen(x)} = 1 - \\frac{1}{1+\\sen(x)}$ y resolver la segunda parte multiplicando por conjugado."
+        },
+        {
+          "id": "N2-24",
+          "difficulty": 4,
+          "latex": "\\int \\sen(3x)\\cos(2x) \\, dx",
+          "hint": "Identidad producto a suma: $\\sen(A)\\cos(B) = \\frac{1}{2}[\\sen(A+B)+\\sen(A-B)]$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad producto a suma",
+              "body": "$\\sen(3x)\\cos(2x) = \\frac{1}{2}[\\sen(3x+2x) + \\sen(3x-2x)] = \\frac{1}{2}[\\sen(5x) + \\sen(x)]$"
+            },
+            {
+              "step": 2,
+              "title": "Integrar término a término",
+              "body": "$\\frac{1}{2}\\int \\sen(5x)\\,dx + \\frac{1}{2}\\int \\sen(x)\\,dx = \\frac{1}{2}\\left(-\\frac{\\cos(5x)}{5}\\right) + \\frac{1}{2}(-\\cos(x)) + C$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar",
+              "body": "$-\\frac{\\cos(5x)}{10} - \\frac{\\cos(x)}{2} + C = -\\frac{1}{10}\\cos(5x) - \\frac{1}{2}\\cos(x) + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{10}\\cos(5x) - \\frac{1}{2}\\cos(x) + C",
+          "tip": "Memoriza las identidades producto-a-suma: $\\sen(A)\\cos(B) = \\frac{1}{2}[\\sen(A+B)+\\sen(A-B)]$, $\\cos(A)\\cos(B) = \\frac{1}{2}[\\cos(A-B)+\\cos(A+B)]$, $\\sen(A)\\sen(B) = \\frac{1}{2}[\\cos(A-B)-\\cos(A+B)]$."
+        },
+        {
+          "id": "N2-25",
+          "difficulty": 4,
+          "latex": "\\int \\sen(5x)\\sen(2x) \\, dx",
+          "hint": "Producto a suma: $\\sen(A)\\sen(B) = \\frac{1}{2}[\\cos(A-B)-\\cos(A+B)]$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar identidad producto a suma",
+              "body": "$\\sen(5x)\\sen(2x) = \\frac{1}{2}[\\cos(5x-2x) - \\cos(5x+2x)] = \\frac{1}{2}[\\cos(3x) - \\cos(7x)]$"
+            },
+            {
+              "step": 2,
+              "title": "Integrar término a término",
+              "body": "$\\frac{1}{2}\\int \\cos(3x)\\,dx - \\frac{1}{2}\\int \\cos(7x)\\,dx = \\frac{1}{2}\\cdot\\frac{\\sen(3x)}{3} - \\frac{1}{2}\\cdot\\frac{\\sen(7x)}{7} + C$"
+            },
+            {
+              "step": 3,
+              "title": "Simplificar",
+              "body": "$\\frac{\\sen(3x)}{6} - \\frac{\\sen(7x)}{14} + C$"
+            }
+          ],
+          "final_answer": "\\frac{\\sen(3x)}{6} - \\frac{\\sen(7x)}{14} + C",
+          "tip": "Cuando los argumentos son múltiplos enteros diferentes, producto-a-suma es siempre el método más eficiente."
+        },
+        {
+          "id": "N2-26",
+          "difficulty": 4,
+          "latex": "\\int \\tan^2(x)\\sec^3(x) \\, dx",
+          "hint": "$\\tan^2(x) = \\sec^2(x)-1$; separa en dos integrales de potencias de $\\sec(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir usando identidad",
+              "body": "$\\tan^2(x)\\sec^3(x) = (\\sec^2(x)-1)\\sec^3(x) = \\sec^5(x) - \\sec^3(x)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\sec^5(x)\\,dx - \\int \\sec^3(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Fórmula de reducción para $\\sec^n(x)$",
+              "body": "$\\int \\sec^n(x)\\,dx = \\frac{\\sec^{n-2}(x)\\tan(x)}{n-1} + \\frac{n-2}{n-1}\\int \\sec^{n-2}(x)\\,dx$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar a $\\sec^5(x)$",
+              "body": "$\\int \\sec^5(x)\\,dx = \\frac{\\sec^3(x)\\tan(x)}{4} + \\frac{3}{4}\\int \\sec^3(x)\\,dx$"
+            },
+            {
+              "step": 5,
+              "title": "Aplicar a $\\sec^3(x)$",
+              "body": "$\\int \\sec^3(x)\\,dx = \\frac{\\sec(x)\\tan(x)}{2} + \\frac{1}{2}\\int \\sec(x)\\,dx = \\frac{\\sec(x)\\tan(x)}{2} + \\frac{1}{2}\\ln|\\sec(x)+\\tan(x)|$"
+            },
+            {
+              "step": 6,
+              "title": "Combinar todos los términos",
+              "body": "$\\frac{\\sec^3(x)\\tan(x)}{4} + \\frac{3}{4}\\left(\\frac{\\sec(x)\\tan(x)}{2} + \\frac{1}{2}\\ln|\\sec(x)+\\tan(x)|\\right) - \\frac{\\sec(x)\\tan(x)}{2} - \\frac{1}{2}\\ln|\\sec(x)+\\tan(x)| + C$"
+            },
+            {
+              "step": 7,
+              "title": "Simplificar",
+              "body": "$\\frac{\\sec^3(x)\\tan(x)}{4} - \\frac{\\sec(x)\\tan(x)}{8} - \\frac{1}{8}\\ln|\\sec(x)+\\tan(x)| + C$"
+            }
+          ],
+          "final_answer": "\\frac{\\sec^3(x)\\tan(x)}{4} - \\frac{\\sec(x)\\tan(x)}{8} - \\frac{1}{8}\\ln|\\sec(x)+\\tan(x)| + C",
+          "tip": "Las integrales de potencias de secante usan fórmulas de reducción. $\\int \\sec^3(x)\\,dx$ es un caso clásico que se resuelve por partes o con la fórmula de reducción."
+        },
+        {
+          "id": "N2-27",
+          "difficulty": 4,
+          "latex": "\\int \\cot^2(x)\\csc(x) \\, dx",
+          "hint": "$\\cot^2(x) = \\csc^2(x)-1$; luego por partes para $\\csc^3(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir usando identidad",
+              "body": "$\\cot^2(x)\\csc(x) = (\\csc^2(x)-1)\\csc(x) = \\csc^3(x) - \\csc(x)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\csc^3(x)\\,dx - \\int \\csc(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integral de $\\csc^3(x)$ por partes",
+              "body": "$u = \\csc(x)$, $dv = \\csc^2(x)\\,dx$. $du = -\\csc(x)\\cot(x)\\,dx$, $v = -\\cot(x)$. $\\int \\csc^3(x)\\,dx = -\\csc(x)\\cot(x) - \\int \\csc(x)\\cot^2(x)\\,dx = -\\csc(x)\\cot(x) - \\int \\csc(x)(\\csc^2(x)-1)\\,dx = -\\csc(x)\\cot(x) - \\int \\csc^3(x)\\,dx + \\int \\csc(x)\\,dx$"
+            },
+            {
+              "step": 4,
+              "title": "Despejar $\\int \\csc^3(x)\\,dx$",
+              "body": "$2\\int \\csc^3(x)\\,dx = -\\csc(x)\\cot(x) + \\int \\csc(x)\\,dx$. $\\int \\csc^3(x)\\,dx = -\\frac{1}{2}\\csc(x)\\cot(x) + \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)|$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar con la segunda integral",
+              "body": "$-\\frac{1}{2}\\csc(x)\\cot(x) + \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)| - \\ln|\\csc(x)-\\cot(x)| + C = -\\frac{1}{2}\\csc(x)\\cot(x) - \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)| + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\csc(x)\\cot(x) - \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)| + C",
+          "tip": "La integral de $\\csc^3(x)$ sigue el mismo patrón que $\\sec^3(x)$ pero con signos negativos."
+        },
+        {
+          "id": "N2-G39",
+          "difficulty": 3,
+          "latex": "\\int \\tan^3(x)\\,dx",
+          "hint": "Escribe $\\tan^3(x) = \\tan(x)\\cdot\\tan^2(x) = \\tan(x)(\\sec^2(x)-1)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar usando identidad pitagórica",
+              "body": "$\\tan^3(x) = \\tan(x)\\cdot\\tan^2(x) = \\tan(x)(\\sec^2(x)-1)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\tan(x)\\sec^2(x)\\,dx - \\int \\tan(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=tan(x))",
+              "body": "Sea $u = \\tan(x)$, $du = \\sec^2(x)\\,dx$. Entonces: $\\int u\\,du = \\frac{u^2}{2} = \\frac{\\tan^2(x)}{2}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (estándar)",
+              "body": "$\\int \\tan(x)\\,dx = -\\ln|\\cos(x)| = \\ln|\\sec(x)|$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\frac{\\tan^2(x)}{2} - \\ln|\\sec(x)| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\tan^2(x) - \\ln|\\sec(x)| + C",
+          "tip": "Para potencias impares de tangente, siempre separa $\\tan^2(x)$ y conviértelo a $\\sec^2(x)-1$. La parte con $\\sec^2(x)$ se integra por sustitución directa."
+        },
+        {
+          "id": "N2-G40",
+          "difficulty": 4,
+          "latex": "\\int \\csc^3(x)\\,dx",
+          "hint": "Fórmula de reducción o integración por partes: $u=\\csc(x)$, $dv=\\csc^2(x)\\,dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Integración por partes",
+              "body": "Sea $u = \\csc(x)$, $dv = \\csc^2(x)\\,dx$. Entonces $du = -\\csc(x)\\cot(x)\\,dx$, $v = -\\cot(x)$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula",
+              "body": "$\\int \\csc^3(x)\\,dx = -\\csc(x)\\cot(x) - \\int \\csc(x)\\cot^2(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Reescribir $\\cot^2(x)$",
+              "body": "$\\cot^2(x) = \\csc^2(x)-1$. Entonces: $-\\csc(x)\\cot(x) - \\int \\csc(x)(\\csc^2(x)-1)\\,dx = -\\csc(x)\\cot(x) - \\int \\csc^3(x)\\,dx + \\int \\csc(x)\\,dx$"
+            },
+            {
+              "step": 4,
+              "title": "Despejar la integral buscada",
+              "body": "$2\\int \\csc^3(x)\\,dx = -\\csc(x)\\cot(x) + \\int \\csc(x)\\,dx$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar $\\csc(x)$",
+              "body": "$\\int \\csc(x)\\,dx = \\ln|\\csc(x)-\\cot(x)|$"
+            },
+            {
+              "step": 6,
+              "title": "Resolver",
+              "body": "$\\int \\csc^3(x)\\,dx = -\\frac{1}{2}\\csc(x)\\cot(x) + \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)| + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\csc(x)\\cot(x) + \\frac{1}{2}\\ln|\\csc(x)-\\cot(x)| + C",
+          "tip": "La integral de $\\csc^3(x)$ sigue el mismo patrón que $\\sec^3(x)$ pero con signos negativos. Memoriza la fórmula de reducción: $\\int \\csc^n(x)\\,dx = -\\frac{\\csc^{n-2}(x)\\cot(x)}{n-1} + \\frac{n-2}{n-1}\\int \\csc^{n-2}(x)\\,dx$."
+        },
+        {
+          "id": "N2-G41",
+          "difficulty": 4,
+          "latex": "\\int \\sin^5(4x)\\cos^2(4x)\\,dx",
+          "hint": "Potencia impar de seno. Separa $\\sin(4x)$ y convierte el resto a coseno.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de seno",
+              "body": "$\\sin^5(4x)\\cos^2(4x) = \\sin(4x)\\cdot\\sin^4(4x)\\cos^2(4x) = \\sin(4x)(\\sin^2(4x))^2\\cos^2(4x)$"
+            },
+            {
+              "step": 2,
+              "title": "Convertir a coseno",
+              "body": "$\\sin^2(4x) = 1-\\cos^2(4x)$. Entonces: $\\sin(4x)(1-\\cos^2(4x))^2\\cos^2(4x)$"
+            },
+            {
+              "step": 3,
+              "title": "Expandir",
+              "body": "$(1-2\\cos^2(4x)+\\cos^4(4x))\\cos^2(4x)\\sin(4x) = (\\cos^2(4x)-2\\cos^4(4x)+\\cos^6(4x))\\sin(4x)$"
+            },
+            {
+              "step": 4,
+              "title": "Sustitución u = cos(4x)",
+              "body": "Sea $u = \\cos(4x)$, $du = -4\\sin(4x)\\,dx$. Entonces: $-\\frac{1}{4}\\int (u^2-2u^4+u^6)\\,du$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$-\\frac{1}{4}\\left(\\frac{u^3}{3} - \\frac{2u^5}{5} + \\frac{u^7}{7}\\right) + C = -\\frac{u^3}{12} + \\frac{u^5}{10} - \\frac{u^7}{28} + C$"
+            },
+            {
+              "step": 6,
+              "title": "Volver a x",
+              "body": "$-\\frac{\\cos^3(4x)}{12} + \\frac{\\cos^5(4x)}{10} - \\frac{\\cos^7(4x)}{28} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{\\cos^3(4x)}{12} + \\frac{\\cos^5(4x)}{10} - \\frac{\\cos^7(4x)}{28} + C",
+          "tip": "Con argumentos múltiples como $4x$, no olvides la regla de la cadena al derivar: $d(\\cos(4x)) = -4\\sin(4x)\\,dx$. El factor $-4$ aparece en la sustitución."
+        },
+        {
+          "id": "N2-G42",
+          "difficulty": 4,
+          "latex": "\\int \\tan^3(3x)\\sec(3x)\\,dx",
+          "hint": "Escribe $\\tan^2(3x) = \\sec^2(3x)-1$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar la tangente",
+              "body": "$\\tan^3(3x)\\sec(3x) = \\tan^2(3x)\\cdot\\tan(3x)\\sec(3x) = (\\sec^2(3x)-1)\\tan(3x)\\sec(3x)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\sec^2(3x)\\cdot\\tan(3x)\\sec(3x)\\,dx - \\int \\tan(3x)\\sec(3x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=sec(3x))",
+              "body": "Sea $u = \\sec(3x)$, $du = 3\\sec(3x)\\tan(3x)\\,dx$. Entonces: $\\frac{1}{3}\\int u^2\\,du = \\frac{u^3}{9} = \\frac{\\sec^3(3x)}{9}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (sustitución u=sec(3x))",
+              "body": "$\\frac{1}{3}\\int du = \\frac{u}{3} = \\frac{\\sec(3x)}{3}$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar resultados",
+              "body": "$\\frac{\\sec^3(3x)}{9} - \\frac{\\sec(3x)}{3} + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{9}\\sec^3(3x) - \\frac{1}{3}\\sec(3x) + C",
+          "tip": "Cuando tienes $\\tan^m(x)\\sec^n(x)$ con $m$ impar y $n$ par/positivo, separa $\\tan^2(x)$, conviértelo a $\\sec^2(x)-1$, y usa $u=\\sec(x)$. La derivada de $\\sec(x)$ es $\\sec(x)\\tan(x)$, que aparece en el integrando."
+        },
+        {
+          "id": "N2-G43",
+          "difficulty": 4,
+          "latex": "\\int \\tan^{-3}(x)\\sec^4(x)\\,dx",
+          "hint": "Escribe todo en términos de secante: separa $\\sec^2(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir el integrando",
+              "body": "$\\tan^{-3}(x)\\sec^4(x) = \\frac{\\sec^4(x)}{\\tan^3(x)} = \\frac{\\sec^2(x)\\cdot\\sec^2(x)}{\\tan^3(x)} = \\frac{(1+\\tan^2(x))\\sec^2(x)}{\\tan^3(x)}$"
+            },
+            {
+              "step": 2,
+              "title": "Sustitución u = tan(x)",
+              "body": "Sea $u = \\tan(x)$, $du = \\sec^2(x)\\,dx$. Entonces: $\\int \\frac{1+u^2}{u^3}\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Separar la fracción",
+              "body": "$\\frac{1+u^2}{u^3} = u^{-3} + u^{-1}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\int (u^{-3}+u^{-1})\\,du = \\frac{u^{-2}}{-2} + \\ln|u| + C = -\\frac{1}{2u^2} + \\ln|u| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-\\frac{1}{2\\tan^2(x)} + \\ln|\\tan(x)| + C = -\\frac{1}{2}\\cot^2(x) + \\ln|\\tan(x)| + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\cot^2(x) + \\ln|\\tan(x)| + C",
+          "tip": "Para potencias negativas de tangente, convierte todo a tangente usando $\\sec^2(x)=1+\\tan^2(x)$. La sustitución $u=\\tan(x)$ transforma la integral en una racional simple."
+        },
+        {
+          "id": "N2-G44",
+          "difficulty": 4,
+          "latex": "\\int \\cot^2(3x)\\csc^4(3x)\\,dx",
+          "hint": "Separa $\\csc^4(3x) = \\csc^2(3x)\\cdot\\csc^2(3x) = (1+\\cot^2(3x))\\csc^2(3x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir usando identidad",
+              "body": "$\\csc^2(3x) = 1+\\cot^2(3x)$. Entonces: $\\cot^2(3x)\\csc^4(3x) = \\cot^2(3x)(1+\\cot^2(3x))\\csc^2(3x)$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir",
+              "body": "$(\\cot^2(3x)+\\cot^4(3x))\\csc^2(3x)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = cot(3x)",
+              "body": "Sea $u = \\cot(3x)$, $du = -3\\csc^2(3x)\\,dx$. Entonces: $-\\frac{1}{3}\\int (u^2+u^4)\\,du$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$-\\frac{1}{3}\\left(\\frac{u^3}{3} + \\frac{u^5}{5}\\right) + C = -\\frac{u^3}{9} - \\frac{u^5}{15} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-\\frac{\\cot^3(3x)}{9} - \\frac{\\cot^5(3x)}{15} + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{9}\\cot^3(3x) - \\frac{1}{15}\\cot^5(3x) + C",
+          "tip": "Para potencias pares de cosecante multiplicadas por cotangente, usa $\\csc^2(3x)=1+\\cot^2(3x)$ y sustituye $u=\\cot(3x)$. La derivada $d(\\cot(3x))=-3\\csc^2(3x)\\,dx$ aparece en el integrando."
+        },
+        {
+          "id": "N2-G45",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\cos^3(x)}{1-\\sin(x)}\\,dx",
+          "hint": "Escribe $\\cos^3(x) = \\cos(x)(1-\\sin^2(x))$ y separa.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar el coseno",
+              "body": "$\\cos^3(x) = \\cos(x)\\cdot\\cos^2(x) = \\cos(x)(1-\\sin^2(x))$"
+            },
+            {
+              "step": 2,
+              "title": "Reescribir la fracción",
+              "body": "$\\frac{\\cos(x)(1-\\sin^2(x))}{1-\\sin(x)} = \\frac{\\cos(x)(1-\\sin(x))(1+\\sin(x))}{1-\\sin(x)} = \\cos(x)(1+\\sin(x))$"
+            },
+            {
+              "step": 3,
+              "title": "Expandir",
+              "body": "$\\cos(x) + \\cos(x)\\sin(x)$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar término a término",
+              "body": "$\\int \\cos(x)\\,dx + \\int \\cos(x)\\sin(x)\\,dx = \\sin(x) + \\frac{\\sin^2(x)}{2} + C$"
+            }
+          ],
+          "final_answer": "\\sin(x) + \\frac{1}{2}\\sin^2(x) + C",
+          "tip": "Antes de hacer sustitución, simplifica algebraicamente. Aquí $1-\\sin^2(x)$ se factoriza como $(1-\\sin(x))(1+\\sin(x))$, cancelando perfectamente con el denominador."
+        },
+        {
+          "id": "N2-G46",
+          "difficulty": 3,
+          "latex": "\\int \\frac{\\sin^3(x)}{2+\\cos(x)}\\,dx",
+          "hint": "Potencia impar de seno. Separa $\\sin(x)$ y convierte el resto a coseno.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de seno",
+              "body": "$\\sin^3(x) = \\sin(x)\\cdot\\sin^2(x) = \\sin(x)(1-\\cos^2(x))$"
+            },
+            {
+              "step": 2,
+              "title": "Reescribir la fracción",
+              "body": "$\\frac{\\sin(x)(1-\\cos^2(x))}{2+\\cos(x)}$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = cos(x)",
+              "body": "Sea $u = \\cos(x)$, $du = -\\sin(x)\\,dx$. Entonces: $-\\int \\frac{1-u^2}{2+u}\\,du = \\int \\frac{u^2-1}{u+2}\\,du$"
+            },
+            {
+              "step": 4,
+              "title": "División polinomial",
+              "body": "$\\frac{u^2-1}{u+2} = u - 2 + \\frac{3}{u+2}$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$\\frac{u^2}{2} - 2u + 3\\ln|u+2| + C$"
+            },
+            {
+              "step": 6,
+              "title": "Volver a x",
+              "body": "$\\frac{\\cos^2(x)}{2} - 2\\cos(x) + 3\\ln(2+\\cos(x)) + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\cos^2(x) - 2\\cos(x) + 3\\ln(2+\\cos(x)) + C",
+          "tip": "Cuando el denominador es $a+\\cos(x)$ y el numerador tiene $\\sin(x)$, la sustitución $u=\\cos(x)$ transforma todo en una función racional de $u$ que se resuelve por división polinomial."
+        },
+        {
+          "id": "N2-G47",
+          "difficulty": 3,
+          "latex": "\\int \\sin^7(x)\\,dx",
+          "hint": "Potencia impar alta. Separa $\\sin(x)$ y convierte $\\sin^6(x)=(1-\\cos^2(x))^3$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar un factor de seno",
+              "body": "$\\sin^7(x) = \\sin(x)\\cdot\\sin^6(x) = \\sin(x)(\\sin^2(x))^3 = \\sin(x)(1-\\cos^2(x))^3$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir usando binomio",
+              "body": "$(1-\\cos^2(x))^3 = 1 - 3\\cos^2(x) + 3\\cos^4(x) - \\cos^6(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución u = cos(x)",
+              "body": "Sea $u = \\cos(x)$, $du = -\\sin(x)\\,dx$. Entonces: $-\\int (1-3u^2+3u^4-u^6)\\,du$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$-u + u^3 - \\frac{3u^5}{5} + \\frac{u^7}{7} + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-\\cos(x) + \\cos^3(x) - \\frac{3}{5}\\cos^5(x) + \\frac{1}{7}\\cos^7(x) + C$"
+            }
+          ],
+          "final_answer": "-\\cos(x) + \\cos^3(x) - \\frac{3}{5}\\cos^5(x) + \\frac{1}{7}\\cos^7(x) + C",
+          "tip": "Para potencias impares altas de seno o coseno, usa el binomio de Newton para expandir $(1-\\cos^2(x))^n$. Cada término se integra directamente con $u=\\cos(x)$."
+        },
+        {
+          "id": "N2-G48",
+          "difficulty": 4,
+          "latex": "\\int \\cot^5(2x)\\,dx",
+          "hint": "Escribe $\\cot^5(2x) = \\cot^3(2x)\\cdot\\cot^2(2x) = \\cot^3(2x)(\\csc^2(2x)-1)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar usando identidad",
+              "body": "$\\cot^5(2x) = \\cot^3(2x)\\cdot\\cot^2(2x) = \\cot^3(2x)(\\csc^2(2x)-1)$"
+            },
+            {
+              "step": 2,
+              "title": "Expandir",
+              "body": "$\\cot^3(2x)\\csc^2(2x) - \\cot^3(2x)$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=cot(2x))",
+              "body": "Sea $u = \\cot(2x)$, $du = -2\\csc^2(2x)\\,dx$. Entonces: $-\\frac{1}{2}\\int u^3\\,du = -\\frac{u^4}{8} = -\\frac{\\cot^4(2x)}{8}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda parte: repetir el proceso",
+              "body": "$\\cot^3(2x) = \\cot(2x)(\\csc^2(2x)-1)$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar la segunda parte",
+              "body": "$\\int \\cot(2x)\\csc^2(2x)\\,dx - \\int \\cot(2x)\\,dx = -\\frac{\\cot^2(2x)}{4} - \\frac{1}{2}\\ln|\\sin(2x)|$"
+            },
+            {
+              "step": 6,
+              "title": "Combinar todo",
+              "body": "$-\\frac{\\cot^4(2x)}{8} + \\frac{\\cot^2(2x)}{4} + \\frac{1}{2}\\ln|\\sin(2x)| + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{8}\\cot^4(2x) + \\frac{1}{4}\\cot^2(2x) + \\frac{1}{2}\\ln|\\sin(2x)| + C",
+          "tip": "Para potencias impares de cotangente, repite el proceso: separa $\\cot^2(2x)=\\csc^2(2x)-1$, integra la parte con $\\csc^2$ por sustitución, y vuelve a aplicar la identidad al residuo hasta llegar a $\\int \\cot(2x)\\,dx$."
+        }
+      ]
+    },
+    {
+      "name": "Regla de Leibniz / Barrow",
+      "definition": "$\\frac{d}{dx} \\int_{u(x)}^{v(x)} f(t)\\,dt = f(v(x))\\cdot v'(x) - f(u(x))\\cdot u'(x)$. Si el integrando depende de $x$ fuera de la variable de integración, aplica primero la regla del producto y luego Leibniz.",
+      "tip": "Cuando los límites son funciones de x, no olvides multiplicar por la derivada del límite (regla de la cadena). Si el límite inferior es la variable, el signo es negativo. Si hay una función de x factorizada fuera de la integral, deriva primero como producto.",
+      "exercises": [
+        {
+          "id": "N2-28",
+          "difficulty": 2,
+          "latex": "\\frac{d}{dx} \\int_0^x \\sqrt{1+t^3} \\, dt",
+          "hint": "TFC directo: el límite inferior es constante (0), así que solo queda el término del límite superior.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar los límites y la función",
+              "body": "Tenemos $u(x) = 0$ (constante) y $v(x) = x$. La función es $f(t) = \\sqrt{1+t^3}$."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la regla de Leibniz",
+              "body": "$\\frac{d}{dx} \\int_{u(x)}^{v(x)} f(t)\\,dt = f(v(x)) \\cdot v'(x) - f(u(x)) \\cdot u'(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Calcular las derivadas de los límites",
+              "body": "$v'(x) = \\frac{d}{dx}(x) = 1$, $u'(x) = \\frac{d}{dx}(0) = 0$"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar y simplificar",
+              "body": "$f(x) \\cdot 1 - f(0) \\cdot 0 = \\sqrt{1+x^3} - 0 = \\sqrt{1+x^3}$"
+            }
+          ],
+          "final_answer": "\\sqrt{1+x^3}",
+          "tip": "Este es el caso más simple de Leibniz: límite inferior constante y límite superior igual a $x$. El resultado es simplemente evaluar el integrando en $x$."
+        },
+        {
+          "id": "N2-29",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx} \\int_x^{2x} t^2 \\, dt",
+          "hint": "$v(x)=2x$, $u(x)=x$. Aplica la fórmula completa con ambos límites variables.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x) = x$, $v(x) = 2x$, $f(t) = t^2$"
+            },
+            {
+              "step": 2,
+              "title": "Calcular derivadas de los límites",
+              "body": "$v'(x) = 2$, $u'(x) = 1$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar el integrando en cada límite",
+              "body": "$f(v(x)) = f(2x) = (2x)^2 = 4x^2$, $f(u(x)) = f(x) = x^2$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar la fórmula de Leibniz",
+              "body": "$f(v(x)) \\cdot v'(x) - f(u(x)) \\cdot u'(x) = 4x^2 \\cdot 2 - x^2 \\cdot 1 = 8x^2 - x^2 = 7x^2$"
+            }
+          ],
+          "final_answer": "7x^2",
+          "tip": "Siempre verifica calculando la integral primero y luego derivando: $\\int_x^{2x} t^2\\,dt = [\\frac{t^3}{3}]_x^{2x} = \\frac{8x^3}{3} - \\frac{x^3}{3} = \\frac{7x^3}{3}$, y $\\frac{d}{dx}(\\frac{7x^3}{3}) = 7x^2$ ✓"
+        },
+        {
+          "id": "N2-30",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx} \\int_{\\sen(x)}^{\\cos(x)} e^{t^2} \\, dt",
+          "hint": "Límites compuestos: $e^{\\cos^2(x)}(-\\sen(x)) - e^{\\sen^2(x)}(\\cos(x))$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x) = \\sen(x)$, $v(x) = \\cos(x)$, $f(t) = e^{t^2}$"
+            },
+            {
+              "step": 2,
+              "title": "Calcular derivadas de los límites",
+              "body": "$v'(x) = -\\sen(x)$, $u'(x) = \\cos(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar el integrando en cada límite",
+              "body": "$f(v(x)) = e^{\\cos^2(x)}$, $f(u(x)) = e^{\\sen^2(x)}$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar la fórmula de Leibniz",
+              "body": "$e^{\\cos^2(x)} \\cdot (-\\sen(x)) - e^{\\sen^2(x)} \\cdot \\cos(x) = -\\sen(x)e^{\\cos^2(x)} - \\cos(x)e^{\\sen^2(x)}$"
+            }
+          ],
+          "final_answer": "-\\sen(x)e^{\\cos^2(x)} - \\cos(x)e^{\\sen^2(x)}",
+          "tip": "Cuando los límites son funciones trigonométricas, presta atención a los signos de las derivadas: $\\frac{d}{dx}\\cos(x) = -\\sen(x)$."
+        },
+        {
+          "id": "N2-31",
+          "difficulty": 4,
+          "latex": "\\frac{d}{dx} \\int_{x^2}^{x^3} \\frac{dt}{\\sqrt{1+t^4}}",
+          "hint": "$v(x)=x^3$, $u(x)=x^2$. Aplica cadena.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x) = x^2$, $v(x) = x^3$, $f(t) = \\frac{1}{\\sqrt{1+t^4}} = (1+t^4)^{-1/2}$"
+            },
+            {
+              "step": 2,
+              "title": "Calcular derivadas de los límites",
+              "body": "$v'(x) = 3x^2$, $u'(x) = 2x$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar el integrando en cada límite",
+              "body": "$f(v(x)) = \\frac{1}{\\sqrt{1+(x^3)^4}} = \\frac{1}{\\sqrt{1+x^{12}}}$, $f(u(x)) = \\frac{1}{\\sqrt{1+(x^2)^4}} = \\frac{1}{\\sqrt{1+x^8}}$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar la fórmula de Leibniz",
+              "body": "$\\frac{1}{\\sqrt{1+x^{12}}} \\cdot 3x^2 - \\frac{1}{\\sqrt{1+x^8}} \\cdot 2x = \\frac{3x^2}{\\sqrt{1+x^{12}}} - \\frac{2x}{\\sqrt{1+x^8}}$"
+            }
+          ],
+          "final_answer": "\\frac{3x^2}{\\sqrt{1+x^{12}}} - \\frac{2x}{\\sqrt{1+x^8}}",
+          "tip": "Cuando los límites son potencias de $x$, presta atención a la regla de la cadena: $(x^3)^4 = x^{12}$, no $x^7$."
+        },
+        {
+          "id": "N2-32",
+          "difficulty": 4,
+          "latex": "\\frac{d}{dx} \\int_{-x}^{x} \\ln(1+t^2) \\, dt",
+          "hint": "Función par en límites simétricos variables.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x) = -x$, $v(x) = x$, $f(t) = \\ln(1+t^2)$"
+            },
+            {
+              "step": 2,
+              "title": "Calcular derivadas de los límites",
+              "body": "$v'(x) = 1$, $u'(x) = -1$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar el integrando en cada límite",
+              "body": "$f(v(x)) = \\ln(1+x^2)$, $f(u(x)) = \\ln(1+(-x)^2) = \\ln(1+x^2)$ (nota que $f$ es par)"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar la fórmula de Leibniz",
+              "body": "$\\ln(1+x^2) \\cdot 1 - \\ln(1+x^2) \\cdot (-1) = \\ln(1+x^2) + \\ln(1+x^2) = 2\\ln(1+x^2)$"
+            }
+          ],
+          "final_answer": "2\\ln(1+x^2)",
+          "tip": "Cuando el integrando es una función par y los límites son simétricos ($-x$ y $x$), los dos términos de Leibniz se suman en lugar de restarse. También puedes usar que $\\int_{-x}^{x} f(t)dt = 2\\int_0^x f(t)dt$ para funciones pares."
+        },
+        {
+          "id": "N2-G49",
+          "difficulty": 2,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^x (t^2+t)\\,dt\\right]",
+          "hint": "TFC directo: límite inferior constante, límite superior $x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$ (constante), $v(x)=x$, $f(t)=t^2+t$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar Leibniz",
+              "body": "$f(x)\\cdot 1 - f(0)\\cdot 0 = x^2+x$"
+            }
+          ],
+          "final_answer": "x^2+x",
+          "tip": "Este es el caso más simple del Teorema Fundamental del Cálculo: la derivada de la integral desde constante hasta $x$ es simplemente el integrando evaluado en $x$."
+        },
+        {
+          "id": "N2-G50",
+          "difficulty": 2,
+          "latex": "\\frac{d}{dx}\\left[\\int_{-6}^x (2t+t)\\,dt\\right]",
+          "hint": "Simplifica el integrando a $3t$ y aplica TFC directo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Simplificar el integrando",
+              "body": "$2t+t = 3t$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TFC directo",
+              "body": "$f(x) = 3x$"
+            }
+          ],
+          "final_answer": "3x",
+          "tip": "No necesitas integrar primero. El TFC dice que la derivada de la integral acumulada es el integrando evaluado en el límite superior."
+        },
+        {
+          "id": "N2-G51",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^x \\sin^4(u)\\tan(u)\\,du\\right]",
+          "hint": "TFC directo con integrando trigonométrico compuesto.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$, $v(x)=x$, $f(u)=\\sin^4(u)\\tan(u)$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TFC",
+              "body": "$f(x) = \\sin^4(x)\\tan(x)$"
+            }
+          ],
+          "final_answer": "\\sin^4(x)\\tan(x)",
+          "tip": "Aunque el integrando sea complejo, el TFC sigue siendo directo: reemplaza la variable de integración por el límite superior."
+        },
+        {
+          "id": "N2-G52",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_x^{\\pi/4} u\\tan(u)\\,du\\right]",
+          "hint": "Límite superior constante, inferior variable. El signo del término inferior es negativo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=x$, $v(x)=\\frac{\\pi}{4}$ (constante), $f(u)=u\\tan(u)$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar Leibniz",
+              "body": "$f\\left(\\frac{\\pi}{4}\\right)\\cdot 0 - f(x)\\cdot 1 = -x\\tan(x)$"
+            }
+          ],
+          "final_answer": "-x\\tan(x)",
+          "tip": "Cuando el límite superior es constante, su derivada es cero y solo queda el término del límite inferior con signo negativo. También puedes invertir los límites (cambia el signo de la integral) y aplicar TFC directo."
+        },
+        {
+          "id": "N2-G53",
+          "difficulty": 4,
+          "latex": "\\frac{d}{dx}\\left[\\int_x^1 x^2\\sqrt{u^2+1}\\,du\\right]",
+          "hint": "El integrando tiene $x^2$ fuera de la integral (respecto a $u$). Usa regla del producto + Leibniz.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Reescribir como producto",
+              "body": "$x^2 \\cdot \\int_x^1 \\sqrt{u^2+1}\\,du$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar regla del producto",
+              "body": "$\\frac{d}{dx}\\left[x^2\\right]\\cdot\\int_x^1 \\sqrt{u^2+1}\\,du + x^2\\cdot\\frac{d}{dx}\\left[\\int_x^1 \\sqrt{u^2+1}\\,du\\right]$"
+            },
+            {
+              "step": 3,
+              "title": "Derivar la integral (Leibniz)",
+              "body": "$\\frac{d}{dx}\\left[\\int_x^1 \\sqrt{u^2+1}\\,du\\right] = \\sqrt{1}\\cdot 0 - \\sqrt{x^2+1}\\cdot 1 = -\\sqrt{x^2+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar",
+              "body": "$2x\\int_x^1 \\sqrt{u^2+1}\\,du - x^2\\sqrt{x^2+1}$"
+            }
+          ],
+          "final_answer": "2x\\int_x^1 \\sqrt{u^2+1}\\,du - x^2\\sqrt{x^2+1}",
+          "tip": "Cuando la variable de derivación aparece como factor fuera de la integral, trata la expresión como un producto $g(x)\\cdot\\int_{a(x)}^{b(x)} f(u)\\,du$. Deriva usando $(g\\cdot h)' = g'h + gh'$."
+        },
+        {
+          "id": "N2-G54",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^{\\sin(x)} (t^2+\\cos(t))\\,dt\\right]",
+          "hint": "Límite superior compuesto: no olvides multiplicar por $\\cos(x)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$, $v(x)=\\sin(x)$, $f(t)=t^2+\\cos(t)$"
+            },
+            {
+              "step": 2,
+              "title": "Derivar el límite superior",
+              "body": "$v'(x) = \\cos(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar Leibniz",
+              "body": "$f(\\sin(x))\\cdot\\cos(x) - f(0)\\cdot 0 = (\\sin^2(x)+\\cos(\\sin(x)))\\cos(x)$"
+            }
+          ],
+          "final_answer": "\\left(\\sin^2(x)+\\cos(\\sin(x))\\right)\\cos(x)",
+          "tip": "Cuando el límite superior es $\\sin(x)$, $\\cos(x)$, $x^2$, etc., siempre multiplica el integrando evaluado en ese límite por la derivada del límite (regla de la cadena)."
+        },
+        {
+          "id": "N2-G55",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^{1/x} \\sin^4(t)\\,dt\\right]",
+          "hint": "Límite superior $1/x$. Deriva usando regla de la cadena.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$, $v(x)=\\frac{1}{x}$, $f(t)=\\sin^4(t)$"
+            },
+            {
+              "step": 2,
+              "title": "Derivar el límite superior",
+              "body": "$v'(x) = -\\frac{1}{x^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar Leibniz",
+              "body": "$f\\left(\\frac{1}{x}\\right)\\cdot\\left(-\\frac{1}{x^2}\\right) = \\sin^4\\left(\\frac{1}{x}\\right)\\cdot\\left(-\\frac{1}{x^2}\\right)$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{x^2}\\sin^4\\left(\\frac{1}{x}\\right)",
+          "tip": "Para límites del tipo $1/x$, $x^2$, $\\sqrt{x}$, etc., la derivada del límite es el único lugar donde aparece la regla de la cadena. No olvides el signo negativo de la derivada de $1/x$."
+        },
+        {
+          "id": "N2-G56",
+          "difficulty": 2,
+          "latex": "\\frac{d}{dx}\\left[\\int_{-1}^x \\sqrt{1+s^4}\\,ds\\right]",
+          "hint": "TFC directo: límite inferior constante negativa.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=-1$ (constante), $v(x)=x$, $f(s)=\\sqrt{1+s^4}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TFC",
+              "body": "$f(x) = \\sqrt{1+x^4}$"
+            }
+          ],
+          "final_answer": "\\sqrt{1+x^4}",
+          "tip": "El valor del límite inferior (sea positivo, negativo o cero) no afecta el resultado final cuando es constante. Solo importa que sea constante."
+        },
+        {
+          "id": "N2-G57",
+          "difficulty": 2,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^x (t^2-1)^{20}\\,dt\\right]",
+          "hint": "TFC directo con potencia alta.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$, $v(x)=x$, $f(t)=(t^2-1)^{20}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TFC",
+              "body": "$f(x) = (x^2-1)^{20}$"
+            }
+          ],
+          "final_answer": "(x^2-1)^{20}",
+          "tip": "Aunque integrar $(t^2-1)^{20}$ sería extremadamente largo (expansión binomial con 21 términos), el TFC evita todo ese trabajo. La derivación de la integral es inmediata."
+        },
+        {
+          "id": "N2-G58",
+          "difficulty": 2,
+          "latex": "\\frac{d}{du}\\left[\\int_\\pi^u \\frac{1}{1+t^4}\\,dt\\right]",
+          "hint": "La variable de derivación es $u$, no $x$. TFC directo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "Variable de derivación: $u$. Límites: $\\pi$ (constante) y $u$. $f(t)=\\frac{1}{1+t^4}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar TFC",
+              "body": "$f(u) = \\frac{1}{1+u^4}$"
+            }
+          ],
+          "final_answer": "\\frac{1}{1+u^4}",
+          "tip": "El TFC funciona con cualquier variable. Si la integral está en $t$ y derivas respecto a $u$, simplemente evalúas el integrando en $u$."
+        },
+        {
+          "id": "N2-G59",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_0^{\\sqrt{x}} \\frac{s^2}{s^2+1}\\,ds\\right]",
+          "hint": "Límite superior $\\sqrt{x}$. Multiplica por $\\frac{1}{2\\sqrt{x}}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=0$, $v(x)=\\sqrt{x}$, $f(s)=\\frac{s^2}{s^2+1}$"
+            },
+            {
+              "step": 2,
+              "title": "Derivar el límite superior",
+              "body": "$v'(x) = \\frac{1}{2\\sqrt{x}}$"
+            },
+            {
+              "step": 3,
+              "title": "Evaluar el integrando",
+              "body": "$f(\\sqrt{x}) = \\frac{x}{x+1}$"
+            },
+            {
+              "step": 4,
+              "title": "Aplicar Leibniz",
+              "body": "$\\frac{x}{x+1}\\cdot\\frac{1}{2\\sqrt{x}} = \\frac{\\sqrt{x}}{2(x+1)}$"
+            }
+          ],
+          "final_answer": "\\frac{\\sqrt{x}}{2(x+1)}",
+          "tip": "Simplifica antes de multiplicar: $\\frac{x}{x+1}\\cdot\\frac{1}{2\\sqrt{x}} = \\frac{\\sqrt{x}\\cdot\\sqrt{x}}{x+1}\\cdot\\frac{1}{2\\sqrt{x}} = \\frac{\\sqrt{x}}{2(x+1)}$."
+        },
+        {
+          "id": "N2-G60",
+          "difficulty": 3,
+          "latex": "\\frac{d}{dx}\\left[\\int_{\\tan(x)}^{17} \\sin(t^4)\\,dt\\right]",
+          "hint": "Límite inferior compuesto, superior constante. Dos fuentes de signo negativo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Identificar componentes",
+              "body": "$u(x)=\\tan(x)$, $v(x)=17$ (constante), $f(t)=\\sin(t^4)$"
+            },
+            {
+              "step": 2,
+              "title": "Derivar límites",
+              "body": "$v'(x)=0$, $u'(x)=\\sec^2(x)$"
+            },
+            {
+              "step": 3,
+              "title": "Aplicar Leibniz",
+              "body": "$f(17)\\cdot 0 - f(\\tan(x))\\cdot\\sec^2(x) = -\\sin(\\tan^4(x))\\sec^2(x)$"
+            }
+          ],
+          "final_answer": "-\\sec^2(x)\\sin(\\tan^4(x))",
+          "tip": "Cuando el límite inferior es la función compuesta y el superior es constante, el resultado es negativo: $-f(u(x))\\cdot u'(x)$. No olvides la derivada de $\\tan(x)$ que es $\\sec^2(x)$."
+        }
+      ]
+    },
+    {
+      "name": "Integrales Definidas",
+      "definition": "Integrales con límites de integración específicos. Aplicar el mismo método de integración que en indefinidas, pero evaluando en los extremos. Aprovechar simetrías (funciones pares/impares) y cambios de variable que preservan los límites.",
+      "tip": "Para funciones impares en intervalos simétricos [−a,a], la integral es cero. Para funciones pares, es el doble de [0,a]. Cuando hay valor absoluto, encuentra los puntos donde cambia de signo y separa la integral. En sustituciones, cambia los límites inmediatamente.",
+      "exercises": [
+        {
+          "id": "N2-G61",
+          "difficulty": 3,
+          "latex": "\\int_0^1 t^2 2^{-t^3}\\,dt",
+          "hint": "Sustitución $u = -t^3\\ln(2)$ o mejor $u = t^3$ luego ajusta la base.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "Sea $u = t^3$, $du = 3t^2\\,dt$. Cuando $t=0$, $u=0$; cuando $t=1$, $u=1$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar la integral",
+              "body": "$\\frac{1}{3}\\int_0^1 2^{-u}\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar exponencial con base 2",
+              "body": "$\\int 2^{-u}\\,du = -\\frac{2^{-u}}{\\ln(2)}$"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar límites",
+              "body": "$-\\frac{1}{3\\ln(2)}\\left[2^{-u}\\right]_0^1 = -\\frac{1}{3\\ln(2)}\\left(\\frac{1}{2}-1\\right) = \\frac{1}{6\\ln(2)}$"
+            }
+          ],
+          "final_answer": "\\frac{1}{6\\ln(2)}",
+          "tip": "Para exponenciales con base $a$, recuerda que $\\int a^{kx}\\,dx = \\frac{a^{kx}}{k\\ln(a)} + C$. Aquí la sustitución $u=t^3$ aísla la exponencial."
+        },
+        {
+          "id": "N2-G62",
+          "difficulty": 4,
+          "latex": "\\int_0^5 |-x^2+4x-1|\\,dx",
+          "hint": "Encuentra las raíces de $-x^2+4x-1=0$ para separar el valor absoluto.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Encontrar raíces",
+              "body": "$-x^2+4x-1=0 \\Rightarrow x^2-4x+1=0$. $x = \\frac{4\\pm\\sqrt{16-4}}{2} = 2\\pm\\sqrt{3}$. Aproximadamente: $x_1 \\approx 0.268$, $x_2 \\approx 3.732$"
+            },
+            {
+              "step": 2,
+              "title": "Analizar signos",
+              "body": "El parábola $-x^2+4x-1$ abre hacia abajo, por tanto es positiva entre las raíces y negativa fuera. En $[0,5]$: negativa en $[0, 2-\\sqrt{3}]$, positiva en $[2-\\sqrt{3}, 2+\\sqrt{3}]$, negativa en $[2+\\sqrt{3}, 5]$"
+            },
+            {
+              "step": 3,
+              "title": "Separar la integral",
+              "body": "$\\int_0^{2-\\sqrt{3}} (x^2-4x+1)\\,dx + \\int_{2-\\sqrt{3}}^{2+\\sqrt{3}} (-x^2+4x-1)\\,dx + \\int_{2+\\sqrt{3}}^5 (x^2-4x+1)\\,dx$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar cada parte",
+              "body": "$\\left[\\frac{x^3}{3}-2x^2+x\\right]_0^{2-\\sqrt{3}} + \\left[-\\frac{x^3}{3}+2x^2-x\\right]_{2-\\sqrt{3}}^{2+\\sqrt{3}} + \\left[\\frac{x^3}{3}-2x^2+x\\right]_{2+\\sqrt{3}}^5$"
+            },
+            {
+              "step": 5,
+              "title": "Evaluar (cálculo detallado)",
+              "body": "Primera: $\\frac{(2-\\sqrt{3})^3}{3}-2(2-\\sqrt{3})^2+(2-\\sqrt{3}) = \\frac{26-15\\sqrt{3}}{3}-14+8\\sqrt{3}+2-\\sqrt{3} = \\frac{-10+6\\sqrt{3}}{3}$"
+            },
+            {
+              "step": 6,
+              "title": "Evaluar segunda parte",
+              "body": "En $x=2+\\sqrt{3}$: $-\\frac{26+15\\sqrt{3}}{3}+2(7+4\\sqrt{3})-(2+\\sqrt{3}) = \\frac{4+6\\sqrt{3}}{3}$. En $x=2-\\sqrt{3}$: $\\frac{4-6\\sqrt{3}}{3}$. Diferencia: $\\frac{12\\sqrt{3}}{3} = 4\\sqrt{3}$"
+            },
+            {
+              "step": 7,
+              "title": "Evaluar tercera parte",
+              "body": "En $x=5$: $\\frac{125}{3}-50+5 = \\frac{5}{3}$. En $x=2+\\sqrt{3}$: $\\frac{26+15\\sqrt{3}}{3}-14-8\\sqrt{3}+2+\\sqrt{3} = \\frac{-10-6\\sqrt{3}}{3}$. Diferencia: $\\frac{5}{3}-\\frac{-10-6\\sqrt{3}}{3} = \\frac{15+6\\sqrt{3}}{3} = 5+2\\sqrt{3}$"
+            },
+            {
+              "step": 8,
+              "title": "Sumar todo",
+              "body": "$\\frac{-10+6\\sqrt{3}}{3} + 4\\sqrt{3} + 5+2\\sqrt{3} = \\frac{-10+6\\sqrt{3}+12\\sqrt{3}+15+6\\sqrt{3}}{3} = \\frac{5+24\\sqrt{3}}{3}$"
+            }
+          ],
+          "final_answer": "\\frac{5+24\\sqrt{3}}{3}",
+          "tip": "Para valor absoluto de cuadráticas, siempre encuentra las raíces reales. El signo entre las raíces es opuesto al signo del coeficiente de $x^2$. Aquí $-x^2$ es negativo, así que la parábola abre hacia abajo: positiva entre raíces, negativa fuera."
+        },
+        {
+          "id": "N2-G63",
+          "difficulty": 3,
+          "latex": "\\int_{-1/2}^{1/2} \\frac{1}{1-x^2}\\,dx",
+          "hint": "Función par en intervalo simétrico. Fracciones parciales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Verificar simetría",
+              "body": "$f(-x) = \\frac{1}{1-(-x)^2} = \\frac{1}{1-x^2} = f(x)$. Es par. Podemos escribir: $2\\int_0^{1/2} \\frac{1}{1-x^2}\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1}{1-x^2} = \\frac{1}{(1-x)(1+x)} = \\frac{1/2}{1-x} + \\frac{1/2}{1+x}$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$2\\cdot\\frac{1}{2}\\left[-\\ln|1-x| + \\ln|1+x|\\right]_0^{1/2} = \\left[\\ln\\left|\\frac{1+x}{1-x}\\right|\\right]_0^{1/2}$"
+            },
+            {
+              "step": 4,
+              "title": "Evaluar",
+              "body": "$\\ln\\left(\\frac{1+1/2}{1-1/2}\\right) - \\ln(1) = \\ln(3) - 0 = \\ln(3)$"
+            }
+          ],
+          "final_answer": "\\ln(3)",
+          "tip": "Aprovechar la simetría de funciones pares reduce el trabajo a la mitad. La integral de $\\frac{1}{1-x^2}$ es $\\text{arctanh}(x)$ o $\\frac{1}{2}\\ln\\left|\\frac{1+x}{1-x}\\right|$."
+        },
+        {
+          "id": "N2-G64",
+          "difficulty": 4,
+          "latex": "\\int_2^3 \\frac{1}{\\sqrt{4x^2+12x-5}}\\,dx",
+          "hint": "Completar cuadrados dentro de la raíz.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Completar el cuadrado",
+              "body": "$4x^2+12x-5 = 4(x^2+3x)-5 = 4(x+3/2)^2-9-5 = 4(x+3/2)^2-14$"
+            },
+            {
+              "step": 2,
+              "title": "Reescribir",
+              "body": "$\\int_2^3 \\frac{dx}{\\sqrt{4(x+3/2)^2-14}} = \\frac{1}{2}\\int_2^3 \\frac{dx}{\\sqrt{(x+3/2)^2-7/2}}$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución trigonométrica",
+              "body": "Sea $x+3/2 = \\sqrt{7/2}\\sec(\\theta)$, $dx = \\sqrt{7/2}\\sec(\\theta)\\tan(\\theta)\\,d\\theta$"
+            },
+            {
+              "step": 4,
+              "title": "Transformar",
+              "body": "$\\frac{1}{2}\\int \\frac{\\sqrt{7/2}\\sec(\\theta)\\tan(\\theta)}{\\sqrt{7/2}\\tan(\\theta)}\\,d\\theta = \\frac{1}{2}\\int \\sec(\\theta)\\,d\\theta = \\frac{1}{2}\\ln|\\sec(\\theta)+\\tan(\\theta)|$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer sustitución",
+              "body": "$\\sec(\\theta) = \\frac{x+3/2}{\\sqrt{7/2}}$, $\\tan(\\theta) = \\frac{\\sqrt{4x^2+12x-5}}{\\sqrt{14}}$"
+            },
+            {
+              "step": 6,
+              "title": "Evaluar en límites",
+              "body": "En $x=3$: $\\frac{1}{2}\\ln\\left|\\frac{9/2}{\\sqrt{7/2}} + \\frac{\\sqrt{49}}{\\sqrt{14}}\\right| = \\frac{1}{2}\\ln\\left(\\frac{16}{\\sqrt{14}}\\right)$. En $x=2$: $\\frac{1}{2}\\ln\\left|\\frac{7/2}{\\sqrt{7/2}} + \\frac{\\sqrt{27}}{\\sqrt{14}}\\right| = \\frac{1}{2}\\ln\\left(\\frac{7+3\\sqrt{3}}{\\sqrt{14}}\\right)$"
+            },
+            {
+              "step": 7,
+              "title": "Diferencia",
+              "body": "$\\frac{1}{2}\\ln\\left(\\frac{16}{7+3\\sqrt{3}}\\right)$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\ln\\left(\\frac{16}{7+3\\sqrt{3}}\\right)",
+          "tip": "Para raíces cuadráticas en integrales definidas, completar cuadrados es obligatorio. La sustitución $x+3/2 = \\sqrt{7/2}\\sec(\\theta)$ corresponde al caso $\\sqrt{u^2-a^2}$."
+        },
+        {
+          "id": "N2-G65",
+          "difficulty": 4,
+          "latex": "\\int_0^{\\pi/2} \\frac{1}{5\\sin(x)+3}\\,dx",
+          "hint": "Weierstrass en integral definida. Cambia los límites según $t=\\tan(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(x/2)$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$. Cuando $x=0$, $t=0$; cuando $x=\\pi/2$, $t=1$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int_0^1 \\frac{2}{(1+t^2)(5\\cdot\\frac{2t}{1+t^2}+3)}\\,dt = \\int_0^1 \\frac{2}{10t+3(1+t^2)}\\,dt = \\int_0^1 \\frac{2}{3t^2+10t+3}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Factorizar",
+              "body": "$3t^2+10t+3 = (3t+1)(t+3)$"
+            },
+            {
+              "step": 4,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{2}{(3t+1)(t+3)} = \\frac{A}{3t+1} + \\frac{B}{t+3}$. $2 = A(t+3) + B(3t+1)$. $t=-3$: $2=-8B \\Rightarrow B=-1/4$. $t=-1/3$: $2=A(8/3) \\Rightarrow A=3/4$"
+            },
+            {
+              "step": 5,
+              "title": "Integrar",
+              "body": "$\\frac{3}{4}\\cdot\\frac{1}{3}\\ln|3t+1| - \\frac{1}{4}\\ln|t+3| = \\frac{1}{4}\\ln|3t+1| - \\frac{1}{4}\\ln|t+3| = \\frac{1}{4}\\ln\\left|\\frac{3t+1}{t+3}\\right|$"
+            },
+            {
+              "step": 6,
+              "title": "Evaluar en límites",
+              "body": "$\\frac{1}{4}\\left[\\ln\\left(\\frac{3t+1}{t+3}\\right)\\right]_0^1 = \\frac{1}{4}\\left(\\ln\\left(\\frac{4}{4}\\right) - \\ln\\left(\\frac{1}{3}\\right)\\right) = \\frac{1}{4}(0 - (-\\ln 3)) = \\frac{\\ln 3}{4}$"
+            }
+          ],
+          "final_answer": "\\frac{\\ln 3}{4}",
+          "tip": "En integrales definidas con Weierstrass, cambia los límites de $x$ a $t$ inmediatamente: $x=0 \\Rightarrow t=0$, $x=\\pi/2 \\Rightarrow t=1$. Esto evita volver a $x$ al final."
+        },
+        {
+          "id": "N2-G66",
+          "difficulty": 4,
+          "latex": "\\int_{\\pi/6}^{\\pi/3} \\frac{3}{2\\sin(x)+1}\\,dx",
+          "hint": "Weierstrass con límites trigonométricos. $t=\\tan(x/2)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(x/2)$, $\\sen(x) = \\frac{2t}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$. $x=\\pi/6 \\Rightarrow t=\\tan(\\pi/12)=2-\\sqrt{3}$. $x=\\pi/3 \\Rightarrow t=\\tan(\\pi/6)=\\frac{1}{\\sqrt{3}}$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$3\\int_{2-\\sqrt{3}}^{1/\\sqrt{3}} \\frac{2}{(1+t^2)(2\\cdot\\frac{2t}{1+t^2}+1)}\\,dt = 6\\int_{2-\\sqrt{3}}^{1/\\sqrt{3}} \\frac{1}{4t+1+t^2}\\,dt = 6\\int_{2-\\sqrt{3}}^{1/\\sqrt{3}} \\frac{1}{t^2+4t+1}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Completar el cuadrado",
+              "body": "$t^2+4t+1 = (t+2)^2-3$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar (forma arctanh)",
+              "body": "$6\\cdot\\frac{1}{2\\sqrt{3}}\\ln\\left|\\frac{t+2-\\sqrt{3}}{t+2+\\sqrt{3}}\\right| = \\sqrt{3}\\ln\\left|\\frac{t+2-\\sqrt{3}}{t+2+\\sqrt{3}}\\right|$"
+            },
+            {
+              "step": 5,
+              "title": "Evaluar en límites",
+              "body": "En $t=1/\\sqrt{3}$: $\\sqrt{3}\\ln\\left|\\frac{1/\\sqrt{3}+2-\\sqrt{3}}{1/\\sqrt{3}+2+\\sqrt{3}}\\right| = \\sqrt{3}\\ln\\left|\\frac{\\sqrt{3}-1}{\\sqrt{3}+2}\\right|$"
+            },
+            {
+              "step": 6,
+              "title": "Evaluar en límite inferior",
+              "body": "En $t=2-\\sqrt{3}$: $\\sqrt{3}\\ln\\left|\\frac{2-\\sqrt{3}+2-\\sqrt{3}}{2-\\sqrt{3}+2+\\sqrt{3}}\\right| = \\sqrt{3}\\ln\\left|\\frac{2-\\sqrt{3}}{2}\\right|$"
+            },
+            {
+              "step": 7,
+              "title": "Diferencia",
+              "body": "$\\sqrt{3}\\ln\\left(\\frac{2(\\sqrt{3}-1)}{(\\sqrt{3}+2)(2-\\sqrt{3})}\\right) = \\sqrt{3}\\ln(2(\\sqrt{3}-1))$"
+            }
+          ],
+          "final_answer": "\\sqrt{3}\\ln(2(\\sqrt{3}-1))",
+          "tip": "Los límites trigonométricos para $t=\\tan(x/2)$ requieren valores exactos: $\\tan(\\pi/12)=2-\\sqrt{3}$ y $\\tan(\\pi/6)=1/\\sqrt{3}$. La simplificación final usa propiedades de logaritmos y racionalización."
+        },
+        {
+          "id": "N2-G67",
+          "difficulty": 3,
+          "latex": "\\int_0^4 \\frac{1}{1+\\sqrt{x}}\\,dx",
+          "hint": "Sustitución $t=\\sqrt{x}$. Cambia los límites.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = \\sqrt{x}$, $x = t^2$, $dx = 2t\\,dt$. Cuando $x=0$, $t=0$; cuando $x=4$, $t=2$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int_0^2 \\frac{2t}{1+t}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Manipular algebraicamente",
+              "body": "$\\frac{2t}{1+t} = 2\\left(1 - \\frac{1}{1+t}\\right)$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$2\\left[t - \\ln|1+t|\\right]_0^2 = 2\\left[(2-\\ln 3) - (0-0)\\right] = 4 - 2\\ln 3$"
+            }
+          ],
+          "final_answer": "4 - 2\\ln 3",
+          "tip": "En integrales definidas con sustitución irracional, cambia los límites inmediatamente para evitar volver a la variable original."
+        },
+        {
+          "id": "N2-G68",
+          "difficulty": 3,
+          "latex": "\\int_{-1}^1 \\frac{x^3+x}{(x^4+2x^2+1)^5}\\,dx",
+          "hint": "Función impar en intervalo simétrico.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Verificar simetría",
+              "body": "Sea $f(x) = \\frac{x^3+x}{(x^4+2x^2+1)^5}$. Entonces $f(-x) = \\frac{(-x)^3+(-x)}{((-x)^4+2(-x)^2+1)^5} = \\frac{-x^3-x}{(x^4+2x^2+1)^5} = -f(x)$. Es impar."
+            },
+            {
+              "step": 2,
+              "title": "Aplicar propiedad de funciones impares",
+              "body": "Para $f$ impar en $[-a,a]$: $\\int_{-a}^a f(x)\\,dx = 0$"
+            }
+          ],
+          "final_answer": "0",
+          "tip": "Siempre verifica primero la paridad. El denominador $(x^4+2x^2+1)^5 = (x^2+1)^{10}$ es par, y el numerador $x^3+x = x(x^2+1)$ es impar. Par × impar = impar."
+        }
+      ]
+    },
+    {
+      "name": "Integrales Variadas",
+      "definition": "Integrales que requieren combinar dos o más técnicas: simplificación algebraica previa, integración por partes con ciclos, sustitución trigonométrica con potencias, y fracciones parciales con raíces.",
+      "tip": "Antes de aplicar cualquier técnica, simplifica el integrando todo lo posible. Muchas veces una división o factorización previa reduce el problema drásticamente. Para integración por partes con ciclos, resuelve la ecuación algebraica resultante.",
+      "exercises": [
+        {
+          "id": "N2-G69",
+          "difficulty": 4,
+          "latex": "\\int \\frac{e^{2x}-e^x\\sin(x)}{1+e^x}\\,dx",
+          "hint": "Separa en dos integrales y simplifica la primera dividiendo.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar la fracción",
+              "body": "$\\int \\frac{e^{2x}}{1+e^x}\\,dx - \\int \\frac{e^x\\sin(x)}{1+e^x}\\,dx$"
+            },
+            {
+              "step": 2,
+              "title": "Simplificar la primera integral",
+              "body": "$\\frac{e^{2x}}{1+e^x} = \\frac{e^x(e^x+1)-e^x}{1+e^x} = e^x - \\frac{e^x}{1+e^x}$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar la primera parte",
+              "body": "$\\int e^x\\,dx - \\int \\frac{e^x}{1+e^x}\\,dx = e^x - \\ln(1+e^x)$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral (sustitución u=e^x)",
+              "body": "Sea $u = e^x$, $du = e^x\\,dx$. Entonces: $\\int \\frac{\\sin(\\ln u)}{1+u}\\,du$ — esta integral no tiene forma cerrada elemental simple."
+            },
+            {
+              "step": 5,
+              "title": "Revisar el enfoque",
+              "body": "Observamos que $\\frac{e^{2x}-e^x\\sin(x)}{1+e^x} = \\frac{e^x(e^x-\\sin(x))}{1+e^x}$. Hacemos $u = e^x$, $du = e^x\\,dx$, $x = \\ln u$"
+            },
+            {
+              "step": 6,
+              "title": "Transformar completamente",
+              "body": "$\\int \\frac{u - \\sin(\\ln u)}{1+u}\\,du = \\int \\frac{u}{1+u}\\,du - \\int \\frac{\\sin(\\ln u)}{1+u}\\,du$"
+            },
+            {
+              "step": 7,
+              "title": "Primera parte resuelta",
+              "body": "$\\int \\frac{u}{1+u}\\,du = \\int\\left(1 - \\frac{1}{1+u}\\right)du = u - \\ln|1+u| = e^x - \\ln(1+e^x)$"
+            },
+            {
+              "step": 8,
+              "title": "Segunda parte: integración por partes",
+              "body": "Para $\\int \\frac{\\sin(\\ln u)}{1+u}\\,du$, sea $v = \\sin(\\ln u)$, $dw = \\frac{du}{1+u}$. Esto conduce a una integral cíclica compleja."
+            },
+            {
+              "step": 9,
+              "title": "Resultado combinado",
+              "body": "$e^x - \\ln(1+e^x) - \\int \\frac{e^x\\sin(x)}{1+e^x}\\,dx$. La segunda integral requiere series o métodos avanzados. Una forma alternativa: $e^x - \\ln(1+e^x) - \\frac{e^x(\\sin(x)-\\cos(x))}{2(1+e^x)} + \\frac{1}{2}\\int\\frac{e^x(\\sin(x)-\\cos(x))}{(1+e^x)^2}\\,dx$"
+            }
+          ],
+          "final_answer": "e^x - \\ln(1+e^x) - \\frac{e^x(\\sin(x)-\\cos(x))}{2(1+e^x)} + \\frac{1}{2}\\int\\frac{e^x(\\sin(x)-\\cos(x))}{(1+e^x)^2}\\,dx + C",
+          "tip": "Esta integral es notablemente difícil. La parte con $\\frac{e^x\\sin(x)}{1+e^x}$ no tiene primitiva elemental simple. En un examen típico, se esperaría que reconozcas la división de la primera parte y dejes indicada la segunda."
+        },
+        {
+          "id": "N2-G70",
+          "difficulty": 4,
+          "latex": "\\int 3^x x\\,dx",
+          "hint": "Integración por partes: $u=x$, $dv=3^x\\,dx$. Ciclo con exponencial.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Integración por partes",
+              "body": "Sea $u = x$, $dv = 3^x\\,dx$. Entonces $du = dx$, $v = \\frac{3^x}{\\ln 3}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula",
+              "body": "$\\int 3^x x\\,dx = \\frac{x\\cdot 3^x}{\\ln 3} - \\int \\frac{3^x}{\\ln 3}\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar la segunda parte",
+              "body": "$\\int \\frac{3^x}{\\ln 3}\\,dx = \\frac{3^x}{(\\ln 3)^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Combinar",
+              "body": "$\\frac{x\\cdot 3^x}{\\ln 3} - \\frac{3^x}{(\\ln 3)^2} + C = \\frac{3^x}{\\ln 3}\\left(x - \\frac{1}{\\ln 3}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\frac{3^x}{\\ln 3}\\left(x - \\frac{1}{\\ln 3}\\right) + C",
+          "tip": "Para $\\int x a^x\\,dx$ con $a>0$, siempre usa partes con $u=x$. La segunda integral es directa porque no hay ciclo (a diferencia de $e^x\\sin(x)$)."
+        },
+        {
+          "id": "N2-G71",
+          "difficulty": 3,
+          "latex": "\\int \\cot^3(x)\\,dx",
+          "hint": "Escribe $\\cot^3(x) = \\cot(x)(\\csc^2(x)-1)$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Separar usando identidad",
+              "body": "$\\cot^3(x) = \\cot(x)\\cdot\\cot^2(x) = \\cot(x)(\\csc^2(x)-1)$"
+            },
+            {
+              "step": 2,
+              "title": "Separar en dos integrales",
+              "body": "$\\int \\cot(x)\\csc^2(x)\\,dx - \\int \\cot(x)\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Primera integral (sustitución u=cot(x))",
+              "body": "Sea $u = \\cot(x)$, $du = -\\csc^2(x)\\,dx$. Entonces: $-\\int u\\,du = -\\frac{u^2}{2} = -\\frac{\\cot^2(x)}{2}$"
+            },
+            {
+              "step": 4,
+              "title": "Segunda integral",
+              "body": "$\\int \\cot(x)\\,dx = \\ln|\\sin(x)|$"
+            },
+            {
+              "step": 5,
+              "title": "Combinar",
+              "body": "$-\\frac{\\cot^2(x)}{2} - \\ln|\\sin(x)| + C$"
+            }
+          ],
+          "final_answer": "-\\frac{1}{2}\\cot^2(x) - \\ln|\\sin(x)| + C",
+          "tip": "Análogo a $\\tan^3(x)$ pero con signos cambiados. La derivada de $\\cot(x)$ es $-\\csc^2(x)$, lo que introduce el signo negativo en la primera integral."
+        },
+        {
+          "id": "N2-G72",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{(x-1)\\sqrt{x^2-2}}",
+          "hint": "Sustitución trigonométrica $x = \\sqrt{2}\\sec(\\theta)$ o sustitución de Euler $t = \\sqrt{x^2-2}-x$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución de Euler",
+              "body": "Sea $t = \\sqrt{x^2-2} - x$. Entonces $t + x = \\sqrt{x^2-2}$, $(t+x)^2 = x^2-2$, $t^2+2tx+x^2 = x^2-2$, $t^2+2tx = -2$, $x = \\frac{-t^2-2}{2t} = -\\frac{t^2+2}{2t}$"
+            },
+            {
+              "step": 2,
+              "title": "Diferencial",
+              "body": "$dx = -\\frac{2t\\cdot 2t - (t^2+2)\\cdot 2}{4t^2}\\,dt = -\\frac{4t^2-2t^2-4}{4t^2}\\,dt = -\\frac{2t^2-4}{4t^2}\\,dt = \\frac{2-t^2}{2t^2}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "Expresar $\\sqrt{x^2-2}$",
+              "body": "$\\sqrt{x^2-2} = t + x = t - \\frac{t^2+2}{2t} = \\frac{2t^2-t^2-2}{2t} = \\frac{t^2-2}{2t}$"
+            },
+            {
+              "step": 4,
+              "title": "Transformar $x-1$",
+              "body": "$x-1 = -\\frac{t^2+2}{2t} - 1 = \\frac{-t^2-2-2t}{2t} = -\\frac{t^2+2t+2}{2t}$"
+            },
+            {
+              "step": 5,
+              "title": "Sustituir en la integral",
+              "body": "$\\int \\frac{\\frac{2-t^2}{2t^2}}{-\\frac{t^2+2t+2}{2t}\\cdot\\frac{t^2-2}{2t}}\\,dt = \\int \\frac{2-t^2}{2t^2} \\cdot \\frac{-4t^2}{(t^2+2t+2)(t^2-2)}\\,dt = \\int \\frac{-2(2-t^2)}{(t^2+2t+2)(t^2-2)}\\,dt$"
+            },
+            {
+              "step": 6,
+              "title": "Simplificar",
+              "body": "$\\frac{-2(2-t^2)}{(t^2+2t+2)(t^2-2)} = \\frac{2(t^2-2)}{(t^2+2t+2)(t^2-2)} = \\frac{2}{t^2+2t+2}$ (para $t^2 \\neq 2$)"
+            },
+            {
+              "step": 7,
+              "title": "Completar el cuadrado",
+              "body": "$t^2+2t+2 = (t+1)^2+1$"
+            },
+            {
+              "step": 8,
+              "title": "Integrar",
+              "body": "$2\\int \\frac{dt}{(t+1)^2+1} = 2\\arctan(t+1) + C$"
+            },
+            {
+              "step": 9,
+              "title": "Volver a x",
+              "body": "$2\\arctan(\\sqrt{x^2-2}-x+1) + C$"
+            }
+          ],
+          "final_answer": "2\\arctan(\\sqrt{x^2-2}-x+1) + C",
+          "tip": "La sustitución de Euler $\\sqrt{x^2-a^2} = t-x$ es poderosa para integrales de la forma $\\frac{1}{(x-k)\\sqrt{x^2-a^2}}$. Transforma la raíz cuadrática en una función racional de $t$."
+        },
+        {
+          "id": "N2-G73",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x}{x^2-2x-3}\\,dx",
+          "hint": "Fracciones parciales. Factoriza el denominador.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar",
+              "body": "$x^2-2x-3 = (x-3)(x+1)$"
+            },
+            {
+              "step": 2,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{x}{(x-3)(x+1)} = \\frac{A}{x-3} + \\frac{B}{x+1}$. $x = A(x+1) + B(x-3)$"
+            },
+            {
+              "step": 3,
+              "title": "Resolver coeficientes",
+              "body": "$x=3$: $3=4A \\Rightarrow A=\\frac{3}{4}$. $x=-1$: $-1=-4B \\Rightarrow B=\\frac{1}{4}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{3}{4}\\ln|x-3| + \\frac{1}{4}\\ln|x+1| + C = \\frac{1}{4}\\ln|(x-3)^3(x+1)| + C$"
+            }
+          ],
+          "final_answer": "\\frac{3}{4}\\ln|x-3| + \\frac{1}{4}\\ln|x+1| + C",
+          "tip": "Cuando el numerador es $x$ (grado 1) y el denominador es cuadrático factorizable, fracciones parciales directas funcionan perfectamente."
+        },
+        {
+          "id": "N2-G74",
+          "difficulty": 4,
+          "latex": "\\int \\frac{dx}{\\sqrt[3]{x}-\\sqrt{x}}",
+          "hint": "mcm de 2 y 3 es 6. $t = \\sqrt[6]{x}$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución",
+              "body": "$t = x^{1/6}$, $x = t^6$, $dx = 6t^5\\,dt$. $\\sqrt[3]{x}=t^2$, $\\sqrt{x}=t^3$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int \\frac{6t^5}{t^2-t^3}\\,dt = 6\\int \\frac{t^5}{t^2(1-t)}\\,dt = 6\\int \\frac{t^3}{1-t}\\,dt$"
+            },
+            {
+              "step": 3,
+              "title": "División polinomial",
+              "body": "$\\frac{t^3}{1-t} = -t^2-t-1 + \\frac{1}{1-t}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$6\\left(-\\frac{t^3}{3}-\\frac{t^2}{2}-t - \\ln|1-t|\\right) + C = -2t^3-3t^2-6t-6\\ln|1-t| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$-2\\sqrt{x} - 3\\sqrt[3]{x} - 6\\sqrt[6]{x} - 6\\ln|1-\\sqrt[6]{x}| + C$"
+            }
+          ],
+          "final_answer": "-2\\sqrt{x} - 3\\sqrt[3]{x} - 6\\sqrt[6]{x} - 6\\ln|1-\\sqrt[6]{x}| + C",
+          "tip": "El denominador $\\sqrt[3]{x}-\\sqrt{x} = x^{1/3}-x^{1/2}$ tiene mcm(2,3)=6. La sustitución $t=x^{1/6}$ convierte la diferencia de raíces en un polinomio simple."
+        },
+        {
+          "id": "N2-G75",
+          "difficulty": 4,
+          "latex": "\\int \\frac{1-\\sin(x)+\\cos(x)}{1+\\sin(x)-\\cos(x)}\\,dx",
+          "hint": "Weierstrass. Simplifica el numerador y denominador por separado.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Aplicar Weierstrass",
+              "body": "$t = \\tan(\\frac{x}{2})$, $\\sen(x) = \\frac{2t}{1+t^2}$, $\\cos(x) = \\frac{1-t^2}{1+t^2}$, $dx = \\frac{2}{1+t^2}\\,dt$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar numerador",
+              "body": "$1 - \\frac{2t}{1+t^2} + \\frac{1-t^2}{1+t^2} = \\frac{1+t^2-2t+1-t^2}{1+t^2} = \\frac{2-2t}{1+t^2}$"
+            },
+            {
+              "step": 3,
+              "title": "Transformar denominador",
+              "body": "$1 + \\frac{2t}{1+t^2} - \\frac{1-t^2}{1+t^2} = \\frac{1+t^2+2t-1+t^2}{1+t^2} = \\frac{2t^2+2t}{1+t^2} = \\frac{2t(t+1)}{1+t^2}$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar la fracción",
+              "body": "$\\frac{2-2t}{2t(t+1)} = \\frac{2(1-t)}{2t(t+1)} = \\frac{1-t}{t(t+1)}$"
+            },
+            {
+              "step": 5,
+              "title": "Transformar la integral",
+              "body": "$\\int \\frac{1-t}{t(t+1)} \\cdot \\frac{2}{1+t^2}\\,dt = 2\\int \\frac{1-t}{t(t+1)(1+t^2)}\\,dt$"
+            },
+            {
+              "step": 6,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{1-t}{t(t+1)(1+t^2)} = \\frac{1}{t} - \\frac{1}{t+1} - \\frac{t}{1+t^2}$"
+            },
+            {
+              "step": 7,
+              "title": "Integrar",
+              "body": "$2\\left(\\ln|t| - \\ln|t+1| - \\frac{1}{2}\\ln(1+t^2)\\right) + C = 2\\ln|t| - 2\\ln|t+1| - \\ln(1+t^2) + C$"
+            },
+            {
+              "step": 8,
+              "title": "Simplificar y volver a x",
+              "body": "$\\ln\\left(\\frac{t^2}{(t+1)^2(1+t^2)}\\right) + C = \\ln\\left(\\frac{\\tan^2(x/2)}{(\\tan(x/2)+1)^2\\sec^2(x/2)}\\right) + C = \\ln\\left(\\frac{\\sin^2(x/2)}{(\\sin(x/2)+\\cos(x/2))^2}\\right) + C$"
+            }
+          ],
+          "final_answer": "\\ln\\left(\\frac{\\tan^2(x/2)}{(1+\\tan(x/2))^2(1+\\tan^2(x/2))}\\right) + C",
+          "tip": "Weierstrass convierte la fracción trigonométrica en una racional que se descompone en parciales. La clave está en simplificar numerador y denominador por separado antes de dividirlos."
+        },
+        {
+          "id": "N2-G76",
+          "difficulty": 2,
+          "latex": "\\int \\ln(3x)\\,dx",
+          "hint": "Integración por partes: $u=\\ln(3x)$, $dv=dx$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Integración por partes",
+              "body": "Sea $u = \\ln(3x)$, $dv = dx$. Entonces $du = \\frac{1}{x}\\,dx$, $v = x$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula",
+              "body": "$x\\ln(3x) - \\int x\\cdot\\frac{1}{x}\\,dx = x\\ln(3x) - \\int 1\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$x\\ln(3x) - x + C = x(\\ln(3x)-1) + C$"
+            }
+          ],
+          "final_answer": "x\\ln(3x) - x + C",
+          "tip": "También puedes escribir $\\ln(3x) = \\ln 3 + \\ln x$, entonces $\\int\\ln(3x)\\,dx = x\\ln 3 + x\\ln x - x + C = x(\\ln 3 + \\ln x - 1) = x(\\ln(3x)-1)$."
+        },
+        {
+          "id": "N2-G77",
+          "difficulty": 4,
+          "latex": "\\int x^5\\sqrt{x^2+4}\\,dx",
+          "hint": "Sustitución trigonométrica $x = 2\\tan(\\theta)$ o sustitución algebraica $u = x^2+4$.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Sustitución algebraica",
+              "body": "Sea $u = x^2+4$, $du = 2x\\,dx$, $x^2 = u-4$. Entonces $x^5 = x^4\\cdot x = (u-4)^2\\cdot x$"
+            },
+            {
+              "step": 2,
+              "title": "Transformar",
+              "body": "$\\int (u-4)^2\\sqrt{u}\\cdot\\frac{du}{2} = \\frac{1}{2}\\int (u^2-8u+16)u^{1/2}\\,du = \\frac{1}{2}\\int (u^{5/2}-8u^{3/2}+16u^{1/2})\\,du$"
+            },
+            {
+              "step": 3,
+              "title": "Integrar",
+              "body": "$\\frac{1}{2}\\left(\\frac{2u^{7/2}}{7} - \\frac{16u^{5/2}}{5} + \\frac{32u^{3/2}}{3}\\right) + C$"
+            },
+            {
+              "step": 4,
+              "title": "Simplificar",
+              "body": "$\\frac{u^{7/2}}{7} - \\frac{8u^{5/2}}{5} + \\frac{16u^{3/2}}{3} + C = u^{3/2}\\left(\\frac{u^2}{7} - \\frac{8u}{5} + \\frac{16}{3}\\right) + C$"
+            },
+            {
+              "step": 5,
+              "title": "Volver a x",
+              "body": "$(x^2+4)^{3/2}\\left(\\frac{(x^2+4)^2}{7} - \\frac{8(x^2+4)}{5} + \\frac{16}{3}\\right) + C$"
+            },
+            {
+              "step": 6,
+              "title": "Simplificar la expresión entre paréntesis",
+              "body": "Común denominador 105: $\\frac{15(x^2+4)^2 - 168(x^2+4) + 560}{105} = \\frac{15x^4+120x^2+240-168x^2-672+560}{105} = \\frac{15x^4-48x^2+128}{105}$"
+            }
+          ],
+          "final_answer": "\\frac{(x^2+4)^{3/2}(15x^4-48x^2+128)}{105} + C",
+          "tip": "Para potencias impares de $x$ multiplicadas por $\\sqrt{x^2+a^2}$, la sustitución algebraica $u=x^2+a^2$ es más eficiente que la trigonométrica. El factor $x$ sobrante se convierte en $du$."
+        },
+        {
+          "id": "N2-G78",
+          "difficulty": 4,
+          "latex": "\\int x\\arcsin(x)\\,dx",
+          "hint": "Integración por partes + sustitución trigonométrica para la integral resultante.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Integración por partes",
+              "body": "Sea $u = \\arcsin(x)$, $dv = x\\,dx$. Entonces $du = \\frac{1}{\\sqrt{1-x^2}}\\,dx$, $v = \\frac{x^2}{2}$"
+            },
+            {
+              "step": 2,
+              "title": "Aplicar la fórmula",
+              "body": "$\\frac{x^2}{2}\\arcsin(x) - \\int \\frac{x^2}{2\\sqrt{1-x^2}}\\,dx$"
+            },
+            {
+              "step": 3,
+              "title": "Sustitución trigonométrica para la segunda integral",
+              "body": "Sea $x = \\sen(\\theta)$, $dx = \\cos(\\theta)\\,d\\theta$, $\\sqrt{1-x^2} = \\cos(\\theta)$"
+            },
+            {
+              "step": 4,
+              "title": "Transformar",
+              "body": "$\\int \\frac{\\sen^2(\\theta)\\cos(\\theta)}{2\\cos(\\theta)}\\,d\\theta = \\frac{1}{2}\\int \\sen^2(\\theta)\\,d\\theta = \\frac{1}{2}\\int \\frac{1-\\cos(2\\theta)}{2}\\,d\\theta = \\frac{\\theta}{4} - \\frac{\\sen(2\\theta)}{8}$"
+            },
+            {
+              "step": 5,
+              "title": "Deshacer sustitución",
+              "body": "$\\frac{\\arcsin(x)}{4} - \\frac{x\\sqrt{1-x^2}}{4}$"
+            },
+            {
+              "step": 6,
+              "title": "Combinar todo",
+              "body": "$\\frac{x^2}{2}\\arcsin(x) - \\frac{\\arcsin(x)}{4} + \\frac{x\\sqrt{1-x^2}}{4} + C = \\frac{(2x^2-1)\\arcsin(x) + x\\sqrt{1-x^2}}{4} + C$"
+            }
+          ],
+          "final_answer": "\\frac{(2x^2-1)\\arcsin(x) + x\\sqrt{1-x^2}}{4} + C",
+          "tip": "Para integrales con $\\arcsin(x)$ o $\\arctan(x)$, siempre empieza con partes tomando la función inversa como $u$. La integral resultante requiere sustitución trigonométrica."
+        },
+        {
+          "id": "N2-G79",
+          "difficulty": 3,
+          "latex": "\\int \\frac{x-1}{x^3-x^2-2x}\\,dx",
+          "hint": "Factoriza el denominador y aplica fracciones parciales.",
+          "solution_steps": [
+            {
+              "step": 1,
+              "title": "Factorizar",
+              "body": "$x^3-x^2-2x = x(x^2-x-2) = x(x-2)(x+1)$"
+            },
+            {
+              "step": 2,
+              "title": "Fracciones parciales",
+              "body": "$\\frac{x-1}{x(x-2)(x+1)} = \\frac{A}{x} + \\frac{B}{x-2} + \\frac{C}{x+1}$"
+            },
+            {
+              "step": 3,
+              "title": "Resolver coeficientes",
+              "body": "$x-1 = A(x-2)(x+1) + Bx(x+1) + Cx(x-2)$. $x=0$: $-1=-2A \\Rightarrow A=\\frac{1}{2}$. $x=2$: $1=6B \\Rightarrow B=\\frac{1}{6}$. $x=-1$: $-2=3C \\Rightarrow C=-\\frac{2}{3}$"
+            },
+            {
+              "step": 4,
+              "title": "Integrar",
+              "body": "$\\frac{1}{2}\\ln|x| + \\frac{1}{6}\\ln|x-2| - \\frac{2}{3}\\ln|x+1| + C$"
+            },
+            {
+              "step": 5,
+              "title": "Simplificar",
+              "body": "$\\frac{1}{6}\\ln|x^3(x-2)| - \\frac{2}{3}\\ln|x+1| + C = \\frac{1}{6}\\ln\\left|\\frac{x^3(x-2)}{(x+1)^4}\\right| + C$"
+            }
+          ],
+          "final_answer": "\\frac{1}{2}\\ln|x| + \\frac{1}{6}\\ln|x-2| - \\frac{2}{3}\\ln|x+1| + C",
+          "tip": "Siempre factoriza completamente antes de hacer fracciones parciales. $x^3-x^2-2x$ tiene factor común $x$, y el cuadrático restante $x^2-x-2$ se factoriza en $(x-2)(x+1)$."
+        }
+      ]
+    }
+  ]
+}
