@@ -7,6 +7,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+<base target="_blank">
 </head>
 <body>
 
@@ -24,7 +25,6 @@
       <div class="heart-float">💜</div>
       <h1 class="main-title">Integrales para Mi Novia</h1>
       <p class="main-subtitle">
-        <!-- EDITAR AQUÍ: Subtítulo / descripción general -->
         Una guía paso a paso para dominar las integrales, hecha con mucho amor para ti mi vida.
         Cada nivel te llevará de lo más básico hasta lo más avanzado, con ejercicios prácticos 
         y explicaciones detalladas. Tu puedes mi amor, te amo..
@@ -41,7 +41,6 @@
           <div class="side-icon">✨</div>
           <h3 class="side-title">Para ti</h3>
           <div class="side-text">
-            <!-- EDITAR AQUÍ: Primer mensaje personal izquierdo -->
             <p>
               Mi amor, sé que las integrales pueden parecer difíciles al principio, 
               pero quiero que sepas que estoy aquí para apoyarte en cada paso. 
@@ -59,7 +58,6 @@
           <div class="side-icon">🌸</div>
           <h3 class="side-title">Un pensamiento</h3>
           <div class="side-text">
-            <!-- EDITAR AQUÍ: Segundo mensaje personal izquierdo -->
             <p>
               "A veces me pregunto: ¿Cómo es posible que mi novia sea tan hermosa, pero sobre todo inteligente y capaz?"
             </p>
@@ -75,51 +73,50 @@
         <div class="levels-container">
           <h2 class="levels-title">📚 Niveles de Aprendizaje</h2>
           <p class="levels-desc">
-            <!-- EDITAR AQUÍ: Descripción de los niveles -->
             Elige un nivel para comenzar. Completa cada uno para desbloquear el siguiente. 
             ¡Recuerda que eres el amor de mi vidaaaaaa!
           </p>
 
           <!-- NIVEL 0: Disponible -->
-          <a href="nivel_0/nivel_0.html" class="level-card available">
+          <a href="nivel_0/nivel_0.html" class="level-card available" id="level0Card">
             <div class="level-number">0</div>
             <div class="level-info">
               <h3>Bases y Conocimientos Previos</h3>
               <p>Integración inmediata, manipulación algebraica y sustitución simple. Dominar antes de avanzar.</p>
               <div class="level-meta">
-                <span class="level-status">✅ Disponible</span>
-                <span class="level-count">87 ejercicios</span>
+                <span class="level-status" id="level0Status">✅ Disponible</span>
+                <span class="level-count" id="level0Count">87 ejercicios</span>
               </div>
             </div>
             <div class="level-arrow">→</div>
           </a>
 
-          <!-- NIVEL 1: Bloqueado -->
+          <!-- NIVEL 1: Bloqueado / Desbloqueado -->
           <div class="level-card locked" id="level1Card">
             <div class="level-number">1</div>
             <div class="level-info">
               <h3>Técnicas Fundamentales</h3>
               <p>Sustitución trigonométrica, por partes, potencias trigonométricas y fracciones parciales simples.</p>
               <div class="level-meta">
-                <span class="level-status">🔒 Bloqueado</span>
-                <span class="level-count">Aún no disponible</span>
+                <span class="level-status" id="level1Status">🔒 Bloqueado</span>
+                <span class="level-count" id="level1Count">Aún no disponible</span>
               </div>
             </div>
-            <div class="level-lock">🔒</div>
+            <div class="level-lock" id="level1Lock">🔒</div>
           </div>
 
-          <!-- NIVEL 2: Bloqueado -->
+          <!-- NIVEL 2: Bloqueado / Desbloqueado -->
           <div class="level-card locked" id="level2Card">
             <div class="level-number">2</div>
             <div class="level-info">
               <h3>Técnicas Avanzadas</h3>
               <p>Fracciones parciales complejas, irracionales, Weierstrass, Leibniz y completar cuadrados.</p>
               <div class="level-meta">
-                <span class="level-status">🔒 Bloqueado</span>
-                <span class="level-count">Aún no disponible</span>
+                <span class="level-status" id="level2Status">🔒 Bloqueado</span>
+                <span class="level-count" id="level2Count">Aún no disponible</span>
               </div>
             </div>
-            <div class="level-lock">🔒</div>
+            <div class="level-lock" id="level2Lock">🔒</div>
           </div>
 
           <!-- NIVEL 3: Bloqueado -->
@@ -138,17 +135,44 @@
 
         </div>
 
-        <!-- Barra de progreso global (oculta si no hay progreso) -->
-        <div class="global-progress" id="globalProgress" style="display: none;">
-          <div class="progress-header">
-            <span>🎯 Progreso en Nivel 0</span>
-            <span id="globalPercent">0%</span>
+        <!-- Barras de progreso -->
+        <div class="progress-section" id="progressSection">
+          <!-- Progreso Nivel 0 -->
+          <div class="global-progress" id="progressLevel0" style="display: none;">
+            <div class="progress-header">
+              <span>🎯 Progreso en Nivel 0</span>
+              <span id="percentLevel0">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="barLevel0" style="width: 0%"></div>
+            </div>
+            <p class="progress-text" id="msgLevel0">Completa el Nivel 0 para desbloquear el Nivel 1</p>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="globalProgressBar" style="width: 0%"></div>
+
+          <!-- Progreso Nivel 1 -->
+          <div class="global-progress" id="progressLevel1" style="display: none;">
+            <div class="progress-header">
+              <span>🎯 Progreso en Nivel 1</span>
+              <span id="percentLevel1">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="barLevel1" style="width: 0%"></div>
+            </div>
+            <p class="progress-text" id="msgLevel1">Completa el Nivel 1 para desbloquear el Nivel 2</p>
           </div>
-          <p class="progress-text" id="progressMsg">Completa el Nivel 0 para desbloquear el Nivel 1</p>
         </div>
+
+        <!-- Progreso Nivel 2 -->
+          <div class="global-progress" id="progressLevel2" style="display: none;">
+            <div class="progress-header">
+              <span>🎯 Progreso en Nivel 2</span>
+              <span id="percentLevel2">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="barLevel2" style="width: 0%"></div>
+            </div>
+            <p class="progress-text" id="msgLevel2">Completa el Nivel 2 para dominar todas las técnicas</p>
+          </div>
       </main>
 
       <!-- COLUMNA DERECHA: Mensajes personales -->
@@ -157,7 +181,6 @@
           <div class="side-icon">💖</div>
           <h3 class="side-title">Recuerda</h3>
           <div class="side-text">
-            <!-- EDITAR AQUÍ: Primer mensaje personal derecho -->
             <p>
               No importa cuánto tiempo te tome entender algo, lo importante 
               es que nunca dejes de intentarlo. Yo sé que eres capaz de 
@@ -174,7 +197,6 @@
           <div class="side-icon">🌙</div>
           <h3 class="side-title">Siempre</h3>
           <div class="side-text">
-            <!-- EDITAR AQUÍ: Segundo mensaje personal derecho -->
             <p>
               Cada vez que resuelvas un ejercicio, recuerda que hay alguien 
               que cree ciegamente en ti. No importa la hora, no importa el día, 
