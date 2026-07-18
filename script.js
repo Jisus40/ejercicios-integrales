@@ -44,7 +44,8 @@ function animateEntry() {
 const LEVEL_CONFIG = {
   0: { total: 52, path: 'nivel_0/nivel_0.html' },
   1: { total: 62, path: 'nivel_1/nivel_1.html' },
-  2: { total: 111, path: 'nivel_2/nivel_2.html' }
+  2: { total: 111, path: 'nivel_2/nivel_2.html' },
+  3: { total: 134, path: 'nivel_3/nivel_3.html' }
 };
 
 // =========================================================
@@ -70,6 +71,15 @@ function checkAllProgressAndUnlock() {
       // Verificar progreso del Nivel 2
       const nivel2Data = getLevelProgress(2);
       updateProgressBar(2, nivel2Data);
+
+      // Verificar si Nivel 2 está completado → desbloquear Nivel 3
+      if (nivel2Data.completed) {
+        unlockLevel(3);
+
+        // Verificar progreso del Nivel 3
+        const nivel3Data = getLevelProgress(3);
+        updateProgressBar(3, nivel3Data);
+      }
     }
   }
 }
@@ -119,7 +129,10 @@ function updateProgressBar(levelNum, data) {
         msg.textContent = '🎉 ¡Nivel 1 completado! El Nivel 2 está desbloqueado.';
         msg.style.color = 'var(--accent-success)';
       } else if (levelNum === 2) {
-        msg.textContent = '🎉 ¡Nivel 2 completado! Has dominado todas las técnicas avanzadas.';
+        msg.textContent = '🎉 ¡Nivel 2 completado! El Nivel 3 está desbloqueado.';
+        msg.style.color = 'var(--accent-success)';
+      } else if (levelNum === 3) {
+        msg.textContent = '🎉 ¡Nivel 3 completado! Has dominado todas las técnicas de integrales.';
         msg.style.color = 'var(--accent-success)';
       }
     } else {
@@ -129,7 +142,9 @@ function updateProgressBar(levelNum, data) {
       } else if (levelNum === 1) {
         msg.textContent = `Te faltan ${remaining} ejercicios para desbloquear el Nivel 2`;
       } else if (levelNum === 2) {
-        msg.textContent = `Te faltan ${remaining} ejercicios para completar el Nivel 2`;
+        msg.textContent = `Te faltan ${remaining} ejercicios para desbloquear el Nivel 3`;
+      } else if (levelNum === 3) {
+        msg.textContent = `Te faltan ${remaining} ejercicios para completar el Nivel 3`;
       }
     }
   }

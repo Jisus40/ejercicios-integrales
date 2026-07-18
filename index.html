@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -119,18 +120,18 @@
             <div class="level-lock" id="level2Lock">🔒</div>
           </div>
 
-          <!-- NIVEL 3: Bloqueado -->
+          <!-- NIVEL 3: Bloqueado / Desbloqueado -->
           <div class="level-card locked" id="level3Card">
             <div class="level-number">3</div>
             <div class="level-info">
               <h3>Selectas / Desafiantes</h3>
               <p>Combinación de múltiples técnicas, casos especiales y alta complejidad algebraica.</p>
               <div class="level-meta">
-                <span class="level-status">🔒 Bloqueado</span>
-                <span class="level-count">Aún no disponible</span>
+                <span class="level-status" id="level3Status">🔒 Bloqueado</span>
+                <span class="level-count" id="level3Count">Aún no disponible</span>
               </div>
             </div>
-            <div class="level-lock">🔒</div>
+            <div class="level-lock" id="level3Lock">🔒</div>
           </div>
 
         </div>
@@ -160,9 +161,8 @@
             </div>
             <p class="progress-text" id="msgLevel1">Completa el Nivel 1 para desbloquear el Nivel 2</p>
           </div>
-        </div>
 
-        <!-- Progreso Nivel 2 -->
+          <!-- Progreso Nivel 2 -->
           <div class="global-progress" id="progressLevel2" style="display: none;">
             <div class="progress-header">
               <span>🎯 Progreso en Nivel 2</span>
@@ -171,8 +171,21 @@
             <div class="progress-bar-bg">
               <div class="progress-bar-fill" id="barLevel2" style="width: 0%"></div>
             </div>
-            <p class="progress-text" id="msgLevel2">Completa el Nivel 2 para dominar todas las técnicas</p>
+            <p class="progress-text" id="msgLevel2">Completa el Nivel 2 para desbloquear el Nivel 3</p>
           </div>
+
+          <!-- Progreso Nivel 3 -->
+          <div class="global-progress" id="progressLevel3" style="display: none;">
+            <div class="progress-header">
+              <span>🎯 Progreso en Nivel 3</span>
+              <span id="percentLevel3">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="barLevel3" style="width: 0%"></div>
+            </div>
+            <p class="progress-text" id="msgLevel3">Completa el Nivel 3 para dominar todas las técnicas</p>
+          </div>
+        </div>
       </main>
 
       <!-- COLUMNA DERECHA: Mensajes personales -->
